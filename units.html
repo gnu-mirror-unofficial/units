@@ -1,138 +1,220 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
- <title>units - GNU Project - Free Software Foundation (FSF)</title>
- <link rev="made" href="mailto:webmasters@www.gnu.org">
- <meta name="keywords" content="units">
- <link rel="stylesheet" type="text/css" href="gnu.css" />
- <link rel="icon" type="image/png" href="/graphics/gnu-head-icon.png" />
- <style type="text/css">
-  thead.header {
-	background-color: #FFFFDD;
-  }
-  .comment {
-        font-style: italic;
-  }
- </style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><title>FOO Title</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="boilerplate_files/gnu.css">
+  <link rev="made" href="http://www.gnu.org/webmasters@gnu.org"><!-- This document is in XML, and xhtml 1.0 --><!-- Please make sure to properly nest your tags --><!-- and ensure that your final document validates --><!-- consistent with W3C xhtml 1.0 and CSS standards --><!-- See validator.w3.org --></head>
 
-</head>
+
 <body>
-<h3>units</h3>
-<a href="/graphics/gnu-head-sm.jpg"><img src="/graphics/gnu-head-sm.jpg"
-alt=" [image of the Head of a GNU] "
-width="129" height="122"></a>
 
-<h4>table of contents</h4>
-<ul>
- <li><a href="#introduction" name="TOCintroduction">Introduction</a></li>
- <li><a href="#manual" name="TOCmanual">Manual</a></li>
- <li><a href="#releases" name="TOCreleases">Releases</a></li>
-
- <li><a href="#maillists" name="TOCmaillists">Mailing lists</a></li>
- <li><a href="#downloading" name="TOCdownloading">Get the Software</a></li>
-</ul>
 <p>
+  <a href="#translations">Translations</a> of this page
+</p>
+
+<h3>Units</h3>
+
+<!-- When you replace this graphic, make sure you change -->
+<!-- the link to also point to the correct HTML page. -->
+<!-- If you make a new graphic for this page, make sure it -->
+<!-- has a corresponding entry in /graphics/graphics.html. -->
+<p>
+  <a href="http://www.gnu.org/graphics/agnuhead.html"><img src="boilerplate_files/gnu-head-sm.jpg" alt=" [image of the Head of a GNU] " height="122" width="129"></a>
+</p>
+
 <hr>
 
-<h4><a href="#TOCintroduction" name="introduction">Introduction to Units</a></h4>
+<!-- Put your content here -->
+<!-- Following is an example -->
+
+<h4>
+  Table of Contents
+</h4>
+
+<ul>
+  <li><a href="#introduction" id="TOCintroduction">Introduction to Units</a></li>
+  <li><a href="#examples" id="TOCexamples">Examples</a></li>
+  <li><a href="#downloading" id="TOCdownloading">Downloading Units</a></li>
+  <li><a href="#documentation" id="TOCdocumentation">Documentation</a></li>
+  <li><a href="#maintainer" id="TOCmaintainer">Maintainer</a></li>
+</ul>
+
+<hr>
+
+<h4>
+  <a href="#TOCintroduction" id="introduction">Introduction to Units</a>
+</h4>
+
 <p>
-The units program converts quantities expressed in various scales
+The Units program converts quantities expressed in various scales
 to their equivalents in other scales.  The units program can
 handle multiplicative scale changes as well as nonlinear
-conversions such as Fahrenheit to Celsius. 
+conversions such as Fahrenheit to Celsius or wire gauge.  
+</p>
 
 <p>
-The rest of this web page is for a different program as the maintainer
-is presently trying to figure out how to update the web page.  
+The units are defined in an external data file.  You can use the
+extensive data file that comes with this program, or you can 
+provide your own data file to suit your needs.  
+You can use the program interactively 
+with prompts, or you can use it
+from the command line.  
+</p>
 
 <p>
-The full <a href="manual/index.html">manual</a> is available in
-various formats.
+Units acts as a general calculator for units.  You can add, subtract,
+multiply and divide units.  You can raise units to integer powers and
+you can take roots of units.  Operations can be grouped using
+parentheses. </p>
 
-<h4><a href="#TOCreleases" name="releases">Releases</a></h4>
-
-<table frame="box" rules="groups" width="95%" cellpadding="10%">
-<colgroup span="1">
-
-</colgroup>
-<colgroup span="1">
-</colgroup>
-<colgroup span="1">
-</colgroup>
-<thead class="header">
- <tr> 
-  <th>Date</th>
-  <th>Version</th>
-  <th>Download (please use one of the <a href="/prep/ftp.html">mirrors</a> instead)</th>
-
-  <th>Information</th>
- </tr>
-</thead>
-<tbody>
- <tr> 
-  <td>2004-12-15</td>
-  <td>1.84a</td>
-  <td><a href="http://alpha.gnu.org/gnu/units/units-1.84a.tar.gz">Gzipped tar archive</a>
- </td>
- <td>A <emph>beta</emph> release.
- </td>
-
- </tr>
-<tbody>
- <tr>
-  <td>2002-06-16</td>
-  <td>1.80</td>
-  <td><a href="http://ftp.gnu.org/gnu/units/units-1.80.tar.gz">Gzipped tar archive</a>
-  <td>Stable release</td>
- </tr>
-</table>
-
-<h4><a href="#TOCmaillists" name="maillists">Mailing lists</a></h4>
+<h4>
+  <a href="#TOCexamples" id="examples">Examples</a>
+</h4>
 
 <p>
+Two simple conversion examples:
+<pre>
+    You have: mile
+    You want: km
+            * 1.609344
+            / 0.62137119
+
+    You have: furlongs per fortnight
+    You want: m/s  
+            * 0.00016630986
+            / 6012.8727
+</pre>
+</p>
+
+<p>
+A calculation involving roots of units:
+<pre>
+    You have: (400 W/m^2 / stefanboltzmann)^(1/4)
+    You have:
+            Definition: 289.80882 K
+</pre>
+</p>
+
+<p>
+Temperature <em>differences</em> are converted using the syntax
+shown above with unit names like degC and degF.  But conversion of
+absolute temperatures requires a different syntax:
+<pre>
+    You have: tempF(45)
+    You want: tempC
+            7.2222222
+</pre>
+</p>
+
+
+<h4>
+  <a href="#TOCdownloading" id="downloading">Downloading Units</a>
+</h4>
+
+<p>
+  Units can be found on
+  <a href="http://ftp.gnu.org/gnu/units/">http://ftp.gnu.org/gnu/units/</a>
+  [via http] and
+  <a href="ftp://ftp.gnu.org/gnu/units/">ftp://ftp.gnu.org/gnu/units/</a> 
+  [via FTP].
+  It can also be found on one of <a href="http://www.gnu.org/prep/ftp.html">our FTP mirrors</a>.
+</p>
+
+<h4>
+  <a href="#TOCdocumentation" id="documentation">Documentation</a>
+</h4>
+
+<p>
+The full <a href="http://www.gnu.org/software/units/manual/index.html">manual</a>
+is available in various formats.  
+You may also find more information about Units by looking at 
+<em>/usr/doc/foo/</em> or <em>/usr/local/doc/foo/</em> or by looking
+at man pages (<em>man foo</em> at the shell prompt) on your system.
+</p>
+
+<h4>
+  <a href="#TOCmaintainer" id="maintainer">Maintainer</a>
+</h4>
+
+<p>
+Units is currently being maintained by
+<a href="mailto:adrian@cam.cornell.edu">&lt;adrian@cam.cornell.edu&gt;</a>.
 If you wish to send a bug report, a feature request, or simply to share
-your thoughts about GNU units, please write to <a href="mailto:adrian@cam.cornell.edu">
-<EM>&lt;adrian@cam.cornell.edu&gt;</EM></a>. 
-
-<h4><a href="#TOCdownloading" name="downloading">Downloading Units</a></h4>
-<p>
-
-Units can be found on in the subdirectory <code>/gnu/units/</code> on your favorite
-<a href="/prep/ftp.html">GNU mirror</a>. For other ways to 
-obtain Units, please read
-
-<a href="/software/software.html#HowToGetSoftware">How to get GNU Software</a>
+your thoughts about GNU units, please write to <a href="mailto:adrian@cam.cornell.edu">&lt;adrian@cam.cornell.edu&gt;</a>. 
+</p>
 
 <hr>
 
-Return to <a href="/home.html">GNU's home page</a>.
+<!-- If needed, change the copyright block at the bottom. In general, -->
+<!-- all pages on the GNU web server should have the section about    -->
+<!-- verbatim copying.  Please do NOT remove this without talking     -->
+<!-- with the webmasters first. --> 
+<!-- Please make sure the copyright date is consistent with the document -->
+<!-- and that it is like this "2001, 2002" not this "2001-2002." -->
+
+<p class="translations">
+<a id="translations"></a>
+<b>Translations of this page:</b><br>
+
+<!-- Please keep this list alphabetical, and in the original -->
+<!-- language if possible, otherwise default to English -->
+<!-- If you do not have it English, please comment what the -->
+<!-- English is.  If you add a new language here, please -->
+<!-- advise web-trans@gnu.org and add it to -->
+<!--    - in /home/www/bin/nightly-vars either TAGSLANG or WEBLANG -->
+<!--    - in /home/www/html/server/standards/README.translations.html -->
+<!--      one of the lists under the section "Translations Underway" -->
+<!--    - if there is a translation team, you also have to add an alias -->
+<!--      to mail.gnu.org:/com/mailer/aliases -->
+<!-- Please also check you have the 2 letter language code right versus -->
+<!--     http://www.w3.org/WAI/ER/IG/ert/iso639.htm -->
+<!-- Please use xhtml normative character entities, instead of -->
+<!-- non-w3c entities.  xhtml should be XML compliant -->
+
+[
+  <a href="units.html.html">English</a>
+]
+</p>
+
+
+<div class="copyright">
+<p>
+Return to the <a href="http://www.gnu.org/home.html">GNU Project home page</a>.
+</p>
 
 <p>
-Please send FSF &amp; GNU inquiries &amp; questions to
-
-<a href="mailto:gnu@gnu.org"><EM>gnu@gnu.org</EM></a>.
-There are also <a href="/home.html#ContactInfo">other ways to contact</a> the FSF.
-
+Please send FSF &amp; GNU inquiries to 
+<a href="mailto:gnu@gnu.org"><em>gnu@gnu.org</em></a>.
+There are also <a href="http://www.gnu.org/home.html#ContactInfo">other ways to contact</a> 
+the FSF.
+<br>
+Please send broken links and other corrections (or suggestions) to
+<a href="mailto:webmasters@gnu.org"><em>webmasters@gnu.org</em></a>.
+</p>
 
 <p>
-Please send comments on these web pages to
-<a href="mailto:adrian@cam.cornell.edu"><EM>adrian@cam.cornell.edu</EM></a>,
-send other questions to
-<a href="mailto:gnu@gnu.org"><EM>gnu@gnu.org</EM></a>.
+Please see the 
+<a href="http://www.gnu.org/server/standards/README.translations.html">Translations
+README</a> for information on coordinating and submitting
+translations of this article.
+</p>
 
 <p>
 Copyright (C) 2004 Free Software Foundation, Inc.,
-59 Temple Place - Suite 330, Boston, MA  02111,  USA
-
-<p>
+59 Temple Place - Suite 330, Boston, MA 02111, USA
+<br>
 Verbatim copying and distribution of this entire article is
-permitted in any medium, provided this notice is preserved.
-<p>
-Last updated:
-<!-- timestamp start -->
-$Date: 2004/12/16 03:41:37 $ $Author: adrianm $
-<!-- timestamp end -->
-<hr>
-</body>
+permitted worldwide without royalty in any medium provided
+this notice is preserved.
+</p>
 
-</html>
+<p>
+Updated:
+<!-- timestamp start -->
+$Date: 2004/12/16 22:36:41 $ $Author: adrianm $
+<!-- timestamp end -->
+</p>
+</div>
+
+</body></html>
+
