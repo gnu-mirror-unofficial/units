@@ -282,7 +282,7 @@ operator has the second highest precedence.
                  * 0.00026417205
                  / 3785.4118
      
-         You have: arabicfoot-arabictradepound-force
+         You have: arabicfoot * arabictradepound * force
          You want: ft lbf
                  * 0.7296
                  / 1.370614
@@ -325,9 +325,9 @@ centimeters, the units database defines <span class="samp">centi-</span> and <sp
 prefixes.  Prefixes can appear alone with no unit following them. 
 An exponent applies only to the immediately preceding unit and its
 prefix so that <span class="samp">cm^3</span> or <span class="samp">centimeter^3</span> refer to cubic centimeters
-but <span class="samp">centi-meter^3</span> refers to hundredths of cubic meters.  Only one
+but <span class="samp">centi*meter^3</span> refers to hundredths of cubic meters.  Only one
 prefix is permitted per unit, so <span class="samp">micromicrofarad</span> will fail, but
-<span class="samp">micro-microfarad</span> will work.
+<span class="samp">micro*microfarad</span> will work, as will <span class="samp">micro microfarad</span>..
 
    <p>For <code>units</code>, numbers are just another kind of unit.  They can
 appear as many times as you like and in any order in a unit expression. 
@@ -545,24 +545,32 @@ This option overrides the <code>UNITSFILE</code> environment variable.
 
      <br><dt><span class="samp">-h</span><dt><span class="samp">--help</span><dd><a name="index-_002dh-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-33"></a><a name="index-_002d_002dhelp-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-34"></a>Print out a summary of the options for <code>units</code>.
 
-     <br><dt><span class="samp">-q</span><dt><span class="samp">--quiet</span><dt><span class="samp">--silent</span><dd><a name="index-_002dq-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-35"></a><a name="index-_002d_002dquiet-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-36"></a><a name="index-_002d_002dsilent-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-37"></a>Suppress prompting of the user for units and the display of statistics
+     <br><dt><span class="samp">-m</span><dt><span class="samp">--minus</span><dd><a name="index-_002dm-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-35"></a><a name="index-_002d_002dminus-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-36"></a>Causes <span class="samp">-</span> to be interpreted as a subtraction operator.  This is
+usually the default behavior.
+
+     <br><dt><span class="samp">-p</span><dt><span class="samp">--product</span><dd><a name="index-_002dp-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-37"></a><a name="index-_002d_002dproduct-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-38"></a>Causes <span class="samp">-</span> to be interpreted as a multiplication operator when it
+has two operands.  It will as a negation operator when it has only one
+operand: <span class="samp">(-3)</span>.  Note that by default <span class="samp">-</span> is treated as a
+subtraction operator.
+
+     <br><dt><span class="samp">-q</span><dt><span class="samp">--quiet</span><dt><span class="samp">--silent</span><dd><a name="index-_002dq-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-39"></a><a name="index-_002d_002dquiet-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-40"></a><a name="index-_002d_002dsilent-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-41"></a>Suppress prompting of the user for units and the display of statistics
 about the number of units loaded.
 
-     <br><dt><span class="samp">-s</span><dt><span class="samp">--strict</span><dd><a name="index-_002ds-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-38"></a><a name="index-_002d_002dstrict-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-39"></a>Suppress conversion of units to their reciprocal units.  For
+     <br><dt><span class="samp">-s</span><dt><span class="samp">--strict</span><dd><a name="index-_002ds-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-42"></a><a name="index-_002d_002dstrict-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-43"></a>Suppress conversion of units to their reciprocal units.  For
 example, <code>units</code> will normally convert hertz to seconds
 because these units are reciprocals of each other.  The strict option
 requires that units be strictly conformable to perform a conversion, and
 will give an error if you attempt to convert hertz to seconds.
 
-     <br><dt><span class="samp">-t</span><dt><span class="samp">--terse</span><dd><a name="index-_002dt-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-40"></a><a name="index-_002d_002dterse-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-41"></a>Give terse output when converting units.  This option can be used when
+     <br><dt><span class="samp">-t</span><dt><span class="samp">--terse</span><dd><a name="index-_002dt-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-44"></a><a name="index-_002d_002dterse-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-45"></a>Give terse output when converting units.  This option can be used when
 calling <code>units</code> from another program so that the output is easy to
 parse.
 
-     <br><dt><span class="samp">-v</span><dt><span class="samp">--verbose</span><dd><a name="index-_002dv-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-42"></a><a name="index-_002d_002dverbose-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-43"></a>Give slightly more verbose output when converting units.  When combined
+     <br><dt><span class="samp">-v</span><dt><span class="samp">--verbose</span><dd><a name="index-_002dv-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-46"></a><a name="index-_002d_002dverbose-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-47"></a>Give slightly more verbose output when converting units.  When combined
 with the <span class="samp">-c</span> option this gives the same effect as
 <span class="samp">--check-verbose</span>.
 
-     <br><dt><span class="samp">-V</span><dt><span class="samp">--version</span><dd><a name="index-_002dV-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-44"></a><a name="index-_002d_002dversion-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-45"></a>Print program version number, tell whether the readline library
+     <br><dt><span class="samp">-V</span><dt><span class="samp">--version</span><dd><a name="index-_002dV-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-48"></a><a name="index-_002d_002dversion-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-49"></a>Print program version number, tell whether the readline library
 has been included, and give the location of the default units
 data file.
 
@@ -578,7 +586,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
 <h2 class="chapter">6 Unit definitions</h2>
 
-<p><a name="index-unit-definitions-46"></a>
+<p><a name="index-unit-definitions-50"></a>
 The conversion information is read from a units data file which
 is called <span class="file">units.dat</span> and is probably located in
 the <span class="file">/usr/local/share</span> directory. 
@@ -674,7 +682,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
 <h2 class="chapter">7 Defining new units</h2>
 
-<p><a name="index-defining-units-47"></a><a name="index-units_002c-redefinition-of-48"></a><a name="index-changing-units-definitions-49"></a>
+<p><a name="index-defining-units-51"></a><a name="index-units_002c-redefinition-of-52"></a><a name="index-changing-units-definitions-53"></a>
 All of the units and prefixes that <code>units</code> can convert are defined
 in the units data file.  If you want to add your own units, you can
 supply your own file.
@@ -688,7 +696,7 @@ possible to spread definitions out over several lines if desired.
 A file can be included by giving the command <span class="samp">!include</span> followed by
 the file's name.  The file will be sought in the same directory as the
 parent file unless a full path is given. 
-<a name="index-include-files-50"></a>
+<a name="index-include-files-54"></a>
 Unit names must not contain any of the operator characters <span class="samp">+</span>,
 <span class="samp">-</span>, <span class="samp">*</span>, <span class="samp">/</span>, <span class="samp">|</span>, <span class="samp">^</span> or the parentheses. 
 They cannot begin with a digit or a decimal point (<span class="samp">.</span>), nor can
@@ -698,7 +706,7 @@ new units in terms of old ones so that a reduction leads to the
 primitive units, which are marked with <span class="samp">!</span> characters. 
 Dimensionless units are indicated by using the string
 <span class="samp">!dimensionless</span> for the unit definition. 
-<a name="index-dimensionless-units-51"></a>
+<a name="index-dimensionless-units-55"></a>
 When adding new units, be sure to use the <span class="samp">-c</span> option to check that
 the new units reduce properly. 
 If you create a loop in the units definitions, then <code>units</code> will
@@ -764,7 +772,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
 <h2 class="chapter">8 Defining nonlinear units</h2>
 
-<p><a name="index-defining-nonlinear-units-52"></a><a name="index-nonlinear-units_002c-redefinition-of-53"></a><a name="index-changing-nonlinear-unit-definitions-54"></a><a name="index-nonlinear-unit-conversions-55"></a>Some units conversions of interest are nonlinear; for
+<p><a name="index-defining-nonlinear-units-56"></a><a name="index-nonlinear-units_002c-redefinition-of-57"></a><a name="index-changing-nonlinear-unit-definitions-58"></a><a name="index-nonlinear-unit-conversions-59"></a>Some units conversions of interest are nonlinear; for
 example, temperature conversions between the Fahrenheit and Celsius
 scales cannot be done by simply multiplying by conversions factors.
 
@@ -838,7 +846,7 @@ for <span class="samp">tempF</span> you could write
 
 <pre class="example">         fahrenheit(x) [1;K] tempF(x); ~tempF(fahrenheit)
 </pre>
-   <p><a name="index-units-functions-56"></a><a name="index-functions-of-units-57"></a>You may occasionally wish to define a function that operates on units. 
+   <p><a name="index-units-functions-60"></a><a name="index-functions-of-units-61"></a>You may occasionally wish to define a function that operates on units. 
 This can be done
 using a nonlinear unit definition.  For example, the definition below
 provides conversion between radius and the area of a circle.  Note
@@ -847,7 +855,7 @@ area as output, as indicated by the specification in brackets.
 
 <pre class="example">         circlearea(r) [m;m^2] pi r^2 ; sqrt(circlearea/pi)
 </pre>
-   <p><a name="index-linear-interpolation-58"></a><a name="index-units_002c-piecewise-linear-59"></a><a name="index-piecewise-linear-units-60"></a>Sometimes you may be interested in a piecewise linear unit such as
+   <p><a name="index-linear-interpolation-62"></a><a name="index-units_002c-piecewise-linear-63"></a><a name="index-piecewise-linear-units-64"></a>Sometimes you may be interested in a piecewise linear unit such as
 many wire gauges.  Piecewise linear units can be defined by specifying
 conversions to linear units on a list of points. 
 Conversion at other points will be done by linear interpolation. 
@@ -920,7 +928,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
 <h2 class="chapter">9 Localization</h2>
 
-<p><a name="index-localization-61"></a>
+<p><a name="index-localization-65"></a>
 Some units have different values in different locations.  The
 localization feature accomodates this by allowing the units database to
 specify region dependent definitions.   A locale region in the units
@@ -948,20 +956,20 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
 <h2 class="chapter">10 Environment variables</h2>
 
-<p><a name="index-environment-variables-62"></a>
+<p><a name="index-environment-variables-66"></a>
 The <code>units</code> programs uses the following environment variables.
 
      <dl>
-<dt><span class="samp">LOCALE</span><dd><a name="index-LOCALE-environment-variable-63"></a>Specifies the locale.  The default is <span class="samp">en_US</span>.  Sections of the
+<dt><span class="samp">LOCALE</span><dd><a name="index-LOCALE-environment-variable-67"></a>Specifies the locale.  The default is <span class="samp">en_US</span>.  Sections of the
 units database are specific to certain locales.
 
-     <br><dt><span class="samp">PAGER</span><dd><a name="index-PAGER-environment-variable-64"></a>Specifies the pager to use for help and for displaying the conformable
+     <br><dt><span class="samp">PAGER</span><dd><a name="index-PAGER-environment-variable-68"></a>Specifies the pager to use for help and for displaying the conformable
 units.  The help function browses the units database and calls
 the pager using the <code>+nn</code> syntax for specifying a line number.  The
 default pager is <code>more</code>, but <code>less</code>, <code>emacs</code>, or
 <code>vi</code> are possible alternatives.
 
-     <br><dt><span class="samp">UNITSFILE</span><dd><a name="index-UNITSFILE-environment-variable-65"></a>Specifies the units database file to use (instead of the default). This
+     <br><dt><span class="samp">UNITSFILE</span><dd><a name="index-UNITSFILE-environment-variable-69"></a>Specifies the units database file to use (instead of the default). This
 will be overridden by the <span class="samp">-f</span> option.  Note that you can only
 specify a single units database using this environment variable.
 
@@ -977,7 +985,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
 <h2 class="chapter">11 Readline support</h2>
 
-<p><a name="index-readline_002c-use-with-_0040code_007bunits_007d-66"></a>
+<p><a name="index-readline_002c-use-with-_0040code_007bunits_007d-70"></a>
 If the <code>readline</code> package has been compiled in, then when
 <code>units</code> is used interactively, numerous command line editing
 features are available.  To check if your version of <code>units</code>
@@ -993,7 +1001,7 @@ allow editing in the style of emacs.  Of particular use with
 <kbd>?</kbd> key then <code>units</code> will display a list of all the units which
 start with the characters typed.  For example, if you type <kbd>metr</kbd> and
 then request completion, you will see something like this:
-<a name="index-unit-name-completion-67"></a>
+<a name="index-unit-name-completion-71"></a>
 <pre class="example">     You have: metr
      metre             metriccup         metrichorsepower  metrictenth
      metretes          metricfifth       metricounce       metricton
@@ -1019,67 +1027,71 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 <li><a href="#index-_002d_002dcheck_002dverbose-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-28"><code>--check-verbose </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
 <li><a href="#index-_002d_002dfile-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-32"><code>--file </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
 <li><a href="#index-_002d_002dhelp-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-34"><code>--help </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002d_002dminus-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-36"><code>--minus </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
 <li><a href="#index-_002d_002doutput_002dformat-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-30"><code>--output-format </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-_002d_002dquiet-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-36"><code>--quiet </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-_002d_002dsilent-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-37"><code>--silent </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-_002d_002dstrict-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-39"><code>--strict </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-_002d_002dterse-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-41"><code>--terse </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-_002d_002dverbose-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-43"><code>--verbose </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-_002d_002dversion-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-45"><code>--version </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002d_002dproduct-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-38"><code>--product </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002d_002dquiet-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-40"><code>--quiet </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002d_002dsilent-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-41"><code>--silent </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002d_002dstrict-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-43"><code>--strict </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002d_002dterse-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-45"><code>--terse </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002d_002dverbose-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-47"><code>--verbose </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002d_002dversion-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-49"><code>--version </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
 <li><a href="#index-_002dc-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-26"><code>-c </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
 <li><a href="#index-_002df-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-31"><code>-f </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
 <li><a href="#index-_002dh-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-33"><code>-h </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002dm-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-35"><code>-m </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
 <li><a href="#index-_002do-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-29"><code>-o </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-_002dq-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-35"><code>-q </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-_002ds-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-38"><code>-s </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-_002dt-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-40"><code>-t </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-_002dV-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-44"><code>-V </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-_002dv-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-42"><code>-v </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002dp-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-37"><code>-p </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002dq-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-39"><code>-q </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002ds-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-42"><code>-s </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002dt-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-44"><code>-t </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002dV-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-48"><code>-V </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
+<li><a href="#index-_002dv-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-46"><code>-v </code><span class="roman">(option for</span><code> units</code><span class="roman">)</span></a>: <a href="#Invoking-units">Invoking units</a></li>
 <li><a href="#index-addition-of-units-19">addition of units</a>: <a href="#Unit-expressions">Unit expressions</a></li>
-<li><a href="#index-changing-nonlinear-unit-definitions-54">changing nonlinear unit definitions</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
-<li><a href="#index-changing-units-definitions-49">changing units definitions</a>: <a href="#Defining-new-units">Defining new units</a></li>
+<li><a href="#index-changing-nonlinear-unit-definitions-58">changing nonlinear unit definitions</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
+<li><a href="#index-changing-units-definitions-53">changing units definitions</a>: <a href="#Defining-new-units">Defining new units</a></li>
 <li><a href="#index-command-line-options-25">command line options</a>: <a href="#Invoking-units">Invoking units</a></li>
 <li><a href="#index-command-line-unit-conversion-9">command line unit conversion</a>: <a href="#Command-line-use">Command line use</a></li>
-<li><a href="#index-defining-nonlinear-units-52">defining nonlinear units</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
-<li><a href="#index-defining-units-47">defining units</a>: <a href="#Defining-new-units">Defining new units</a></li>
-<li><a href="#index-dimensionless-units-51">dimensionless units</a>: <a href="#Defining-new-units">Defining new units</a></li>
+<li><a href="#index-defining-nonlinear-units-56">defining nonlinear units</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
+<li><a href="#index-defining-units-51">defining units</a>: <a href="#Defining-new-units">Defining new units</a></li>
+<li><a href="#index-dimensionless-units-55">dimensionless units</a>: <a href="#Defining-new-units">Defining new units</a></li>
 <li><a href="#index-dimensionless-units-8">dimensionless units</a>: <a href="#Interactive-use">Interactive use</a></li>
 <li><a href="#index-division-of-numbers-17">division of numbers</a>: <a href="#Unit-expressions">Unit expressions</a></li>
 <li><a href="#index-division-of-units-15">division of units</a>: <a href="#Unit-expressions">Unit expressions</a></li>
-<li><a href="#index-environment-variables-62">environment variables</a>: <a href="#Environment-vars">Environment vars</a></li>
+<li><a href="#index-environment-variables-66">environment variables</a>: <a href="#Environment-vars">Environment vars</a></li>
 <li><a href="#index-fractions-16">fractions</a>: <a href="#Unit-expressions">Unit expressions</a></li>
-<li><a href="#index-functions-of-units-57">functions of units</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
+<li><a href="#index-functions-of-units-61">functions of units</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
 <li><a href="#index-functions_002c-built-in-20">functions, built in</a>: <a href="#Unit-expressions">Unit expressions</a></li>
-<li><a href="#index-include-files-50">include files</a>: <a href="#Defining-new-units">Defining new units</a></li>
+<li><a href="#index-include-files-54">include files</a>: <a href="#Defining-new-units">Defining new units</a></li>
 <li><a href="#index-incompatible-units-6">incompatible units</a>: <a href="#Interactive-use">Interactive use</a></li>
 <li><a href="#index-interactive-use-1">interactive use</a>: <a href="#Interactive-use">Interactive use</a></li>
 <li><a href="#index-invoking-units-24">invoking units</a>: <a href="#Invoking-units">Invoking units</a></li>
-<li><a href="#index-linear-interpolation-58">linear interpolation</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
-<li><a href="#index-LOCALE-environment-variable-63">LOCALE environment variable</a>: <a href="#Environment-vars">Environment vars</a></li>
-<li><a href="#index-localization-61">localization</a>: <a href="#Localization">Localization</a></li>
+<li><a href="#index-linear-interpolation-62">linear interpolation</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
+<li><a href="#index-LOCALE-environment-variable-67">LOCALE environment variable</a>: <a href="#Environment-vars">Environment vars</a></li>
+<li><a href="#index-localization-65">localization</a>: <a href="#Localization">Localization</a></li>
 <li><a href="#index-multiplication-of-units-14">multiplication of units</a>: <a href="#Unit-expressions">Unit expressions</a></li>
 <li><a href="#index-non_002dconformable-units-7">non-conformable units</a>: <a href="#Interactive-use">Interactive use</a></li>
 <li><a href="#index-non_002dinteractive-unit-conversion-10">non-interactive unit conversion</a>: <a href="#Command-line-use">Command line use</a></li>
-<li><a href="#index-nonlinear-unit-conversions-55">nonlinear unit conversions</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
-<li><a href="#index-nonlinear-units_002c-redefinition-of-53">nonlinear units, redefinition of</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
-<li><a href="#index-PAGER-environment-variable-64">PAGER environment variable</a>: <a href="#Environment-vars">Environment vars</a></li>
-<li><a href="#index-piecewise-linear-units-60">piecewise linear units</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
+<li><a href="#index-nonlinear-unit-conversions-59">nonlinear unit conversions</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
+<li><a href="#index-nonlinear-units_002c-redefinition-of-57">nonlinear units, redefinition of</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
+<li><a href="#index-PAGER-environment-variable-68">PAGER environment variable</a>: <a href="#Environment-vars">Environment vars</a></li>
+<li><a href="#index-piecewise-linear-units-64">piecewise linear units</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
 <li><a href="#index-powers-12">powers</a>: <a href="#Unit-expressions">Unit expressions</a></li>
 <li><a href="#index-products-13">products</a>: <a href="#Unit-expressions">Unit expressions</a></li>
-<li><a href="#index-readline_002c-use-with-_0040code_007bunits_007d-66">readline, use with <code>units</code></a>: <a href="#Readline-support">Readline support</a></li>
+<li><a href="#index-readline_002c-use-with-_0040code_007bunits_007d-70">readline, use with <code>units</code></a>: <a href="#Readline-support">Readline support</a></li>
 <li><a href="#index-reciprocal-conversion-3">reciprocal conversion</a>: <a href="#Interactive-use">Interactive use</a></li>
 <li><a href="#index-roots-21">roots</a>: <a href="#Unit-expressions">Unit expressions</a></li>
 <li><a href="#index-square-roots-22">square roots</a>: <a href="#Unit-expressions">Unit expressions</a></li>
 <li><a href="#index-strict-conversion-5">strict conversion</a>: <a href="#Interactive-use">Interactive use</a></li>
 <li><a href="#index-sums-of-units-18">sums of units</a>: <a href="#Unit-expressions">Unit expressions</a></li>
 <li><a href="#index-temperature-conversions-23">temperature conversions</a>: <a href="#Unit-expressions">Unit expressions</a></li>
-<li><a href="#index-unit-definitions-46">unit definitions</a>: <a href="#Unit-definitions">Unit definitions</a></li>
+<li><a href="#index-unit-definitions-50">unit definitions</a>: <a href="#Unit-definitions">Unit definitions</a></li>
 <li><a href="#index-unit-expressions-11">unit expressions</a>: <a href="#Unit-expressions">Unit expressions</a></li>
-<li><a href="#index-unit-name-completion-67">unit name completion</a>: <a href="#Readline-support">Readline support</a></li>
-<li><a href="#index-units-functions-56">units functions</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
-<li><a href="#index-units_002c-piecewise-linear-59">units, piecewise linear</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
-<li><a href="#index-units_002c-redefinition-of-48">units, redefinition of</a>: <a href="#Defining-new-units">Defining new units</a></li>
-<li><a href="#index-UNITSFILE-environment-variable-65">UNITSFILE environment variable</a>: <a href="#Environment-vars">Environment vars</a></li>
+<li><a href="#index-unit-name-completion-71">unit name completion</a>: <a href="#Readline-support">Readline support</a></li>
+<li><a href="#index-units-functions-60">units functions</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
+<li><a href="#index-units_002c-piecewise-linear-63">units, piecewise linear</a>: <a href="#Nonlinear-units">Nonlinear units</a></li>
+<li><a href="#index-units_002c-redefinition-of-52">units, redefinition of</a>: <a href="#Defining-new-units">Defining new units</a></li>
+<li><a href="#index-UNITSFILE-environment-variable-69">UNITSFILE environment variable</a>: <a href="#Environment-vars">Environment vars</a></li>
 <li><a href="#index-verbose-output-2">verbose output</a>: <a href="#Interactive-use">Interactive use</a></li>
    </ul>
 <div class="contents">

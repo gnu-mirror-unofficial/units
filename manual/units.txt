@@ -213,7 +213,7 @@ second highest precedence.
                  * 0.00026417205
                  / 3785.4118
 
-         You have: arabicfoot-arabictradepound-force
+         You have: arabicfoot * arabictradepound * force
          You want: ft lbf
                  * 0.7296
                  / 1.370614
@@ -253,9 +253,10 @@ Parentheses can be used for grouping as desired.
 centimeters, the units database defines `centi-' and `c-' as prefixes.
 Prefixes can appear alone with no unit following them.  An exponent
 applies only to the immediately preceding unit and its prefix so that
-`cm^3' or `centimeter^3' refer to cubic centimeters but `centi-meter^3'
+`cm^3' or `centimeter^3' refer to cubic centimeters but `centi*meter^3'
 refers to hundredths of cubic meters.  Only one prefix is permitted per
-unit, so `micromicrofarad' will fail, but `micro-microfarad' will work.
+unit, so `micromicrofarad' will fail, but `micro*microfarad' will work,
+as will `micro microfarad'..
 
    For `units', numbers are just another kind of unit.  They can appear
 as many times as you like and in any order in a unit expression.  For
@@ -461,6 +462,18 @@ check your units file, or change the output format:
 `-h'
 `--help'
      Print out a summary of the options for `units'.
+
+`-m'
+`--minus'
+     Causes `-' to be interpreted as a subtraction operator.  This is
+     usually the default behavior.
+
+`-p'
+`--product'
+     Causes `-' to be interpreted as a multiplication operator when it
+     has two operands.  It will as a negation operator when it has only
+     one operand: `(-3)'.  Note that by default `-' is treated as a
+     subtraction operator.
 
 `-q'
 `--quiet'
@@ -819,71 +832,75 @@ second time will print the list of all completions.
 Index
 *****
 
---check (option for units):                    See 5.         (line 433)
---check-verbose (option for units):            See 5.         (line 440)
---file (option for units):                     See 5.         (line 455)
---help (option for units):                     See 5.         (line 463)
---output-format (option for units):            See 5.         (line 449)
---quiet (option for units):                    See 5.         (line 468)
---silent (option for units):                   See 5.         (line 468)
---strict (option for units):                   See 5.         (line 473)
---terse (option for units):                    See 5.         (line 482)
---verbose (option for units):                  See 5.         (line 488)
---version (option for units):                  See 5.         (line 494)
--c (option for units):                         See 5.         (line 433)
--f (option for units):                         See 5.         (line 455)
--h (option for units):                         See 5.         (line 463)
--o (option for units):                         See 5.         (line 449)
--q (option for units):                         See 5.         (line 468)
--s (option for units):                         See 5.         (line 473)
--t (option for units):                         See 5.         (line 482)
--V (option for units):                         See 5.         (line 494)
--v (option for units):                         See 5.         (line 488)
-addition of units:                             See 4.         (line 281)
-changing nonlinear unit definitions:           See 8.         (line 619)
-changing units definitions:                    See 7.         (line 560)
-command line options:                          See 5.         (line 416)
+--check (option for units):                    See 5.         (line 434)
+--check-verbose (option for units):            See 5.         (line 441)
+--file (option for units):                     See 5.         (line 456)
+--help (option for units):                     See 5.         (line 464)
+--minus (option for units):                    See 5.         (line 468)
+--output-format (option for units):            See 5.         (line 450)
+--product (option for units):                  See 5.         (line 473)
+--quiet (option for units):                    See 5.         (line 481)
+--silent (option for units):                   See 5.         (line 481)
+--strict (option for units):                   See 5.         (line 486)
+--terse (option for units):                    See 5.         (line 495)
+--verbose (option for units):                  See 5.         (line 501)
+--version (option for units):                  See 5.         (line 507)
+-c (option for units):                         See 5.         (line 434)
+-f (option for units):                         See 5.         (line 456)
+-h (option for units):                         See 5.         (line 464)
+-m (option for units):                         See 5.         (line 468)
+-o (option for units):                         See 5.         (line 450)
+-p (option for units):                         See 5.         (line 473)
+-q (option for units):                         See 5.         (line 481)
+-s (option for units):                         See 5.         (line 486)
+-t (option for units):                         See 5.         (line 495)
+-V (option for units):                         See 5.         (line 507)
+-v (option for units):                         See 5.         (line 501)
+addition of units:                             See 4.         (line 282)
+changing nonlinear unit definitions:           See 8.         (line 632)
+changing units definitions:                    See 7.         (line 573)
+command line options:                          See 5.         (line 417)
 command line unit conversion:                  See 3.         (line 175)
-defining nonlinear units:                      See 8.         (line 619)
-defining units:                                See 7.         (line 560)
-dimensionless units <1>:                       See 7.         (line 579)
+defining nonlinear units:                      See 8.         (line 632)
+defining units:                                See 7.         (line 573)
+dimensionless units <1>:                       See 7.         (line 592)
 dimensionless units:                           See 2.         (line 158)
 division of numbers:                           See 4.         (line 238)
 division of units:                             See 4.         (line 224)
-environment variables:                         See 10.        (line 771)
+environment variables:                         See 10.        (line 784)
 fractions:                                     See 4.         (line 238)
-functions of units:                            See 8.         (line 692)
-functions, built in:                           See 4.         (line 329)
-include files:                                 See 7.         (line 571)
+functions of units:                            See 8.         (line 705)
+functions, built in:                           See 4.         (line 330)
+include files:                                 See 7.         (line 584)
 incompatible units:                            See 2.         (line 125)
 interactive use:                               See 2.         (line  46)
-invoking units:                                See 5.         (line 416)
-linear interpolation:                          See 8.         (line 701)
-LOCALE environment variable:                   See 10.        (line 774)
-localization:                                  See 9.         (line 751)
+invoking units:                                See 5.         (line 417)
+linear interpolation:                          See 8.         (line 714)
+LOCALE environment variable:                   See 10.        (line 787)
+localization:                                  See 9.         (line 764)
 multiplication of units:                       See 4.         (line 224)
 non-conformable units:                         See 2.         (line 125)
 non-interactive unit conversion:               See 3.         (line 175)
-nonlinear unit conversions:                    See 8.         (line 619)
-nonlinear units, redefinition of:              See 8.         (line 619)
-PAGER environment variable:                    See 10.        (line 778)
-piecewise linear units:                        See 8.         (line 701)
+nonlinear unit conversions:                    See 8.         (line 632)
+nonlinear units, redefinition of:              See 8.         (line 632)
+PAGER environment variable:                    See 10.        (line 791)
+piecewise linear units:                        See 8.         (line 714)
 powers:                                        See 4.         (line 209)
 products:                                      See 4.         (line 209)
-readline, use with units:                      See 11.        (line 793)
+readline, use with units:                      See 11.        (line 806)
 reciprocal conversion:                         See 2.         (line  99)
-roots:                                         See 4.         (line 350)
-square roots:                                  See 4.         (line 350)
+roots:                                         See 4.         (line 351)
+square roots:                                  See 4.         (line 351)
 strict conversion:                             See 2.         (line 109)
-sums of units:                                 See 4.         (line 281)
-temperature conversions:                       See 4.         (line 368)
-unit definitions:                              See 6.         (line 502)
+sums of units:                                 See 4.         (line 282)
+temperature conversions:                       See 4.         (line 369)
+unit definitions:                              See 6.         (line 515)
 unit expressions:                              See 4.         (line 203)
-unit name completion:                          See 11.        (line 806)
-units functions:                               See 8.         (line 692)
-units, piecewise linear:                       See 8.         (line 701)
-units, redefinition of:                        See 7.         (line 560)
-UNITSFILE environment variable:                See 10.        (line 785)
+unit name completion:                          See 11.        (line 819)
+units functions:                               See 8.         (line 705)
+units, piecewise linear:                       See 8.         (line 714)
+units, redefinition of:                        See 7.         (line 573)
+UNITSFILE environment variable:                See 10.        (line 798)
 verbose output:                                See 2.         (line  90)
 Table of Contents
 *****************
