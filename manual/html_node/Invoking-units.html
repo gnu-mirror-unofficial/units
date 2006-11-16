@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+<title>Invoking units - Units: A Unit Conversion Program</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Unit-expressions.html#Unit-expressions" title="Unit expressions">
+<link rel="next" href="Unit-definitions.html#Unit-definitions" title="Unit definitions">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Invoking-units"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Unit-definitions.html#Unit-definitions">Unit definitions</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Unit-expressions.html#Unit-expressions">Unit expressions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">5 Invoking <code>units</code></h2>
+
+<p><a name="index-invoking-units-24"></a><a name="index-command-line-options-25"></a>
+You invoke <code>units</code> like this:
+
+<pre class="example">         units [<var>options</var>] [<var>from-unit</var> [<var>to-unit</var>]]
+</pre>
+   <p class="noindent">If the <var>from-unit</var> and <var>to-unit</var> are omitted, then the program
+will use interactive prompts to determine which conversions to perform. 
+See <a href="Interactive-use.html#Interactive-use">Interactive use</a>. 
+If both <var>from-unit</var> and <var>to-unit</var> are given, <code>units</code> will
+print the result of that single conversion and then exit. 
+If only <var>from-unit</var> appears on the command line, <code>units</code> will
+display the definition of that unit and exit. 
+Units specified on the command line will need
+to be quoted to protect them from shell interpretation and to group
+them into two arguments.  See <a href="Command-line-use.html#Command-line-use">Command line use</a>.
+
+   <p>The following options allow you to read in an alternative units file,
+check your units file, or change the output format:
+
+     <dl>
+<dt><span class="samp">-c</span><dt><span class="samp">--check</span><dd><a name="index-_002dc-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-26"></a><a name="index-_002d_002dcheck-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-27"></a>Check that all units and prefixes defined in the units data file reduce
+to primitive units.  Print a list of all units that
+cannot be reduced.  Also display some other diagnostics about
+suspicious definitions in the units data file.  Note that only
+definitions active in the current locale are checked.
+
+     <br><dt><span class="samp">--check-verbose</span><dd><a name="index-_002d_002dcheck_002dverbose-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-28"></a><a name="index-_002d_002dverbose_002dcheck-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-29"></a>Like the <span class="samp">-check</span> option, this option prints a list of units that
+cannot be reduced.  But to help find unit  definitions that cause
+endless loops,
+it lists the units as they are checked. 
+If <code>units</code> hangs, then the last unit to be printed has a bad
+definition.  Note that only
+definitions active in the current locale are checked.
+
+     <br><dt><span class="samp">-o format</span><dt><span class="samp">--output-format format</span><dd><a name="index-_002do-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-30"></a><a name="index-_002d_002doutput_002dformat-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-31"></a>Use the specified format for numeric output.  Format is the same
+as that for the printf function in the ANSI C standard. 
+For example, if you want more precision you might use <span class="samp">-o %.15g</span>.
+
+     <br><dt><span class="samp">-f filename</span><dt><span class="samp">--file filename</span><dd><a name="index-_002df-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-32"></a><a name="index-_002d_002dfile-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-33"></a>Instruct <code>units</code> to load the units file <code>filename</code>. 
+If <code>filename</code> is the empty string (<span class="samp">-f ''</span>)
+then the default units file will
+be loaded.  This enables you to load the default file plus a personal
+units file.  Up to 25 units files may be specified on the command line. 
+This option overrides the <code>UNITSFILE</code> environment variable.
+
+     <br><dt><span class="samp">-h</span><dt><span class="samp">--help</span><dd><a name="index-_002dh-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-34"></a><a name="index-_002d_002dhelp-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-35"></a>Print out a summary of the options for <code>units</code>.
+
+     <br><dt><span class="samp">-m</span><dt><span class="samp">--minus</span><dd><a name="index-_002dm-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-36"></a><a name="index-_002d_002dminus-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-37"></a>Causes <span class="samp">-</span> to be interpreted as a subtraction operator.  This is
+usually the default behavior.
+
+     <br><dt><span class="samp">-p</span><dt><span class="samp">--product</span><dd><a name="index-_002dp-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-38"></a><a name="index-_002d_002dproduct-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-39"></a>Causes <span class="samp">-</span> to be interpreted as a multiplication operator when it
+has two operands.  It will as a negation operator when it has only one
+operand: <span class="samp">(-3)</span>.  Note that by default <span class="samp">-</span> is treated as a
+subtraction operator.
+
+     <dt><span class="samp">--compact</span><dd><a name="index-_002d_002dcompact-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-40"></a>Give compact output featuring only the conversion factor.  This turns
+off the <span class="samp">--verbose</span> option.
+
+     <br><dt><span class="samp">-q</span><dt><span class="samp">--quiet</span><dt><span class="samp">--silent</span><dd><a name="index-_002dq-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-41"></a><a name="index-_002d_002dquiet-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-42"></a><a name="index-_002d_002dsilent-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-43"></a>Suppress prompting of the user for units and the display of statistics
+about the number of units loaded.
+
+     <br><dt><span class="samp">-s</span><dt><span class="samp">--strict</span><dd><a name="index-_002ds-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-44"></a><a name="index-_002d_002dstrict-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-45"></a>Suppress conversion of units to their reciprocal units.  For
+example, <code>units</code> will normally convert hertz to seconds
+because these units are reciprocals of each other.  The strict option
+requires that units be strictly conformable to perform a conversion, and
+will give an error if you attempt to convert hertz to seconds.
+
+     <br><dt><span class="samp">-1</span><dt><span class="samp">--one-line</span><dd><a name="index-_002d1-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-46"></a><a name="index-_002d_002done_002dline-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-47"></a>Give only one line of output (the forward conversion).  Do not print
+the reverse conversion.  Note that if a reciprocal conversion is
+performed then <code>units</code> will print still print the &ldquo;reciprocal
+conversion&rdquo; line.
+
+     <br><dt><span class="samp">-t</span><dt><span class="samp">--terse</span><dd><a name="index-_002dt-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-48"></a><a name="index-_002d_002dterse-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-49"></a>Give terse output when converting units.  This option can be used when
+calling <code>units</code> from another program so that the output is easy to
+parse.  This option has the combined
+effect of these options:  <span class="samp">--strict</span> <span class="samp">--quiet</span> <span class="samp">--one-line</span>
+<span class="samp">--compact</span>.
+
+     <br><dt><span class="samp">-v</span><dt><span class="samp">--verbose</span><dd><a name="index-_002dv-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-50"></a><a name="index-_002d_002dverbose-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-51"></a>Give slightly more verbose output when converting units.  When combined
+with the <span class="samp">-c</span> option this gives the same effect as
+<span class="samp">--check-verbose</span>.
+
+     <br><dt><span class="samp">-V</span><dt><span class="samp">--version</span><dd><a name="index-_002dV-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-52"></a><a name="index-_002d_002dversion-_0040r_007b_0028option-for_007d-_0040code_007bunits_007d_0040r_007b_0029_007d-53"></a>Print program version number, tell whether the readline library
+has been included, and give the location of the default units
+data file.
+
+   </dl>
+
+   </body></html>
+

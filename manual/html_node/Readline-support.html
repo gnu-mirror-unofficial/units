@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+<title>Readline support - Units: A Unit Conversion Program</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Environment-vars.html#Environment-vars" title="Environment vars">
+<link rel="next" href="Index.html#Index" title="Index">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Readline-support"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Index.html#Index">Index</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Environment-vars.html#Environment-vars">Environment vars</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">11 Readline support</h2>
+
+<p><a name="index-readline_002c-use-with-_0040code_007bunits_007d-74"></a>
+If the <code>readline</code> package has been compiled in, then when
+<code>units</code> is used interactively, numerous command line editing
+features are available.  To check if your version of <code>units</code>
+includes the readline, invoke the program with the <span class="samp">--version</span>
+option.
+
+   <p>For complete information about readline, consult the documentation for
+the readline package.  Without any configuration, <code>units</code> will
+allow editing in the style of emacs.  Of particular use with
+<code>units</code> are the completion commands.
+
+   <p>If you type a few characters and then hit <span class="samp">ESC</span> followed by the
+<kbd>?</kbd> key then <code>units</code> will display a list of all the units which
+start with the characters typed.  For example, if you type <kbd>metr</kbd> and
+then request completion, you will see something like this:
+<a name="index-unit-name-completion-75"></a>
+<pre class="example">     You have: metr
+     metre             metriccup         metrichorsepower  metrictenth
+     metretes          metricfifth       metricounce       metricton
+     metriccarat       metricgrain       metricquart       metricyarncount
+     You have: metr
+</pre>
+   <p class="noindent">If there is a unique way to complete a unitname, you can hit the tab key
+and <code>units</code> will provide the rest of the unit name.  If <code>units</code>
+beeps, it means that there is no unique completion.  Pressing the tab
+key a second time will print the list of all completions.
+
+   </body></html>
+
