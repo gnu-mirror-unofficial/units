@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<title>Readline Support - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Unicode-Support.html#Unicode-Support" title="Unicode Support">
+<link rel="next" href="Currency.html#Currency" title="Currency">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Readline-Support"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Currency.html#Currency">Currency</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Unicode-Support.html#Unicode-Support">Unicode Support</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">14 Readline Support</h2>
+
+<p><a name="index-g_t_0040command_007breadline_007d_002c-use-with-_0040command_007bunits_007d-215"></a>
+If the <samp><span class="command">readline</span></samp> package has been compiled in, then when
+<samp><span class="command">units</span></samp> is used interactively, numerous command line editing
+features are available.  To check if your version of <samp><span class="command">units</span></samp>
+includes <samp><span class="command">readline</span></samp>, invoke the program with the
+<samp><span class="option">--version</span></samp> option.
+
+   <p>For complete information about <samp><span class="command">readline</span></samp>, consult the
+documentation for the <samp><span class="command">readline</span></samp> package.  Without any
+configuration, <samp><span class="command">units</span></samp> will allow editing in the style of
+emacs.  Of particular use with <samp><span class="command">units</span></samp> are the completion
+commands.
+
+   <p><a name="index-g_t_0040samp_007b_003f_007d-for-unit-completion-with-_0040command_007breadline_007d-216"></a><a name="index-unit-completion-using-_0040samp_007b_003f_007d-_0028_0040command_007breadline_007d-only_0029-217"></a><a name="index-completion_002c-unit_002c-using-_0040samp_007b_003f_007d-_0028_0040command_007breadline_007d-only_0029-218"></a>If you type a few characters and then hit &lt;ESC&gt; followed by
+<kbd>?</kbd> then <samp><span class="command">units</span></samp> will display a list of all the units that
+start with the characters typed.  For example, if you type <kbd>metr</kbd> and
+then request completion, you will see something like this:
+<a name="index-unit-name-completion-219"></a>
+<pre class="example">     You have: metr
+     metre             metriccup         metrichorsepower  metrictenth
+     metretes          metricfifth       metricounce       metricton
+     metriccarat       metricgrain       metricquart       metricyarncount
+     You have: metr
+</pre>
+   <p class="noindent">If there is a unique way to complete a unitname, you can hit the &lt;TAB&gt; key
+and <samp><span class="command">units</span></samp> will provide the rest of the unit name.  If <samp><span class="command">units</span></samp>
+beeps, it means that there is no unique completion.  Pressing the &lt;TAB&gt;
+key a second time will print the list of all completions.
+
+   </body></html>
+

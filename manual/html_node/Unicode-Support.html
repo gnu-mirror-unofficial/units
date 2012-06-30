@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+<title>Unicode Support - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Environment-Vars.html#Environment-Vars" title="Environment Vars">
+<link rel="next" href="Readline-Support.html#Readline-Support" title="Readline Support">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Unicode-Support"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Readline-Support.html#Readline-Support">Readline Support</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Environment-Vars.html#Environment-Vars">Environment Vars</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">13 Unicode Support</h2>
+
+<p><a name="index-Unicode-support-209"></a><a name="index-UTF_002d8-210"></a><a name="index-g_t_0040samp_007b_0021utf8_007d-211"></a><a name="index-command_002c-_0040samp_007b_0021utf8_007d-212"></a><a name="index-g_t_0040samp_007b_0021endutf8_007d-213"></a><a name="index-command_002c-_0040samp_007b_0021endutf8_007d-214"></a>
+The standard units data file is written in Unicode using the UTF-8 encoding. 
+Portions of the file that are not plain ASCII begin with
+&lsquo;<samp><span class="samp">!utf8</span></samp>&rsquo; and end with &lsquo;<samp><span class="samp">!endutf8</span></samp>&rsquo;.  As usual, the &lsquo;<samp><span class="samp">!</span></samp>&rsquo; must
+appear as the first character on the line.  If a line of a data file
+contains byte sequences that are invalid UTF-8 or non-printing UTF-8
+then <samp><span class="command">units</span></samp> ignores the entire line.
+
+   <p>When <samp><span class="command">units</span></samp> runs it checks the locale to determine the
+character set.  If UTF-8 is listed, then <samp><span class="command">units</span></samp>
+reads the utf8 definitions.  If any other character set is in use, then
+<samp><span class="command">units</span></samp> works in plain ASCII without support for extended
+characters.
+
+   </body></html>
+

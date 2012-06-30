@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+<title>Backwards Compatibility - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Unit-Expressions.html#Unit-Expressions" title="Unit Expressions">
+<link rel="prev" href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions" title="Complicated Unit Expressions">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Backwards-Compatibility"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions">Complicated Unit Expressions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Unit-Expressions.html#Unit-Expressions">Unit Expressions</a>
+<hr>
+</div>
+
+<h3 class="section">5.6 Backwards Compatibility: &lsquo;<samp><span class="samp">*</span></samp>&rsquo; and &lsquo;<samp><span class="samp">-</span></samp>&rsquo;</h3>
+
+<p><a name="index-backwards-compatibility-89"></a><a name="index-compatibility-90"></a><a name="index-compatibility-with-earlier-versions-91"></a>
+The original <samp><span class="command">units</span></samp> assigned multiplication a higher
+precedence than division using the slash.  This differs from the
+usual precedence rules, which give multiplication and division equal
+precedence, and can be confusing for people who think
+of units as a calculator.
+
+   <p>The star operator (&lsquo;<samp><span class="samp">*</span></samp>&rsquo;) included in this <samp><span class="command">units</span></samp> program
+has, by default, the same precedence as division,
+and hence follows the usual precedence rules.  For backwards
+compatibility you can invoke <samp><span class="command">units</span></samp>
+with the <samp><span class="option">--oldstar</span></samp>
+option.  Then &lsquo;<samp><span class="samp">*</span></samp>&rsquo; has a higher precedence than
+division, and the same precedence as multiplication using the space.
+
+   <p><a name="index-g_t_0040samp_007b_002d_007d-as-multiplication-operator-92"></a><a name="index-operator_002c-hyphen-_0028_0040samp_007b_002d_007d_0029-as-multiplication-93"></a><a name="index-multiplication_002c-hyphen-94"></a><a name="index-hyphen-as-multiplication-operator-95"></a>
+Historically, the hyphen (&lsquo;<samp><span class="samp">-</span></samp>&rsquo;) has been used in technical
+publications to indicate products of units, and the original
+<samp><span class="command">units</span></samp> program treated it as a multiplication operator. 
+Because <samp><span class="command">units</span></samp> provides
+several other ways to obtain unit products, and because &lsquo;<samp><span class="samp">-</span></samp>&rsquo; is a
+subtraction operator in general algebraic expressions, <samp><span class="command">units</span></samp>
+treats the binary &lsquo;<samp><span class="samp">-</span></samp>&rsquo; as a subtraction operator by default. 
+For backwards compatibility use the <samp><span class="option">--product</span></samp> option, which
+causes <samp><span class="command">units</span></samp> to treat the binary &lsquo;<samp><span class="samp">-</span></samp>&rsquo; operator as a
+product operator.  When &lsquo;<samp><span class="samp">-</span></samp>&rsquo; is a multiplication operator
+it has the same precedence as multiplication with a space, giving it a
+higher precedence than division.
+
+   <p>When &lsquo;<samp><span class="samp">-</span></samp>&rsquo; is used as a unary operator it negates its operand. 
+Regardless of the <samp><span class="command">units</span></samp> options, if
+&lsquo;<samp><span class="samp">-</span></samp>&rsquo; appears after &lsquo;<samp><span class="samp">(</span></samp>&rsquo; or after
+&lsquo;<samp><span class="samp">+</span></samp>&rsquo; then it will act as a negation operator.  So you can always compute 20
+degrees minus 12 minutes by entering &lsquo;<samp><span class="samp">20 degrees + -12 arcmin</span></samp>&rsquo;. 
+You must use this construction when you define new units because you
+cannot know what options will be in force when your definition is
+processed. 
+<a name="index-defining-units-with-_0060_002d_0027-96"></a>
+
+   </body></html>
+

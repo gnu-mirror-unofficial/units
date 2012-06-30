@@ -1,12 +1,12 @@
 <html lang="en">
 <head>
-<title>Overview - Units: A Unit Conversion Program</title>
+<title>Overview - Units: A Unit Conversion Program and Scientific Calculator</title>
 <meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program">
-<meta name="generator" content="makeinfo 4.7">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="prev" href="index.html#Top" title="Top">
-<link rel="next" href="Interactive-use.html#Interactive-use" title="Interactive use">
+<link rel="next" href="Interactive-Use.html#Interactive-Use" title="Interactive Use">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -16,42 +16,57 @@
   pre.smallformat  { font-family:inherit; font-size:smaller }
   pre.smallexample { font-size:smaller }
   pre.smalllisp    { font-size:smaller }
-  span.sc { font-variant:small-caps }
-  span.roman { font-family: serif; font-weight: normal; } 
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
 --></style>
 </head>
 <body>
 <div class="node">
+<a name="Overview"></a>
 <p>
-<a name="Overview"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Interactive-use.html#Interactive-use">Interactive use</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Interactive-Use.html#Interactive-Use">Interactive Use</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="index.html#Top">Top</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr><br>
+<hr>
 </div>
 
-<h2 class="chapter">1 Overview of <code>units</code></h2>
+<h2 class="chapter">1 Overview of <samp><span class="command">units</span></samp></h2>
 
-<p>The <code>units</code> program converts quantities expressed in various scales
-to their equivalents in other scales.  The <code>units</code> program can
-handle multiplicative scale changes as well as nonlinear
-conversions such as Fahrenheit to
+<!-- end noman -->
+<!-- ifman -->
+<!-- end ifman -->
+<p>The <samp><span class="command">units</span></samp> program converts quantities expressed in various
+systems of measurement to their equivalents in other systems of
+measurement.  Like many similar programs, it can handle multiplicative
+scale changes. It can also handle nonlinear conversions such as
+Fahrenheit to
 <!-- man Celsius. -->
 <!-- noman -->
 Celsius.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
-<!-- end noman -->
-Temperature conversions require a special
-syntax. 
-<!-- noman -->
-See <a href="Temperature-Conversion-Example.html#Temperature-Conversion-Example">Temperature Conversion Example</a>. 
+See <a href="Temperature-Conversions.html#Temperature-Conversions">Temperature Conversions</a>. 
 <!-- end noman -->
 <!-- man See the examples below. -->
+The program can also perform conversions from and to sums of
+units, such as converting between meters and feet plus inches.
+
+   <p>Beyond simple unit conversions, <samp><span class="command">units</span></samp> can be used as a
+general-purpose scientific calculator that keeps track of units in its
+calculations.  You can form arbitrary complex mathematical expressions
+of dimensions including sums, products, quotients, powers, and even roots
+of dimensions.  Thus you can ensure accuracy and dimensional consistency
+when working with long expressions that involve many different units
+that may combine in complex ways.
 
    <p>The units are defined in an external data file.  You can use the
 extensive data file that comes with this program, or you can
-provide your own data file to suit your needs.
+provide your own data file to suit your needs.  You can also use your
+own data file to supplement the standard data file.
 
-   <p>You can use the program interactively
-with prompts, or you can use it
+   <p>Basic
+operation is simple: you enter the units that you want to convert
+<em>from</em> and the units that you want to convert <em>to</em>. 
+You can use the program interactively with prompts, or you can use it
 from the command line.
 
    <div class="footnote">
@@ -61,7 +76,7 @@ Celsius is linear, you insist.  Not so.  A transformation T is linear if
 T(x+y)=T(x)+T(y) and this fails for T(x)=ax+b.  This transformation is
 affine, but not linear. </p>
 
-   <p><hr></div>
+   <hr></div>
 
    </body></html>
 

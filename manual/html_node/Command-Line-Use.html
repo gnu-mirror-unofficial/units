@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+<title>Command Line Use - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Interactive-Use.html#Interactive-Use" title="Interactive Use">
+<link rel="next" href="Unit-Definitions.html#Unit-Definitions" title="Unit Definitions">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Command-Line-Use"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Unit-Definitions.html#Unit-Definitions">Unit Definitions</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Interactive-Use.html#Interactive-Use">Interactive Use</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">3 Using <samp><span class="command">units</span></samp> Non-Interactively</h2>
+
+<p><a name="index-command_002dline-unit-conversion-12"></a><a name="index-non_002dinteractive-unit-conversion-13"></a>
+The <samp><span class="command">units</span></samp> program can perform units conversions non-interactively
+from the command line.  To do this, type the command, type the original
+unit expression, and type the new units you want.  If a units
+expression contains non-alphanumeric characters, you may need to protect
+it from interpretation by the shell using single or double quote
+characters.
+
+   <p>If you type
+
+<pre class="example">     units "2 liters" quarts
+</pre>
+   <p class="noindent">then <samp><span class="command">units</span></samp> will print
+
+<pre class="example">         * 2.1133764
+         / 0.47317647
+</pre>
+   <p class="noindent">and then exit. 
+The output tells you that 2 liters is about 2.1 quarts, or alternatively that
+a quart is about 0.47 times 2 liters.
+
+   <p>If the conversion is successful, then <samp><span class="command">units</span></samp> will return success (zero)
+to the calling environment.  If you enter  non-conformable
+units then <samp><span class="command">units</span></samp> will print a message giving the reduced form of
+each unit and it will return failure (nonzero) to the calling environment.
+
+   <p>When you invoke <samp><span class="command">units</span></samp> with only one argument, it will print out
+the definition of the specified unit.  It will return failure if the
+unit is not defined and success if the unit is defined.
+
+   </body></html>
+

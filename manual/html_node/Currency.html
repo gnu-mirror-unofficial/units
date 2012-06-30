@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+<title>Currency - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Readline-Support.html#Readline-Support" title="Readline Support">
+<link rel="next" href="Database-Syntax.html#Database-Syntax" title="Database Syntax">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Currency"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Database-Syntax.html#Database-Syntax">Database Syntax</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Readline-Support.html#Readline-Support">Readline Support</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">15 Updating Currency Exchange Rates</h2>
+
+<p><a name="index-currency_002c-updating-220"></a><a name="index-exchange-rates_002c-updating-221"></a>
+The units program includes currency exchange rates and prices for some
+precious metals in the database.  Of course, these values change over
+time, sometimes very rapidly, and <samp><span class="command">units</span></samp> cannot provide real
+time values.  To update the exchange rates run the
+<samp><span class="command">units_cur</span></samp>, which rewrites the files containing the currency
+rates, typically <samp><span class="file">/usr/local/share/units/currency.units</span></samp>.  This program
+must be run with suitable permissions to write the file.  To keep the
+rates updated automatically, it could be run by a cron job on a
+Unix-like system, or a similar scheduling program on a different system. 
+Currency exchange rates are taken from Time Genie
+(<a href="http://www.timegenie.com">http://www.timegenie.com</a>) and precious metals pricing from
+Packetizer (<a href="www.packetizer.com">www.packetizer.com</a>).  These sites update once per
+day, so there is no benefit in running the update script more often than
+daily.  You can run <samp><span class="command">units_cur</span></samp> with a filename specified on the
+command line and it will write the data to that file.  If you give
+&lsquo;<samp><span class="samp">-</span></samp>&rsquo; for the file it will write to standard output.
+
+   </body></html>
+

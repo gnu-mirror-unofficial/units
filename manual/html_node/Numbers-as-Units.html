@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+<title>Numbers as Units - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Unit-Expressions.html#Unit-Expressions" title="Unit Expressions">
+<link rel="prev" href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units" title="Sums and Differences of Units">
+<link rel="next" href="Built_002din-Functions.html#Built_002din-Functions" title="Built-in Functions">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Numbers-as-Units"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Built_002din-Functions.html#Built_002din-Functions">Built-in Functions</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units">Sums and Differences of Units</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Unit-Expressions.html#Unit-Expressions">Unit Expressions</a>
+<hr>
+</div>
+
+<h3 class="section">5.3 Numbers as Units</h3>
+
+<p><a name="index-numbers-as-units-82"></a>
+For <samp><span class="command">units</span></samp>, numbers are just another kind of unit.  They can
+appear as many times as you like and in any order in a unit expression. 
+For example, to find the volume of a box that is 2 ft by 3 ft by 12 ft
+in steres, you could do the following:
+
+<pre class="example">     You have: 2 ft 3 ft 12 ft
+     You want: stere
+             * 2.038813
+             / 0.49048148
+     
+     You have: $ 5 / yard
+     You want: cents / inch
+             * 13.888889
+             / 0.072
+</pre>
+   <p class="noindent">And the second example shows how the dollar sign in the units conversion
+can precede the five.  Be careful:  <samp><span class="command">units</span></samp> will interpret
+&lsquo;<samp><span class="samp">$5</span></samp>&rsquo; with no space as equivalent to &lsquo;<samp><span class="samp">dollar^5</span></samp>&rsquo;.
+
+   </body></html>
+

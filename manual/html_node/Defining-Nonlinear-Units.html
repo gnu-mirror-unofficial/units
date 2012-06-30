@@ -1,0 +1,202 @@
+<html lang="en">
+<head>
+<title>Defining Nonlinear Units - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
+<link rel="prev" href="Defining-New-Units.html#Defining-New-Units" title="Defining New Units">
+<link rel="next" href="Defining-Unit-List-Aliases.html#Defining-Unit-List-Aliases" title="Defining Unit List Aliases">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Defining-Nonlinear-Units"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Defining-Unit-List-Aliases.html#Defining-Unit-List-Aliases">Defining Unit List Aliases</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Defining-New-Units.html#Defining-New-Units">Defining New Units</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>
+<hr>
+</div>
+
+<h3 class="section">9.3 Defining Nonlinear Units</h3>
+
+<p><a name="index-defining-nonlinear-units-165"></a><a name="index-nonlinear-units_002c-defining-166"></a><a name="index-nonlinear-unit-conversions-167"></a>Some unit conversions of interest are nonlinear; for
+example, temperature conversions between the Fahrenheit and Celsius
+scales cannot be done by simply multiplying by conversion factors.
+
+   <p>When you give a linear unit definition such as &lsquo;<samp><span class="samp">inch 2.54 cm</span></samp>&rsquo; you
+are providing information that <samp><span class="command">units</span></samp> uses to convert values in
+inches into primitive units of meters.  For nonlinear units, you give
+a functional definition that provides the same information.
+
+   <p>Nonlinear units are represented using a functional notation. 
+It is best to regard this notation not as a function call but
+as a way of adding units to a number, much the same way that
+writing a linear unit name after a number adds units to that number. 
+Internally, nonlinear units are defined by a pair of functions
+that convert to and from linear units in the data file, so that
+an eventual conversion to primitive units is possible.
+
+   <p>Here is an example nonlinear unit definition:
+
+<pre class="example">     tempF(x) units=[1;K] (x+(-32)) degF + stdtemp ; \
+                          (tempF+(-stdtemp))/degF + 32
+</pre>
+   <p class="noindent">A nonlinear unit definition comprises a unit name, a dummy parameter
+name, two functions, and two corresponding units.  The functions tell
+<samp><span class="command">units</span></samp> how to convert to and from the new unit.  In order to
+produce valid results, the arguments of these functions need to have
+the correct dimensions.  To facilitate error checking, you may
+optionally indicate units for these arguments.
+
+   <p><a name="index-parentheses-168"></a>
+The definition begins with the unit name followed immediately (with no
+spaces) by a &lsquo;<samp><span class="samp">(</span></samp>&rsquo; character.  In parentheses is the name of the
+parameter.  Next is an optional specification of the units required by
+the functions in this definition.  In the example above, the
+&lsquo;<samp><span class="samp">tempF</span></samp>&rsquo; function requires an input argument conformable with
+&lsquo;<samp><span class="samp">1</span></samp>&rsquo;.  For normal nonlinear units definitions the forward
+function will always take a dimensionless argument. 
+The inverse function requires an input argument conformable
+with &lsquo;<samp><span class="samp">K</span></samp>&rsquo;.  In general the inverse function will need units
+that match the quantity measured by your nonlinear unit. 
+The purpose of the expression in brackets to enable
+<samp><span class="command">units</span></samp> to perform error checking on function arguments, and
+also to assign units to range and domain specifications, which are
+described later.
+
+   <p>Next the function definitions appear.  In the example above, the
+&lsquo;<samp><span class="samp">tempF</span></samp>&rsquo; function is defined by
+
+<pre class="example">     tempF(x) = (x+(-32)) degF + stdtemp
+</pre>
+   <p class="noindent">This gives a rule for converting &lsquo;<samp><span class="samp">x</span></samp>&rsquo; in the units &lsquo;<samp><span class="samp">tempF</span></samp>&rsquo;
+to linear units of absolute temperature, which makes it possible to
+convert from tempF to other units.
+
+   <p>In order to make conversions to Fahrenheit possible, you must give
+a rule for the inverse conversions. The inverse will be &lsquo;<samp><span class="samp">x(tempF)</span></samp>&rsquo;
+and its definition appears after a &lsquo;<samp><span class="samp">;</span></samp>&rsquo; character. 
+In our example, the inverse is
+
+<pre class="example">     x(tempF) = (tempF+(-stdtemp))/degF + 32
+</pre>
+   <p class="noindent">This inverse definition takes an absolute temperature as its argument
+and converts it to the Fahrenheit temperature.  The inverse can be
+omitted by leaving out the &lsquo;<samp><span class="samp">;</span></samp>&rsquo; character, but then conversions to
+the unit will be impossible.  If the inverse is omitted then the
+<samp><span class="option">--check</span></samp> option will display a warning.  It is up to you to
+calculate and enter the correct inverse function to obtain proper
+conversions.  The <samp><span class="option">--check</span></samp> option tests the inverse at one point
+and prints an error if it is not valid there, but this is not a guarantee
+that your inverse is correct.
+
+   <p>If you wish to make synonyms for nonlinear units, you still need to define
+both the forward and inverse functions.  Inverse functions can be
+obtained using the &lsquo;<samp><span class="samp">~</span></samp>&rsquo; operator.  So to create a synonym
+for &lsquo;<samp><span class="samp">tempF</span></samp>&rsquo; you could write
+
+<pre class="example">     fahrenheit(x) units=[1;K] tempF(x); ~tempF(fahrenheit)
+</pre>
+   <p class="noindent">You may define a function whose range and domain do not cover all of
+the real numbers.  In this case <samp><span class="command">units</span></samp> can handle errors
+better if you specify an appropriate range and domain.  You specify
+the range and domain as shown below.
+
+<pre class="example">     baume(d) units=[1;g/cm^3] domain=[0,130.5] range=[1,10] \
+              (145/(145-d)) g/cm^3 ; (baume+-g/cm^3) 145 / baume
+</pre>
+   <p class="noindent">In this example the domain is specified after the &lsquo;<samp><span class="samp">domain=</span></samp>&rsquo; with
+the endpoints given in brackets.  One of the end points can be omitted
+to get an interval that goes to infinity.  So the range could be
+specified as nonnegative by writing &lsquo;<samp><span class="samp">range=[0,]</span></samp>&rsquo;.  Both the range
+and domain are optional and can appear independently and in any order
+along with the &lsquo;<samp><span class="samp">units</span></samp>&rsquo; specification.  The values in the range
+and domain are attached to the units given in the &lsquo;<samp><span class="samp">units</span></samp>&rsquo;
+specification.  If you don't specify the units then the parameter
+inputs are reduced to primitive units for the numeric comparison to
+the values you give in the range or domain.  In this case you should only
+use &lsquo;<samp><span class="samp">range</span></samp>&rsquo; or &lsquo;<samp><span class="samp">domain</span></samp>&rsquo; if the endpoints are zero and
+infinity.
+
+   <p>Specifying the range and domain allows <samp><span class="command">units</span></samp> to
+perform better error checking and give more helpful error messages
+when you invoke nonlinear units conversions outside of their bounds. 
+It also enables the <samp><span class="option">-c</span></samp> option to find a point in the domain
+to use for its point check of your inverse definition.
+
+   <p><a name="index-units-functions-169"></a><a name="index-functions-of-units-170"></a>You may occasionally wish to define a function that operates on units. 
+This can be done using a nonlinear unit definition.  For example, the
+definition below provides conversion between radius and the area of a
+circle.  This definition requires a length as input and
+produces an area as output, as indicated by the &lsquo;<samp><span class="samp">units=</span></samp>&rsquo; specification. 
+Specifying the range as the nonnegative numbers can prevent cryptic
+error messages.
+
+<pre class="example">     circlearea(r) units=[m;m^2] range=[0,]   pi r^2 ; sqrt(circlearea/pi)
+</pre>
+   <p><a name="index-linear-interpolation-171"></a><a name="index-units_002c-piecewise-linear-172"></a><a name="index-piecewise-linear-units-173"></a>Sometimes you may be interested in a piecewise linear unit such as
+many wire gauges.  Piecewise linear units can be defined by specifying
+conversions to linear units on a list of points. 
+Conversion at other points will be done by linear interpolation. 
+A partial definition of zinc gauge is
+
+<pre class="example">     zincgauge[in] 1 0.002, 10 0.02, 15 0.04, 19 0.06, 23 0.1
+</pre>
+   <p class="noindent">In this example, &lsquo;<samp><span class="samp">zincgauge</span></samp>&rsquo; is the name of the piecewise linear
+unit.  The definition of such a unit is indicated by the
+embedded &lsquo;<samp><span class="samp">[</span></samp>&rsquo; character.  After the bracket, you should indicate the
+units to be attached to the numbers in the table. 
+No spaces can appear before the
+&lsquo;<samp><span class="samp">]</span></samp>&rsquo; character, so a definition like &lsquo;<samp><span class="samp">foo[kg meters]</span></samp>&rsquo; is
+illegal; instead write &lsquo;<samp><span class="samp">foo[kg*meters]</span></samp>&rsquo;.  The definition of the
+unit consists of a list of pairs optionally separated by commas. 
+This list defines a function for converting from the piecewise linear
+unit to linear units.  The
+first item in each pair is the function argument; the second item is the
+value of the function at that argument (in the units specified in brackets). 
+In this example,
+we define &lsquo;<samp><span class="samp">zincgauge</span></samp>&rsquo; at five points.  For example, we set
+&lsquo;<samp><span class="samp">zincgauge(1)</span></samp>&rsquo; equal to &lsquo;<samp><span class="samp">0.002 in</span></samp>&rsquo;.  Definitions like this
+may be  more readable  if written using  continuation characters as
+
+<pre class="example">     zincgauge[in] \
+          1 0.002  \
+         10 0.02   \
+         15 0.04   \
+         19 0.06   \
+         23 0.1
+</pre>
+   <p class="noindent">With the preceding definition, the following conversion can be
+performed:
+
+<pre class="example">     You have: zincgauge(10)
+     You want: in
+         * 0.02
+         / 50
+     You have: .01 inch
+     You want: zincgauge
+         5
+</pre>
+   <p class="noindent">If you define a piecewise linear unit that is not strictly
+monotonic, then the inverse will not be well defined.  If the inverse is
+requested for such a unit, <samp><span class="command">units</span></samp> will return the smallest
+inverse.  The <samp><span class="option">--check</span></samp> option will print a warning if a
+non-monotonic piecewise linear unit is encountered.
+
+   </body></html>
+

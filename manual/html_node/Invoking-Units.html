@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+<title>Invoking Units - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Unit-Lists.html#Unit-Lists" title="Unit Lists">
+<link rel="next" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Invoking-Units"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Unit-Lists.html#Unit-Lists">Unit Lists</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">8 Invoking <samp><span class="command">units</span></samp></h2>
+
+<p><a name="index-invoking-units-107"></a><a name="index-command_002dline-options-108"></a>
+You invoke <samp><span class="command">units</span></samp> like this:
+
+<pre class="example">     units [<var>options</var>] [<var>from-unit</var> [<var>to-unit</var>]]
+</pre>
+   <p class="noindent">If the <var>from-unit</var> and <var>to-unit</var> are omitted, then the program
+will use interactive prompts to determine which conversions to perform. 
+See <a href="Interactive-Use.html#Interactive-Use">Interactive Use</a>. 
+If both <var>from-unit</var> and <var>to-unit</var> are given, <samp><span class="command">units</span></samp> will
+print the result of that single conversion and then exit. 
+If only <var>from-unit</var> appears on the command line, <samp><span class="command">units</span></samp> will
+display the definition of that unit and exit. 
+Units specified on the command line may need
+to be quoted to protect them from shell interpretation and to group
+them into two arguments.  See <a href="Command-Line-Use.html#Command-Line-Use">Command Line Use</a>.
+
+   <p>The following options allow you to read in an alternative units file,
+check your units file, or change the output format:
+
+     <dl>
+<dt><samp><span class="env">-c</span></samp><dt><samp><span class="env">--check</span></samp><dd><a name="index-g_t_002dc-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-109"></a><a name="index-g_t_002d_002dcheck-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-110"></a>Check that all units and prefixes defined in the units data file reduce
+to primitive units.  Print a list of all units that
+cannot be reduced.  Also display some other diagnostics about
+suspicious definitions in the units data file.  Only definitions active
+in the current locale are checked.  You should always run
+<samp><span class="command">units</span></samp> with this option after modifying a units data file.
+
+     <br><dt><samp><span class="env">--check-verbose</span></samp><dd><a name="index-g_t_002d_002dcheck_002dverbose-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-111"></a><a name="index-g_t_002d_002dverbose_002dcheck-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-112"></a>Like the <samp><span class="option">--check</span></samp> option, this option prints a list of units that
+cannot be reduced.  But to help find unit  definitions that cause
+endless loops,
+it lists the units as they are checked. 
+If <samp><span class="command">units</span></samp> hangs, then the last unit to be printed has a bad
+definition.  Only definitions active in the current locale are checked.
+
+     <br><dt><samp><span class="env">-o </span><var>format</var></samp><dt><samp><span class="env">--output-format </span><var>format</var></samp><dd><a name="index-g_t_002do-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-113"></a><a name="index-g_t_002d_002doutput_002dformat-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-114"></a>Use the specified <var>format</var> for numeric output; the format is a
+subset of that for the printf function in the ANSI C standard.  Only a
+numeric format (&lsquo;<samp><span class="samp">E</span></samp>&rsquo; or &lsquo;<samp><span class="samp">e</span></samp>&rsquo; for scientific notation, &lsquo;<samp><span class="samp">f</span></samp>&rsquo;
+for fixed-point decimal, or &lsquo;<samp><span class="samp">G</span></samp>&rsquo; or &lsquo;<samp><span class="samp">g</span></samp>&rsquo; to specify the number
+of significant figures) is allowed.  The default format is &lsquo;<samp><span class="samp">%.8g</span></samp>&rsquo;;
+for greater precision, you could specify &lsquo;<samp><span class="samp">-o %.15g</span></samp>&rsquo;. 
+See <a href="Numeric-Output-Format.html#Numeric-Output-Format">Numeric Output Format</a>, and the documentation for printf() for more
+detailed descriptions of the format specification.
+
+     <br><dt><samp><span class="env">-e</span></samp><dt><samp><span class="env">--exponential</span></samp><dd>Set the numeric output format to exponential (i.e., scientific
+notation), like that used in the Unix <samp><span class="command">units</span></samp> program.
+
+     <br><dt><samp><span class="env">-f </span><var>filename</var></samp><dt><samp><span class="env">--file </span><var>filename</var></samp><dd><a name="index-g_t_002df-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-115"></a><a name="index-g_t_002d_002dfile-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-116"></a>Instruct <samp><span class="command">units</span></samp> to load the units file <code>filename</code>.  You
+can specify up to 25 units files on the command line.  When you use
+this option, <samp><span class="command">units</span></samp> will load <em>only</em> the files you list
+on the command line; it will not load the standard file or your
+personal units file unless you explicitly list them.  If <var>filename</var>
+is the empty string (&lsquo;<samp><span class="samp">-f ""</span></samp>&rsquo;), the default units file (or that
+specified by <samp><span class="env">UNITSFILE</span></samp>) will be loaded in addition to any others
+specified with &lsquo;<samp><span class="samp">-f</span></samp>&rsquo;.
+
+     <br><dt><samp><span class="env">-h</span></samp><dt><samp><span class="env">--help</span></samp><dd><a name="index-g_t_002dh-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-117"></a><a name="index-g_t_002d_002dhelp-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-118"></a>Print out a summary of the options for <samp><span class="command">units</span></samp>.
+
+     <br><dt><samp><span class="env">-m</span></samp><dt><samp><span class="env">--minus</span></samp><dd><a name="index-g_t_002dm-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-119"></a><a name="index-g_t_002d_002dminus-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-120"></a>Causes &lsquo;<samp><span class="samp">-</span></samp>&rsquo; to be interpreted as a subtraction operator.  This is
+the default behavior.
+
+     <br><dt><samp><span class="env">-p</span></samp><dt><samp><span class="env">--product</span></samp><dd><a name="index-g_t_002dp-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-121"></a><a name="index-g_t_002d_002dproduct-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-122"></a>Causes &lsquo;<samp><span class="samp">-</span></samp>&rsquo; to be interpreted as a multiplication operator when it
+has two operands.  It will act as a negation operator when it has only one
+operand: &lsquo;<samp><span class="samp">(-3)</span></samp>&rsquo;.  By default &lsquo;<samp><span class="samp">-</span></samp>&rsquo; is treated as a
+subtraction operator.
+
+     <br><dt><samp><span class="env">--oldstar</span></samp><dd><a name="index-g_t_002d_002doldstar-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-123"></a>Causes &lsquo;<samp><span class="samp">*</span></samp>&rsquo; to have the old-style precedence, higher than the
+precedence of division so that &lsquo;<samp><span class="samp">1/2*3</span></samp>&rsquo; will equal &lsquo;<samp><span class="samp">1/6</span></samp>&rsquo;.
+
+     <br><dt><samp><span class="env">--newstar</span></samp><dd><a name="index-g_t_002d_002dnewstar-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-124"></a>Forces &lsquo;<samp><span class="samp">*</span></samp>&rsquo; to have the new (default) precedence that follows
+the usual rules of algebra: the precedence of &lsquo;<samp><span class="samp">*</span></samp>&rsquo; is the same as
+the precedence of &lsquo;<samp><span class="samp">/</span></samp>&rsquo;, so that &lsquo;<samp><span class="samp">1/2*3</span></samp>&rsquo; will equal &lsquo;<samp><span class="samp">3/2</span></samp>&rsquo;.
+
+     <br><dt><samp><span class="env">--compact</span></samp><dd><a name="index-g_t_002d_002dcompact-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-125"></a>Give compact output featuring only the conversion factor.  This turns
+off the <samp><span class="option">--verbose</span></samp> option.
+
+     <br><dt><samp><span class="env">-q</span></samp><dt><samp><span class="env">--quiet</span></samp><dt><samp><span class="env">--silent</span></samp><dd><a name="index-g_t_002dq-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-126"></a><a name="index-g_t_002d_002dquiet-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-127"></a><a name="index-g_t_002d_002dsilent-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-128"></a>Suppress prompting of the user for units and the display of statistics
+about the number of units loaded.
+
+     <br><dt><samp><span class="env">-n</span></samp><dt><samp><span class="env">--nolists</span></samp><dd>Disable conversion to unit lists.
+
+     <br><dt><samp><span class="env">-r</span></samp><dt><samp><span class="env">--round</span></samp><dd>When converting to a combination of units given by a unit list, round
+the value of the last unit in the list to the nearest integer.
+
+     <br><dt><samp><span class="env">-S</span></samp><dt><samp><span class="env">--show-factor</span></samp><dd>When converting to a combination of units specified in a list,
+always show a non-unity factor before a unit that
+begins with a fraction with a unity denominator.  By default, if the
+unit in a list begins with fraction of the form 1|<var>x</var> and
+its multiplier is an integer other than 1, the fraction is given as the
+product of the multiplier and the numerator (e.g., &lsquo;<samp><span class="samp">3|8 in</span></samp>&rsquo; rather
+than &lsquo;<samp><span class="samp">3 * 1|8 in</span></samp>&rsquo;).  In some cases, this is not what is wanted;
+for example, the results for a cooking recipe might show
+&lsquo;<samp><span class="samp">3 * 1|2 cup</span></samp>&rsquo; as &lsquo;<samp><span class="samp">3|2 cup</span></samp>&rsquo;. 
+With the <samp><span class="option">--show-factor</span></samp> option, a
+result equivalent to 1.5 cups will display as &lsquo;<samp><span class="samp">3 * 1|2 cup</span></samp>&rsquo; rather
+than &lsquo;<samp><span class="samp">3|2 cup</span></samp>&rsquo;.  A user-specified fractional unit with a numerator
+other than 1 is never overridden, however&mdash;if a unit list specifies
+&lsquo;<samp><span class="samp">3|4 cup;1|2 cup</span></samp>&rsquo;, a result equivalent to 1&nbsp;1/2 cups will
+always be shown as &lsquo;<samp><span class="samp">2 * 3|4 cup</span></samp>&rsquo; whether or not the
+<samp><span class="option">--show-factor</span></samp> option is given.
+
+     <br><dt><samp><span class="env">-s</span></samp><dt><samp><span class="env">--strict</span></samp><dd><a name="index-g_t_002ds-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-129"></a><a name="index-g_t_002d_002dstrict-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-130"></a>Suppress conversion of units to their reciprocal units.  For
+example, <samp><span class="command">units</span></samp> will normally convert hertz to seconds
+because these units are reciprocals of each other.  The strict option
+requires that units be strictly conformable to perform a conversion, and
+will give an error if you attempt to convert hertz to seconds.
+
+     <br><dt><samp><span class="env">-1</span></samp><dt><samp><span class="env">--one-line</span></samp><dd><a name="index-g_t_002d1-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-131"></a><a name="index-g_t_002d_002done_002dline-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-132"></a>Give only one line of output (the forward conversion).  Do not print
+the reverse conversion.  If a reciprocal conversion is
+performed then <samp><span class="command">units</span></samp> will still print the &ldquo;reciprocal
+conversion&rdquo; line.
+
+     <br><dt><samp><span class="env">-t</span></samp><dt><samp><span class="env">--terse</span></samp><dd><a name="index-g_t_002dt-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-133"></a><a name="index-g_t_002d_002dterse-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-134"></a>Give terse output when converting units.  This option can be used when
+calling <samp><span class="command">units</span></samp> from another program so that the output is easy to
+parse.  This option has the combined
+effect of these options:  <samp><span class="option">--strict</span></samp> <samp><span class="option">--quiet</span></samp> <samp><span class="option">--one-line</span></samp>
+<samp><span class="option">--compact</span></samp>.
+
+     <br><dt><samp><span class="env">-v</span></samp><dt><samp><span class="env">--verbose</span></samp><dd><a name="index-g_t_002dv-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-135"></a><a name="index-g_t_002d_002dverbose-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-136"></a>Give slightly more verbose output when converting units.  When combined
+with the <samp><span class="option">-c</span></samp> option this gives the same effect as
+<samp><span class="option">--check-verbose</span></samp>.
+
+     <br><dt><samp><span class="env">-V</span></samp><dt><samp><span class="env">--version</span></samp><dd><a name="index-g_t_002dV-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-137"></a><a name="index-g_t_002d_002dversion-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-138"></a>Print program version number, tell whether the <samp><span class="command">readline</span></samp>
+library has been included, and give the location of the default units
+data file.
+
+     <br><dt><samp><span class="env">-l </span><var>locale</var></samp><dt><samp><span class="env">--locale </span><var>locale</var></samp><dd><a name="index-g_t_002dl-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-139"></a><a name="index-g_t_002d_002dlocale-_0040r_007b_0028option-for_007d-_0040command_007bunits_007d_0040r_007b_0029_007d-140"></a>Force a specified locale such as &lsquo;<samp><span class="samp">en_GB</span></samp>&rsquo; to get British
+definitions by default.  This overrides the locale determined from
+system settings or environment variables. 
+See <a href="Locale.html#Locale">Locale</a>, for a description of locale format.
+
+   </dl>
+
+   </body></html>
+

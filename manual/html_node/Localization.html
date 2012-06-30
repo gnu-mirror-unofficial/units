@@ -1,12 +1,12 @@
 <html lang="en">
 <head>
-<title>Localization - Units: A Unit Conversion Program</title>
+<title>Localization - Units: A Unit Conversion Program and Scientific Calculator</title>
 <meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program">
-<meta name="generator" content="makeinfo 4.7">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Nonlinear-units.html#Nonlinear-units" title="Nonlinear units">
-<link rel="next" href="Environment-vars.html#Environment-vars" title="Environment vars">
+<link rel="prev" href="Numeric-Output-Format.html#Numeric-Output-Format" title="Numeric Output Format">
+<link rel="next" href="Environment-Vars.html#Environment-Vars" title="Environment Vars">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -16,38 +16,33 @@
   pre.smallformat  { font-family:inherit; font-size:smaller }
   pre.smallexample { font-size:smaller }
   pre.smalllisp    { font-size:smaller }
-  span.sc { font-variant:small-caps }
-  span.roman { font-family: serif; font-weight: normal; } 
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
 --></style>
 </head>
 <body>
 <div class="node">
+<a name="Localization"></a>
 <p>
-<a name="Localization"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Environment-vars.html#Environment-vars">Environment vars</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Nonlinear-units.html#Nonlinear-units">Nonlinear units</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Environment-Vars.html#Environment-Vars">Environment Vars</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Numeric-Output-Format.html#Numeric-Output-Format">Numeric Output Format</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr><br>
+<hr>
 </div>
 
-<h2 class="chapter">9 Localization</h2>
+<h2 class="chapter">11 Localization</h2>
 
-<p><a name="index-localization-69"></a>
-Some units have different values in different locations.  The
-localization feature accomodates this by allowing the units database to
-specify region dependent definitions.   A locale region in the units
-database begins with <span class="samp">!locale</span> followed by the name of the locale. 
-The leading <span class="samp">!</span> must appear in the first column of the units
-database.  The locale region is terminated by <span class="samp">!endlocale</span>.  The
-following example shows how to define a couple units in a locale.
+<p><a name="index-environment-dependent-definitions-179"></a><a name="index-localization-180"></a><a name="index-g_t_0040samp_007b_0021locale_007d-181"></a><a name="index-command_002c-_0040samp_007b_0021locale_007d-182"></a><a name="index-g_t_0040samp_007b_0021endlocale_007d-183"></a><a name="index-command_002c-_0040samp_007b_0021endlocale_007d-184"></a><a name="index-command_002c-_0040samp_007b_0021endvar_007d-185"></a><a name="index-command_002c-_0040samp_007b_0021var_007d-186"></a><a name="index-command_002c-_0040samp_007b_0021varnot_007d-187"></a><a name="index-command_002c-_0040samp_007b_0021set_007d-188"></a><a name="index-command_002c-_0040samp_007b_0021message_007d-189"></a>
 
-<pre class="example">     !locale en_GB
-     ton                     brton
-     gallon                  brgallon
-     !endlocale
-</pre>
-   <p>The current locale is specified
-by the <code>LOCALE</code> environment variable.  Note that the <span class="samp">-c</span>
-option only checks the definitions which are active for the current locale.
+<ul class="menu">
+<li><a accesskey="1" href="Locale.html#Locale">Locale</a>:                    What is a locale? 
+<li><a accesskey="2" href="Additional-Localization.html#Additional-Localization">Additional Localization</a>:   When the locale isn't enough
+</ul>
+
+   <p>Some units have different values in different locations.  The
+localization feature accommodates this by allowing a units data file to
+specify definitions that depend on the user's locale.
 
    </body></html>
 

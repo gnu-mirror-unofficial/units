@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+<title>Database Syntax - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Currency.html#Currency" title="Currency">
+<link rel="next" href="Index.html#Index" title="Index">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Database-Syntax"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Index.html#Index">Index</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Currency.html#Currency">Currency</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">16 Database Command Syntax</h2>
+
+<p><a name="index-database-syntax-summary-222"></a><a name="index-syntax-of-units-database-223"></a><a name="index-commands-in-units-database-224"></a>
+     <dl>
+<dt><var>unit</var> <var>definition</var><dd>Define a regular unit.
+
+     <br><dt><var>prefix</var><tt>- </tt><var>definition</var><dd>Define a prefix.
+
+     <br><dt><var>funcname</var><tt>(</tt><var>var</var><tt>) units=[</tt><var>in-units</var><tt>,</tt><var>out-units</var><tt>] domain=[</tt><var>x1</var><tt>,</tt><var>x2</var><tt>] range=[</tt><var>y1</var><tt>,</tt><var>y2</var><tt>] </tt><var>definition(var)</var><tt> ; </tt><var>inverse(funcname)</var><dd>Define a nonlinear unit or unit function.  The three optional keywords
+<samp><span class="command">units=</span></samp>, <samp><span class="command">range=</span></samp> and <samp><span class="command">domain=</span></samp> can appear in
+any order.  The definition of the inverse is optional.
+
+     <br><dt><var>tabname</var><tt>[</tt><var>out-units</var><tt>] </tt><var>pair-list</var><dd>Define a piecewise linear unit.  The pair list gives the points on the
+table listed in ascending order.
+
+     <br><dt><tt>!endlocale</tt><dd>End a block of definitions beginning with &lsquo;<samp><span class="samp">!locale</span></samp>&rsquo;
+
+     <br><dt><tt>!endutf8</tt><dd>End a block of definitions begun with &lsquo;<samp><span class="samp">!utf8</span></samp>&rsquo;
+
+     <br><dt><tt>!endvar</tt><dd>End a block of definitions begun with &lsquo;<samp><span class="samp">!var</span></samp>&rsquo; or &lsquo;<samp><span class="samp">!varnot</span></samp>&rsquo;
+
+     <br><dt><tt>!include </tt><var>file</var><dd>Include the specified file.
+
+     <br><dt><tt>!locale </tt><var>value</var><dd>Load the following definitions only of the locale is set to
+<var>value</var>.
+
+     <br><dt><tt>!message </tt><var>text</var><dd>Display <var>text</var> when the database is read in, unless the quiet
+option (<samp><span class="option">-q</span></samp>) is enabled.
+
+     <br><dt><tt>!set </tt><var>variable</var> <var>value</var><dd>Sets the environment variable, <var>variable</var>, to the specified
+value <em>only if</em> it is not already set.
+
+     <br><dt><tt>!unitlist </tt><var>alias</var> <var>definition</var><dd>Define a unit list alias.
+
+     <br><dt><tt>!utf8</tt><dd>Load the following definitions only if <samp><span class="command">units</span></samp> is running with
+UTF-8 enabled.
+
+     <br><dt><tt>!var </tt><var>variable</var> <var>value-list</var><dd>Load the following definitions only if the environment variable,
+<var>variable</var> is set to one of the values listed on the space
+separated value list. If <var>variable</var> is not set then
+<samp><span class="command">units</span></samp> prints an error message and ignores the following
+definitions.
+
+     <br><dt><tt>!varnot </tt><var>variable</var> <var>value-list</var><dd>Load the following definitions only if the environment variable,
+<var>variable</var> is <var>not</var> set to one of the values listed on the space
+separated value list.  If <var>variable</var> is not set then
+<samp><span class="command">units</span></samp> prints an error message and ignores the following
+definitions.
+
+   </dl>
+
+   </body></html>
+

@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+<title>Locale - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Localization.html#Localization" title="Localization">
+<link rel="next" href="Additional-Localization.html#Additional-Localization" title="Additional Localization">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Locale"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Additional-Localization.html#Additional-Localization">Additional Localization</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Localization.html#Localization">Localization</a>
+<hr>
+</div>
+
+<h3 class="section">11.1 Locale</h3>
+
+<p><a name="index-locale-190"></a>A locale is a subset of a user's environment that indicates the user's
+language and country, and some attendant preferences, such as the
+formatting of dates.  The <samp><span class="command">units</span></samp> program attempts to determine
+the locale from the POSIX setlocale function; if this cannot be done,
+<samp><span class="command">units</span></samp> examines the environment
+variables <samp><span class="env">LC_CTYPE</span></samp> and <samp><span class="env">LANG</span></samp>. 
+On POSIX systems, a locale is of the form
+<var>language</var><code>_</code><var>country</var>, where <var>language</var> is the
+two-character code from ISO 639-1 and <var>country</var> is the two-character
+code from ISO 3166-1; <var>language</var> is lower case and <var>country</var> is
+upper case. For example, the POSIX locale for the United Kingdom is <code>en_GB</code>.
+
+   <p><a name="index-g_t_0040file_007blocale_002emap_007d-191"></a><a name="index-setlocale-function-192"></a>On systems running Microsoft Windows, the value returned by setlocale()
+is different from that on POSIX systems; <samp><span class="command">units</span></samp> attempts to map
+the Windows value to a POSIX value by means of a table in the file
+<samp><span class="file">locale.map</span></samp> in the same directory, typically
+<samp><span class="file">/usr/local/share/units</span></samp>, as the default units data files.  The
+file includes entries for many combinations of language and country, and
+can be extended to include other combinations.  The <samp><span class="file">locale.map</span></samp>
+comprises two tab-separated columns; each entry is of the form
+
+<pre class="display">     <var>Windows-locale</var>   <var>POSIX-locale</var>
+</pre>
+   <p class="noindent">where <var>POSIX-locale</var> is as described above, and <var>Windows-locale</var>
+typically spells out both the language and country.  For example, the
+entry for the United States is
+
+<pre class="example">     English_United States   en_US
+</pre>
+   <p class="noindent">You can force <samp><span class="command">units</span></samp> to run in a desired locale by using the
+<samp><span class="option">-l</span></samp> option.
+
+   <p>In order to create unit definitions for a particular locale you begin
+a block of definitions in a unit datafile with &lsquo;<samp><span class="samp">!locale</span></samp>&rsquo; followed
+by a locale name.  The &lsquo;<samp><span class="samp">!</span></samp>&rsquo; must be the first character on the
+line.  The <samp><span class="command">units</span></samp> program reads the following
+definitions only if the current locale matches.  You end the block of
+localized units with &lsquo;<samp><span class="samp">!endlocale</span></samp>&rsquo;.  Here is an example, which
+defines the British gallon.
+
+<pre class="example">     !locale en_GB
+     gallon       4.54609 liter
+     !endlocale
+</pre>
+   </body></html>
+

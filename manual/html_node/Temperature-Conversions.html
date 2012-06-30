@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+<title>Temperature Conversions - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Nonlinear-Conversions.html#Nonlinear-Conversions" title="Nonlinear Conversions">
+<link rel="next" href="Other-Nonlinear-Units.html#Other-Nonlinear-Units" title="Other Nonlinear Units">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Temperature-Conversions"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Other-Nonlinear-Units.html#Other-Nonlinear-Units">Other Nonlinear Units</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Nonlinear-Conversions.html#Nonlinear-Conversions">Nonlinear Conversions</a>
+<hr>
+</div>
+
+<h3 class="section">6.1 Temperature Conversions</h3>
+
+<p><a name="index-temperature-conversions-98"></a>
+Conversions between temperatures are different from linear conversions
+between temperature <em>increments</em>&mdash;see the example below.  The
+absolute temperature conversions are handled by units starting with
+&lsquo;<samp><span class="samp">temp</span></samp>&rsquo;, and you must use functional notation. 
+The temperature-increment conversions are done using units starting
+with &lsquo;<samp><span class="samp">deg</span></samp>&rsquo; and they do not require functional notation.
+
+<pre class="example">     You have: tempF(45)
+     You want: tempC
+             7.2222222
+     
+     You have: 45 degF
+     You want: degC
+             * 25
+             / 0.04
+</pre>
+   <p class="noindent">Think of &lsquo;<samp><span class="samp">tempF(</span><var>x</var><span class="samp">)</span></samp>&rsquo; not as a function but as a notation that
+indicates that <var>x</var> should have units of &lsquo;<samp><span class="samp">tempF</span></samp>&rsquo; attached to
+it.  See <a href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">Defining Nonlinear Units</a>.  The first conversion shows that if it's 45
+degrees Fahrenheit outside, it's 7.2 degrees Celsius.  The second
+conversion indicates that a change of 45 degrees Fahrenheit corresponds
+to a change of 25 degrees Celsius.  The conversion from
+&lsquo;<samp><span class="samp">tempF(</span><var>x</var><span class="samp">)</span></samp>&rsquo; is to absolute temperature, so that
+
+<pre class="example">     You have: tempF(45)
+     You want: degR
+             * 504.67
+             / 0.0019814929
+</pre>
+   <p class="noindent">gives the same result as
+
+<pre class="example">     You have: tempF(45)
+     You want: tempR
+             * 504.67
+             / 0.0019814929
+</pre>
+   <p class="noindent">But if you convert &lsquo;<samp><span class="samp">tempF(</span><var>x</var><span class="samp">)</span></samp>&rsquo; to &lsquo;<samp><span class="samp">degC</span></samp>&rsquo;, the output is
+probably not what you expect:
+
+<pre class="example">     You have: tempF(45)
+     You want: degC
+             * 280.37222
+             / 0.0035666871
+</pre>
+   <p class="noindent">The result is the temperature in K, because &lsquo;<samp><span class="samp">degC</span></samp>&rsquo; is defined as
+&lsquo;<samp><span class="samp">K</span></samp>&rsquo;, the Kelvin. For consistent results, use the &lsquo;<samp><span class="samp">temp</span><var>X</var></samp>&rsquo; units
+when converting to a temperature rather than converting a temperature
+increment.
+
+   </body></html>
+

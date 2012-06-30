@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+<title>Defining New Units - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
+<link rel="prev" href="Units-Data-Files.html#Units-Data-Files" title="Units Data Files">
+<link rel="next" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units" title="Defining Nonlinear Units">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Defining-New-Units"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">Defining Nonlinear Units</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Units-Data-Files.html#Units-Data-Files">Units Data Files</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>
+<hr>
+</div>
+
+<h3 class="section">9.2 Defining New Units and Prefixes</h3>
+
+<p><a name="index-defining-units-151"></a><a name="index-units_002c-definition-of-152"></a><a name="index-units-definitions_002c-adding-153"></a><a name="index-units-definitions_002c-changing-154"></a><a name="index-prefixes_002c-definition-of-155"></a><a name="index-defining-prefixes-156"></a><a name="index-primitive-units-157"></a><a name="index-units_002c-primitive-158"></a><a name="index-g_t_0040samp_007b_0021_007d-to-indicate-primitive-units-159"></a><a name="index-command_002c-_0040samp_007b_0021_007d-to-indicate-primitive-units-160"></a>
+A unit is specified on a single line by giving its name and an
+equivalence.  Comments start with a &lsquo;<samp><span class="samp">#</span></samp>&rsquo; character, which can appear
+anywhere in a line.  The backslash character (&lsquo;<samp><span class="samp">\</span></samp>&rsquo;)
+acts as a continuation
+character if it appears as the last character on a line, making it
+possible to spread definitions out over several lines if desired. 
+A file can be included by giving the command &lsquo;<samp><span class="samp">!include</span></samp>&rsquo; followed by
+the file's name.  The &lsquo;<samp><span class="samp">!</span></samp>&rsquo; must be the first character on the
+line.  The file will be sought in the same directory as the
+parent file unless you give a full path.  The name of the file to be
+included cannot contain the comment character &lsquo;<samp><span class="samp">#</span></samp>&rsquo;. 
+<a name="index-include-files-161"></a>
+Unit names must not contain any of the operator characters &lsquo;<samp><span class="samp">+</span></samp>&rsquo;,
+&lsquo;<samp><span class="samp">-</span></samp>&rsquo;, &lsquo;<samp><span class="samp">*</span></samp>&rsquo;, &lsquo;<samp><span class="samp">/</span></samp>&rsquo;, &lsquo;<samp><span class="samp">|</span></samp>&rsquo;, &lsquo;<samp><span class="samp">^</span></samp>&rsquo;, &lsquo;<samp><span class="samp">;</span></samp>&rsquo;, &lsquo;<samp><span class="samp">~</span></samp>&rsquo;,
+the comment character &lsquo;<samp><span class="samp">#</span></samp>&rsquo;, or parentheses.  They cannot begin or
+end with an underscore (&lsquo;<samp><span class="samp">_</span></samp>&rsquo;), a comma (&lsquo;<samp><span class="samp">,</span></samp>&rsquo;) or a decimal
+point (&lsquo;<samp><span class="samp">.</span></samp>&rsquo;).  Names cannot begin with a digit, and if a name ends
+in a digit other than zero, the digit must be preceded by a string
+beginning with an underscore, and afterwards consisting only of
+digits, decimal points, or commas.  For example, &lsquo;<samp><span class="samp">foo_2</span></samp>&rsquo;,
+&lsquo;<samp><span class="samp">foo_2,1</span></samp>&rsquo;, or &lsquo;<samp><span class="samp">foo_3.14</span></samp>&rsquo; would be valid names but
+&lsquo;<samp><span class="samp">foo2</span></samp>&rsquo; or &lsquo;<samp><span class="samp">foo_a2</span></samp>&rsquo; would be invalid.  You could define
+nitrous oxide as
+
+<pre class="example">     N2O     nitrogen 2  + oxygen
+</pre>
+   <p class="noindent">but would need to define nitrogen dioxide as
+
+<pre class="example">     NO_2    nitrogen + oxygen 2
+</pre>
+   <p class="noindent">Be careful to define new units in terms of old ones so that a
+reduction leads to the primitive units, which are marked with &lsquo;<samp><span class="samp">!</span></samp>&rsquo;
+characters.  Dimensionless units are indicated by using the string
+&lsquo;<samp><span class="samp">!dimensionless</span></samp>&rsquo; for the unit definition. 
+<a name="index-dimensionless-units_002c-defining-162"></a>
+When adding new units, be sure to use the <samp><span class="option">-c</span></samp> option to check that
+the new units reduce properly. 
+If you create a loop in the units definitions, then <samp><span class="command">units</span></samp> will
+hang when invoked with the <samp><span class="option">-c</span></samp> option.  You will need to
+use the <samp><span class="option">--check-verbose</span></samp> option, which prints out each unit as it
+is checked.  The program will still hang, but the last unit printed
+will be the unit that caused the infinite loop.
+
+   <p><a name="index-parentheses-163"></a>
+If you define any units that contain
+&lsquo;<samp><span class="samp">+</span></samp>&rsquo; characters, carefully check them because the <samp><span class="option">-c</span></samp> option
+will not catch non-conformable sums.  Be careful with the &lsquo;<samp><span class="samp">-</span></samp>&rsquo;
+operator as well.  When used as a binary operator, the &lsquo;<samp><span class="samp">-</span></samp>&rsquo;
+character can perform addition or multiplication
+depending on the options used to invoke <samp><span class="command">units</span></samp>. 
+To ensure consistent behavior use &lsquo;<samp><span class="samp">-</span></samp>&rsquo; only as a unary negation
+operator when writing units definitions.  To multiply two units leave a
+space or use the &lsquo;<samp><span class="samp">*</span></samp>&rsquo; operator with care, recalling that it has
+two possible precedence values and may require parentheses to ensure
+consistent behavior.  To compute the difference
+of &lsquo;<samp><span class="samp">foo</span></samp>&rsquo; and &lsquo;<samp><span class="samp">bar</span></samp>&rsquo; write &lsquo;<samp><span class="samp">foo+(-bar)</span></samp>&rsquo; or even &lsquo;<samp><span class="samp">foo+-bar</span></samp>&rsquo;.
+
+   <p>Here is an example of a short data file that defines some basic
+units:
+
+<pre class="example">     m       !               # The meter is a primitive unit
+     sec     !               # The second is a primitive unit
+     rad     !dimensionless  # A dimensionless primitive unit
+     micro-  1e-6            # Define a prefix
+     minute  60 sec          # A minute is 60 seconds
+     hour    60 min          # An hour is 60 minutes
+     inch    0.0254 m        # Inch defined in terms of meters
+     ft      12 inches       # The foot defined in terms of inches
+     mile    5280 ft         # And the mile
+</pre>
+   <p><a name="index-parentheses-164"></a>A unit that ends with a &lsquo;<samp><span class="samp">-</span></samp>&rsquo; character is a prefix.  If a prefix
+definition contains any &lsquo;<samp><span class="samp">/</span></samp>&rsquo; characters, be sure they are protected
+by parentheses.  If you define &lsquo;<samp><span class="samp">half- 1/2</span></samp>&rsquo; then &lsquo;<samp><span class="samp">halfmeter</span></samp>&rsquo;
+would be equivalent to &lsquo;<samp><span class="samp">1 / (2 meter)</span></samp>&rsquo;.
+
+   </body></html>
+

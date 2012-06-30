@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+<title>Sums and Differences of Units - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Unit-Expressions.html#Unit-Expressions" title="Unit Expressions">
+<link rel="prev" href="Operators.html#Operators" title="Operators">
+<link rel="next" href="Numbers-as-Units.html#Numbers-as-Units" title="Numbers as Units">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Sums-and-Differences-of-Units"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Numbers-as-Units.html#Numbers-as-Units">Numbers as Units</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Operators.html#Operators">Operators</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Unit-Expressions.html#Unit-Expressions">Unit Expressions</a>
+<hr>
+</div>
+
+<h3 class="section">5.2 Sums and Differences of Units</h3>
+
+<p><a name="index-sums-and-differences-of-units-68"></a><a name="index-units_002c-sums-and-differences-69"></a><a name="index-operator_002c-plus-_0028_0040samp_007b_002b_007d_0029-70"></a><a name="index-plus-_0028_0040samp_007b_002b_007d_0029-operator-71"></a><a name="index-g_t_0040samp_007b_002b_007d-operator-72"></a><a name="index-operator_002c-minus-_0028_0040samp_007b_002d_007d_0029-73"></a><a name="index-minus-_0028_0040samp_007b_002d_007d_0029-operator_002c-subtraction-74"></a><a name="index-operator_002c-hyphen-_0028_0040samp_007b_002d_007d_0029-as-subtraction-75"></a><a name="index-g_t_0040samp_007b_002d_007d-as-subtraction-operator-76"></a>
+Outside of the SI, it is sometimes desirable to add values of
+different units.  You may also wish to use <samp><span class="command">units</span></samp> as a
+calculator that keeps track of units.  Sums of conformable units are written with
+the &lsquo;<samp><span class="samp">+</span></samp>&rsquo; character, and differences with the &lsquo;<samp><span class="samp">-</span></samp>&rsquo; character. 
+<a name="index-sums-of-units-77"></a><a name="index-addition-of-units-78"></a><a name="index-subtraction-of-units-79"></a><a name="index-differences-of-units-80"></a>
+<pre class="example">     You have: 2 hours + 23 minutes + 32 seconds
+     You want: seconds
+             * 8612
+             / 0.00011611705
+     
+     You have: 12 ft + 3 in
+     You want: cm
+             * 373.38
+             / 0.0026782366
+     
+     You have: 2 btu + 450 ft lbf
+     You want: btu
+             * 2.5782804
+             / 0.38785542
+</pre>
+   <p class="noindent">The expressions that are added or subtracted must reduce to identical
+expressions in primitive units, or an error message will be displayed:
+
+<pre class="example">     You have: 12 printerspoint - 4 heredium
+                                           ^
+     Illegal sum of non-conformable units
+</pre>
+   <p><a name="index-parentheses-81"></a>As usual, the precedence for &lsquo;<samp><span class="samp">+</span></samp>&rsquo; and &lsquo;<samp><span class="samp">-</span></samp>&rsquo; is lower than that of
+the other operators. 
+A fractional quantity such as 2&nbsp;1/2 cups can be given as
+&lsquo;<samp><span class="samp">(2+1|2) cups</span></samp>&rsquo;; the parentheses are necessary because
+multiplication has higher precedence than addition.  If you omit the
+parentheses, <samp><span class="command">units</span></samp> attempts to add &lsquo;<samp><span class="samp">2</span></samp>&rsquo; and
+&lsquo;<samp><span class="samp">1|2 cups</span></samp>&rsquo;, and you get an error message:
+
+<pre class="example">     You have: 2+1|2 cups
+                        ^
+     Illegal sum or difference of non-conformable units
+</pre>
+   <p class="noindent">The expression could also be correctly written as &lsquo;<samp><span class="samp">(2+1/2) cups</span></samp>&rsquo;.  If you write &lsquo;<samp><span class="samp">2 1|2 cups</span></samp>&rsquo; the space is interpreted as <em>multiplication</em> so the result is the same as &lsquo;<samp><span class="samp">1 cup</span></samp>&rsquo;.
+
+   <p>The &lsquo;<samp><span class="samp">+</span></samp>&rsquo; and &lsquo;<samp><span class="samp">-</span></samp>&rsquo; characters sometimes appears in exponents like
+&lsquo;<samp><span class="samp">3.43e+8</span></samp>&rsquo;.  This leads to an ambiguity in an expression like
+&lsquo;<samp><span class="samp">3e+2 yC</span></samp>&rsquo;.  The unit &lsquo;<samp><span class="samp">e</span></samp>&rsquo; is a small unit of charge, so this
+can be regarded as equivalent to &lsquo;<samp><span class="samp">(3e+2) yC</span></samp>&rsquo; or &lsquo;<samp><span class="samp">(3 e)+(2 yC)</span></samp>&rsquo;. 
+This ambiguity is resolved by always interpreting &lsquo;<samp><span class="samp">+</span></samp>&rsquo; and &lsquo;<samp><span class="samp">-</span></samp>&rsquo; as part
+of an exponent if possible.
+
+   </body></html>
+

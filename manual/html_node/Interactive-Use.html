@@ -1,0 +1,176 @@
+<html lang="en">
+<head>
+<title>Interactive Use - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Overview.html#Overview" title="Overview">
+<link rel="next" href="Command-Line-Use.html#Command-Line-Use" title="Command Line Use">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Interactive-Use"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Command-Line-Use.html#Command-Line-Use">Command Line Use</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Overview.html#Overview">Overview</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">2 Interacting with <samp><span class="command">units</span></samp></h2>
+
+<p><a name="index-interactive-use-1"></a>
+To invoke units for interactive use, type <kbd>units</kbd> at your shell
+prompt.  The program will print something like this:
+
+<pre class="example">     Currency exchange rates from 04/23/12
+     2516 units, 85 prefixes, 65 nonlinear units
+     
+     You have:
+</pre>
+   <p class="noindent">At the &lsquo;<samp><span class="samp">You have:</span></samp>&rsquo; prompt, type the quantity and units that
+you are converting <em>from</em>.  For example, if you want to convert ten
+meters to feet, type <kbd>10 meters</kbd>.  Next, <samp><span class="command">units</span></samp> will print
+&lsquo;<samp><span class="samp">You want:</span></samp>&rsquo;.  You should type the units you want to convert
+<em>to</em>.  To convert to feet, you would type <kbd>feet</kbd>.  If
+the <samp><span class="command">readline</span></samp> library was compiled in then the tab key can be
+used to complete unit names. See <a href="Readline-Support.html#Readline-Support">Readline Support</a>, for more
+information about <samp><span class="command">readline</span></samp>.  To quit the program press
+Ctrl-C or Ctrl-D under Unix.  Under Windows press Ctrl-Z.
+
+   <p>The answer will be displayed in two ways.  The first line of output,
+which is marked with a &lsquo;<samp><span class="samp">*</span></samp>&rsquo; to indicate multiplication,
+gives the result of the conversion you have asked for.  The second line
+of output, which is marked with a &lsquo;<samp><span class="samp">/</span></samp>&rsquo; to indicate division, gives
+the inverse of the conversion factor.  If you convert 10 meters to feet,
+<samp><span class="command">units</span></samp> will print
+
+<pre class="example">         * 32.808399
+         / 0.03048
+</pre>
+   <p class="noindent">which tells you that 10 meters equals about 32.8 feet. 
+The second number gives the conversion in the opposite direction. 
+In this case, it tells you that 1 foot is equal to about
+0.03 dekameters since the dekameter is 10 meters. 
+It also tells you that 1/32.8 is about 0.03.
+
+   <p>The <samp><span class="command">units</span></samp> program prints the inverse because sometimes it is a
+more convenient number.  In the example above, for example, the inverse
+value is an exact conversion: a foot is exactly 0.03048 dekameters. 
+But the number given the other direction is inexact.
+
+   <p>If you convert grains to pounds, you will see the following:
+
+<pre class="example">     You have: grains
+     You want: pounds
+             * 0.00014285714
+             / 7000
+</pre>
+   <p class="noindent">&gt;From the second line of the output you can immediately see that a grain
+is equal to a seven thousandth of a pound.  This is not so obvious from
+the first line of the output. 
+If you find  the output format  confusing, try using the
+<samp><span class="option">--verbose</span></samp> option:
+<a name="index-verbose-output-2"></a>
+<pre class="example">     You have: grain
+     You want: aeginamina
+             grain = 0.00010416667 aeginamina
+             grain = (1 / 9600) aeginamina
+</pre>
+   <p class="noindent">If you request a conversion between units that measure reciprocal
+dimensions, then <samp><span class="command">units</span></samp> will display the conversion results with an extra
+note indicating that reciprocal conversion has been done:
+<a name="index-reciprocal-conversion-3"></a>
+<pre class="example">     You have: 6 ohms
+     You want: siemens
+             reciprocal conversion
+             * 0.16666667
+             / 6
+</pre>
+   <p class="noindent">Reciprocal conversion can be suppressed by using the <samp><span class="option">--strict</span></samp> option. 
+As usual, use
+the <samp><span class="option">--verbose</span></samp> option to get more comprehensible output:
+<a name="index-verbose-output-4"></a><a name="index-strict-conversion-5"></a>
+<pre class="example">     You have: tex
+     You want: typp
+             reciprocal conversion
+             1 / tex = 496.05465 typp
+             1 / tex = (1 / 0.0020159069) typp
+     
+     You have: 20 mph
+     You want: sec/mile
+             reciprocal conversion
+             1 / 20 mph = 180 sec/mile
+             1 / 20 mph = (1 / 0.0055555556) sec/mile
+</pre>
+   <p class="noindent">If you enter incompatible unit types, the <samp><span class="command">units</span></samp> program will
+print a message indicating that the units are not conformable and
+it will display the reduced form for each unit:
+<a name="index-incompatible-units-6"></a><a name="index-non_002dconformable-units-7"></a>
+<pre class="example">     You have: ergs/hour
+     You want: fathoms kg^2 / day
+     conformability error
+             2.7777778e-11 kg m^2 / sec^3
+             2.1166667e-05 kg^2 m / sec
+</pre>
+   <p class="noindent">If you only want to find the reduced form or definition of a unit,
+simply press &lt;Enter&gt; at the &lsquo;<samp><span class="samp">You want:</span></samp>&rsquo; prompt.  Here is an example:
+
+<pre class="example">     You have: jansky
+     You want:
+             Definition: fluxunit = 1e-26 W/m^2 Hz = 1e-26 kg / s^2
+</pre>
+   <p class="noindent">The output from <samp><span class="command">units</span></samp> indicates that the jansky is defined to be
+equal to a fluxunit which in turn is defined to be a certain combination
+of watts, meters, and hertz.  The fully reduced (and in this case
+somewhat more cryptic) form appears on the far right.
+
+   <p>Some named units are treated as dimensionless in some situations. 
+These units include the radian and steradian.  These units will be
+treated as equal to 1 in units conversions.  Power is equal to torque
+times angular velocity.  This conversion can only be performed if the
+radian is dimensionless.
+
+<pre class="example">     You have: (14 ft lbf) (12 radians/sec)
+     You want: watts
+             * 227.77742
+             / 0.0043902509
+</pre>
+   <p class="noindent">Named dimensionless units are not treated as dimensionless
+in other contexts.  They cannot be used as exponents
+so for example, &lsquo;<samp><span class="samp">meter^radian</span></samp>&rsquo; is not allowed. 
+<a name="index-dimensionless-units-8"></a>
+<a name="index-g_t_0040samp_007b_003f_007d-to-show-conformable-units-9"></a><a name="index-conformable-units_002c-_0040samp_007b_003f_007d-to-show-10"></a>If you want a list of options you can type <kbd>?</kbd> at the
+&lsquo;<samp><span class="samp">You want:</span></samp>&rsquo; prompt.  The program will display a list of named
+units that are conformable with the unit that you entered at
+the &lsquo;<samp><span class="samp">You have:</span></samp>&rsquo; prompt above.  Conformable unit
+<em>combinations</em> will not appear on this list.
+
+   <p><a name="index-help-11"></a>
+Typing <kbd>help</kbd> at either prompt displays a short help message. 
+You can also type <kbd>help</kbd> followed by a unit name.  This will
+invoke a pager on the units data base at the point where that unit
+is defined.  You can read the definition and comments that may
+give more details or historical information about the unit.  (You
+can generally quit out of the page by pressing &lsquo;<samp><span class="samp">q</span></samp>&rsquo;.)
+
+   <p>Typing <kbd>search</kbd> <var>text</var> will display a list of all of the units
+whose names contain <var>text</var> as a substring along with their definitions. 
+This may help in the case where you aren't sure of the right unit name.
+
+   </body></html>
+

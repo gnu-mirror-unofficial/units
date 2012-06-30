@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+<title>Other Nonlinear Units - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Nonlinear-Conversions.html#Nonlinear-Conversions" title="Nonlinear Conversions">
+<link rel="prev" href="Temperature-Conversions.html#Temperature-Conversions" title="Temperature Conversions">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Other-Nonlinear-Units"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Temperature-Conversions.html#Temperature-Conversions">Temperature Conversions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Nonlinear-Conversions.html#Nonlinear-Conversions">Nonlinear Conversions</a>
+<hr>
+</div>
+
+<h3 class="section">6.2 Other Nonlinear Units</h3>
+
+<p><a name="index-nonlinear-units_002c-other-99"></a>
+Some other examples of nonlinear units are numerous different ring
+sizes and wire gauges, the grit sizes used for abrasives, the decibel
+scale, shoe size, scales for the density of sugar (e.g. baume). 
+The standard data file also supplies units for computing the area of a
+circle and the volume of a sphere.  See the standard units data file
+for more details. 
+Wire gauges
+with multiple zeroes are signified using negative numbers where two
+zeroes is &lsquo;<samp><span class="samp">-1</span></samp>&rsquo;.  Alternatively, you can use the synonyms &lsquo;<samp><span class="samp">g00</span></samp>&rsquo;,
+&lsquo;<samp><span class="samp">g000</span></samp>&rsquo;, and so on that are defined in the standard units data file. 
+<a name="index-wire-gauge-100"></a>
+<pre class="example">     You have: wiregauge(11)
+     You want: inches
+             * 0.090742002
+             / 11.020255
+     
+     You have: brwiregauge(g00)
+     You want: inches
+             * 0.348
+             / 2.8735632
+     
+     You have: 1 mm
+     You want: wiregauge
+             18.201919
+     
+     You have: grit_P(600)
+     You want: grit_ansicoated
+             342.76923
+</pre>
+   <p class="noindent">The last example shows the conversion from P graded sand paper,
+which is the European standard and may be marked &ldquo;P600&rdquo; on the back,
+to the USA standard. 
+<a name="index-abrasive-grit-size-101"></a>
+You can compute the area of a circle using the nonlinear unit,
+&lsquo;<samp><span class="samp">circlearea</span></samp>&rsquo;.  You can also do this using the circularinch or
+circleinch.  The next example shows two ways to compute the area of a
+circle with a five inch radius and one way to compute the volume of a
+sphere with a radius of one meter. 
+<a name="index-circle_002c-area-of-102"></a><a name="index-sphere_002c-volume-of-103"></a>
+<pre class="example">     You have: circlearea(5 in)
+     You want: in2
+             * 78.539816
+             / 0.012732395
+     
+     You have: 10^2 circleinch
+     You want: in2
+             * 78.539816
+             / 0.012732395
+     
+     You have: spherevol(meter)
+     You want: ft3
+             * 147.92573
+             / 0.0067601492
+</pre>
+   </body></html>
+

@@ -1,0 +1,161 @@
+<html lang="en">
+<head>
+<title>Unit Definitions - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Command-Line-Use.html#Command-Line-Use" title="Command Line Use">
+<link rel="next" href="Unit-Expressions.html#Unit-Expressions" title="Unit Expressions">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Unit-Definitions"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Unit-Expressions.html#Unit-Expressions">Unit Expressions</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Command-Line-Use.html#Command-Line-Use">Command Line Use</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">4 Unit Definitions</h2>
+
+<p><a name="index-unit-definitions-14"></a>
+The conversion information is read from a units data file that
+is called <samp><span class="file">definitions.units</span></samp> and is usually located in
+the <samp><span class="file">/usr/share/units</span></samp> directory. 
+If you invoke <samp><span class="command">units</span></samp> with the <samp><span class="option">-V</span></samp> option, it will print
+the location of this file. 
+The default
+file includes definitions for all familiar units, abbreviations and
+metric prefixes.  It also includes many obscure or archaic units.
+
+   <p>Many constants of nature are defined, including these:
+
+<pre class="example">     pi          <span class="roman">ratio of circumference to diameter</span>
+     c           <span class="roman">speed of light</span>
+     e           <span class="roman">charge on an electron</span>
+     force       <span class="roman">acceleration of gravity</span>
+     mole        <span class="roman">Avogadro's number</span>
+     water       <span class="roman">pressure per unit height of water</span>
+     Hg          <span class="roman">pressure per unit height of mercury</span>
+     au          <span class="roman">astronomical unit</span>
+     k           <span class="roman">Boltzman's constant</span>
+     mu0         <span class="roman">permeability of vacuum</span>
+     epsilon0    <span class="roman">permittivity of vacuum</span>
+     G           <span class="roman">Gravitational constant</span>
+     mach        <span class="roman">speed of sound</span>
+</pre>
+   <p class="noindent">The standard data file includes atomic masses for all of the elements
+and numerous other constants.  Also included are the densities of
+various ingredients used in baking so that &lsquo;<samp><span class="samp">2 cups flour_sifted</span></samp>&rsquo;
+can be converted to &lsquo;<samp><span class="samp">grams</span></samp>&rsquo;.  This is not an exhaustive list. 
+Consult the units data file to see the complete list, or to see the
+definitions that are used.
+
+   <p><a name="index-measure_002c-Imperial-15"></a><a name="index-Imperial-measure-16"></a><a name="index-British-Imperial-measure-17"></a>The &lsquo;<samp><span class="samp">pound</span></samp>&rsquo; is a unit of mass.  To get force, multiply by the
+force conversion unit &lsquo;<samp><span class="samp">force</span></samp>&rsquo; or use the shorthand &lsquo;<samp><span class="samp">lbf</span></samp>&rsquo;. 
+(Note that &lsquo;<samp><span class="samp">g</span></samp>&rsquo; is already taken as the standard abbreviation for
+the gram.)  The unit &lsquo;<samp><span class="samp">ounce</span></samp>&rsquo; is also a unit of mass.  The fluid
+ounce is &lsquo;<samp><span class="samp">fluidounce</span></samp>&rsquo; or &lsquo;<samp><span class="samp">floz</span></samp>&rsquo;.  British capacity units that
+differ from their US counterparts, such as the British Imperial gallon,
+are prefixed with &lsquo;<samp><span class="samp">br</span></samp>&rsquo;.  Currency is prefixed with its country
+name: &lsquo;<samp><span class="samp">belgiumfranc</span></samp>&rsquo;, &lsquo;<samp><span class="samp">britainpound</span></samp>&rsquo;.
+
+   <p><a name="index-units_002c-lookup-method-18"></a>
+When searching for a unit, if the specified string does not appear
+exactly as a unit name, then the <samp><span class="command">units</span></samp> program will try to
+remove a trailing &lsquo;<samp><span class="samp">s</span></samp>&rsquo;, &lsquo;<samp><span class="samp">es</span></samp>&rsquo;.  Next units will replace a
+trailing &lsquo;<samp><span class="samp">ies</span></samp>&rsquo; with &lsquo;<samp><span class="samp">y</span></samp>&rsquo;.  If that fails,
+<samp><span class="command">units</span></samp> will check for a prefix.  The database includes all
+of the standard metric prefixes.  Only one prefix is permitted per
+unit, so &lsquo;<samp><span class="samp">micromicrofarad</span></samp>&rsquo; will fail.  However, prefixes can
+appear alone with no unit following them, so
+&lsquo;<samp><span class="samp">micro*microfarad</span></samp>&rsquo; will work, as will &lsquo;<samp><span class="samp">micro microfarad</span></samp>&rsquo;.
+
+   <p><a name="index-prefixes-19"></a>
+To find out which units and prefixes are available, read the standard
+units data file, which is extensively annotated.
+
+<!-- @node English Customary Units -->
+<h3 class="section">4.1 English Customary Units</h3>
+
+<p><a name="index-volume-measure_002c-English-customary-20"></a>English customary units differ in various ways in different
+regions.  In Britain a complex system of volume measurements featured
+different gallons for different materials such as a wine gallon and
+ale gallon that different by twenty percent.  This complexity was
+swept away in 1824 by a reform that created an entirely new gallon,
+the British Imperial gallon defined as the volume occupied by ten
+pounds of water.  Meanwhile in the USA the gallon is derived from the
+1707 Winchester wine gallon, which is 231 cubic inches.  These gallons
+differ by about twenty percent.  By default if <samp><span class="command">units</span></samp> runs in
+the &lsquo;<samp><span class="samp">en_GB</span></samp>&rsquo; locale you will get the British volume measures.  If
+it runs in the &lsquo;<samp><span class="samp">en_US</span></samp>&rsquo; locale you will get the US volume
+measures.  In other locales the default values are the US
+definitions.  If you wish to force different definitions then set the
+environment variable <samp><span class="env">UNITS_ENGLISH</span></samp> to either &lsquo;<samp><span class="samp">US</span></samp>&rsquo; or
+&lsquo;<samp><span class="samp">GB</span></samp>&rsquo; to set the desired definitions independent of the locale.
+
+   <p><a name="index-length-measure_002c-English-customary-21"></a><a name="index-length-measure_002c-UK-22"></a><a name="index-survey-measure_002c-US-23"></a><a name="index-US-survey-measure-24"></a><a name="index-survey-mile_002c-US-25"></a><a name="index-US-survey-foot-26"></a><a name="index-State-Plane-Coordinate-System_002c-US-27"></a><a name="index-US-State-Plane-Coordinate-System-28"></a><a name="index-survey-foot_002c-US-29"></a><a name="index-US-survey-mile-30"></a><a name="index-mile_002c-international-31"></a><a name="index-international-mile-32"></a><a name="index-yard_002c-international-33"></a><a name="index-international-yard-34"></a>Before 1959, the value of a yard (and other units of measure defined in
+terms of it) differed slightly among English-speaking countries.  In
+1959, Australia, Canada, New Zealand, the United Kingdom, the United
+States, and South Africa adopted the Canadian value of 1&nbsp;yard =
+0.9144&nbsp;m (exactly), which was approximately halfway between the
+values used by the UK and the US; it had the additional advantage of
+making 1&nbsp;inch = 2.54&nbsp;cm (exactly).  This new standard was
+termed the <dfn>International Yard</dfn>.  Australia, Canada, and the UK
+then defined all customary lengths in terms of the International Yard
+(Australia did not define the furlong or rod); because many US land
+surveys were in terms of the pre-1959 units, the US continued to define
+customary surveyors' units (furlong, chain, rod, and link) in terms of
+the previous value for the foot, which was termed the
+<dfn>US survey foot</dfn>.  The US defined a <dfn>US survey mile</dfn> as 5280 US
+survey feet, and defined a <dfn>statute mile</dfn> as a US survey mile.  The
+US values for these units differ from the international values by about
+2&nbsp;ppm.
+
+   <p>The <samp><span class="command">units</span></samp> program uses the international values for these
+units; the US values can be obtained by using either the &lsquo;<samp><span class="samp">US</span></samp>&rsquo; or
+the &lsquo;<samp><span class="samp">survey</span></samp>&rsquo; prefix.  In either case, the simple familiar
+relationships among the units are maintained, e.g., 1 &lsquo;<samp><span class="samp">furlong</span></samp>&rsquo; =
+660 &lsquo;<samp><span class="samp">ft</span></samp>&rsquo;, and 1 &lsquo;<samp><span class="samp">USfurlong</span></samp>&rsquo; = 660 &lsquo;<samp><span class="samp">USft</span></samp>&rsquo;, though the
+metric equivalents differ slightly between the two cases. 
+The &lsquo;<samp><span class="samp">US</span></samp>&rsquo; prefix or the &lsquo;<samp><span class="samp">survey</span></samp>&rsquo; prefix can also be used to
+obtain the US survey mile and the value of the US yard prior to 1959,
+e.g., &lsquo;<samp><span class="samp">USmile</span></samp>&rsquo; or &lsquo;<samp><span class="samp">surveymile</span></samp>&rsquo; (but <em>not</em>
+&lsquo;<samp><span class="samp">USsurveymile</span></samp>&rsquo;).  To get the US value of the statute mile, use
+either &lsquo;<samp><span class="samp">USstatutemile</span></samp>&rsquo; or &lsquo;<samp><span class="samp">USmile</span></samp>&rsquo;.
+
+   <p>Except for distances that extend over hundreds of miles (such as in the
+US State Plane Coordinate System), the differences in the miles are
+usually insignificant:
+
+<pre class="example">     You have: 100 surveymile - 100 mile
+     You want: inch
+             * 12.672025
+             / 0.078913984
+</pre>
+   <p class="noindent">The pre-1959 UK values for these units can be obtained with the prefix
+&lsquo;<samp><span class="samp">UK</span></samp>&rsquo;.
+
+   <p>In the US, the acre is officially defined in terms of the US survey
+foot, but <samp><span class="command">units</span></samp> uses a definition based on the international
+foot.  If you want the official US acre use &lsquo;<samp><span class="samp">USacre</span></samp>&rsquo; and
+similarly use &lsquo;<samp><span class="samp">USacrefoot</span></samp>&rsquo; for the official US version of that
+unit.  The difference between these units is about 4 parts per million.
+
+   </body></html>
+

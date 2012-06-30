@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+<title>Additional Localization - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Localization.html#Localization" title="Localization">
+<link rel="prev" href="Locale.html#Locale" title="Locale">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Additional-Localization"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Locale.html#Locale">Locale</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Localization.html#Localization">Localization</a>
+<hr>
+</div>
+
+<h3 class="section">11.2 Additional Localization</h3>
+
+<p>Sometimes the locale isn't sufficient to determine unit preferences. 
+There could be regional preferences, or a company could have specific
+preferences.  Though probably uncommon, such differences could arise
+with the choice of English customary units outside of English-speaking
+countries.  To address this, <samp><span class="command">units</span></samp> allows specifying
+definitions that depend on environment variable settings. 
+The environment variables can be controled based on the current locale,
+or the user can set them to force a particular group of definitions.
+
+   <p>A conditional block of definitions in a units data file begins with
+either &lsquo;<samp><span class="samp">!var</span></samp>&rsquo; or &lsquo;<samp><span class="samp">!varnot</span></samp>&rsquo; following by an environment
+variable name and then a space separated
+list of values.  The leading &lsquo;<samp><span class="samp">!</span></samp>&rsquo; must appear in the first column of a units
+data file, and the conditional block is terminated by &lsquo;<samp><span class="samp">!endvar</span></samp>&rsquo;. 
+Definitions in blocks beginning with &lsquo;<samp><span class="samp">!var</span></samp>&rsquo; are executed only if the
+environment variable is exactly equal to one of the listed values. 
+Definitions in blocks beginning with &lsquo;<samp><span class="samp">!varnot</span></samp>&rsquo; are executed only if the
+environment variable does <em>not</em> equal any of the list values.
+
+   <p>The inch has long been a customary measure of length in many places. 
+The word comes from the latin <em>uncia</em> meaning &ldquo;one twelfth,&rdquo;
+referring to its relationship with the foot.  By the 20th century, the
+inch was officially defined in English-speaking countries relative to
+the yard, but until 1959, the yard differed slightly among those
+countries.  In France the customary inch, which was displaced in 1799
+by the meter, had a different length based on a french foot.  These
+customary definitions could be accomodated as follows:
+
+<pre class="example">     !var INCH_UNIT usa
+     yard          3600|3937 m
+     !endvar
+     !var INCH_UNIT canada
+     yard          0.9144 meter
+     !endvar
+     !var INCH_UNIT uk
+     yard          0.91439841 meter
+     !endvar
+     !var INCH_UNIT canada uk usa
+     foot          1|3 yard
+     inch          1|12 foot
+     !endvar
+     !var INCH_UNIT france
+     foot          144|443.296 m
+     inch          1|12 foot
+     line          1|12 inch
+     !endvar
+     !varnot INCH_UNIT usa uk france canada
+     !message Unknown value for INCH_UNIT
+     !endvar
+</pre>
+   <p class="noindent">When <samp><span class="command">units</span></samp> reads the above definitions it will check the
+environment variable <samp><span class="env">INCH_UNIT</span></samp> and load only the definitions for
+the appropriate section.  If <samp><span class="env">INCH_UNIT</span></samp> is unset or is not set to
+one of the four values listed then <samp><span class="command">units</span></samp> will run the last
+block.  In this case that block uses the
+&lsquo;<samp><span class="samp">!message</span></samp>&rsquo; command to display a warning message.  Alternatively
+that block could set default values.
+
+   <p>In order to create default values that are overridden by user settings
+the data file can use the &lsquo;<samp><span class="samp">!set</span></samp>&rsquo; command, which sets an
+environment variable <em>only if it is not already set</em>;  these
+settings are only for the current <samp><span class="command">units</span></samp> invocation and do
+not persist.  So if the example above were preceded by
+&lsquo;<samp><span class="samp">!set INCH_UNIT france</span></samp>&rsquo; then this would make &lsquo;<samp><span class="samp">france</span></samp>&rsquo; the
+default value for <samp><span class="env">INCH_UNIT</span></samp>.  If the user had set the variable
+in the environment before invoking <samp><span class="command">units</span></samp>, then
+<samp><span class="command">units</span></samp> would use the user's value.
+
+   <p>To link these settings to the user's locale you combine the &lsquo;<samp><span class="samp">!set</span></samp>&rsquo;
+command with the &lsquo;<samp><span class="samp">!locale</span></samp>&rsquo; command. 
+If you wanted to combine the above example with suitable locales you
+could do by <em>preceding</em> the above definition with the following:
+
+<pre class="example">     !locale en_US
+     !set INCH_UNIT usa
+     !endlocale
+     !locale en_GB
+     !set INCH_UNIT uk
+     !endlocale
+     !locale en_CA
+     !set INCH_UNIT canada
+     !endlocale
+     !locale fr_FR
+     !set INCH_UNIT france
+     !endlocale
+     !set INCH_UNIT france
+</pre>
+   <p class="noindent">These definitions set the overall default for <samp><span class="env">INCH_UNIT</span></samp> to
+&lsquo;<samp><span class="samp">france</span></samp>&rsquo; and set default values for four locales appropriately. 
+The overall default setting comes last so that it only applies when
+<samp><span class="env">INCH_UNIT</span></samp> was not set by one of the other commands or by the
+user.
+
+   <p>If the variable given after &lsquo;<samp><span class="samp">!var</span></samp>&rsquo; or &lsquo;<samp><span class="samp">!varnot</span></samp>&rsquo; is undefined
+then <samp><span class="command">units</span></samp> prints an error message and ignores the
+definitions that follow.  Use &lsquo;<samp><span class="samp">!set</span></samp>&rsquo; to create defaults to
+prevent this situation from arising.  The <samp><span class="option">-c</span></samp>
+option only checks the definitions that are active for the current
+environment and locale, so when adding new definitions take care to
+check that all cases give rise to a well defined set of definitions.
+
+   </body></html>
+

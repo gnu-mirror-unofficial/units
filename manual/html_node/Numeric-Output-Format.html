@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<title>Numeric Output Format - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
+<link rel="next" href="Localization.html#Localization" title="Localization">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Numeric-Output-Format"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Localization.html#Localization">Localization</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">10 Numeric Output Format</h2>
+
+<p><a name="index-numeric-output-format-177"></a><a name="index-output-format-178"></a>
+By default, results of conversions are shown to eight significant
+figures; this can be changed with the <samp><span class="option">--exponential</span></samp> and
+<samp><span class="option">--output-format</span></samp> options.  The former sets an exponential
+format (i.e., scientific notation) like that used in the original Unix
+<samp><span class="command">units</span></samp> program; the latter allows the format to be given as
+that of the printf function in the ANSI&nbsp;C standard.
+
+   <p>The format recognized with the <samp><span class="option">--output-format</span></samp> option is a
+subset of that for printf().  Only a floating-point format of the form
+<!-- noman -->
+<code>%</code>[<i>flag</i>][<i>width</i>][<code>.</code><i>precision</i>]<i>type</i>
+<!-- end noman -->
+<!-- ifman -->
+<!-- end ifman -->
+is allowed: it must begin with &lsquo;<samp><span class="samp">%</span></samp>&rsquo;, and must end with a
+floating-point type specifier (&lsquo;<samp><span class="samp">E</span></samp>&rsquo; or &lsquo;<samp><span class="samp">e</span></samp>&rsquo; for scientific
+notation, &lsquo;<samp><span class="samp">f</span></samp>&rsquo; for fixed-point decimal, or &lsquo;<samp><span class="samp">G</span></samp>&rsquo; or &lsquo;<samp><span class="samp">g</span></samp>&rsquo; to
+specify the number of significant figures).  The format specification
+may include one optional flag (&lsquo;<samp><span class="samp">+</span></samp>&rsquo;, &lsquo;<samp><span class="samp">-</span></samp>&rsquo;, &lsquo;<samp><span class="samp">#</span></samp>&rsquo;, or a
+space), followed by an optional value for the minimum field width, and
+an optional precision specification that begins with a period (e.g.,
+&lsquo;<samp><span class="samp">.6</span></samp>&rsquo;).  In addition to the digits, the field width includes the
+decimal point, the exponent, and the sign if any of these are shown.  A
+width specification is typically used with fixed-point decimal to have
+columns of numbers align at the decimal point; it normally is not
+useful with <samp><span class="command">units</span></samp>.  Non-floating-point type specifiers make
+no sense for <samp><span class="command">units</span></samp>, and are forbidden.
+
+   <p>The default format is &lsquo;<samp><span class="samp">%.8g</span></samp>&rsquo;; for greater precision, you could
+specify &lsquo;<samp><span class="samp">-o %.15g</span></samp>&rsquo;.  The &lsquo;<samp><span class="samp">G</span></samp>&rsquo; and &lsquo;<samp><span class="samp">g</span></samp>&rsquo; formats use
+exponential format whenever the exponent would be less than &minus;5,
+so the value 0.000013 displays as &lsquo;<samp><span class="samp">1.3e-005</span></samp>&rsquo;.  If you prefer
+fixed-point display, you might specify &lsquo;<samp><span class="samp">-o %.8f</span></samp>&rsquo;; however, very
+small numbers may display very few significant figures, and for very
+small numbers, may show nothing but zeros.
+
+   <p>See the documentation for printf() for more detailed descriptions of the
+format specification.
+
+   </body></html>
+

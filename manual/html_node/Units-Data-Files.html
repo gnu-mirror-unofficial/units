@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+<title>Units Data Files - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
+<link rel="next" href="Defining-New-Units.html#Defining-New-Units" title="Defining New Units">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Units-Data-Files"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Defining-New-Units.html#Defining-New-Units">Defining New Units</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>
+<hr>
+</div>
+
+<h3 class="section">9.1 Units Data Files</h3>
+
+<p><a name="index-additional-units-data-files-141"></a><a name="index-data-files_002c-additional-142"></a><a name="index-units-data-files_002c-additional-143"></a><a name="index-g_t_0040samp_007b_0021include_007d-144"></a><a name="index-command_002c-_0040samp_007b_0021include_007d-145"></a><a name="index-including-additional-units-data-files-146"></a>
+The units and prefixes that <samp><span class="command">units</span></samp> can convert are
+defined in the units
+data file, typically <samp><span class="file">/usr/share/units/definitions.units</span></samp>. 
+Although you can extend or modify this
+data file if you have appropriate user privileges, it's usually better
+to put extensions in separate files so that the definitions will be
+preserved when you update <samp><span class="command">units</span></samp>.
+
+   <p>You can include additional data files in the units database using
+the &lsquo;<samp><span class="samp">!include</span></samp>&rsquo; command in the standard units data file. For
+example
+
+<pre class="example">     !include    /usr/local/share/units/local.units
+</pre>
+   <p class="noindent">might be appropriate for a site-wide supplemental data file. 
+The location of the &lsquo;<samp><span class="samp">!include</span></samp>&rsquo; statement in the standard units
+data file is important; later definitions replace earlier ones,
+so any definitions in an included file will override definitions before
+the &lsquo;<samp><span class="samp">!include</span></samp>&rsquo; statement in the standard units data file. 
+With normal invocation, no warning is given about redefinitions; to
+ensure that you don't have an unintended redefinition, run
+&lsquo;<samp><span class="samp">units&nbsp;-c</span></samp>&rsquo; after making changes to any units data file.
+
+   <p><a name="index-personal-units-data-file-147"></a><a name="index-units-data-file_002c-personal-148"></a>
+If you want to add your own units in addition to or in place of
+standard or site-wide supplemental units data files, you can include
+them in the <samp><span class="file">.units</span></samp> file in your home directory.  If this
+file exists it is read after the standard units data file, so that any
+definitions in this file will replace definitions of the same units in
+the standard data file or in files included from the standard data
+file.  This file will not be read if any units files are specified on
+the command line.  (Under Windows the personal units file is
+named <samp><span class="file">unitdef.units</span></samp>.)
+
+   <p>The <samp><span class="command">units</span></samp> program first tries to determine your home
+directory from the <samp><span class="env">HOME</span></samp> environment variable.  On systems running
+Microsoft Windows, if <samp><span class="env">HOME</span></samp> does not exist, <samp><span class="command">units</span></samp>
+attempts to find your home directory from <samp><span class="env">HOMEDRIVE</span></samp> and
+<samp><span class="env">HOMEPATH</span></samp>.  Running <samp><span class="command">units -V</span></samp> will display the location
+and name of your personal units file.
+
+   <p><a name="index-MYUNITSFILE-environment-variable-149"></a><a name="index-environment-variable_002c-MYUNITSFILE-150"></a>You can specify an arbitrary file as your personal units data file with
+the <samp><span class="env">MYUNITSFILE</span></samp> environment variable; if this variable exists, its
+value is used without searching your home directory.
+
+   </body></html>
+

@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+<title>Defining Unit List Aliases - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
+<link rel="prev" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units" title="Defining Nonlinear Units">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Defining-Unit-List-Aliases"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">Defining Nonlinear Units</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>
+<hr>
+</div>
+
+<h3 class="section">9.4 Defining Unit List Aliases</h3>
+
+<p><a name="index-unit-list-aliases_002c-defining-174"></a><a name="index-g_t_0040samp_007b_0021unitlist_007d-175"></a><a name="index-command_002c-_0040samp_007b_0021unitlist_007d-176"></a>
+Unit list aliases are treated differently from unit definitions,
+because they are a data entry shorthand rather than a true definition
+for a new unit. 
+A unit list alias definition begins with &lsquo;<samp><span class="samp">!unitlist</span></samp>&rsquo; and includes the
+alias and the definition;  for example, the aliases included in the
+standard units data file are
+
+<pre class="example">     !unitlist   hms     hr;min;sec
+     !unitlist   time    year;day;hr;min;sec
+     !unitlist   dms     deg;arcmin;arcsec
+     !unitlist   ftin    ft;in;1|8 in
+     !unitlist   usvol   cup;3|4 cup;2|3 cup;1|2 cup;1|3 cup;1|4 cup;\
+                         tbsp;tsp;1|2 tsp;1|4 tsp;1|8 tsp
+</pre>
+   <p class="noindent">Unit list aliases are only for unit lists, so the definition must
+include a &lsquo;<samp><span class="samp">;</span></samp>&rsquo;.  Unit list aliases can never be combined with
+units or other unit list aliases, so the definition of &lsquo;<samp><span class="samp">time</span></samp>&rsquo;
+shown above could <em>not</em> have been shortened to
+&lsquo;<samp><span class="samp">year;day;hms</span></samp>&rsquo;.  As usual, be sure to run <samp><span class="command">units --check</span></samp>
+to ensure that the units listed in unit list aliases are conformable.
+
+   </body></html>
+

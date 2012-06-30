@@ -1,0 +1,287 @@
+<html lang="en">
+<head>
+<title>Unit Lists - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Nonlinear-Conversions.html#Nonlinear-Conversions" title="Nonlinear Conversions">
+<link rel="next" href="Invoking-Units.html#Invoking-Units" title="Invoking Units">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Unit-Lists"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Invoking-Units.html#Invoking-Units">Invoking Units</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Nonlinear-Conversions.html#Nonlinear-Conversions">Nonlinear Conversions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">7 Unit Lists: Conversion to Sums of Units</h2>
+
+<p><a name="index-sums-of-units-104"></a><a name="index-unit-lists-105"></a><a name="index-units_002c-sums-of-106"></a>
+Outside of the SI, it is sometimes desirable to convert a single
+unit to a sum of units&mdash;for example, feet to feet plus inches. 
+The conversion <em>from</em> sums of units was described in
+<a href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units">Sums and Differences of Units</a>, and is a simple matter of adding
+the units with the &lsquo;<samp><span class="samp">+</span></samp>&rsquo; sign:
+
+<pre class="example">     You have: 12 ft + 3 in + 3|8 in
+     You want: ft
+             * 12.28125
+             / 0.081424936
+</pre>
+   <p class="noindent">Although you can similarly write a sum of units to convert <em>to</em>,
+the result will not be the conversion to the units in the sum, but
+rather the conversion to the particular sum that you have entered:
+
+<pre class="example">     You have: 12.28125 ft
+     You want: ft + in + 1|8 in
+             * 11.228571
+             / 0.089058524
+</pre>
+   <p class="noindent">The unit expression given at the &lsquo;<samp><span class="samp">You want:</span></samp>&rsquo; prompt is equivalent
+to asking for conversion to multiples of &lsquo;<samp><span class="samp">1 ft + 1 in + 1|8 in</span></samp>&rsquo;,
+which is 1.09375 ft, so the conversion in the previous example is
+equivalent to
+
+<pre class="example">     You have: 12.28125 ft
+     You want: 1.09375 ft
+             * 11.228571
+             / 0.089058524
+</pre>
+   <p class="noindent">In converting to a sum of units like miles, feet and inches, you
+typically want the largest integral value for the first unit, followed
+by the largest integral value for the next, and the remainder converted
+to the last unit. 
+You can do this conversion easily with <samp><span class="command">units</span></samp> using a special
+syntax for lists of units.  You must list the desired units in order
+from largest to smallest, separated by the semicolon (&lsquo;<samp><span class="samp">;</span></samp>&rsquo;)
+character:
+
+<pre class="example">     You have: 12.28125 ft
+     You want: ft;in;1|8 in
+             12 ft + 3 in + 3|8 in
+</pre>
+   <p class="noindent">The conversion always gives integer coefficients on the units in the
+list, except possibly the last unit when the conversion is not exact:
+
+<pre class="example">     You have: 12.28126 ft
+     You want: ft;in;1|8 in
+             12 ft + 3 in + 3.00096 * 1|8 in
+</pre>
+   <p class="noindent">The order in which you list the units is important:
+
+<pre class="example">     You have: 3 kg
+     You want: oz;lb
+             105 oz + 0.051367866 lb
+     
+     You have: 3 kg
+     You want: lb;oz
+             6 lb + 9.8218858 oz
+</pre>
+   <p class="noindent">Listing ounces before pounds produces a technically correct result,
+but not a very useful one.  You must list the units in descending
+order of size in order to get the most useful result.
+
+   <p>Ending a unit list with the separator &lsquo;<samp><span class="samp">;</span></samp>&rsquo;
+has the same effect as repeating the last
+unit on the list, so &lsquo;<samp><span class="samp">ft;in;1|8 in;</span></samp>&rsquo; is equivalent to
+&lsquo;<samp><span class="samp">ft;in;1|8 in;1|8 in</span></samp>&rsquo;.  With the example above, this gives
+
+<pre class="example">     You have: 12.28126 ft
+     You want: ft;in;1|8 in;
+             12 ft + 3 in + 3|8 in + 0.00096 * 1|8 in
+</pre>
+   <p class="noindent">in effect separating the integer and fractional parts of the
+coefficient for the last unit.  If you instead
+prefer to round the last coefficient to an integer
+you can do this with the <samp><span class="option">--round</span></samp> (<samp><span class="option">-r</span></samp>) option. 
+With the previous example, the result is
+
+<pre class="example">     You have: 12.28126 ft
+     You want: ft;in;1|8 in
+             12 ft + 3 in + 3|8 in (rounded down to nearest 1|8 in)
+</pre>
+   <p class="noindent">When you use the <samp><span class="option">-r</span></samp> option, repeating the last unit on the
+list has no effect (e.g., &lsquo;<samp><span class="samp">ft;in;1|8 in;1|8 in</span></samp>&rsquo; is equivalent to
+&lsquo;<samp><span class="samp">ft;in;1|8 in</span></samp>&rsquo;), and hence neither does ending a list with a
+&lsquo;<samp><span class="samp">;</span></samp>&rsquo;.  With a single unit and the <samp><span class="option">-r</span></samp> option, a terminal &lsquo;<samp><span class="samp">;</span></samp>&rsquo;
+<em>does</em> have an effect: it causes <samp><span class="command">units</span></samp> to treat the
+single unit as a list and produce a rounded value for the single unit. 
+Without the extra &lsquo;<samp><span class="samp">;</span></samp>&rsquo;, the <samp><span class="option">-r</span></samp> option has no effect on
+single unit conversions.  This example shows the ouput using the
+<samp><span class="option">-r</span></samp> option:
+
+<pre class="example">     You have: 12.28126 ft
+     You want: in
+             * 147.37512
+             / 0.0067854058
+     
+     You have: 12.28126 ft
+     You want: in;
+             147 in (rounded down to nearest in)
+</pre>
+   <p class="noindent">Each unit that appears in the list must be conformable with the first
+unit on the list, and of course the listed units must also
+be comformable with the <em>You have</em> unit that you enter.
+
+<pre class="example">     You have: meter
+     You want: ft;kg
+                  ^
+     conformability error
+             ft = 0.3048 m
+             kg = 1 kg
+     
+     You have: meter
+     You want: lb;oz
+     conformability error
+             1 m
+             0.45359237 kg
+</pre>
+   <p class="noindent">In the first case, <samp><span class="command">units</span></samp> reports the disagreement between
+units appearing on the list.  In the second case, <samp><span class="command">units</span></samp>
+reports disagreement between the unit you entered and the desired
+conversion.  This conformability error is based on the first
+unit on the unit list.
+
+   <p>Other common candidates for conversion to sums of units are
+angles and time:
+
+<pre class="example">     You have: 23.437754 deg
+     You want; deg;arcmin;arcsec
+         23 deg + 26 arcmin + 15.9144 arcsec
+     
+         You have: 7.2319 hr
+         You want: hr;min;sec
+             7 hr + 13 min + 54.84 sec
+</pre>
+   <p class="noindent">In North America, recipes for cooking typically measure ingredients by
+volume, and use units that are not always convenient multiples of each
+other.  Suppose that you have a recipe for 6 and you wish to make a
+portion for 1.  If the recipe calls for 2&nbsp;1/2 cups of an
+ingredient, you might wish to know the measurements in terms of
+measuring devices you have available, you could use <samp><span class="command">units</span></samp> and
+enter
+
+<pre class="example">     You have: (2+1|2) cup / 6
+     You want: cup;1|2 cup;1|3 cup;1|4 cup;tbsp;tsp;1|2 tsp;1|4 tsp
+             1|3 cup + 1 tbsp + 1 tsp
+</pre>
+   <p class="noindent">By default, if a unit in a list begins with fraction of the form
+1|<var>x</var> and its multiplier is an integer, the fraction is given as
+the product of the multiplier and the numerator; for example,
+
+<pre class="example">     You have: 12.28125 ft
+     You want: ft;in;1|8 in;
+             12 ft + 3 in + 3|8 in
+</pre>
+   <p class="noindent">In many cases, such as the example above, this is what is wanted, but
+sometimes it is not.  For example, a cooking recipe for 6 might call
+for 5&nbsp;1/4 cup of an ingredient, but you want a portion for 2, and
+your 1-cup measure is not available; you might try
+
+<pre class="example">     You have: (5+1|4) cup / 3
+     You want: 1|2 cup;1|3 cup;1|4 cup
+             3|2 cup + 1|4 cup
+</pre>
+   <p class="noindent">This result might be fine for a baker who has a 1&nbsp;1/2-cup measure
+(and recognizes the equivalence), but it may not be as useful to
+someone with more limited set of measures, who does want to do
+additional calculations, and only wants to know &ldquo;How many 1/2-cup
+measures to I need to add?&rdquo;  After all, that's what was actually
+asked.  With the <samp><span class="option">--show-factor</span></samp> option, the factor will not be
+combined with a unity numerator, so that you get
+
+<pre class="example">     You have: (5+1|4) cup / 3
+     You want: 1|2 cup;1|3 cup;1|4 cup
+             3 * 1|2 cup + 1|4 cup
+</pre>
+   <p class="noindent">A user-specified fractional unit with a numerator other than 1 is never
+overridden, however&mdash;if a unit list specifies &lsquo;<samp><span class="samp">3|4 cup;1|2 cup</span></samp>&rsquo;,
+a result equivalent to 1&nbsp;1/2 cups will always be shown as
+&lsquo;<samp><span class="samp">2 * 3|4 cup</span></samp>&rsquo; whether or not the <samp><span class="option">--show-factor</span></samp> option is
+given.
+
+   <p>Some applications for unit lists may be less obvious.  Suppose that you
+have a postal scale and wish to ensure that it's accurate at 1&nbsp;oz,
+but have only metric calibration weights.  You might try
+
+<pre class="example">     You have: 1 oz
+     You want: 100 g;50 g; 20 g;10 g;5 g;2 g;1 g;
+             20 g + 5 g + 2 g + 1 g + 0.34952312 * 1 g
+</pre>
+   <p class="noindent">You might then place one each of the 20&nbsp;g, 5&nbsp;g, 2&nbsp;g, and
+1&nbsp;g weights on the scale and hope that it indicates close to
+
+<pre class="example">     You have: 20 g + 5 g + 2 g + 1 g
+     You want: oz;
+             0.98767093 oz
+</pre>
+   <p class="noindent">Appending &lsquo;<samp><span class="samp">;</span></samp>&rsquo; to &lsquo;<samp><span class="samp">oz</span></samp>&rsquo; forces a one-line display that includes
+the unit; here the integer part of the result is zero, so it is not
+displayed.
+
+   <p>A unit list such as
+
+<pre class="example">     cup;1|2&nbsp;cup;1|3&nbsp;cup;1|4&nbsp;cup;tbsp;tsp;1|2&nbsp;tsp;1|4&nbsp;tsp
+</pre>
+   <p class="noindent">can be tedious to enter.  The <samp><span class="command">units</span></samp> program provides shorthand names
+for some common combinations:
+
+<pre class="example">     hms         <span class="roman">hours, minutes, seconds</span>
+     dms         <span class="roman">angle: degrees, minutes, seconds</span>
+     time        <span class="roman">years, days, hours, minutes and seconds</span>
+     usvol       <span class="roman">US cooking volume: cups and smaller</span>
+</pre>
+   <p class="noindent">Using these shorthands, or <dfn>unit list aliases</dfn>,
+you can do the following conversions:
+
+<pre class="example">     You have: anomalisticyear
+     You want: time
+             1 year + 25 min + 3.4653216 sec
+     You have: 1|6 cup
+     You want: usvol
+             2 tbsp + 2 tsp
+</pre>
+   <p class="noindent">You cannot combine a unit list alias with other units: it must appear
+alone at the &lsquo;<samp><span class="samp">You want:</span></samp>&rsquo; prompt.
+
+   <p>You can display the definition of a unit list by pressing &lt;Enter&gt; at the
+&lsquo;<samp><span class="samp">You have:</span></samp>&rsquo; prompt:
+
+<pre class="example">     You have: dms
+             Definition: unit list, deg;arcmin;arcsec
+</pre>
+   <p class="noindent">When you specify compact output with <samp><span class="option">--compact</span></samp>,
+<samp><span class="option">--terse</span></samp> or <samp><span class="option">-t</span></samp> and perform conversion to a unit list,
+<samp><span class="command">units</span></samp> lists the conversion factors for each unit in the
+list, separated by semicolons.
+
+<pre class="example">     You have: year
+     You want: day;min;sec
+     365;348;45.974678
+</pre>
+   <p class="noindent">Unlike the case of regular
+output, zeros <em>are</em> included in this output list:
+
+<pre class="example">     You have: liter
+     You want: cup;1|2 cup;1|4 cup;tbsp
+     4;0;0;3.6280454
+</pre>
+   </body></html>
+
