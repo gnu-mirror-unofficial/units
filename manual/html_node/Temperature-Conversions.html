@@ -9,11 +9,11 @@
 <link rel="next" href="Other-Nonlinear-Units.html#Other-Nonlinear-Units" title="Other Nonlinear Units">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -46,7 +46,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Nonlinear-Conversions.html#Nonlinear-Co
 
 <h3 class="section">6.1 Temperature Conversions</h3>
 
-<p><a name="index-temperature-conversions-98"></a>
+<p><a name="index-temperature-conversions-100"></a>
 Conversions between temperatures are different from linear conversions
 between temperature <em>increments</em>&mdash;see the example below.  The
 absolute temperature conversions are handled by units starting with
@@ -96,5 +96,14 @@ probably not what you expect:
 when converting to a temperature rather than converting a temperature
 increment.
 
+   <p>The &lsquo;<samp><span class="samp">tempC()</span></samp>&rsquo; and &lsquo;<samp><span class="samp">tempF()</span></samp>&rsquo; definitions are limited to
+positive absolute temperatures, and giving a value that would result in
+a negative absolute temperature generates an error message:
+
+<pre class="example">     You have: tempC(-275)
+                         ^
+     Argument of function outside domain
+                         ^
+</pre>
    </body></html>
 

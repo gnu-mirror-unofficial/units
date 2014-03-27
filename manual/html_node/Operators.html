@@ -9,11 +9,11 @@
 <link rel="next" href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units" title="Sums and Differences of Units">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -47,99 +47,129 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Unit-Expressions.html#Unit-Expressions"
 <h3 class="section">5.1 Operators</h3>
 
 <p><a name="index-operators-36"></a>
-You can enter more complicated units by combining units
-with operations
-such as powers, multiplication, division, addition, subtraction, and
-parentheses for grouping. 
-You can use the customary symbols for these operators when
-<samp><span class="command">units</span></samp> is invoked with its default options.  Additionally,
-<samp><span class="command">units</span></samp> supports some extensions, including high
-priority multiplication using a
-space, and a high priority numerical
- division operator (&lsquo;<samp><span class="samp">|</span></samp>&rsquo;) that can simplify
-some expressions.
+You can enter more complicated units by combining units with operations
+such as multiplication, division, powers, addition, subtraction, and
+parentheses for grouping.  You can use the customary symbols for these
+operators when <samp><span class="command">units</span></samp> is invoked with its default options. 
+Additionally, <samp><span class="command">units</span></samp> supports some extensions, including high
+priority multiplication using a space, and a high priority numerical
+division operator (&lsquo;<samp><span class="samp">|</span></samp>&rsquo;) that can simplify some expressions.
 
-   <p>Powers of units can be specified using the &lsquo;<samp><span class="samp">^</span></samp>&rsquo; character as shown in
-the following example, or by simple concatenation of a unit and its
-exponent: &lsquo;<samp><span class="samp">cm3</span></samp>&rsquo; is equivalent to &lsquo;<samp><span class="samp">cm^3</span></samp>&rsquo;;
-if the exponent is more than one digit, the &lsquo;<samp><span class="samp">^</span></samp>&rsquo; is required. 
-An
-exponent like &lsquo;<samp><span class="samp">2^3^2</span></samp>&rsquo; is evaluated right to left as usual. 
-The &lsquo;<samp><span class="samp">^</span></samp>&rsquo;
-operator has the second highest precedence.  You can also use &lsquo;<samp><span class="samp">**</span></samp>&rsquo; as
-an exponent operator. 
-<a name="index-powers-37"></a><a name="index-exponent-operator-38"></a><a name="index-operator_002c-caret-_0028_0040samp_007b_005e_007d_0029-39"></a><a name="index-operator_002c-_0028_0040samp_007b_002a_002a_007d_0029-40"></a><a name="index-g_t_0040samp_007b_002a_002a_007d-operator-41"></a><a name="index-parentheses-42"></a>
+   <p><a name="index-products-of-units-37"></a><a name="index-quotients-of-units-38"></a><a name="index-units-quotients-39"></a><a name="index-multiplication-of-units-40"></a><a name="index-division-of-units-41"></a><a name="index-operator_002c-_0040samp_007bper_007d-42"></a><a name="index-g_t_0040samp_007bper_007d-operator-43"></a><a name="index-operator_002c-space-44"></a><a name="index-operator_002c-star-_0028_0040samp_007b_002a_007d_0029-45"></a><a name="index-star-_0028_0040samp_007b_002a_007d_0029-operator-46"></a><a name="index-g_t_0040samp_007b_002a_007d-operator-47"></a><a name="index-operator_002c-slash-_0028_0040samp_007b_002f_007d_0029-48"></a><a name="index-slash-_0028_0040samp_007b_002f_007d_0029-operator-49"></a><a name="index-operator_002c-solidus-_0028_0040samp_007b_002f_007d_0029-50"></a><a name="index-solidus-_0028_0040samp_007b_002f_007d_0029-operator-51"></a>
+You multiply units using a space or an asterisk (&lsquo;<samp><span class="samp">*</span></samp>&rsquo;). 
+The next example shows both forms:
 
-<pre class="example">     You have: cm^3
-     You want: gallons
-             * 0.00026417205
-             / 3785.4118
-     
-     You have: arabicfoot * arabictradepound * force
+<pre class="example">     You have: arabicfoot * arabictradepound * force
      You want: ft lbf
              * 0.7296
              / 1.370614
 </pre>
-   <p class="noindent">You multiply units using a space or an asterisk (&lsquo;<samp><span class="samp">*</span></samp>&rsquo;). 
-The example above shows both forms.  You can divide units using the
-slash (&lsquo;<samp><span class="samp">/</span></samp>&rsquo;) or with &lsquo;<samp><span class="samp">per</span></samp>&rsquo;. 
-<a name="index-products-of-units-43"></a><a name="index-quotients-of-units-44"></a><a name="index-units-quotients-45"></a><a name="index-multiplication-of-units-46"></a><a name="index-division-of-units-47"></a><a name="index-operator_002c-_0040samp_007bper_007d-48"></a><a name="index-g_t_0040samp_007bper_007d-operator-49"></a><a name="index-operator_002c-space-50"></a><a name="index-operator_002c-star-_0028_0040samp_007b_002a_007d_0029-51"></a><a name="index-star-_0028_0040samp_007b_002a_007d_0029-operator-52"></a><a name="index-g_t_0040samp_007b_002a_007d-operator-53"></a><a name="index-operator_002c-slash-_0028_0040samp_007b_002f_007d_0029-54"></a><a name="index-slash-_0028_0040samp_007b_002f_007d_0029-operator-55"></a><a name="index-operator_002c-solidus-_0028_0040samp_007b_002f_007d_0029-56"></a><a name="index-solidus-_0028_0040samp_007b_002f_007d_0029-operator-57"></a>
+   <p class="noindent">You can divide units using the slash (&lsquo;<samp><span class="samp">/</span></samp>&rsquo;) or with &lsquo;<samp><span class="samp">per</span></samp>&rsquo;:
+
 <pre class="example">     You have: furlongs per fortnight
      You want: m/s
              * 0.00016630986
              / 6012.8727
 </pre>
-   <p class="noindent"><a name="index-operator-precedence-58"></a><a name="index-parentheses-59"></a><a name="index-prefixes-and-exponents-60"></a>When a unit includes a prefix, exponent operators apply to the
-combination, so &lsquo;<samp><span class="samp">centimeter^3</span></samp>&rsquo; gives cubic centimeters.  If you separate
-the prefix from the unit with any multiplication operator, such as
-&lsquo;<samp><span class="samp">centi meter^3</span></samp>&rsquo;, then the prefix is treated as a separate unit, so
-the exponent does not apply.  The second example would be a hundredth
-of a cubic meter, not a centimeter.
-
-   <p>Multiplication using a space  has a higher precedence
-than division using a slash and is evaluated left to right;
-in effect, the first &lsquo;<samp><span class="samp">/</span></samp>&rsquo; character marks the beginning of the
-denominator of a unit expression. 
-This makes it simple to
-enter a quotient with several terms in the denominator: &lsquo;<samp><span class="samp">W / m^2 Hz</span></samp>&rsquo;. 
-If you multiply with &lsquo;<samp><span class="samp">*</span></samp>&rsquo; then you must group the terms in the
-denominator with parentheses: &lsquo;<samp><span class="samp">W / (m^2 * Hz)</span></samp>&rsquo;.
-
-   <p>The higher precedence of the space operator may not always be advantageous. 
-For example, &lsquo;<samp><span class="samp">m/s s/day</span></samp>&rsquo; is equivalent to
-&lsquo;<samp><span class="samp">m / s s day</span></samp>&rsquo; and has dimensions of length per time cubed. 
-Similarly, &lsquo;<samp><span class="samp">1/2 meter</span></samp>&rsquo; refers to a unit of reciprocal length
-equivalent to 0.5/meter, perhaps not what you would intend if
-you entered that expression. 
-The &lsquo;<samp><span class="samp">*</span></samp>&rsquo; operator is convenient for multiplying a sequence of quotients. 
-With the &lsquo;<samp><span class="samp">*</span></samp>&rsquo; operator, the example above becomes &lsquo;<samp><span class="samp">m/s * s/day</span></samp>&rsquo;, which is
-equivalent to &lsquo;<samp><span class="samp">m/day</span></samp>&rsquo;.  Similarly, you could write
-&lsquo;<samp><span class="samp">1/2 * meter</span></samp>&rsquo; to get half a meter. 
-Alternatively, parentheses can be used for grouping: you could write
-&lsquo;<samp><span class="samp">(1/2) meter</span></samp>&rsquo; to get half a meter. 
-See <a href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions">Complicated Unit Expressions</a>, for an illustration of the various
-options.
-
-   <p>The <samp><span class="command">units</span></samp> program supports another option for numerical fractions. 
-You can indicate division of <em>numbers</em> with the vertical bar
-(&lsquo;<samp><span class="samp">|</span></samp>&rsquo;), so if you wanted half a meter you could write
-&lsquo;<samp><span class="samp">1|2 meter</span></samp>&rsquo;.  This operator has the highest precedence, so you can
-write the square root of two thirds &lsquo;<samp><span class="samp">2|3^1|2</span></samp>&rsquo;. 
-You cannot use the vertical bar to indicate division of non-numerical
-units (e.g., &lsquo;<samp><span class="samp">m|s</span></samp>&rsquo; results in an error message). 
-<a name="index-fractions_002c-numerical-61"></a><a name="index-numerical-fractions-62"></a><a name="index-division-of-numbers-63"></a><a name="index-operator_002c-vertical-bar-_0028_0040samp_007b_007c_007d_0029-64"></a><a name="index-vertical-bar-_0028_0040samp_007b_007c_007d_0029-operator-65"></a><a name="index-g_t_0040samp_007b_007c_007d-operator-66"></a>
-
-<pre class="example">     You have: 1|2 inch
-     You want: cm
-             * 1.27
-             / 0.78740157
-</pre>
-   <p><a name="index-parentheses-67"></a>You can use parentheses for grouping:
+   <p><a name="index-parentheses-52"></a>You can use parentheses for grouping:
 
 <pre class="example">     You have: (1/2) kg / (kg/meter)
      You want: league
              * 0.00010356166
              / 9656.0833
 </pre>
+   <p><a name="index-operator-precedence-53"></a><a name="index-parentheses-54"></a>
+Multiplication using a space has a higher precedence
+than division using a slash and is evaluated left to right;
+in effect, the first &lsquo;<samp><span class="samp">/</span></samp>&rsquo; character marks the beginning of the
+denominator of a unit expression. 
+This makes it simple to enter a quotient with several terms in the
+denominator: &lsquo;<samp><span class="samp">J&nbsp;/&nbsp;mol&nbsp;K</span></samp>&rsquo;<!-- /@w -->. 
+The &lsquo;<samp><span class="samp">*</span></samp>&rsquo; and &lsquo;<samp><span class="samp">/</span></samp>&rsquo; operators have the same precedence, and are
+evaluated left to right; if you multiply with &lsquo;<samp><span class="samp">*</span></samp>&rsquo;, you must group
+the terms in the denominator with parentheses: &lsquo;<samp><span class="samp">J&nbsp;/&nbsp;(mol&nbsp;*&nbsp;K)</span></samp>&rsquo;<!-- /@w -->.
+
+   <p><a name="index-fractions_002c-numerical-55"></a><a name="index-numerical-fractions-56"></a><a name="index-division-of-numbers-57"></a><a name="index-operator_002c-vertical-bar-_0028_0040samp_007b_007c_007d_0029-58"></a><a name="index-vertical-bar-_0028_0040samp_007b_007c_007d_0029-operator-59"></a><a name="index-g_t_0040samp_007b_007c_007d-operator-60"></a>
+The higher precedence of the space operator may not always be advantageous. 
+For example, &lsquo;<samp><span class="samp">m/s&nbsp;s/day</span></samp>&rsquo;<!-- /@w --> is equivalent to
+&lsquo;<samp><span class="samp">m&nbsp;/&nbsp;s&nbsp;s&nbsp;day</span></samp>&rsquo;<!-- /@w --> and has dimensions of length per time cubed. 
+Similarly, &lsquo;<samp><span class="samp">1/2&nbsp;meter</span></samp>&rsquo;<!-- /@w --> refers to a unit of reciprocal length
+equivalent to 0.5/meter, perhaps not what you would intend if
+you entered that expression.  The get a half meter you would need to
+use parentheses: &lsquo;<samp><span class="samp">(1/2)&nbsp;meter</span></samp>&rsquo;<!-- /@w -->. 
+The &lsquo;<samp><span class="samp">*</span></samp>&rsquo; operator is convenient for multiplying a sequence of
+quotients.  For example, &lsquo;<samp><span class="samp">m/s&nbsp;*&nbsp;s/day</span></samp>&rsquo;<!-- /@w --> is equivalent to
+&lsquo;<samp><span class="samp">m/day</span></samp>&rsquo;.  Similarly, you could write &lsquo;<samp><span class="samp">1/2&nbsp;*&nbsp;meter</span></samp>&rsquo;<!-- /@w --> to get
+half a meter.
+
+   <p>The <samp><span class="command">units</span></samp> program supports another option for numerical fractions:
+you can indicate division of <em>numbers</em> with the vertical bar
+(&lsquo;<samp><span class="samp">|</span></samp>&rsquo;), so if you wanted half a meter you could write
+&lsquo;<samp><span class="samp">1|2&nbsp;meter</span></samp>&rsquo;<!-- /@w -->. 
+You cannot use the vertical bar to indicate division of non-numerical
+units (e.g., &lsquo;<samp><span class="samp">m|s</span></samp>&rsquo; results in an error message).
+
+   <p><a name="index-powers-61"></a><a name="index-exponent-operator-62"></a><a name="index-operator_002c-caret-_0028_0040samp_007b_005e_007d_0029-63"></a><a name="index-operator_002c-_0028_0040samp_007b_002a_002a_007d_0029-64"></a><a name="index-g_t_0040samp_007b_002a_002a_007d-operator-65"></a><a name="index-parentheses-66"></a>
+Powers of units can be specified using the &lsquo;<samp><span class="samp">^</span></samp>&rsquo; character, as shown in
+the following example, or by simple concatenation of a unit and its
+exponent: &lsquo;<samp><span class="samp">cm3</span></samp>&rsquo; is equivalent to &lsquo;<samp><span class="samp">cm^3</span></samp>&rsquo;;
+if the exponent is more than one digit, the &lsquo;<samp><span class="samp">^</span></samp>&rsquo; is required. 
+You can also use &lsquo;<samp><span class="samp">**</span></samp>&rsquo; as an exponent operator.
+
+<pre class="example">     You have: cm^3
+     You want: gallons
+             * 0.00026417205
+             / 3785.4118
+</pre>
+   <p class="noindent">Concatenation only works with a single unit name: if you write &lsquo;<samp><span class="samp">(m/s)2</span></samp>&rsquo;,
+<samp><span class="command">units</span></samp> will treat it as multiplication by 2. 
+<a name="index-prefixes-and-exponents-67"></a>When a unit includes a prefix, exponent operators apply to the
+combination, so &lsquo;<samp><span class="samp">centimeter3</span></samp>&rsquo; gives cubic centimeters.  If you
+separate the prefix from the unit with any multiplication operator (e.g.,
+&lsquo;<samp><span class="samp">centi meter^3</span></samp>&rsquo;), the prefix is treated as a separate unit, so
+the exponent applies only to the unit without the prefix.  The second
+example is equivalent to &lsquo;<samp><span class="samp">centi * (meter^3)</span></samp>&rsquo;, and gives a hundredth
+of a cubic meter, not a cubic centimeter.  The <samp><span class="command">units</span></samp> program
+is limited internally to products of 99 units; accordingly, expressions
+like &lsquo;<samp><span class="samp">meter^100</span></samp>&rsquo; or &lsquo;<samp><span class="samp">joule^34</span></samp>&rsquo; (represented internally as
+&lsquo;<samp><span class="samp">kg^34&nbsp;m^68&nbsp;/&nbsp;s^68</span></samp>&rsquo;<!-- /@w -->) will fail.
+
+   <p>The &lsquo;<samp><span class="samp">|</span></samp>&rsquo;
+operator has the highest precedence, so you can write the square root of
+two thirds as &lsquo;<samp><span class="samp">2|3^1|2</span></samp>&rsquo;. 
+The &lsquo;<samp><span class="samp">^</span></samp>&rsquo; operator has the second highest precedence, and is
+evaluated right to left, as usual:
+
+<pre class="example">     You have: 5 * 2^3^2
+     You want:
+             Definition: 2560
+</pre>
+   <p class="noindent">With a dimensionless base unit, any dimensionless exponent is meaningful
+(e.g., &lsquo;<samp><span class="samp">pi^exp(2.371)</span></samp>&rsquo;).  Even though angle is sometimes treated as
+dimensionless, exponents cannot have dimensions of angle:
+
+<pre class="example">     You have: 2^radian
+                      ^
+     Exponent not dimensionless
+</pre>
+   <p class="noindent">If the base unit is not dimensionless, the
+exponent must be a rational number <var>p</var>/<var>q</var><!-- /@w -->, and the
+dimension of the unit must be a power of <var>q</var>, so &lsquo;<samp><span class="samp">gallon^2|3</span></samp>&rsquo;
+works but &lsquo;<samp><span class="samp">acre^2|3</span></samp>&rsquo; fails.  An exponent using the slash (&lsquo;<samp><span class="samp">/</span></samp>&rsquo;)
+operator (e.g., &lsquo;<samp><span class="samp">acre^(2/3)</span></samp>&rsquo;) is also acceptable; the parentheses
+are needed because the precedence of &lsquo;<samp><span class="samp">^</span></samp>&rsquo; is higher than that of
+&lsquo;<samp><span class="samp">/</span></samp>&rsquo;.  Since <samp><span class="command">units</span></samp> cannot represent dimensions with
+exponents greater than 99, a fully reduced exponent must have
+<var>q</var>&nbsp;&lt;&nbsp;100<!-- /@w -->.  When raising a non-dimensionless unit to a power,
+<samp><span class="command">units</span></samp> attempts to convert a decimal exponent to a rational
+number with <var>q</var>&nbsp;&lt;&nbsp;100<!-- /@w -->.  If this is not possible
+<samp><span class="command">units</span></samp> displays an error message:
+
+<pre class="example">     You have: ft^1.234
+     Base unit not dimensionless; rational exponent required
+</pre>
+   <p class="noindent">A decimal exponent must match its rational representation to machine
+precision, so &lsquo;<samp><span class="samp">acre^1.5</span></samp>&rsquo; works but &lsquo;<samp><span class="samp">gallon^0.666</span></samp>&rsquo; does not.
+
    </body></html>
 

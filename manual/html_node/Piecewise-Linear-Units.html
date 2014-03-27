@@ -1,0 +1,142 @@
+<html lang="en">
+<head>
+<title>Piecewise Linear Units - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
+<link rel="prev" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units" title="Defining Nonlinear Units">
+<link rel="next" href="Defining-Unit-List-Aliases.html#Defining-Unit-List-Aliases" title="Defining Unit List Aliases">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for GNU Units (version 2.10),
+which performs units conversions and units calculations.
+
+Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.3 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with no Front-Cover Texts,
+     and with no Back-Cover Texts.  A copy of the license is included
+     in the section entitled ``GNU Free Documentation License''.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Piecewise-Linear-Units"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Defining-Unit-List-Aliases.html#Defining-Unit-List-Aliases">Defining Unit List Aliases</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">Defining Nonlinear Units</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>
+<hr>
+</div>
+
+<h3 class="section">10.4 Defining Piecewise Linear Units</h3>
+
+<p><a name="index-defining-piecewise-linear-units-187"></a><a name="index-linear-interpolation-188"></a><a name="index-units_002c-piecewise-linear-189"></a><a name="index-piecewise-linear-units-190"></a>Sometimes you may be interested in a piecewise linear unit such as
+many wire gauges.  Piecewise linear units can be defined by specifying
+conversions to linear units on a list of points. 
+Conversion at other points will be done by linear interpolation. 
+A partial definition of zinc gauge is
+
+<pre class="example">     zincgauge[in] 1 0.002, 10 0.02, 15 0.04, 19 0.06, 23 0.1
+</pre>
+   <p class="noindent">In this example, &lsquo;<samp><span class="samp">zincgauge</span></samp>&rsquo; is the name of the piecewise linear
+unit.  The definition of such a unit is indicated by the
+embedded &lsquo;<samp><span class="samp">[</span></samp>&rsquo; character.  After the bracket, you should indicate the
+units to be attached to the numbers in the table. 
+No spaces can appear before the
+&lsquo;<samp><span class="samp">]</span></samp>&rsquo; character, so a definition like &lsquo;<samp><span class="samp">foo[kg meters]</span></samp>&rsquo; is
+invalid; instead write &lsquo;<samp><span class="samp">foo[kg*meters]</span></samp>&rsquo;.  The definition of the
+unit consists of a list of pairs optionally separated by commas. 
+This list defines a function for converting from the piecewise linear
+unit to linear units.  The
+first item in each pair is the function argument; the second item is the
+value of the function at that argument (in the units specified in brackets). 
+In this example,
+we define &lsquo;<samp><span class="samp">zincgauge</span></samp>&rsquo; at five points.  For example, we set
+&lsquo;<samp><span class="samp">zincgauge(1)</span></samp>&rsquo; equal to &lsquo;<samp><span class="samp">0.002&nbsp;in</span></samp>&rsquo;<!-- /@w -->.  Definitions like this
+may be  more readable  if written using  continuation characters as
+
+<pre class="example">     zincgauge[in] \
+          1 0.002  \
+         10 0.02   \
+         15 0.04   \
+         19 0.06   \
+         23 0.1
+</pre>
+   <p class="noindent">With the preceding definition, the following conversion can be
+performed:
+
+<pre class="example">     You have: zincgauge(10)
+     You want: in
+         * 0.02
+         / 50
+     You have: .01 inch
+     You want: zincgauge
+         5
+</pre>
+   <p class="noindent">If you define a piecewise linear unit that is not strictly monotonic,
+then the inverse will not be well defined.  If the inverse is requested
+for such a unit, <samp><span class="command">units</span></samp> will return the smallest inverse.
+
+   <p>After adding nonlinear units definitions, you should normally run
+<samp><span class="command">units&nbsp;--check</span></samp><!-- /@w --> to check for errors.  If the &lsquo;<samp><span class="samp">units</span></samp>&rsquo;
+keyword is not given, the &lsquo;<samp><span class="samp">--check</span></samp>&rsquo; option checks a nonlinear unit
+definition using a dimensionless argument, and then checks using an
+arbitrary combination of units, as well as the square and cube of that
+combination; a warning is given if any of these tests fail.  For
+example,
+
+<pre class="example">     Warning: function 'squirt(x)' defined as 'sqrt(x)'
+              failed for some test inputs:
+              squirt(7(kg K)^1): Unit not a root
+              squirt(7(kg K)^3): Unit not a root
+</pre>
+   <p class="noindent">Running <samp><span class="command">units&nbsp;--check</span></samp><!-- /@w --> will print a warning if a
+non-monotonic piecewise linear unit is encountered.  For example, the
+relationship between ANSI coated abrasive designation and mean particle
+size is non-monotonic in the vicinity of 800 grit:
+
+<pre class="example">     ansicoated[micron] \
+          . . .
+         600 10.55 \
+         800 11.5 \
+         1000 9.5 \
+</pre>
+   <p class="noindent">Running <samp><span class="command">units&nbsp;--check</span></samp><!-- /@w --> would give the error message
+
+<pre class="example">     Table 'ansicoated' lacks unique inverse around entry 800
+</pre>
+   <p class="noindent">Although the inverse is not well defined in this region, it's not really
+an error.  Viewing such error messages can be tedious, and if there are
+enough of them, they can distract from true errors.  Error checking for
+nonlinear unit definitions can be suppressed by giving the
+&lsquo;<samp><span class="samp">noerror</span></samp>&rsquo; keyword; for the examples above, this could be done as
+
+<pre class="example">     squirt(x) noerror domain=[0,) range=[0,) sqrt(x); squirt^2
+     ansicoated[micron] noerror \
+          . . .
+</pre>
+   <p class="noindent">Use the &lsquo;<samp><span class="samp">noerror</span></samp>&rsquo; keyword with caution.  The safest approach after
+adding a nonlinear unit definition is to run <samp><span class="command">units&nbsp;--check</span></samp><!-- /@w -->
+and confirm that there are no actual errors before adding the
+&lsquo;<samp><span class="samp">noerror</span></samp>&rsquo; keyword.
+
+   </body></html>
+

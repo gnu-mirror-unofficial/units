@@ -9,11 +9,11 @@
 <link rel="next" href="Localization.html#Localization" title="Localization">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -45,47 +45,31 @@ Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 <hr>
 </div>
 
-<h2 class="chapter">10 Numeric Output Format</h2>
+<h2 class="chapter">11 Numeric Output Format</h2>
 
-<p><a name="index-numeric-output-format-177"></a><a name="index-output-format-178"></a>
-By default, results of conversions are shown to eight significant
-figures; this can be changed with the <samp><span class="option">--exponential</span></samp> and
-<samp><span class="option">--output-format</span></samp> options.  The former sets an exponential
-format (i.e., scientific notation) like that used in the original Unix
-<samp><span class="command">units</span></samp> program; the latter allows the format to be given as
-that of the printf function in the ANSI&nbsp;C standard.
+<p><a name="index-numeric-output-format-195"></a><a name="index-output-format-196"></a>
 
-   <p>The format recognized with the <samp><span class="option">--output-format</span></samp> option is a
-subset of that for printf().  Only a floating-point format of the form
-<!-- noman -->
-<code>%</code>[<i>flag</i>][<i>width</i>][<code>.</code><i>precision</i>]<i>type</i>
-<!-- end noman -->
-<!-- ifman -->
-<!-- end ifman -->
-is allowed: it must begin with &lsquo;<samp><span class="samp">%</span></samp>&rsquo;, and must end with a
-floating-point type specifier (&lsquo;<samp><span class="samp">E</span></samp>&rsquo; or &lsquo;<samp><span class="samp">e</span></samp>&rsquo; for scientific
-notation, &lsquo;<samp><span class="samp">f</span></samp>&rsquo; for fixed-point decimal, or &lsquo;<samp><span class="samp">G</span></samp>&rsquo; or &lsquo;<samp><span class="samp">g</span></samp>&rsquo; to
-specify the number of significant figures).  The format specification
-may include one optional flag (&lsquo;<samp><span class="samp">+</span></samp>&rsquo;, &lsquo;<samp><span class="samp">-</span></samp>&rsquo;, &lsquo;<samp><span class="samp">#</span></samp>&rsquo;, or a
-space), followed by an optional value for the minimum field width, and
-an optional precision specification that begins with a period (e.g.,
-&lsquo;<samp><span class="samp">.6</span></samp>&rsquo;).  In addition to the digits, the field width includes the
-decimal point, the exponent, and the sign if any of these are shown.  A
-width specification is typically used with fixed-point decimal to have
-columns of numbers align at the decimal point; it normally is not
-useful with <samp><span class="command">units</span></samp>.  Non-floating-point type specifiers make
-no sense for <samp><span class="command">units</span></samp>, and are forbidden.
+<ul class="menu">
+<li><a accesskey="1" href="Format-Specification.html#Format-Specification">Format Specification</a>:            The output format specification
+<li><a accesskey="2" href="Flags.html#Flags">Flags</a>:                           Optional format flags
+<li><a accesskey="3" href="Field-Width.html#Field-Width">Field Width</a>:                     Specifying output field width
+<li><a accesskey="4" href="Precision.html#Precision">Precision</a>:                       Specifying output precision
+</ul>
 
-   <p>The default format is &lsquo;<samp><span class="samp">%.8g</span></samp>&rsquo;; for greater precision, you could
-specify &lsquo;<samp><span class="samp">-o %.15g</span></samp>&rsquo;.  The &lsquo;<samp><span class="samp">G</span></samp>&rsquo; and &lsquo;<samp><span class="samp">g</span></samp>&rsquo; formats use
-exponential format whenever the exponent would be less than &minus;5,
-so the value 0.000013 displays as &lsquo;<samp><span class="samp">1.3e-005</span></samp>&rsquo;.  If you prefer
-fixed-point display, you might specify &lsquo;<samp><span class="samp">-o %.8f</span></samp>&rsquo;; however, very
-small numbers may display very few significant figures, and for very
-small numbers, may show nothing but zeros.
-
-   <p>See the documentation for printf() for more detailed descriptions of the
-format specification.
+   <p>By default, <code>units</code> shows results to eight significant
+digits. You can change this with the <samp><span class="option">--exponential</span></samp>,
+<samp><span class="option">--digits</span></samp>, and <samp><span class="option">--output-format</span></samp> options.  The first
+sets an exponential format (i.e., scientific notation) like that used
+in the original Unix <samp><span class="command">units</span></samp> program, the second allows you to
+specify a different number of significant digits, and the last allows
+you to control the output appearance using the format for the
+<code>printf()</code> function in the C programming language.  If you only
+want to change the number of significant digits or specify exponential
+format type, use the <samp><span class="option">--digits</span></samp> and <samp><span class="option">--exponential</span></samp>
+options.  The <samp><span class="option">--output-format</span></samp> option affords the greatest
+control of the output appearance, but requires at least rudimentary
+knowledge of the <code>printf()</code> format syntax. See <a href="Invoking-Units.html#Invoking-Units">Invoking Units</a>,
+for descriptions of these options.
 
    </body></html>
 

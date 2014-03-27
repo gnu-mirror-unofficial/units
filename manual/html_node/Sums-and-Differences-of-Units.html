@@ -10,11 +10,11 @@
 <link rel="next" href="Numbers-as-Units.html#Numbers-as-Units" title="Numbers as Units">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -49,8 +49,9 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Unit-Expressions.html#Unit-Expressions"
 <h3 class="section">5.2 Sums and Differences of Units</h3>
 
 <p><a name="index-sums-and-differences-of-units-68"></a><a name="index-units_002c-sums-and-differences-69"></a><a name="index-operator_002c-plus-_0028_0040samp_007b_002b_007d_0029-70"></a><a name="index-plus-_0028_0040samp_007b_002b_007d_0029-operator-71"></a><a name="index-g_t_0040samp_007b_002b_007d-operator-72"></a><a name="index-operator_002c-minus-_0028_0040samp_007b_002d_007d_0029-73"></a><a name="index-minus-_0028_0040samp_007b_002d_007d_0029-operator_002c-subtraction-74"></a><a name="index-operator_002c-hyphen-_0028_0040samp_007b_002d_007d_0029-as-subtraction-75"></a><a name="index-g_t_0040samp_007b_002d_007d-as-subtraction-operator-76"></a>
-Outside of the SI, it is sometimes desirable to add values of
-different units.  You may also wish to use <samp><span class="command">units</span></samp> as a
+You may sometimes want to add values of
+different units that are outside the SI. 
+You may also wish to use <samp><span class="command">units</span></samp> as a
 calculator that keeps track of units.  Sums of conformable units are written with
 the &lsquo;<samp><span class="samp">+</span></samp>&rsquo; character, and differences with the &lsquo;<samp><span class="samp">-</span></samp>&rsquo; character. 
 <a name="index-sums-of-units-77"></a><a name="index-addition-of-units-78"></a><a name="index-subtraction-of-units-79"></a><a name="index-differences-of-units-80"></a>
@@ -88,7 +89,9 @@ parentheses, <samp><span class="command">units</span></samp> attempts to add &ls
                         ^
      Illegal sum or difference of non-conformable units
 </pre>
-   <p class="noindent">The expression could also be correctly written as &lsquo;<samp><span class="samp">(2+1/2) cups</span></samp>&rsquo;.  If you write &lsquo;<samp><span class="samp">2 1|2 cups</span></samp>&rsquo; the space is interpreted as <em>multiplication</em> so the result is the same as &lsquo;<samp><span class="samp">1 cup</span></samp>&rsquo;.
+   <p class="noindent">The expression could also be correctly written as &lsquo;<samp><span class="samp">(2+1/2) cups</span></samp>&rsquo;. 
+If you write &lsquo;<samp><span class="samp">2&nbsp;1|2 cups</span></samp>&rsquo; the space is interpreted as
+<em>multiplication</em> so the result is the same as &lsquo;<samp><span class="samp">1 cup</span></samp>&rsquo;.
 
    <p>The &lsquo;<samp><span class="samp">+</span></samp>&rsquo; and &lsquo;<samp><span class="samp">-</span></samp>&rsquo; characters sometimes appears in exponents like
 &lsquo;<samp><span class="samp">3.43e+8</span></samp>&rsquo;.  This leads to an ambiguity in an expression like

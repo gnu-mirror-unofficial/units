@@ -9,11 +9,11 @@
 <link rel="next" href="Additional-Localization.html#Additional-Localization" title="Additional Localization">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -44,9 +44,9 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Localization.html#Localization">Localiz
 <hr>
 </div>
 
-<h3 class="section">11.1 Locale</h3>
+<h3 class="section">12.1 Locale</h3>
 
-<p><a name="index-locale-190"></a>A locale is a subset of a user's environment that indicates the user's
+<p><a name="index-locale-215"></a>A locale is a subset of a user's environment that indicates the user's
 language and country, and some attendant preferences, such as the
 formatting of dates.  The <samp><span class="command">units</span></samp> program attempts to determine
 the locale from the POSIX setlocale function; if this cannot be done,
@@ -58,14 +58,13 @@ two-character code from ISO 639-1 and <var>country</var> is the two-character
 code from ISO 3166-1; <var>language</var> is lower case and <var>country</var> is
 upper case. For example, the POSIX locale for the United Kingdom is <code>en_GB</code>.
 
-   <p><a name="index-g_t_0040file_007blocale_002emap_007d-191"></a><a name="index-setlocale-function-192"></a>On systems running Microsoft Windows, the value returned by setlocale()
+   <p><a name="index-g_t_0040file_007blocale_005fmap_002etxt_007d-216"></a><a name="index-setlocale-function-217"></a>On systems running Microsoft Windows, the value returned by setlocale()
 is different from that on POSIX systems; <samp><span class="command">units</span></samp> attempts to map
 the Windows value to a POSIX value by means of a table in the file
-<samp><span class="file">locale.map</span></samp> in the same directory, typically
-<samp><span class="file">/usr/local/share/units</span></samp>, as the default units data files.  The
+<samp><span class="file">locale_map.txt</span></samp> in the same directory as the other data files.  The
 file includes entries for many combinations of language and country, and
-can be extended to include other combinations.  The <samp><span class="file">locale.map</span></samp>
-comprises two tab-separated columns; each entry is of the form
+can be extended to include other combinations.  The <samp><span class="file">locale_map.txt</span></samp>
+file comprises two tab-separated columns; each entry is of the form
 
 <pre class="display">     <var>Windows-locale</var>   <var>POSIX-locale</var>
 </pre>

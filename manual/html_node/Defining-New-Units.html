@@ -10,11 +10,11 @@
 <link rel="next" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units" title="Defining Nonlinear Units">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -46,9 +46,9 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Defining-Your-Own-Units.html#Defining-Y
 <hr>
 </div>
 
-<h3 class="section">9.2 Defining New Units and Prefixes</h3>
+<h3 class="section">10.2 Defining New Units and Prefixes</h3>
 
-<p><a name="index-defining-units-151"></a><a name="index-units_002c-definition-of-152"></a><a name="index-units-definitions_002c-adding-153"></a><a name="index-units-definitions_002c-changing-154"></a><a name="index-prefixes_002c-definition-of-155"></a><a name="index-defining-prefixes-156"></a><a name="index-primitive-units-157"></a><a name="index-units_002c-primitive-158"></a><a name="index-g_t_0040samp_007b_0021_007d-to-indicate-primitive-units-159"></a><a name="index-command_002c-_0040samp_007b_0021_007d-to-indicate-primitive-units-160"></a>
+<p><a name="index-defining-units-165"></a><a name="index-units_002c-definition-of-166"></a><a name="index-units-definitions_002c-adding-167"></a><a name="index-units-definitions_002c-changing-168"></a><a name="index-prefixes_002c-definition-of-169"></a><a name="index-defining-prefixes-170"></a><a name="index-primitive-units-171"></a><a name="index-units_002c-primitive-172"></a><a name="index-g_t_0040samp_007b_0021_007d-to-indicate-primitive-units-173"></a><a name="index-command_002c-_0040samp_007b_0021_007d-to-indicate-primitive-units-174"></a>
 A unit is specified on a single line by giving its name and an
 equivalence.  Comments start with a &lsquo;<samp><span class="samp">#</span></samp>&rsquo; character, which can appear
 anywhere in a line.  The backslash character (&lsquo;<samp><span class="samp">\</span></samp>&rsquo;)
@@ -60,18 +60,20 @@ the file's name.  The &lsquo;<samp><span class="samp">!</span></samp>&rsquo; mus
 line.  The file will be sought in the same directory as the
 parent file unless you give a full path.  The name of the file to be
 included cannot contain the comment character &lsquo;<samp><span class="samp">#</span></samp>&rsquo;. 
-<a name="index-include-files-161"></a>
+<a name="index-include-files-175"></a>
 Unit names must not contain any of the operator characters &lsquo;<samp><span class="samp">+</span></samp>&rsquo;,
 &lsquo;<samp><span class="samp">-</span></samp>&rsquo;, &lsquo;<samp><span class="samp">*</span></samp>&rsquo;, &lsquo;<samp><span class="samp">/</span></samp>&rsquo;, &lsquo;<samp><span class="samp">|</span></samp>&rsquo;, &lsquo;<samp><span class="samp">^</span></samp>&rsquo;, &lsquo;<samp><span class="samp">;</span></samp>&rsquo;, &lsquo;<samp><span class="samp">~</span></samp>&rsquo;,
 the comment character &lsquo;<samp><span class="samp">#</span></samp>&rsquo;, or parentheses.  They cannot begin or
-end with an underscore (&lsquo;<samp><span class="samp">_</span></samp>&rsquo;), a comma (&lsquo;<samp><span class="samp">,</span></samp>&rsquo;) or a decimal
-point (&lsquo;<samp><span class="samp">.</span></samp>&rsquo;).  Names cannot begin with a digit, and if a name ends
-in a digit other than zero, the digit must be preceded by a string
-beginning with an underscore, and afterwards consisting only of
-digits, decimal points, or commas.  For example, &lsquo;<samp><span class="samp">foo_2</span></samp>&rsquo;,
-&lsquo;<samp><span class="samp">foo_2,1</span></samp>&rsquo;, or &lsquo;<samp><span class="samp">foo_3.14</span></samp>&rsquo; would be valid names but
-&lsquo;<samp><span class="samp">foo2</span></samp>&rsquo; or &lsquo;<samp><span class="samp">foo_a2</span></samp>&rsquo; would be invalid.  You could define
-nitrous oxide as
+end with an underscore (&lsquo;<samp><span class="samp">_</span></samp>&rsquo;), a comma (&lsquo;<samp><span class="samp">,</span></samp>&rsquo;) or a decimal point
+(&lsquo;<samp><span class="samp">.</span></samp>&rsquo;).  The figure dash (U+2012), typographical minus (`&minus;';
+U+2212), and en dash (`&ndash;'; U+2013) are converted to the operator
+&lsquo;<samp><span class="samp">-</span></samp>&rsquo;, so none of these characters can appear in unit names.  Names
+cannot begin with a digit, and if a name ends in a digit other than
+zero, the digit must be preceded by a string beginning with an
+underscore, and afterwards consisting only of digits, decimal points, or
+commas.  For example, &lsquo;<samp><span class="samp">foo_2</span></samp>&rsquo;, &lsquo;<samp><span class="samp">foo_2,1</span></samp>&rsquo;, or &lsquo;<samp><span class="samp">foo_3.14</span></samp>&rsquo;
+are valid names but &lsquo;<samp><span class="samp">foo2</span></samp>&rsquo; or &lsquo;<samp><span class="samp">foo_a2</span></samp>&rsquo; are invalid. 
+You could define nitrous oxide as
 
 <pre class="example">     N2O     nitrogen 2  + oxygen
 </pre>
@@ -83,16 +85,16 @@ nitrous oxide as
 reduction leads to the primitive units, which are marked with &lsquo;<samp><span class="samp">!</span></samp>&rsquo;
 characters.  Dimensionless units are indicated by using the string
 &lsquo;<samp><span class="samp">!dimensionless</span></samp>&rsquo; for the unit definition. 
-<a name="index-dimensionless-units_002c-defining-162"></a>
-When adding new units, be sure to use the <samp><span class="option">-c</span></samp> option to check that
-the new units reduce properly. 
-If you create a loop in the units definitions, then <samp><span class="command">units</span></samp> will
-hang when invoked with the <samp><span class="option">-c</span></samp> option.  You will need to
-use the <samp><span class="option">--check-verbose</span></samp> option, which prints out each unit as it
-is checked.  The program will still hang, but the last unit printed
-will be the unit that caused the infinite loop.
+<a name="index-dimensionless-units_002c-defining-176"></a>
+When adding new units, be sure to use the <samp><span class="option">-c</span></samp> option to check
+that the new units reduce properly.  If you create a loop in the units
+definitions, then <samp><span class="command">units</span></samp> will hang when invoked with the
+<samp><span class="option">-c</span></samp> option.  You will need to use the <samp><span class="option">--check-verbose</span></samp>
+option, which prints out each unit as it is checked.  The program will
+still hang, but the last unit printed will be the unit that caused the
+infinite loop.
 
-   <p><a name="index-parentheses-163"></a>
+   <p><a name="index-parentheses-177"></a>
 If you define any units that contain
 &lsquo;<samp><span class="samp">+</span></samp>&rsquo; characters, carefully check them because the <samp><span class="option">-c</span></samp> option
 will not catch non-conformable sums.  Be careful with the &lsquo;<samp><span class="samp">-</span></samp>&rsquo;
@@ -119,10 +121,10 @@ units:
      ft      12 inches       # The foot defined in terms of inches
      mile    5280 ft         # And the mile
 </pre>
-   <p><a name="index-parentheses-164"></a>A unit that ends with a &lsquo;<samp><span class="samp">-</span></samp>&rsquo; character is a prefix.  If a prefix
+   <p><a name="index-parentheses-178"></a>A unit that ends with a &lsquo;<samp><span class="samp">-</span></samp>&rsquo; character is a prefix.  If a prefix
 definition contains any &lsquo;<samp><span class="samp">/</span></samp>&rsquo; characters, be sure they are protected
 by parentheses.  If you define &lsquo;<samp><span class="samp">half- 1/2</span></samp>&rsquo; then &lsquo;<samp><span class="samp">halfmeter</span></samp>&rsquo;
-would be equivalent to &lsquo;<samp><span class="samp">1 / (2 meter)</span></samp>&rsquo;.
+would be equivalent to &lsquo;<samp><span class="samp">1 / (2&nbsp;meter)</span></samp>&rsquo;.
 
    </body></html>
 

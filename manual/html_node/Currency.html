@@ -9,11 +9,11 @@
 <link rel="next" href="Database-Syntax.html#Database-Syntax" title="Database Syntax">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -45,25 +45,26 @@ Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 <hr>
 </div>
 
-<h2 class="chapter">15 Updating Currency Exchange Rates</h2>
+<h2 class="chapter">17 Updating Currency Exchange Rates</h2>
 
-<p><a name="index-currency_002c-updating-220"></a><a name="index-exchange-rates_002c-updating-221"></a>
+<p><a name="index-currency_002c-updating-249"></a><a name="index-exchange-rates_002c-updating-250"></a>
 The units program includes currency exchange rates and prices for some
 precious metals in the database.  Of course, these values change over
 time, sometimes very rapidly, and <samp><span class="command">units</span></samp> cannot provide real
 time values.  To update the exchange rates run the
 <samp><span class="command">units_cur</span></samp>, which rewrites the files containing the currency
-rates, typically <samp><span class="file">/usr/local/share/units/currency.units</span></samp>.  This program
-must be run with suitable permissions to write the file.  To keep the
-rates updated automatically, it could be run by a cron job on a
-Unix-like system, or a similar scheduling program on a different system. 
-Currency exchange rates are taken from Time Genie
-(<a href="http://www.timegenie.com">http://www.timegenie.com</a>) and precious metals pricing from
-Packetizer (<a href="www.packetizer.com">www.packetizer.com</a>).  These sites update once per
-day, so there is no benefit in running the update script more often than
-daily.  You can run <samp><span class="command">units_cur</span></samp> with a filename specified on the
-command line and it will write the data to that file.  If you give
-&lsquo;<samp><span class="samp">-</span></samp>&rsquo; for the file it will write to standard output.
+rates, typically <samp><span class="file">/usr/share/units/currency.units</span></samp>.  This program
+requires <samp><span class="command">python</span></samp> and the <samp><span class="command">unidecode</span></samp> package, and must
+be run with suitable permissions to write the file.  To keep the rates
+updated automatically, run it using a cron job on a Unix-like system, or
+a similar scheduling program on a different system.  Currency exchange
+rates are taken from Time Genie (<a href="http://www.timegenie.com">http://www.timegenie.com</a>) and
+precious metals pricing from Packetizer (<a href="www.packetizer.com">www.packetizer.com</a>). 
+These sites update once per day, so there is no benefit in running the
+update script more often than daily.  You can run <samp><span class="command">units_cur</span></samp>
+with a filename specified on the command line and it will write the data
+to that file.  If you give &lsquo;<samp><span class="samp">-</span></samp>&rsquo; for the file it will write to
+standard output.
 
    </body></html>
 

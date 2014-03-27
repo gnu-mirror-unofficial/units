@@ -9,11 +9,11 @@
 <link rel="next" href="Command-Line-Use.html#Command-Line-Use" title="Command Line Use">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -51,26 +51,27 @@ Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 To invoke units for interactive use, type <kbd>units</kbd> at your shell
 prompt.  The program will print something like this:
 
-<pre class="example">     Currency exchange rates from 04/23/12
-     2516 units, 85 prefixes, 65 nonlinear units
+<pre class="example">     Currency exchange rates from www.timegenie.com on 2014-03-05
+     2860 units, 109 prefixes, 85 nonlinear units
      
      You have:
 </pre>
-   <p class="noindent">At the &lsquo;<samp><span class="samp">You have:</span></samp>&rsquo; prompt, type the quantity and units that
+   <p class="noindent">At the &lsquo;<samp><span class="samp">You&nbsp;have:</span></samp>&rsquo;<!-- /@w --> prompt, type the quantity and units that
 you are converting <em>from</em>.  For example, if you want to convert ten
 meters to feet, type <kbd>10 meters</kbd>.  Next, <samp><span class="command">units</span></samp> will print
-&lsquo;<samp><span class="samp">You want:</span></samp>&rsquo;.  You should type the units you want to convert
-<em>to</em>.  To convert to feet, you would type <kbd>feet</kbd>.  If
-the <samp><span class="command">readline</span></samp> library was compiled in then the tab key can be
-used to complete unit names. See <a href="Readline-Support.html#Readline-Support">Readline Support</a>, for more
-information about <samp><span class="command">readline</span></samp>.  To quit the program press
-Ctrl-C or Ctrl-D under Unix.  Under Windows press Ctrl-Z.
+&lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w -->.  You should type the units you want to convert
+<em>to</em>.  To convert to feet, you would type <kbd>feet</kbd>.  If the
+<samp><span class="command">readline</span></samp> library was compiled in then &lt;tab&gt; will
+complete unit names. See <a href="Readline-Support.html#Readline-Support">Readline Support</a>, for more information
+about <samp><span class="command">readline</span></samp>.  To quit the program under Unix, press
+&lt;Ctrl-C&gt; or &lt;Ctrl-D&gt;. Under Windows, press &lt;Ctrl-C&gt; or
+&lt;Ctrl-Z&gt;; with the latter, you may also need to press &lt;Enter&gt;.
 
-   <p>The answer will be displayed in two ways.  The first line of output,
-which is marked with a &lsquo;<samp><span class="samp">*</span></samp>&rsquo; to indicate multiplication,
-gives the result of the conversion you have asked for.  The second line
-of output, which is marked with a &lsquo;<samp><span class="samp">/</span></samp>&rsquo; to indicate division, gives
-the inverse of the conversion factor.  If you convert 10 meters to feet,
+   <p>The result will be displayed in two ways.  The first line of output,
+which is marked with a &lsquo;<samp><span class="samp">*</span></samp>&rsquo; to indicate multiplication, gives the
+result of the conversion you have asked for.  The second line of output,
+which is marked with a &lsquo;<samp><span class="samp">/</span></samp>&rsquo; to indicate division, gives the inverse
+of the conversion factor.  If you convert 10 meters to feet,
 <samp><span class="command">units</span></samp> will print
 
 <pre class="example">         * 32.808399
@@ -142,7 +143,8 @@ it will display the reduced form for each unit:
              2.1166667e-05 kg^2 m / sec
 </pre>
    <p class="noindent">If you only want to find the reduced form or definition of a unit,
-simply press &lt;Enter&gt; at the &lsquo;<samp><span class="samp">You want:</span></samp>&rsquo; prompt.  Here is an example:
+simply press &lt;Enter&gt; at the &lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w --> prompt.  Here is an
+example:
 
 <pre class="example">     You have: jansky
      You want:
@@ -169,10 +171,10 @@ in other contexts.  They cannot be used as exponents
 so for example, &lsquo;<samp><span class="samp">meter^radian</span></samp>&rsquo; is not allowed. 
 <a name="index-dimensionless-units-8"></a>
 <a name="index-g_t_0040samp_007b_003f_007d-to-show-conformable-units-9"></a><a name="index-conformable-units_002c-_0040samp_007b_003f_007d-to-show-10"></a>If you want a list of options you can type <kbd>?</kbd> at the
-&lsquo;<samp><span class="samp">You want:</span></samp>&rsquo; prompt.  The program will display a list of named
-units that are conformable with the unit that you entered at
-the &lsquo;<samp><span class="samp">You have:</span></samp>&rsquo; prompt above.  Conformable unit
-<em>combinations</em> will not appear on this list.
+&lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w --> prompt.  The program will display a list of named
+units that are conformable with the unit that you entered at the
+&lsquo;<samp><span class="samp">You&nbsp;have:</span></samp>&rsquo;<!-- /@w --> prompt above.  Conformable unit <em>combinations</em>
+will not appear on this list.
 
    <p><a name="index-help-11"></a>
 Typing <kbd>help</kbd> at either prompt displays a short help message. 

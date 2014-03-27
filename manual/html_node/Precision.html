@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+<title>Precision - Units: A Unit Conversion Program and Scientific Calculator</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Numeric-Output-Format.html#Numeric-Output-Format" title="Numeric Output Format">
+<link rel="prev" href="Field-Width.html#Field-Width" title="Field Width">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for GNU Units (version 2.10),
+which performs units conversions and units calculations.
+
+Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.3 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with no Front-Cover Texts,
+     and with no Back-Cover Texts.  A copy of the license is included
+     in the section entitled ``GNU Free Documentation License''.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Precision"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Field-Width.html#Field-Width">Field Width</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Numeric-Output-Format.html#Numeric-Output-Format">Numeric Output Format</a>
+<hr>
+</div>
+
+<h3 class="section">11.4 Precision</h3>
+
+<p><a name="index-output-precision-202"></a><a name="index-precision_002c-output-203"></a>
+The meaning of &ldquo;precision&rdquo; depends on the format type.  With &lsquo;<samp><span class="samp">g</span></samp>&rsquo;
+or &lsquo;<samp><span class="samp">G</span></samp>&rsquo;, it specifies the number of significant digits (like the
+<samp><span class="option">--digits</span></samp> option); with &lsquo;<samp><span class="samp">e</span></samp>&rsquo;, &lsquo;<samp><span class="samp">E</span></samp>&rsquo;, &lsquo;<samp><span class="samp">f</span></samp>&rsquo;, or
+&lsquo;<samp><span class="samp">F</span></samp>&rsquo;, it specifies the maximum number of digits to be shown after
+the decimal point.
+
+   <p>With the &lsquo;<samp><span class="samp">g</span></samp>&rsquo; and &lsquo;<samp><span class="samp">G</span></samp>&rsquo; format types, trailing zeros are
+suppressed, so the results may sometimes have fewer digits than the
+specified precision (as indicated above, the &lsquo;<samp><span class="samp">#</span></samp>&rsquo; flag causes
+trailing zeros to be displayed).
+
+   <p>The default precision is 6, so &lsquo;<samp><span class="samp">%g</span></samp>&rsquo; is equivalent to &lsquo;<samp><span class="samp">%.6g</span></samp>&rsquo;,
+and would show the output to six significant digits.  Similarly,
+&lsquo;<samp><span class="samp">%e</span></samp>&rsquo; or &lsquo;<samp><span class="samp">%f</span></samp>&rsquo; would show the output with six digits after the
+decimal point.
+
+   <p>The C <code>printf()</code> function allows a precision of arbitrary size, whether or
+not all of the digits are meaningful.  With most compilers, the maximum
+internal precision with <samp><span class="command">units</span></samp> is 15 decimal digits (or 13
+hexadecimal digits). 
+With the &lsquo;<samp><span class="samp">--digits</span></samp>&rsquo; option, you are limited
+to the maximum internal precision; with the <samp><span class="option">--output-format</span></samp>
+option, you may specify a precision greater than this, but it may not be
+meaningful.  In some cases, specifying excess precision can result in
+rounding artifacts.  For example, a pound is exactly 7000 grains, but
+with the format &lsquo;<samp><span class="samp">%.18g</span></samp>&rsquo;, the output might be
+
+<pre class="example">     You have: pound
+     You want: grain
+             * 6999.9999999999991
+             / 0.00014285714285714287
+</pre>
+   <p class="noindent">With the format &lsquo;<samp><span class="samp">%.25g</span></samp>&rsquo; you might get the following:
+
+<pre class="example">     You have: 1/3
+     You want:
+             Definition: 0.333333333333333314829616256247
+</pre>
+   <p class="noindent">In this case the displayed value includes a series of digits that represent the
+underlying binary floating-point approximation to 1/3 but are not
+meaningful for the desired computation. 
+In general, the result with excess precision is system dependent. 
+The precision affects only the <em>display</em> of numbers; if a result
+relies on physical constants that are not known to the specified
+precision, the number of physically meaningful digits may be less than
+the number of digits shown.
+
+   <p>See the documentation for <code>printf()</code> for more detailed descriptions of the
+format specification.
+
+   <p>The <samp><span class="option">--output-format</span></samp> option is incompatible with the
+<samp><span class="option">--exponential</span></samp> or <samp><span class="option">--digits</span></samp> options; if the former is
+given in combination with either of the latter, the format is controlled
+by the last option given.
+
+   </body></html>
+

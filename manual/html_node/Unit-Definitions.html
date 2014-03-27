@@ -9,11 +9,11 @@
 <link rel="next" href="Unit-Expressions.html#Unit-Expressions" title="Unit Expressions">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -75,7 +75,7 @@ metric prefixes.  It also includes many obscure or archaic units.
 </pre>
    <p class="noindent">The standard data file includes atomic masses for all of the elements
 and numerous other constants.  Also included are the densities of
-various ingredients used in baking so that &lsquo;<samp><span class="samp">2 cups flour_sifted</span></samp>&rsquo;
+various ingredients used in baking so that &lsquo;<samp><span class="samp">2&nbsp;cups flour_sifted</span></samp>&rsquo;
 can be converted to &lsquo;<samp><span class="samp">grams</span></samp>&rsquo;.  This is not an exhaustive list. 
 Consult the units data file to see the complete list, or to see the
 definitions that are used.
@@ -84,9 +84,11 @@ definitions that are used.
 force conversion unit &lsquo;<samp><span class="samp">force</span></samp>&rsquo; or use the shorthand &lsquo;<samp><span class="samp">lbf</span></samp>&rsquo;. 
 (Note that &lsquo;<samp><span class="samp">g</span></samp>&rsquo; is already taken as the standard abbreviation for
 the gram.)  The unit &lsquo;<samp><span class="samp">ounce</span></samp>&rsquo; is also a unit of mass.  The fluid
-ounce is &lsquo;<samp><span class="samp">fluidounce</span></samp>&rsquo; or &lsquo;<samp><span class="samp">floz</span></samp>&rsquo;.  British capacity units that
-differ from their US counterparts, such as the British Imperial gallon,
-are prefixed with &lsquo;<samp><span class="samp">br</span></samp>&rsquo;.  Currency is prefixed with its country
+ounce is &lsquo;<samp><span class="samp">fluidounce</span></samp>&rsquo; or &lsquo;<samp><span class="samp">floz</span></samp>&rsquo;.  When British capacity
+units differ from their US counterparts, such as the British Imperial
+gallon, the unit is defined both ways with &lsquo;<samp><span class="samp">br</span></samp>&rsquo; and &lsquo;<samp><span class="samp">us</span></samp>&rsquo;
+prefixes.  Your locale settings will determine the value of the
+unprefixed unit.  Currency is prefixed with its country
 name: &lsquo;<samp><span class="samp">belgiumfranc</span></samp>&rsquo;, &lsquo;<samp><span class="samp">britainpound</span></samp>&rsquo;.
 
    <p><a name="index-units_002c-lookup-method-18"></a>
@@ -104,7 +106,6 @@ appear alone with no unit following them, so
 To find out which units and prefixes are available, read the standard
 units data file, which is extensively annotated.
 
-<!-- @node English Customary Units -->
 <h3 class="section">4.1 English Customary Units</h3>
 
 <p><a name="index-volume-measure_002c-English-customary-20"></a>English customary units differ in various ways in different
@@ -130,8 +131,8 @@ States, and South Africa adopted the Canadian value of 1&nbsp;yard =
 0.9144&nbsp;m (exactly), which was approximately halfway between the
 values used by the UK and the US; it had the additional advantage of
 making 1&nbsp;inch = 2.54&nbsp;cm (exactly).  This new standard was
-termed the <dfn>International Yard</dfn>.  Australia, Canada, and the UK
-then defined all customary lengths in terms of the International Yard
+termed the <dfn>International Yard</dfn>.  Australia, Canada, and the UK then
+defined all customary lengths in terms of the International Yard
 (Australia did not define the furlong or rod); because many US land
 surveys were in terms of the pre-1959 units, the US continued to define
 customary surveyors' units (furlong, chain, rod, and link) in terms of

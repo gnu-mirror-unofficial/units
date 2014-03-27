@@ -6,14 +6,14 @@
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
-<link rel="prev" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units" title="Defining Nonlinear Units">
+<link rel="prev" href="Piecewise-Linear-Units.html#Piecewise-Linear-Units" title="Piecewise Linear Units">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -39,14 +39,14 @@ Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
 <div class="node">
 <a name="Defining-Unit-List-Aliases"></a>
 <p>
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">Defining Nonlinear Units</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Piecewise-Linear-Units.html#Piecewise-Linear-Units">Piecewise Linear Units</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>
 <hr>
 </div>
 
-<h3 class="section">9.4 Defining Unit List Aliases</h3>
+<h3 class="section">10.5 Defining Unit List Aliases</h3>
 
-<p><a name="index-unit-list-aliases_002c-defining-174"></a><a name="index-g_t_0040samp_007b_0021unitlist_007d-175"></a><a name="index-command_002c-_0040samp_007b_0021unitlist_007d-176"></a>
+<p><a name="index-defining-unit-list-aliases-191"></a><a name="index-unit-list-aliases_002c-defining-192"></a><a name="index-g_t_0040samp_007b_0021unitlist_007d-193"></a><a name="index-command_002c-_0040samp_007b_0021unitlist_007d-194"></a>
 Unit list aliases are treated differently from unit definitions,
 because they are a data entry shorthand rather than a true definition
 for a new unit. 
@@ -65,8 +65,10 @@ standard units data file are
 include a &lsquo;<samp><span class="samp">;</span></samp>&rsquo;.  Unit list aliases can never be combined with
 units or other unit list aliases, so the definition of &lsquo;<samp><span class="samp">time</span></samp>&rsquo;
 shown above could <em>not</em> have been shortened to
-&lsquo;<samp><span class="samp">year;day;hms</span></samp>&rsquo;.  As usual, be sure to run <samp><span class="command">units --check</span></samp>
-to ensure that the units listed in unit list aliases are conformable.
+&lsquo;<samp><span class="samp">year;day;hms</span></samp>&rsquo;.
+
+   <p>As usual, be sure to run <samp><span class="command">units&nbsp;--check</span></samp><!-- /@w --> to ensure that the
+units listed in unit list aliases are conformable.
 
    </body></html>
 

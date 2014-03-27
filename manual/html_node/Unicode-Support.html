@@ -5,15 +5,15 @@
 <meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Environment-Vars.html#Environment-Vars" title="Environment Vars">
+<link rel="prev" href="Data-Files.html#Data-Files" title="Data Files">
 <link rel="next" href="Readline-Support.html#Readline-Support" title="Readline Support">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -40,26 +40,65 @@ Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
 <a name="Unicode-Support"></a>
 <p>
 Next:&nbsp;<a rel="next" accesskey="n" href="Readline-Support.html#Readline-Support">Readline Support</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Environment-Vars.html#Environment-Vars">Environment Vars</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Data-Files.html#Data-Files">Data Files</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 <hr>
 </div>
 
-<h2 class="chapter">13 Unicode Support</h2>
+<h2 class="chapter">15 Unicode Support</h2>
 
-<p><a name="index-Unicode-support-209"></a><a name="index-UTF_002d8-210"></a><a name="index-g_t_0040samp_007b_0021utf8_007d-211"></a><a name="index-command_002c-_0040samp_007b_0021utf8_007d-212"></a><a name="index-g_t_0040samp_007b_0021endutf8_007d-213"></a><a name="index-command_002c-_0040samp_007b_0021endutf8_007d-214"></a>
-The standard units data file is written in Unicode using the UTF-8 encoding. 
-Portions of the file that are not plain ASCII begin with
-&lsquo;<samp><span class="samp">!utf8</span></samp>&rsquo; and end with &lsquo;<samp><span class="samp">!endutf8</span></samp>&rsquo;.  As usual, the &lsquo;<samp><span class="samp">!</span></samp>&rsquo; must
-appear as the first character on the line.  If a line of a data file
-contains byte sequences that are invalid UTF-8 or non-printing UTF-8
-then <samp><span class="command">units</span></samp> ignores the entire line.
+<p><a name="index-Unicode-support-238"></a><a name="index-UTF_002d8-239"></a><a name="index-g_t_0040samp_007b_0021utf8_007d-240"></a><a name="index-command_002c-_0040samp_007b_0021utf8_007d-241"></a><a name="index-g_t_0040samp_007b_0021endutf8_007d-242"></a><a name="index-command_002c-_0040samp_007b_0021endutf8_007d-243"></a>
+The standard units data file is in Unicode, using UTF-8 encoding.  Most
+definitions use only ASCII characters (i.e., code points U+0000 through
+U+007F); definitions using non-ASCII characters appear in blocks
+beginning with &lsquo;<samp><span class="samp">!utf8</span></samp>&rsquo; and ending with &lsquo;<samp><span class="samp">!endutf8</span></samp>&rsquo;.
 
-   <p>When <samp><span class="command">units</span></samp> runs it checks the locale to determine the
-character set.  If UTF-8 is listed, then <samp><span class="command">units</span></samp>
-reads the utf8 definitions.  If any other character set is in use, then
-<samp><span class="command">units</span></samp> works in plain ASCII without support for extended
-characters.
+   <p>When <samp><span class="command">units</span></samp> starts, it checks the locale to determine the
+character set.  If <samp><span class="command">units</span></samp> is compiled with Unicode support and
+definitions; otherwise these definitions are ignored.  When Unicode
+support is active, <samp><span class="command">units</span></samp> will check every line of all of the
+units data files for invalid or non-printing UTF-8 sequences; if such
+sequences occur, <samp><span class="command">units</span></samp> ignores the entire line.  In addition
+to checking validity, <samp><span class="command">units</span></samp> determines the display width of
+non-ASCII characters to ensure proper positioning of the pointer in some
+error messages and to align columns for the &lsquo;<samp><span class="samp">search</span></samp>&rsquo; and &lsquo;<samp><span class="samp">?</span></samp>&rsquo;
+commands.
+
+   <p>At present, <samp><span class="command">units</span></samp> does not support Unicode under Microsoft
+Windows.  The UTF-16 and UTF-32 encodings are not supported on any
+systems.
+
+   <p>If definitions that contain non-ASCII characters are added to a units
+data file, those definitions should be enclosed within &lsquo;<samp><span class="samp">!utf8</span></samp>&rsquo;
+<small class="dots">...</small> &lsquo;<samp><span class="samp">!endutf8</span></samp>&rsquo; to ensure that they are only loaded when
+Unicode support is available.  As usual, the &lsquo;<samp><span class="samp">!</span></samp>&rsquo; must appear as
+the first character on the line.  As discussed in
+<a href="Units-Data-Files.html#Units-Data-Files">Units Data Files</a>, it's usually best to put such definitions in
+supplemental data files linked by an &lsquo;<samp><span class="samp">!include</span></samp>&rsquo; command or in a
+personal units data file.
+
+   <p>When Unicode support is not active, <samp><span class="command">units</span></samp> makes no assumptions
+about character encoding, except that characters in the range 00&ndash;7F
+hexadecimal correspond to ASCII encoding.  Non-ASCII characters are
+simply sequences of bytes, and have no special meanings; for definitions
+in supplementary units data files, you can use any encoding consistent
+with this assumption.  For example, if you wish to use non-ASCII
+characters in definitions when running <samp><span class="command">units</span></samp> under Windows,
+you can use a character set such as Windows &ldquo;ANSI&rdquo; (code page 1252 in
+the US and Western Europe).  You can even use UTF-8, though some
+messages may be improperly aligned, and <samp><span class="command">units</span></samp> will not detect
+invalid UTF-8 sequences.  If you use UTF-8 encoding when Unicode support
+is not active, you should place any definitions with non-ASCII
+characters <em>outside</em> &lsquo;<samp><span class="samp">!utf8</span></samp>&rsquo; <small class="dots">...</small> &lsquo;<samp><span class="samp">!endutf8</span></samp>&rsquo;
+blocks&mdash;otherwise, they will be ignored.
+
+   <p>Typeset material other than code examples usually uses the Unicode minus
+(U+2212) rather than the ASCII hyphen-minus operator (U+002D) used in
+<samp><span class="command">units</span></samp>; the figure dash (U+2012) and en dash (U+2013) are also
+occasionally used.  To allow such material to be copied and pasted for
+interactive use or in units data files, <samp><span class="command">units</span></samp> converts these
+characters to U+002D before further processing.  Because of this, none
+of these characters can appear in unit names.
 
    </body></html>
 

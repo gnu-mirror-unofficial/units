@@ -6,14 +6,14 @@
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="prev" href="Localization.html#Localization" title="Localization">
-<link rel="next" href="Unicode-Support.html#Unicode-Support" title="Unicode Support">
+<link rel="next" href="Data-Files.html#Data-Files" title="Data Files">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -39,50 +39,62 @@ Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
 <div class="node">
 <a name="Environment-Vars"></a>
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Unicode-Support.html#Unicode-Support">Unicode Support</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Data-Files.html#Data-Files">Data Files</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="Localization.html#Localization">Localization</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 <hr>
 </div>
 
-<h2 class="chapter">12 Environment Variables</h2>
+<h2 class="chapter">13 Environment Variables</h2>
 
-<p><a name="index-environment-variables-193"></a>
+<p><a name="index-environment-variables-218"></a>
 The <samp><span class="command">units</span></samp> program uses the following environment variables:
 
      <dl>
-<dt><samp><span class="env">HOME</span></samp><dd><a name="index-HOME-environment-variable-194"></a><a name="index-environment-variable_002c-HOME-195"></a>Specifies the location of your home directory; it is used by
-<samp><span class="command">units</span></samp> to find a personal units data file &lsquo;<samp><span class="samp">.units</span></samp>&rsquo;. 
-On systems running Microsoft Windows, <samp><span class="command">units</span></samp> tries to
-determine your home directory from the <samp><span class="env">HOMEDRIVE</span></samp> and
-<samp><span class="env">HOMEPATH</span></samp> environment variables if <samp><span class="env">HOME</span></samp> does not exist.
+<dt><samp><span class="env">HOME</span></samp><dd><a name="index-HOME-environment-variable-219"></a><a name="index-environment-variable_002c-HOME-220"></a>Specifies the location of your home directory; it is used by
+<samp><span class="command">units</span></samp> to find a personal units data file &lsquo;<samp><span class="samp">.units</span></samp>&rsquo;.  On
+systems running Microsoft Windows, the file is &lsquo;<samp><span class="samp">unitdef.units</span></samp>&rsquo;, and
+if <samp><span class="env">HOME</span></samp> does not exist, <samp><span class="command">units</span></samp> tries to determine your
+home directory from the <samp><span class="env">HOMEDRIVE</span></samp> and <samp><span class="env">HOMEPATH</span></samp> environment
+variables; if these variables do not exist, units finally tries
+<samp><span class="env">USERPROFILE</span></samp>&mdash;typically <samp><span class="file">C:\Users\</span><var>username</var></samp> (Windows
+Vista and Windows&nbsp;7) or
+<samp><span class="file">C:\Documents&nbsp;and&nbsp;Settings\</span><var>username</var></samp><!-- /@w --> (Windows&nbsp;XP).
 
-     <br><dt><samp><span class="env">LC_CTYPE, LANG</span></samp><dd><a name="index-LANG-environment-variable-196"></a><a name="index-LC_005fCTYPE-environment-variable-197"></a><a name="index-environment-variable_002c-LANG-198"></a><a name="index-environment-variable_002c-LC_005fCTYPE-199"></a>Checked to determine the locale if <samp><span class="command">units</span></samp> cannot obtain it
+     <br><dt><samp><span class="env">LC_CTYPE, LANG</span></samp><dd><a name="index-LANG-environment-variable-221"></a><a name="index-LC_005fCTYPE-environment-variable-222"></a><a name="index-environment-variable_002c-LANG-223"></a><a name="index-environment-variable_002c-LC_005fCTYPE-224"></a>Checked to determine the locale if <samp><span class="command">units</span></samp> cannot obtain it
 from the operating system.  Sections of the
 standard units data file are specific to certain locales.
 
-     <br><dt><samp><span class="env">MYUNITSFILE</span></samp><dd><a name="index-MYUNITSFILE-environment-variable-200"></a><a name="index-environment-variable_002c-MYUNITSFILE-201"></a>Specifies your personal units data file.  If this variable exists,
+     <br><dt><samp><span class="env">MYUNITSFILE</span></samp><dd><a name="index-MYUNITSFILE-environment-variable-225"></a><a name="index-environment-variable_002c-MYUNITSFILE-226"></a>Specifies your personal units data file.  If this variable exists,
 <samp><span class="command">units</span></samp> uses its value rather than searching your home
 directory for &lsquo;<samp><span class="samp">.units</span></samp>&rsquo;.  The personal units file will not be
 loaded if any data files are given using the &lsquo;<samp><span class="samp">-f</span></samp>&rsquo; option.
 
-     <br><dt><samp><span class="env">PAGER</span></samp><dd><a name="index-PAGER-environment-variable-202"></a><a name="index-environment-variable_002c-PAGER-203"></a><a name="index-help-204"></a>Specifies the pager to use for help and for displaying the conformable
+     <br><dt><samp><span class="env">PAGER</span></samp><dd><a name="index-PAGER-environment-variable-227"></a><a name="index-environment-variable_002c-PAGER-228"></a><a name="index-help-229"></a>Specifies the pager to use for help and for displaying the conformable
 units.  The help function browses the units database and calls
 the pager using the &lsquo;<samp><span class="samp">+n</span></samp>&rsquo;<var>n</var> syntax for specifying a line
 number.  The default pager is <samp><span class="command">more</span></samp>; <samp><span class="env">PAGER</span></samp> can be used
 to specify alternatives such as <samp><span class="command">less</span></samp>, <samp><span class="command">pg</span></samp>,
 <samp><span class="command">emacs</span></samp>, or <samp><span class="command">vi</span></samp>.
 
-     <br><dt><samp><span class="env">UNITS_ENGLISH</span></samp><dd><a name="index-UNITS_005fENGLISH-environment-variable-205"></a><a name="index-environment-variable_002c-UNITS_005fENGLISH-206"></a>Set to either &lsquo;<samp><span class="samp">US</span></samp>&rsquo; or
+     <br><dt><samp><span class="env">UNITS_ENGLISH</span></samp><dd><a name="index-UNITS_005fENGLISH-environment-variable-230"></a><a name="index-environment-variable_002c-UNITS_005fENGLISH-231"></a>Set to either &lsquo;<samp><span class="samp">US</span></samp>&rsquo; or
 &lsquo;<samp><span class="samp">GB</span></samp>&rsquo; to choose United States or British volume definitions,
 overriding the default from your locale.
 
-     <br><dt><samp><span class="env">UNITSFILE</span></samp><dd><a name="index-UNITSFILE-environment-variable-207"></a><a name="index-environment-variable_002c-UNITSFILE-208"></a>Specifies the units data file to use (instead of the default). 
-You can only specify a single units data file using this
-environment variable.  If units data files are given using the &lsquo;<samp><span class="samp">-f</span></samp>&rsquo;
-option, the file specified by <samp><span class="env">UNITSFILE</span></samp> will be not be loaded
-unless the <samp><span class="option">-f</span></samp> option is given with the empty string
-(&lsquo;<samp><span class="samp">units&nbsp;-f&nbsp;""</span></samp>&rsquo;).
+     <br><dt><samp><span class="env">UNITSFILE</span></samp><dd><a name="index-UNITSFILE-environment-variable-232"></a><a name="index-environment-variable_002c-UNITSFILE-233"></a>Specifies the units data file to use (instead of the default). 
+You can only specify a single units data file using this environment
+variable.  If units data files are given using the <samp><span class="option">-f</span></samp> option,
+the file specified by <samp><span class="env">UNITSFILE</span></samp> will be not be loaded unless the
+<samp><span class="option">-f</span></samp> option is given with the empty string
+(&lsquo;<samp><span class="samp">units&nbsp;-f&nbsp;""</span></samp>&rsquo;<!-- /@w -->).
+
+     <br><dt><samp><span class="env">UNITSLOCALEMAP</span></samp><dd><a name="index-UNITSLOCALEMAP-environment-variable-234"></a><a name="index-environment-variable_002c-UNITSLOCALEMAP-235"></a>Windows only; this variable has no effect on Unix-like systems. 
+Specifies the units locale map file to use (instead of the default). 
+This variable seldom needs to be set, but you can use it to ensure that
+the locale map file will be found if you specify a location for the
+units data file using either the <samp><span class="option">-f</span></samp> option or the
+<samp><span class="env">UNITSFILE</span></samp> environment variable, and that location does not also
+contain the locale map file.
 
    </dl>
 

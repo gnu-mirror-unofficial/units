@@ -12,28 +12,36 @@ Units Conversion
   5.2 Sums and Differences of Units
   5.3 Numbers as Units
   5.4 Built-in Functions
-  5.5 Complicated Unit Expressions
-  5.6 Backwards Compatibility: `*' and `-'
+  5.5 Previous Result
+  5.6 Complicated Unit Expressions
+  5.7 Backwards Compatibility: `*' and `-'
 6 Nonlinear Unit Conversions
   6.1 Temperature Conversions
   6.2 Other Nonlinear Units
 7 Unit Lists: Conversion to Sums of Units
-8 Invoking `units'
-9 Adding Your Own Definitions
-  9.1 Units Data Files
-  9.2 Defining New Units and Prefixes
-  9.3 Defining Nonlinear Units
-  9.4 Defining Unit List Aliases
-10 Numeric Output Format
-11 Localization
-  11.1 Locale
-  11.2 Additional Localization
-12 Environment Variables
-13 Unicode Support
-14 Readline Support
-15 Updating Currency Exchange Rates
-16 Database Command Syntax
-17 GNU Free Documentation License
+8 Logging Calculations
+9 Invoking `units'
+10 Adding Your Own Definitions
+  10.1 Units Data Files
+  10.2 Defining New Units and Prefixes
+  10.3 Defining Nonlinear Units
+  10.4 Defining Piecewise Linear Units
+  10.5 Defining Unit List Aliases
+11 Numeric Output Format
+  11.1 Format Specification
+  11.2 Flags
+  11.3 Field Width
+  11.4 Precision
+12 Localization
+  12.1 Locale
+  12.2 Additional Localization
+13 Environment Variables
+14 Data Files
+15 Unicode Support
+16 Readline Support
+17 Updating Currency Exchange Rates
+18 Database Command Syntax
+19 GNU Free Documentation License
 Index
 
 
@@ -42,8 +50,8 @@ Units Conversion
 
 This manual describes the `units' command for units conversion and how
 you can use it as a powerful scientific calculator that keeps track of
-units.  This is Edition 2.01 of `The Units Conversion Manual' for
-`units' Version 2.00.
+units.  This is Edition 2.10 of `The Units Conversion Manual' for
+`units' Version 2.10.
 
 1 Overview of `units'
 *********************
@@ -51,10 +59,15 @@ units.  This is Edition 2.01 of `The Units Conversion Manual' for
 The `units' program converts quantities expressed in various systems of
 measurement to their equivalents in other systems of measurement.  Like
 many similar programs, it can handle multiplicative scale changes. It
-can also handle nonlinear conversions such as Fahrenheit to Celsius.(1)
-*Note Temperature Conversions::.  The program can also perform
+can also handle nonlinear conversions such as Fahrenheit to Celsius;(1)
+*note Temperature Conversions::.  The program can also perform
 conversions from and to sums of units, such as converting between
 meters and feet plus inches.
+
+   Basic operation is simple: you enter the units that you want to
+convert _from_ and the units that you want to convert _to_.  You can
+use the program interactively with prompts, or you can use it from the
+command line.
 
    Beyond simple unit conversions, `units' can be used as a
 general-purpose scientific calculator that keeps track of units in its
@@ -62,17 +75,17 @@ calculations.  You can form arbitrary complex mathematical expressions
 of dimensions including sums, products, quotients, powers, and even
 roots of dimensions.  Thus you can ensure accuracy and dimensional
 consistency when working with long expressions that involve many
-different units that may combine in complex ways.
+different units that may combine in complex ways; for an illustration,
+*note Complicated Unit Expressions::.
 
    The units are defined in an external data file.  You can use the
 extensive data file that comes with this program, or you can provide
 your own data file to suit your needs.  You can also use your own data
 file to supplement the standard data file.
 
-   Basic operation is simple: you enter the units that you want to
-convert _from_ and the units that you want to convert _to_.  You can
-use the program interactively with prompts, or you can use it from the
-command line.
+   You can change the default behavior of `units' with various options
+given on the command line. *Note Invoking Units::, for a description of
+the available options.
 
    ---------- Footnotes ----------
 
@@ -86,8 +99,8 @@ T(x)=ax+b.  This transformation is affine, but not linear.
 To invoke units for interactive use, type `units' at your shell prompt.
 The program will print something like this:
 
-     Currency exchange rates from 04/23/12
-     2516 units, 85 prefixes, 65 nonlinear units
+     Currency exchange rates from www.timegenie.com on 2014-03-05
+     2860 units, 109 prefixes, 85 nonlinear units
 
      You have:
 
@@ -96,11 +109,12 @@ converting _from_.  For example, if you want to convert ten meters to
 feet, type `10 meters'.  Next, `units' will print `You want:'.  You
 should type the units you want to convert _to_.  To convert to feet,
 you would type `feet'.  If the `readline' library was compiled in then
-the tab key can be used to complete unit names. *Note Readline
-Support::, for more information about `readline'.  To quit the program
-press Ctrl-C or Ctrl-D under Unix.  Under Windows press Ctrl-Z.
+<tab> will complete unit names. *Note Readline Support::, for more
+information about `readline'.  To quit the program under Unix, press
+<Ctrl-C> or <Ctrl-D>. Under Windows, press <Ctrl-C> or <Ctrl-Z>; with
+the latter, you may also need to press <Enter>.
 
-   The answer will be displayed in two ways.  The first line of output,
+   The result will be displayed in two ways.  The first line of output,
 which is marked with a `*' to indicate multiplication, gives the result
 of the conversion you have asked for.  The second line of output, which
 is marked with a `/' to indicate division, gives the inverse of the
@@ -282,9 +296,11 @@ that are used.
 conversion unit `force' or use the shorthand `lbf'.  (Note that `g' is
 already taken as the standard abbreviation for the gram.)  The unit
 `ounce' is also a unit of mass.  The fluid ounce is `fluidounce' or
-`floz'.  British capacity units that differ from their US counterparts,
-such as the British Imperial gallon, are prefixed with `br'.  Currency
-is prefixed with its country name: `belgiumfranc', `britainpound'.
+`floz'.  When British capacity units differ from their US counterparts,
+such as the British Imperial gallon, the unit is defined both ways with
+`br' and `us' prefixes.  Your locale settings will determine the value
+of the unprefixed unit.  Currency is prefixed with its country name:
+`belgiumfranc', `britainpound'.
 
    When searching for a unit, if the specified string does not appear
 exactly as a unit name, then the `units' program will try to remove a
@@ -368,76 +384,27 @@ between these units is about 4 parts per million.
 =============
 
 You can enter more complicated units by combining units with operations
-such as powers, multiplication, division, addition, subtraction, and
+such as multiplication, division, powers, addition, subtraction, and
 parentheses for grouping.  You can use the customary symbols for these
 operators when `units' is invoked with its default options.
 Additionally, `units' supports some extensions, including high priority
-multiplication using a space, and a high priority numerical  division
+multiplication using a space, and a high priority numerical division
 operator (`|') that can simplify some expressions.
 
-   Powers of units can be specified using the `^' character as shown in
-the following example, or by simple concatenation of a unit and its
-exponent: `cm3' is equivalent to `cm^3'; if the exponent is more than
-one digit, the `^' is required.  An exponent like `2^3^2' is evaluated
-right to left as usual.  The `^' operator has the second highest
-precedence.  You can also use `**' as an exponent operator.  
-
-     You have: cm^3
-     You want: gallons
-             * 0.00026417205
-             / 3785.4118
+   You multiply units using a space or an asterisk (`*').  The next
+example shows both forms:
 
      You have: arabicfoot * arabictradepound * force
      You want: ft lbf
              * 0.7296
              / 1.370614
 
-You multiply units using a space or an asterisk (`*').  The example
-above shows both forms.  You can divide units using the slash (`/') or
-with `per'.  
+You can divide units using the slash (`/') or with `per':
 
      You have: furlongs per fortnight
      You want: m/s
              * 0.00016630986
              / 6012.8727
-
-When a unit includes a prefix, exponent operators apply to the
-combination, so `centimeter^3' gives cubic centimeters.  If you separate
-the prefix from the unit with any multiplication operator, such as
-`centi meter^3', then the prefix is treated as a separate unit, so the
-exponent does not apply.  The second example would be a hundredth of a
-cubic meter, not a centimeter.
-
-   Multiplication using a space  has a higher precedence than division
-using a slash and is evaluated left to right; in effect, the first `/'
-character marks the beginning of the denominator of a unit expression.
-This makes it simple to enter a quotient with several terms in the
-denominator: `W / m^2 Hz'.  If you multiply with `*' then you must
-group the terms in the denominator with parentheses: `W / (m^2 * Hz)'.
-
-   The higher precedence of the space operator may not always be
-advantageous.  For example, `m/s s/day' is equivalent to `m / s s day'
-and has dimensions of length per time cubed.  Similarly, `1/2 meter'
-refers to a unit of reciprocal length equivalent to 0.5/meter, perhaps
-not what you would intend if you entered that expression.  The `*'
-operator is convenient for multiplying a sequence of quotients.  With
-the `*' operator, the example above becomes `m/s * s/day', which is
-equivalent to `m/day'.  Similarly, you could write `1/2 * meter' to get
-half a meter.  Alternatively, parentheses can be used for grouping: you
-could write `(1/2) meter' to get half a meter.  *Note Complicated Unit
-Expressions::, for an illustration of the various options.
-
-   The `units' program supports another option for numerical fractions.
-You can indicate division of _numbers_ with the vertical bar (`|'), so
-if you wanted half a meter you could write `1|2 meter'.  This operator
-has the highest precedence, so you can write the square root of two
-thirds `2|3^1|2'.  You cannot use the vertical bar to indicate division
-of non-numerical units (e.g., `m|s' results in an error message).  
-
-     You have: 1|2 inch
-     You want: cm
-             * 1.27
-             / 0.78740157
 
 You can use parentheses for grouping:
 
@@ -446,13 +413,94 @@ You can use parentheses for grouping:
              * 0.00010356166
              / 9656.0833
 
+Multiplication using a space has a higher precedence than division
+using a slash and is evaluated left to right; in effect, the first `/'
+character marks the beginning of the denominator of a unit expression.
+This makes it simple to enter a quotient with several terms in the
+denominator: `J / mol K'.  The `*' and `/' operators have the same
+precedence, and are evaluated left to right; if you multiply with `*',
+you must group the terms in the denominator with parentheses:
+`J / (mol * K)'.
+
+   The higher precedence of the space operator may not always be
+advantageous.  For example, `m/s s/day' is equivalent to `m / s s day'
+and has dimensions of length per time cubed.  Similarly, `1/2 meter'
+refers to a unit of reciprocal length equivalent to 0.5/meter, perhaps
+not what you would intend if you entered that expression.  The get a
+half meter you would need to use parentheses: `(1/2) meter'.  The `*'
+operator is convenient for multiplying a sequence of quotients.  For
+example, `m/s * s/day' is equivalent to `m/day'.  Similarly, you could
+write `1/2 * meter' to get half a meter.
+
+   The `units' program supports another option for numerical fractions:
+you can indicate division of _numbers_ with the vertical bar (`|'), so
+if you wanted half a meter you could write `1|2 meter'.  You cannot use
+the vertical bar to indicate division of non-numerical units (e.g.,
+`m|s' results in an error message).
+
+   Powers of units can be specified using the `^' character, as shown in
+the following example, or by simple concatenation of a unit and its
+exponent: `cm3' is equivalent to `cm^3'; if the exponent is more than
+one digit, the `^' is required.  You can also use `**' as an exponent
+operator.
+
+     You have: cm^3
+     You want: gallons
+             * 0.00026417205
+             / 3785.4118
+
+Concatenation only works with a single unit name: if you write `(m/s)2',
+`units' will treat it as multiplication by 2.  When a unit includes a
+prefix, exponent operators apply to the combination, so `centimeter3'
+gives cubic centimeters.  If you separate the prefix from the unit with
+any multiplication operator (e.g., `centi meter^3'), the prefix is
+treated as a separate unit, so the exponent applies only to the unit
+without the prefix.  The second example is equivalent to `centi *
+(meter^3)', and gives a hundredth of a cubic meter, not a cubic
+centimeter.  The `units' program is limited internally to products of
+99 units; accordingly, expressions like `meter^100' or `joule^34'
+(represented internally as `kg^34 m^68 / s^68') will fail.
+
+   The `|' operator has the highest precedence, so you can write the
+square root of two thirds as `2|3^1|2'.  The `^' operator has the
+second highest precedence, and is evaluated right to left, as usual:
+
+     You have: 5 * 2^3^2
+     You want:
+             Definition: 2560
+
+With a dimensionless base unit, any dimensionless exponent is meaningful
+(e.g., `pi^exp(2.371)').  Even though angle is sometimes treated as
+dimensionless, exponents cannot have dimensions of angle:
+
+     You have: 2^radian
+                      ^
+     Exponent not dimensionless
+
+If the base unit is not dimensionless, the exponent must be a rational
+number P/Q, and the dimension of the unit must be a power of Q, so
+`gallon^2|3' works but `acre^2|3' fails.  An exponent using the slash
+(`/') operator (e.g., `acre^(2/3)') is also acceptable; the parentheses
+are needed because the precedence of `^' is higher than that of `/'.
+Since `units' cannot represent dimensions with exponents greater than
+99, a fully reduced exponent must have Q < 100.  When raising a
+non-dimensionless unit to a power, `units' attempts to convert a
+decimal exponent to a rational number with Q < 100.  If this is not
+possible `units' displays an error message:
+
+     You have: ft^1.234
+     Base unit not dimensionless; rational exponent required
+
+A decimal exponent must match its rational representation to machine
+precision, so `acre^1.5' works but `gallon^0.666' does not.
+
 5.2 Sums and Differences of Units
 =================================
 
-Outside of the SI, it is sometimes desirable to add values of different
-units.  You may also wish to use `units' as a calculator that keeps
-track of units.  Sums of conformable units are written with the `+'
-character, and differences with the `-' character.  
+You may sometimes want to add values of different units that are
+outside the SI.  You may also wish to use `units' as a calculator that
+keeps track of units.  Sums of conformable units are written with the
+`+' character, and differences with the `-' character.  
 
      You have: 2 hours + 23 minutes + 32 seconds
      You want: seconds
@@ -561,7 +609,85 @@ exponents:
                                ^
      Unit not a root
 
-5.5 Complicated Unit Expressions
+5.5 Previous Result
+===================
+
+You can insert the result of the previous conversion using the
+underscore (`_').  It is useful when you want to convert the same input
+to several different units, for example
+
+     You have: 2.3 tonrefrigeration
+     You want: btu/hr
+             * 27600
+             / 3.6231884e-005
+     You have: _
+     You want: kW
+             * 8.0887615
+             / 0.12362832
+
+Suppose you want to do some deep frying that requires an oil depth of
+2 inches.  You have 1/2 gallon of oil, and want to know the
+largest-diameter pan that will maintain the required depth.  The
+nonlinear unit `circlearea' gives the _radius_ of the circle (*note
+Other Nonlinear Units::, for a more detailed description) in SI units;
+you want the _diameter_ in _inches_:
+
+     You have: 1|2 gallon / 2 in
+     You want: circlearea
+             0.10890173 m
+
+     You have: 2 _
+     You want: in
+             * 8.5749393
+             / 0.1166189
+
+In most cases, surrounding white space is optional, so the previous
+example could have used `2_'.  If `_' follows a non-numerical unit
+symbol, however, the space is required:
+
+     You have: m_
+                ^
+     Parse error
+
+When `_' is followed by a digit, the operation is multiplication rather
+than exponentiation, so that `_2', is equivalent to `_ * 2' rather than
+`_^2'.
+
+   You can use the `_' symbol any number of times; for example,
+
+     You have: m
+     You want:
+             Definition: 1 m
+     You have: _ _
+     You want:
+             Definition: 1 m^2
+
+Using `_' before a conversion has been performed (e.g., immediately
+after invocation) generates an error:
+
+     You have: _
+               ^
+     No previous result; '_' not set
+
+Accordingly, `_' serves no purpose when `units' is invoked
+non-interactively.
+
+   If `units' is invoked with the `--verbose' option (*note Invoking
+Units::), the value of `_' is not expanded:
+
+     You have: mile
+     You want: ft
+             mile = 5280 ft
+             mile = (1 / 0.00018939394) ft
+     You have: _
+     You want: m
+             _ = 1609.344 m
+             _ = (1 / 0.00062137119) m
+
+You can give `_' at the `You want:' prompt, but it usually is not very
+useful.
+
+5.6 Complicated Unit Expressions
 ================================
 
 The `units' program is especially helpful in ensuring accuracy and
@@ -603,7 +729,7 @@ conversion would need to be entered as
              * 43.533969
              / 0.022970568
 
-5.6 Backwards Compatibility: `*' and `-'
+5.7 Backwards Compatibility: `*' and `-'
 ========================================
 
 The original `units' assigned multiplication a higher precedence than
@@ -672,6 +798,7 @@ absolute temperature, so that
      You want: degR
              * 504.67
              / 0.0019814929
+
 gives the same result as
 
      You have: tempF(45)
@@ -692,12 +819,21 @@ the Kelvin. For consistent results, use the `tempX' units when
 converting to a temperature rather than converting a temperature
 increment.
 
+   The `tempC()' and `tempF()' definitions are limited to positive
+absolute temperatures, and giving a value that would result in a
+negative absolute temperature generates an error message:
+
+     You have: tempC(-275)
+                         ^
+     Argument of function outside domain
+                         ^
+
 6.2 Other Nonlinear Units
 =========================
 
 Some other examples of nonlinear units are numerous different ring
 sizes and wire gauges, the grit sizes used for abrasives, the decibel
-scale, shoe size, scales for the density of sugar (e.g. baume).  The
+scale, shoe size, scales for the density of sugar (e.g., baume).  The
 standard data file also supplies units for computing the area of a
 circle and the volume of a sphere.  See the standard units data file
 for more details.  Wire gauges with multiple zeroes are signified using
@@ -747,6 +883,36 @@ sphere with a radius of one meter.
      You want: ft3
              * 147.92573
              / 0.0067601492
+
+The inverse of a nonlinear conversion is indicated by prefixing a tilde
+(`~') to the nonlinear unit name:
+
+     You have: ~wiregauge(0.090742002 inches)
+     You want:
+             Definition: 11
+
+You can give a nonlinear unit definition without an argument or
+parentheses, and press <Enter> at the `You want:' prompt to get the
+definition of a nonlinear unit; if the definition is not valid for all
+real numbers, the range of validity is also given.  If the definition
+requires specific units this information is also displayed:
+
+     You have: tempC
+             Definition: tempC(x) = x K + stdtemp
+                         defined for x >= -273.15
+     You have: ~tempC
+             Definition: ~tempC(tempC) = (tempC +(-stdtemp))/K
+                         defined for tempC >= 0 K
+     You have: circlearea
+             Definition: circlearea(r) = pi r^2
+                         r has units m
+
+To see the definition of the inverse use the `~' notation.  In this
+case the parameter in the functional definition will usually be the
+name of the unit.  Note that the inverse for `tempC' shows that it
+requires units of `K' in the specification of the allowed range of
+values.  Nonlinear unit conversions are described in more detail in
+*note Defining Nonlinear Units::.
 
 7 Unit Lists: Conversion to Sums of Units
 *****************************************
@@ -836,7 +1002,7 @@ in'), and hence neither does ending a list with a `;'.  With a single
 unit and the `-r' option, a terminal `;' _does_ have an effect: it
 causes `units' to treat the single unit as a list and produce a rounded
 value for the single unit.  Without the extra `;', the `-r' option has
-no effect on single unit conversions.  This example shows the ouput
+no effect on single unit conversions.  This example shows the output
 using the `-r' option:
 
      You have: 12.28126 ft
@@ -850,7 +1016,7 @@ using the `-r' option:
 
 Each unit that appears in the list must be conformable with the first
 unit on the list, and of course the listed units must also be
-comformable with the _You have_ unit that you enter.
+conformable with the unit that you enter at the `You have:' prompt.
 
      You have: meter
      You want: ft;kg
@@ -877,9 +1043,9 @@ and time:
      You want; deg;arcmin;arcsec
          23 deg + 26 arcmin + 15.9144 arcsec
 
-         You have: 7.2319 hr
-         You want: hr;min;sec
-             7 hr + 13 min + 54.84 sec
+     You have: 7.2319 hr
+     You want: hr;min;sec
+         7 hr + 13 min + 54.84 sec
 
 In North America, recipes for cooking typically measure ingredients by
 volume, and use units that are not always convenient multiples of each
@@ -990,14 +1156,73 @@ list:
      You want: cup;1|2 cup;1|4 cup;tbsp
      4;0;0;3.6280454
 
-8 Invoking `units'
+8 Logging Calculations
+**********************
+
+The `--log' option allows you to save the results of calculations in a
+file; this can be useful if you need a permanent record of your work.
+For example, the fluid-flow conversion in *note Complicated Unit
+Expressions::, is lengthy, and if you were to use it in designing a
+piping system, you might want a record of it for the project file.  If
+the interactive session
+
+     You have: (8/pi^2)(lbm/ft^3)ft(ft^3/s)^2(1/in^5)
+     You want: psi
+             * 43.533969
+             / 0.022970568
+
+were logged, the log file would contain
+
+     From: (8/pi^2)(lbm/ft^3)ft(ft^3/s)^2(1/in^5)
+     To:   psi
+             * 43.533969
+             / 0.022970568
+
+The log includes conformability errors between the units at the
+`You have:' and `You want:' prompts, but not other errors, including
+lack of conformability of items in sums or differences or among items
+in a unit list.  For example, a conversion between zenith angle and
+elevation angle could involve
+
+     You have: 90 deg - (5 deg + 22 min + 9 sec)
+                                        ^
+     Illegal sum or difference of non-conformable units
+     You have: 90 deg - (5 deg + 22 arcmin + 9 arcsec)
+     You want: dms
+             84 deg + 37 arcmin + 51 arcsec
+     You have: _
+     You want: deg
+             * 84.630833
+             / 0.011816024
+     You have:
+
+The log file would contain
+
+     From: 90 deg - (5 deg + 22 arcmin + 9 arcsec)
+     To:   deg;arcmin;arcsec
+             84 deg + 37 arcmin + 51 arcsec
+     From: _
+     To:   deg
+             * 84.630833
+             / 0.011816024
+
+The initial entry error (forgetting that minutes have dimension of time,
+and that arcminutes must be used for dimensions of angle) does not
+appear in the output.  When converting to a unit list alias, `units'
+expands the alias in the log file.
+
+   The `From:' and `To:' tags are written to the log file even if the
+`--quiet' option is given.  If the log file exists when `units' is
+invoked, the new results are appended to the log file.
+
+9 Invoking `units'
 ******************
 
 You invoke `units' like this:
 
      units [OPTIONS] [FROM-UNIT [TO-UNIT]]
 
-If the FROM-UNIT and TO-UNIT are omitted, then the program will use
+If the FROM-UNIT and TO-UNIT are omitted, the program will use
 interactive prompts to determine which conversions to perform.  *Note
 Interactive Use::.  If both FROM-UNIT and TO-UNIT are given, `units'
 will print the result of that single conversion and then exit.  If only
@@ -1006,8 +1231,34 @@ definition of that unit and exit.  Units specified on the command line
 may need to be quoted to protect them from shell interpretation and to
 group them into two arguments.  *Note Command Line Use::.
 
-   The following options allow you to read in an alternative units file,
-check your units file, or change the output format:
+   The default behavior of `units' can be changed by various options
+given on the command line.  In most cases, the options may be given in
+either short form (a single `-' followed by a single character) or long
+form (`--' followed by a word or hyphen-separated words).  Short-form
+options are cryptic but require less typing; long-form options require
+more typing but are more explanatory and may be more mnemonic.  With
+long-form options you need only enter sufficient characters to uniquely
+identify the option to the program.  For example, `--out %f' works, but
+`--o %f' fails because `units' has other long options beginning with
+`o'.  However, `--q' works because `--quiet' is the only long option
+beginning with `q'.
+
+   Some options require arguments to specify a value (e.g., `-d 12' or
+`--digits 12').  Short-form options that do not take arguments may be
+concatenated (e.g., `-erS' is equivalent to `-e -r -S'); the last
+option in such a list may be one that takes an argument (e.g.,
+`-ed 12').  With short-form options, the space between an option and
+its argument is optional (e.g., `-d12' is equivalent to `-d 12').
+Long-form options may not be concatenated, and the space between a
+long-form option and its argument is required.  Short-form and
+long-form options may be intermixed on the command line.  Options may
+be given in any order, but when incompatible options (e.g.,
+`--output-format' and `--exponential') are given in combination,
+behavior is controlled by the last option given.  For example,
+`-o%.12f -e' gives exponential format with the default eight
+significant digits).
+
+   The following options are available:
 
 `-c'
 `--check'
@@ -1019,38 +1270,80 @@ check your units file, or change the output format:
      with this option after modifying a units data file.
 
 `--check-verbose'
+`--verbose-check'
      Like the `--check' option, this option prints a list of units that
      cannot be reduced.  But to help find unit  definitions that cause
      endless loops, it lists the units as they are checked.  If `units'
      hangs, then the last unit to be printed has a bad definition.
      Only definitions active in the current locale are checked.
 
-`-o FORMAT'
-`--output-format FORMAT'
-     Use the specified FORMAT for numeric output; the format is a
-     subset of that for the printf function in the ANSI C standard.
-     Only a numeric format (`E' or `e' for scientific notation, `f' for
-     fixed-point decimal, or `G' or `g' to specify the number of
-     significant figures) is allowed.  The default format is `%.8g';
-     for greater precision, you could specify `-o %.15g'.  *Note
-     Numeric Output Format::, and the documentation for printf() for
-     more detailed descriptions of the format specification.
+`-d NDIGITS'
+`--digits NDIGITS'
+     Set the number of significant digits in the output to the value
+     specified (which must be greater than zero).  For example, `-d 12'
+     sets the number of significant digits to 12.  With exponential
+     output `units' displays one digit to the left of the decimal
+     point(1) and eleven digits to the right of the decimal point.  On
+     most systems, the maximum number of internally meaningful digits is
+     15; if you specify a greater number than your system's maximum,
+     `units' will print a warning and set the number to the largest
+     meaningful value.  To directly set the maximum value, give an
+     argument of `max' (e.g., `-d max').  Be aware, of course, that
+     "significant" here refers only to the _display_ of numbers; if
+     results depend on physical constants not known to this precision,
+     the physically meaningful precision may be less than that shown.
+     The `--digits' option conflicts with the `--output-format' option.
 
 `-e'
 `--exponential'
      Set the numeric output format to exponential (i.e., scientific
-     notation), like that used in the Unix `units' program.
+     notation), like that used in the Unix `units' program.  The
+     default precision is eight significant digits (seven digits to the
+     right of the decimal point); this can be changed with the
+     `--digits' option.  The `--exponential' option conflicts with the
+     `--output-format' option.
+
+`-o FORMAT'
+`--output-format FORMAT'
+     This option affords complete control over the numeric output format
+     using the specified FORMAT. The format is a single floating point
+     numeric format for the `printf()' function in the C programming
+     language.  All compilers support the format types `g' and `G' to
+     specify significant digits, `e' and `E' for scientific notation,
+     and `f' for fixed-point decimal.  The ISO C99 standard introduced
+     the `F' type for fixed-point decimal and the `a' and `A' types for
+     hexadecimal floating point; these types are allowed with compilers
+     that support them.  The default format is `%.8g'; for greater
+     precision, you could specify `-o %.15g'. *Note Numeric Output
+     Format::, and the documentation for `printf()' for more detailed
+     descriptions of the format specification.  The `--output-format'
+     option affords the greatest control of the output appearance, but
+     requires at least rudimentary knowledge of the `printf()' format
+     syntax.  If you don't want to bother with the `printf()' syntax,
+     you can specify greater precision more simply with the `--digits'
+     option or select exponential format with `--exponential'.  The
+     `--output-format' option is incompatible with the `--exponential'
+     and `--digits' options.
 
 `-f FILENAME'
 `--file FILENAME'
-     Instruct `units' to load the units file `filename'.  You can
-     specify up to 25 units files on the command line.  When you use
-     this option, `units' will load _only_ the files you list on the
-     command line; it will not load the standard file or your personal
-     units file unless you explicitly list them.  If FILENAME is the
-     empty string (`-f ""'), the default units file (or that specified
-     by `UNITSFILE') will be loaded in addition to any others specified
+     Instruct `units' to load the units file FILENAME.  You can specify
+     up to 25 units files on the command line.  When you use this
+     option, `units' will load _only_ the files you list on the command
+     line; it will not load the standard file or your personal units
+     file unless you explicitly list them.  If FILENAME is the empty
+     string (`-f ""'), the default units file (or that specified by
+     `UNITSFILE') will be loaded in addition to any others specified
      with `-f'.
+
+`-L LOGFILE'
+`--log LOGFILE'
+     Save the results of calculations in the file LOGFILE; this can be
+     useful if it is important to have a record of unit conversions or
+     other calculations that are to be used extensively or in a
+     critical activity such as a program or design project.  If LOGFILE
+     exits, the new results are appended to the file.  *Note Logging
+     Calculations::, for a more detailed description and some examples.
 
 `-h'
 `--help'
@@ -1104,12 +1397,12 @@ check your units file, or change the output format:
      fraction with a unity denominator.  By default, if the unit in a
      list begins with fraction of the form 1|X and its multiplier is an
      integer other than 1, the fraction is given as the product of the
-     multiplier and the numerator (e.g., `3|8 in' rather than `3 * 1|8
-     in').  In some cases, this is not what is wanted; for example, the
-     results for a cooking recipe might show `3 * 1|2 cup' as `3|2 cup'.
-     With the `--show-factor' option, a result equivalent to 1.5 cups
-     will display as `3 * 1|2 cup' rather than `3|2 cup'.  A
-     user-specified fractional unit with a numerator other than 1 is
+     multiplier and the numerator (e.g., `3|8 in' rather than `3 *
+     1|8 in').  In some cases, this is not what is wanted; for example,
+     the results for a cooking recipe might show `3 * 1|2 cup' as
+     `3|2 cup'.  With the `--show-factor' option, a result equivalent
+     to 1.5 cups will display as `3 * 1|2 cup' rather than `3|2 cup'.
+     A user-specified fractional unit with a numerator other than 1 is
      never overridden, however--if a unit list specifies `3|4 cup;1|2
      cup', a result equivalent to 1 1/2 cups will always be shown as `2
      * 3|4 cup' whether or not the `--show-factor' option is given.
@@ -1135,39 +1428,80 @@ check your units file, or change the output format:
      Give terse output when converting units.  This option can be used
      when calling `units' from another program so that the output is
      easy to parse.  This option has the combined effect of these
-     options:  `--strict' `--quiet' `--one-line' `--compact'.
+     options:  `--strict' `--quiet' `--one-line' `--compact'.  When
+     combined with `--version' it produces a display showing only the
+     program name and version number.
 
 `-v'
 `--verbose'
      Give slightly more verbose output when converting units.  When
      combined with the `-c' option this gives the same effect as
-     `--check-verbose'.
+     `--check-verbose'.  When combined with `--version' produces a more
+     detailed output, equivalent to the `--info' option.
 
 `-V'
 `--version'
-     Print program version number, tell whether the `readline' library
-     has been included, and give the location of the default units data
-     file.
+     Print the program version number, tell whether the `readline'
+     library has been included, tell whether UTF-8 support has been
+     included; give the locale, the location of the default units data
+     file, and the location of the personal units data file; indicate
+     if the personal units data file does not exist.
+
+     When given in combination with the `--terse' option, the program
+     prints only the version number and exits.
+
+     When given in combination with the `--verbose' option, the
+     program, the `--version' option has the same effect as the
+     `--info' option below.
+
+`-I'
+`--info'
+     Print the information given with the `--version' option, show the
+     pathname of the units program, show the status of the `UNITSFILE'
+     and `MYUNITSFILE' environment variables, and additional information
+     about how `units' locates the related files.  On systems running
+     Microsoft Windows, the status of the `UNITSLOCALE' environment
+     variable and information about the related locale map are also
+     given.  This option is usually of interest only to developers and
+     administrators, but it can sometimes be useful for troubleshooting.
+
+     Combining the `--version' and `--verbose' options has the same
+     effect as giving `--info'.
+
+`-U'
+`--unitsfile'
+     Print the location of the default units data file and exit; if the
+     file cannot be found, print "Units data file not found".
 
 `-l LOCALE'
 `--locale LOCALE'
-     Force a specified locale such as `en_GB' to get British
-     definitions by default.  This overrides the locale determined from
-     system settings or environment variables.  *Note Locale::, for a
+     Print the information given with the `--version' option, show the Force
+     a specified locale such as `en_GB' to get British definitions by
+     default.  This overrides the locale determined from system
+     settings or environment variables.  *Note Locale::, for a
      description of locale format.
 
 
-9 Adding Your Own Definitions
-*****************************
+   ---------- Footnotes ----------
 
-9.1 Units Data Files
-====================
+   (1) This document refers to "decimal point," but strictly, the
+"radix" separates the integer and fractional parts of a floating-point
+number; in English-speaking countries, the radix is a point (`.'), but
+in most other countries it is a comma (`,').
+
+10 Adding Your Own Definitions
+******************************
+
+10.1 Units Data Files
+=====================
 
 The units and prefixes that `units' can convert are defined in the units
-data file, typically `/usr/share/units/definitions.units'.  Although
-you can extend or modify this data file if you have appropriate user
-privileges, it's usually better to put extensions in separate files so
-that the definitions will be preserved when you update `units'.
+data file, typically `/usr/share/units/definitions.units'.  If you
+can't find this file, run `units --version' to get information on the
+file locations for your installation.  Although you can extend or
+modify this data file if you have appropriate user privileges, it's
+usually better to put extensions in separate files so that the
+definitions will be preserved if you update `units'.
 
    You can include additional data files in the units database using
 the `!include' command in the standard units data file. For example
@@ -1191,19 +1525,20 @@ in this file will replace definitions of the same units in the standard
 data file or in files included from the standard data file.  This file
 will not be read if any units files are specified on the command line.
 (Under Windows the personal units file is named `unitdef.units'.)
+Running `units -V' will display the location and name of your personal
+units file.
 
    The `units' program first tries to determine your home directory
 from the `HOME' environment variable.  On systems running Microsoft
 Windows, if `HOME' does not exist, `units' attempts to find your home
-directory from `HOMEDRIVE' and `HOMEPATH'.  Running `units -V' will
-display the location and name of your personal units file.
+directory from `HOMEDRIVE', `HOMEPATH' and `USERPROFILE'.  You can
+specify an arbitrary file as your personal units data file with the
+`MYUNITSFILE' environment variable; if this variable exists, its value
+is used without searching your home directory.  The default units data
+files are described in more detail in *note Data Files::.
 
-   You can specify an arbitrary file as your personal units data file
-with the `MYUNITSFILE' environment variable; if this variable exists,
-its value is used without searching your home directory.
-
-9.2 Defining New Units and Prefixes
-===================================
+10.2 Defining New Units and Prefixes
+====================================
 
 A unit is specified on a single line by giving its name and an
 equivalence.  Comments start with a `#' character, which can appear
@@ -1219,12 +1554,15 @@ cannot contain the comment character `#'.
    Unit names must not contain any of the operator characters `+', `-',
 `*', `/', `|', `^', `;', `~', the comment character `#', or
 parentheses.  They cannot begin or end with an underscore (`_'), a
-comma (`,') or a decimal point (`.').  Names cannot begin with a digit,
-and if a name ends in a digit other than zero, the digit must be
-preceded by a string beginning with an underscore, and afterwards
-consisting only of digits, decimal points, or commas.  For example,
-`foo_2', `foo_2,1', or `foo_3.14' would be valid names but `foo2' or
-`foo_a2' would be invalid.  You could define nitrous oxide as
+comma (`,') or a decimal point (`.').  The figure dash (U+2012),
+typographical minus (`-'; U+2212), and en dash (`-'; U+2013) are
+converted to the operator `-', so none of these characters can appear
+in unit names.  Names cannot begin with a digit, and if a name ends in
+a digit other than zero, the digit must be preceded by a string
+beginning with an underscore, and afterwards consisting only of digits,
+decimal points, or commas.  For example, `foo_2', `foo_2,1', or
+`foo_3.14' are valid names but `foo2' or `foo_a2' are invalid.  You
+could define nitrous oxide as
 
      N2O     nitrogen 2  + oxygen
 
@@ -1273,8 +1611,8 @@ definition contains any `/' characters, be sure they are protected by
 parentheses.  If you define `half- 1/2' then `halfmeter' would be
 equivalent to `1 / (2 meter)'.
 
-9.3 Defining Nonlinear Units
-============================
+10.3 Defining Nonlinear Units
+=============================
 
 Some unit conversions of interest are nonlinear; for example,
 temperature conversions between the Fahrenheit and Celsius scales
@@ -1290,33 +1628,35 @@ best to regard this notation not as a function call but as a way of
 adding units to a number, much the same way that writing a linear unit
 name after a number adds units to that number.  Internally, nonlinear
 units are defined by a pair of functions that convert to and from
-linear units in the data file, so that an eventual conversion to
+linear units in the database, so that an eventual conversion to
 primitive units is possible.
 
    Here is an example nonlinear unit definition:
 
-     tempF(x) units=[1;K] (x+(-32)) degF + stdtemp ; \
-                          (tempF+(-stdtemp))/degF + 32
+     tempF(x) units=[1;K] domain=[-459.67,) range=[0,) \
+                 (x+(-32)) degF + stdtemp ; (tempF+(-stdtemp))/degF + 32
 
-A nonlinear unit definition comprises a unit name, a dummy parameter
-name, two functions, and two corresponding units.  The functions tell
-`units' how to convert to and from the new unit.  In order to produce
-valid results, the arguments of these functions need to have the
-correct dimensions.  To facilitate error checking, you may optionally
-indicate units for these arguments.
+A nonlinear unit definition comprises a unit name, a formal parameter
+name, two functions, and optional specifications for units, the domain,
+and the range (the domain of the inverse function).  The functions tell
+`units' how to convert to and from the new unit.  To produce valid
+results, the arguments of these functions need to have the correct
+dimensions and be within the domains for which the functions are
+defined.
 
    The definition begins with the unit name followed immediately (with
-no spaces) by a `(' character.  In parentheses is the name of the
-parameter.  Next is an optional specification of the units required by
-the functions in this definition.  In the example above, the `tempF'
-function requires an input argument conformable with `1'.  For normal
-nonlinear units definitions the forward function will always take a
-dimensionless argument.  The inverse function requires an input
-argument conformable with `K'.  In general the inverse function will
-need units that match the quantity measured by your nonlinear unit.
-The purpose of the expression in brackets to enable `units' to perform
-error checking on function arguments, and also to assign units to range
-and domain specifications, which are described later.
+no spaces) by a `(' character.  In the parentheses is the name of the
+formal parameter.  Next is an optional specification of the units
+required by the functions in the definition.  In the example above, the
+`units=[1;K]' specification indicates that the `tempF' function
+requires an input argument conformable with `1' (i.e., the argument is
+dimensionless), and that the inverse function requires an input
+argument conformable with `K'.  For normal nonlinear units definition,
+the forward function will always take a dimensionless argument; in
+general, the inverse function will need units that match the quantity
+measured by your nonlinear unit.  Specifying the units enables `units'
+to perform error checking on function arguments, and also to assign
+units to domain and range specifications, which are described later.
 
    Next the function definitions appear.  In the example above, the
 `tempF' function is defined by
@@ -1327,55 +1667,108 @@ This gives a rule for converting `x' in the units `tempF' to linear
 units of absolute temperature, which makes it possible to convert from
 tempF to other units.
 
-   In order to make conversions to Fahrenheit possible, you must give a
-rule for the inverse conversions. The inverse will be `x(tempF)' and
-its definition appears after a `;' character.  In our example, the
-inverse is
+   To enable conversions to Fahrenheit, you must give a rule for the
+inverse conversions.  The inverse will be `x(tempF)' and its definition
+appears after a `;' character.  In our example, the inverse is
 
      x(tempF) = (tempF+(-stdtemp))/degF + 32
 
 This inverse definition takes an absolute temperature as its argument
 and converts it to the Fahrenheit temperature.  The inverse can be
-omitted by leaving out the `;' character, but then conversions to the
-unit will be impossible.  If the inverse is omitted then the `--check'
-option will display a warning.  It is up to you to calculate and enter
-the correct inverse function to obtain proper conversions.  The
-`--check' option tests the inverse at one point and prints an error if
-it is not valid there, but this is not a guarantee that your inverse is
-correct.
+omitted by leaving out the `;' character and the inverse definition,
+but then conversions _to_ the unit will not be possible.  If the
+inverse definition is omitted, the `--check' option will display a
+warning.  It is up to you to calculate and enter the correct inverse
+function to obtain proper conversions; the `--check' option tests the
+inverse at one point and prints an error if it is not valid there, but
+this is not a guarantee that your inverse is correct.
 
-   If you wish to make synonyms for nonlinear units, you still need to
-define both the forward and inverse functions.  Inverse functions can be
-obtained using the `~' operator.  So to create a synonym for `tempF'
-you could write
+   With some definitions, the units may vary.  For example, the
+definition
 
-     fahrenheit(x) units=[1;K] tempF(x); ~tempF(fahrenheit)
+     square(x)       x^2
 
-You may define a function whose range and domain do not cover all of
-the real numbers.  In this case `units' can handle errors better if you
-specify an appropriate range and domain.  You specify the range and
-domain as shown below.
+can have any arbitrary units, and can also take dimensionless arguments.
+In such a case, you should _not_ specify units.  If a definition takes
+a root of its arguments, the definition is valid only for units that
+yield such a root.  For example,
+
+     squirt(x)       sqrt(x)
+
+is valid for a dimensionless argument, and for arguments with even
+powers of units.
+
+   Some definitions may not be valid for all real numbers.  In such
+cases, `units' can handle errors better if you specify an appropriate
+domain and range.  You specify the domain and range as shown below:
 
      baume(d) units=[1;g/cm^3] domain=[0,130.5] range=[1,10] \
               (145/(145-d)) g/cm^3 ; (baume+-g/cm^3) 145 / baume
 
-In this example the domain is specified after the `domain=' with the
-endpoints given in brackets.  One of the end points can be omitted to
-get an interval that goes to infinity.  So the range could be specified
-as nonnegative by writing `range=[0,]'.  Both the range and domain are
-optional and can appear independently and in any order along with the
-`units' specification.  The values in the range and domain are attached
-to the units given in the `units' specification.  If you don't specify
-the units then the parameter inputs are reduced to primitive units for
-the numeric comparison to the values you give in the range or domain.
-In this case you should only use `range' or `domain' if the endpoints
-are zero and infinity.
+In this example the domain is specified after `domain=' with the
+endpoints given in brackets.  In accord with mathematical convention,
+square brackets indicate a closed interval (one that includes its
+endpoints), and parentheses indicate an open interval (one that does
+not include its endpoints).  An interval can be open or closed on one
+or both ends; an interval that is unbounded on either end is indicated
+by omitting the limit on that end.  For example, a quantity to which
+decibel (dB) is applied may have any value greater than zero, so the
+range is indicated by `(0,)':
 
-   Specifying the range and domain allows `units' to perform better
-error checking and give more helpful error messages when you invoke
-nonlinear units conversions outside of their bounds.  It also enables
-the `-c' option to find a point in the domain to use for its point
-check of your inverse definition.
+     decibel(x) units=[1;1] range=(0,) 10^(x/10); 10 log(decibel)
+
+If the domain or range is given, the second endpoint must be greater
+than the first.
+
+   The domain and range specifications can appear independently and in
+any order along with the units specification.  The values for the
+domain and range endpoints are attached to the units given in the units
+specification, and if necessary, the parameter value is adjusted for
+comparison with the endpoints.  For example, if a definition includes
+`units=[1;ft]' and `range=[3,)', the range will be taken as 3 ft to
+infinity.  If the function is passed a parameter of `900 mm', that
+value will be adjusted to 2.9527559 ft, which is outside the specified
+range.  If you omit the units specification from the previous example,
+`units' can not tell whether you intend the lower endpoint to be 3 ft
+or 3 microfurlongs, and can not adjust the parameter value of 900 mm
+for comparison.  Without units, numerical values other than zero or
+plus or minus infinity for domain or range endpoints are meaningless,
+and accordingly they are not allowed.  If you give other values without
+units then the definition will be ignored and you will get an error
+message.
+
+   Although the units, domain, and range specifications are optional,
+it's best to give them when they are applicable; doing so allows
+`units' to perform better error checking and give more helpful error
+messages.  Giving the domain and range also enables the `--check'
+option to find a point in the domain to use for its point check of your
+inverse definition.
+
+   You can make synonyms for nonlinear units by providing both the
+forward and inverse functions; inverse functions can be obtained using
+the `~' operator.  So to create a synonym for `tempF' you could write
+
+     fahrenheit(x) units=[1;K] tempF(x); ~tempF(fahrenheit)
+
+This is useful for creating a nonlinear unit definition that differs
+slightly from an existing definition without having to repeat the
+original functions.  For example,
+
+     dBW(x)     units=[1;W] range=[0,) dB(x) W ;  ~dB(dBW/W)
+
+If you wish a synonym to refer to an existing nonlinear unit without
+modification, you can do so more simply by adding the synonym with
+appended parentheses as a new unit, with the existing nonlinear
+unit--without parentheses--as the definition.  So to create a synonym
+for `tempF' you could write
+
+     fahrenheit()  tempF
+
+The definition must be a nonlinear unit; for example, the synonym
+
+     fahrenheit()  meter
+
+will result in an error message when `units' starts.
 
    You may occasionally wish to define a function that operates on
 units.  This can be done using a nonlinear unit definition.  For
@@ -1385,7 +1778,10 @@ produces an area as output, as indicated by the `units=' specification.
 Specifying the range as the nonnegative numbers can prevent cryptic
 error messages.
 
-     circlearea(r) units=[m;m^2] range=[0,]   pi r^2 ; sqrt(circlearea/pi)
+     circlearea(r) units=[m;m^2] range=[0,)   pi r^2 ; sqrt(circlearea/pi)
+
+10.4 Defining Piecewise Linear Units
+====================================
 
 Sometimes you may be interested in a piecewise linear unit such as many
 wire gauges.  Piecewise linear units can be defined by specifying
@@ -1399,7 +1795,7 @@ In this example, `zincgauge' is the name of the piecewise linear unit.
 The definition of such a unit is indicated by the embedded `['
 character.  After the bracket, you should indicate the units to be
 attached to the numbers in the table.  No spaces can appear before the
-`]' character, so a definition like `foo[kg meters]' is illegal;
+`]' character, so a definition like `foo[kg meters]' is invalid;
 instead write `foo[kg*meters]'.  The definition of the unit consists of
 a list of pairs optionally separated by commas.  This list defines a
 function for converting from the piecewise linear unit to linear units.
@@ -1430,12 +1826,52 @@ performed:
 
 If you define a piecewise linear unit that is not strictly monotonic,
 then the inverse will not be well defined.  If the inverse is requested
-for such a unit, `units' will return the smallest inverse.  The
-`--check' option will print a warning if a non-monotonic piecewise
-linear unit is encountered.
+for such a unit, `units' will return the smallest inverse.
 
-9.4 Defining Unit List Aliases
-==============================
+   After adding nonlinear units definitions, you should normally run
+`units --check' to check for errors.  If the `units' keyword is not
+given, the `--check' option checks a nonlinear unit definition using a
+dimensionless argument, and then checks using an arbitrary combination
+of units, as well as the square and cube of that combination; a warning
+is given if any of these tests fail.  For example,
+
+     Warning: function 'squirt(x)' defined as 'sqrt(x)'
+              failed for some test inputs:
+              squirt(7(kg K)^1): Unit not a root
+              squirt(7(kg K)^3): Unit not a root
+
+Running `units --check' will print a warning if a non-monotonic
+piecewise linear unit is encountered.  For example, the relationship
+between ANSI coated abrasive designation and mean particle size is
+non-monotonic in the vicinity of 800 grit:
+
+     ansicoated[micron] \
+          . . .
+         600 10.55 \
+         800 11.5 \
+         1000 9.5 \
+
+Running `units --check' would give the error message
+
+     Table 'ansicoated' lacks unique inverse around entry 800
+
+Although the inverse is not well defined in this region, it's not really
+an error.  Viewing such error messages can be tedious, and if there are
+enough of them, they can distract from true errors.  Error checking for
+nonlinear unit definitions can be suppressed by giving the `noerror'
+keyword; for the examples above, this could be done as
+
+     squirt(x) noerror domain=[0,) range=[0,) sqrt(x); squirt^2
+     ansicoated[micron] noerror \
+          . . .
+
+Use the `noerror' keyword with caution.  The safest approach after
+adding a nonlinear unit definition is to run `units --check' and
+confirm that there are no actual errors before adding the `noerror'
+keyword.
+
+10.5 Defining Unit List Aliases
+===============================
 
 Unit list aliases are treated differently from unit definitions,
 because they are a data entry shorthand rather than a true definition
@@ -1453,55 +1889,208 @@ included in the standard units data file are
 Unit list aliases are only for unit lists, so the definition must
 include a `;'.  Unit list aliases can never be combined with units or
 other unit list aliases, so the definition of `time' shown above could
-_not_ have been shortened to `year;day;hms'.  As usual, be sure to run
-`units --check' to ensure that the units listed in unit list aliases
-are conformable.
+_not_ have been shortened to `year;day;hms'.
 
-10 Numeric Output Format
+   As usual, be sure to run `units --check' to ensure that the units
+listed in unit list aliases are conformable.
+
+11 Numeric Output Format
 ************************
 
-By default, results of conversions are shown to eight significant
-figures; this can be changed with the `--exponential' and
-`--output-format' options.  The former sets an exponential format
-(i.e., scientific notation) like that used in the original Unix `units'
-program; the latter allows the format to be given as that of the printf
-function in the ANSI C standard.
+By default, `units' shows results to eight significant digits. You can
+change this with the `--exponential', `--digits', and `--output-format'
+options.  The first sets an exponential format (i.e., scientific
+notation) like that used in the original Unix `units' program, the
+second allows you to specify a different number of significant digits,
+and the last allows you to control the output appearance using the
+format for the `printf()' function in the C programming language.  If
+you only want to change the number of significant digits or specify
+exponential format type, use the `--digits' and `--exponential'
+options.  The `--output-format' option affords the greatest control of
+the output appearance, but requires at least rudimentary knowledge of
+the `printf()' format syntax. *Note Invoking Units::, for descriptions
+of these options.
 
-   The format recognized with the `--output-format' option is a subset
-of that for printf().  Only a floating-point format of the form
-`%'[flag][width][`.'precision]type is allowed: it must begin with `%',
-and must end with a floating-point type specifier (`E' or `e' for
-scientific notation, `f' for fixed-point decimal, or `G' or `g' to
-specify the number of significant figures).  The format specification
-may include one optional flag (`+', `-', `#', or a space), followed by
-an optional value for the minimum field width, and an optional
-precision specification that begins with a period (e.g., `.6').  In
-addition to the digits, the field width includes the decimal point, the
-exponent, and the sign if any of these are shown.  A width
-specification is typically used with fixed-point decimal to have
-columns of numbers align at the decimal point; it normally is not
-useful with `units'.  Non-floating-point type specifiers make no sense
-for `units', and are forbidden.
+11.1 Format Specification
+=========================
 
-   The default format is `%.8g'; for greater precision, you could
-specify `-o %.15g'.  The `G' and `g' formats use exponential format
-whenever the exponent would be less than -5, so the value 0.000013
-displays as `1.3e-005'.  If you prefer fixed-point display, you might
-specify `-o %.8f'; however, very small numbers may display very few
-significant figures, and for very small numbers, may show nothing but
-zeros.
+The format specification recognized with the `--output-format' option
+is a subset of that for `printf()'.  The format specification has the
+form `%'[flags][width][`.'precision]type; it must begin with `%', and
+must end with a floating-point type specifier: `g' or `G' to specify
+the number of significant digits, `e' or `E' for scientific notation,
+and `f' for fixed-point decimal.  The ISO C99 standard added the `F'
+type for fixed-point decimal and the `a' and `A' types for hexadecimal
+floating point; these types are allowed with compilers that support
+them.  Type length modifiers (e.g., `L' to indicate a long double) are
+inapplicable and are not allowed.
 
-   See the documentation for printf() for more detailed descriptions of
-the format specification.
+   The default format for `units' is `%.8g'; for greater precision, you
+could specify `-o %.15g'.  The `g' and `G' format types use exponential
+format whenever the exponent would be less than -4, so the value
+0.000013 displays as `1.3e-005'.  These types also use exponential
+notation when the exponent is greater than or equal to the precision,
+so with the default format, the value 5e7 displays as `50000000' and
+the value 5e8 displays as `5e+008'.  If you prefer fixed-point display,
+you might specify `-o %.8f'; however, small numbers will display very
+few significant digits, and values less than 0.5e-8 will show nothing
+but zeros.
 
-11 Localization
+   The format specification may include one or more optional flags:
+`+', ` ' (space), `#', `-', or `0' (the digit zero).  The
+digit-grouping flag
+
+   `'' (apostrophe)
+
+   is allowed with compilers that support it.  Flags are followed by an
+optional value for the minimum field width, and an optional precision
+specification that begins with a period (e.g., `.6').  The field width
+includes the digits, decimal point, the exponent, thousands separators
+(with the digit-grouping flag), and the sign if any of these are shown.
+
+11.2 Flags
+==========
+
+The `+' flag causes the output to have a sign (`+' or `-').  The space
+flag ` ' is similar to the `+' flag, except that when the value is
+positive, it is prefixed with a space rather than a plus sign; this
+flag is ignored if the `+' flag is also given.  The `+' or ` ' flag
+could be useful if conversions might include positive and negative
+results, and you wanted to align the decimal points in exponential
+notation.  The `#' flag causes the output value to contain a decimal
+point in all cases; by default, the output contains a decimal point
+only if there are digits (which can be trailing zeros) to the right of
+the point.  With the `g' or `G' types, the `#' flag also prevents the
+suppression of trailing zeros.  The digit-grouping flag
+
+   `''
+
+   shows a thousands separator in digits to the left of the decimal
+point.  This can be useful when displaying large numbers in fixed-point
+decimal; for example, with the format `%f',
+
+     You have: mile
+     You want: microfurlong
+             * 8000000.000000
+             / 0.000000
+
+the magnitude of the first result may not be immediately obvious without
+counting the digits to the left of the decimal point.  If the thousands
+separator is the comma (`,'), the output with the format
+
+   `%'f'
+
+   might be
+
+     You have: mile
+     You want: microfurlong
+             * 8,000,000.000000
+             / 0.000000
+
+making the magnitude readily apparent.  Unfortunately, few compilers
+support the digit-grouping flag.
+
+   With the `-' flag, the output value is left aligned within the
+specified field width.  If a field width greater than needed to show the
+output value is specified, the `0' (zero) flag causes the output value
+to be left padded with zeros until the specified field width is
+reached; for example, with the format `%011.6f',
+
+     You have: troypound
+     You want: grain
+             * 5760.000000
+             / 0000.000174
+
+The `0' flag has no effect if the `-' (left align) flag is given.
+
+11.3 Field Width
+================
+
+By default, the output value is left aligned and shown with the minimum
+width necessary for the specified (or default) precision.  If a field
+width greater than this is specified, the value shown is right aligned,
+and padded on the left with enough spaces to provide the specified field
+width.  A width specification is typically used with fixed-point decimal
+to have columns of numbers align at the decimal point; this arguably is
+less useful with `units' than with long columnar output, but it may
+nonetheless assist in quickly assessing the relative magnitudes of
+results.  For example, with the format `%12.6f',
+
+     You have: km
+     You want: in
+             * 39370.078740
+             /     0.000025
+     You have: km
+     You want: rod
+             *   198.838782
+             /     0.005029
+     You have: km
+     You want: furlong
+             *     4.970970
+             /     0.201168
+
+11.4 Precision
+==============
+
+The meaning of "precision" depends on the format type.  With `g' or
+`G', it specifies the number of significant digits (like the `--digits'
+option); with `e', `E', `f', or `F', it specifies the maximum number of
+digits to be shown after the decimal point.
+
+   With the `g' and `G' format types, trailing zeros are suppressed, so
+the results may sometimes have fewer digits than the specified
+precision (as indicated above, the `#' flag causes trailing zeros to be
+displayed).
+
+   The default precision is 6, so `%g' is equivalent to `%.6g', and
+would show the output to six significant digits.  Similarly, `%e' or
+`%f' would show the output with six digits after the decimal point.
+
+   The C `printf()' function allows a precision of arbitrary size,
+whether or not all of the digits are meaningful.  With most compilers,
+the maximum internal precision with `units' is 15 decimal digits (or 13
+hexadecimal digits).  With the `--digits' option, you are limited to
+the maximum internal precision; with the `--output-format' option, you
+may specify a precision greater than this, but it may not be
+meaningful.  In some cases, specifying excess precision can result in
+rounding artifacts.  For example, a pound is exactly 7000 grains, but
+with the format `%.18g', the output might be
+
+     You have: pound
+     You want: grain
+             * 6999.9999999999991
+             / 0.00014285714285714287
+
+With the format `%.25g' you might get the following:
+
+     You have: 1/3
+     You want:
+             Definition: 0.333333333333333314829616256247
+
+In this case the displayed value includes a series of digits that
+represent the underlying binary floating-point approximation to 1/3 but
+are not meaningful for the desired computation.  In general, the result
+with excess precision is system dependent.  The precision affects only
+the _display_ of numbers; if a result relies on physical constants that
+are not known to the specified precision, the number of physically
+meaningful digits may be less than the number of digits shown.
+
+   See the documentation for `printf()' for more detailed descriptions
+of the format specification.
+
+   The `--output-format' option is incompatible with the
+`--exponential' or `--digits' options; if the former is given in
+combination with either of the latter, the format is controlled by the
+last option given.
+
+12 Localization
 ***************
 
 Some units have different values in different locations.  The
 localization feature accommodates this by allowing a units data file to
 specify definitions that depend on the user's locale.
 
-11.1 Locale
+12.1 Locale
 ===========
 
 A locale is a subset of a user's environment that indicates the user's
@@ -1518,11 +2107,11 @@ is upper case. For example, the POSIX locale for the United Kingdom is
    On systems running Microsoft Windows, the value returned by
 setlocale() is different from that on POSIX systems; `units' attempts
 to map the Windows value to a POSIX value by means of a table in the
-file `locale.map' in the same directory, typically
-`/usr/local/share/units', as the default units data files.  The file
-includes entries for many combinations of language and country, and can
-be extended to include other combinations.  The `locale.map' comprises
-two tab-separated columns; each entry is of the form
+file `locale_map.txt' in the same directory as the other data files.
+The file includes entries for many combinations of language and
+country, and can be extended to include other combinations.  The
+`locale_map.txt' file comprises two tab-separated columns; each entry
+is of the form
 
      WINDOWS-LOCALE   POSIX-LOCALE
 
@@ -1546,7 +2135,7 @@ locale matches.  You end the block of localized units with
      gallon       4.54609 liter
      !endlocale
 
-11.2 Additional Localization
+12.2 Additional Localization
 ============================
 
 Sometimes the locale isn't sufficient to determine unit preferences.
@@ -1575,7 +2164,7 @@ officially defined in English-speaking countries relative to the yard,
 but until 1959, the yard differed slightly among those countries.  In
 France the customary inch, which was displaced in 1799 by the meter,
 had a different length based on a french foot.  These customary
-definitions could be accomodated as follows:
+definitions could be accommodated as follows:
 
      !var INCH_UNIT usa
      yard          3600|3937 m
@@ -1647,7 +2236,7 @@ for the current environment and locale, so when adding new definitions
 take care to check that all cases give rise to a well defined set of
 definitions.
 
-12 Environment Variables
+13 Environment Variables
 ************************
 
 The `units' program uses the following environment variables:
@@ -1655,9 +2244,12 @@ The `units' program uses the following environment variables:
 `HOME'
      Specifies the location of your home directory; it is used by
      `units' to find a personal units data file `.units'.  On systems
-     running Microsoft Windows, `units' tries to determine your home
+     running Microsoft Windows, the file is `unitdef.units', and if
+     `HOME' does not exist, `units' tries to determine your home
      directory from the `HOMEDRIVE' and `HOMEPATH' environment
-     variables if `HOME' does not exist.
+     variables; if these variables do not exist, units finally tries
+     `USERPROFILE'--typically `C:\Users\USERNAME' (Windows Vista and
+     Windows 7) or `C:\Documents and Settings\USERNAME' (Windows XP).
 
 `LC_CTYPE, LANG'
      Checked to determine the locale if `units' cannot obtain it from
@@ -1684,28 +2276,112 @@ The `units' program uses the following environment variables:
 `UNITSFILE'
      Specifies the units data file to use (instead of the default).
      You can only specify a single units data file using this
-     environment variable.  If units data files are given using the `-f'
-     option, the file specified by `UNITSFILE' will be not be loaded
-     unless the `-f' option is given with the empty string
+     environment variable.  If units data files are given using the
+     `-f' option, the file specified by `UNITSFILE' will be not be
+     loaded unless the `-f' option is given with the empty string
      (`units -f ""').
 
+`UNITSLOCALEMAP'
+     Windows only; this variable has no effect on Unix-like systems.
+     Specifies the units locale map file to use (instead of the
+     default).  This variable seldom needs to be set, but you can use
+     it to ensure that the locale map file will be found if you specify
+     a location for the units data file using either the `-f' option or
+     the `UNITSFILE' environment variable, and that location does not
+     also contain the locale map file.
 
-13 Unicode Support
+
+14 Data Files
+*************
+
+The `units' program uses two default data files: `definitions.units'
+and `currency.units'.  The program can also use an optional personal
+units data file `.units' (`unitdef.units' under Windows) located in the
+user's home directory.  The personal units data file is described in
+more detail in *note Units Data Files::.
+
+   On Unix-like systems, the data files are typically located in
+`/usr/share/units' if `units' is provided with the operating system, or
+in `/usr/local/share/units' if `units' is compiled from the source
+distribution.
+
+   On systems running Microsoft Windows, the files may be in the same
+locations if Unix-like commands are available, a Unix-like file
+structure is present (e.g., `C:/usr/local'), and `units' is compiled
+from the source distribution.  If Unix-like commands are not available,
+a more common location is `C:\Program Files (x86)\GNU\units' (for
+64-bit Windows installations) or `C:\Program Files\GNU\units' (for
+32-bit installations).
+
+   If `units' is obtained from the GNU Win32 Project
+(`http://gnuwin32.sourceforge.net/'), the files are commonly in
+`C:\Program Files\GnuWin32\share\units'.
+
+   If the default units data file is not an absolute pathname, `units'
+will look for the file in the directory that contains the `units'
+program; if the file is not found there, `units' will look in a
+directory `../share/units' relative to the directory with the `units'
+program.
+
+   You can determine the location of the files by running
+`units --version'.  Running `units --info' will give you additional
+information about the files, how `units' will attempt to find them, and
+the status of the related environment variables.
+
+15 Unicode Support
 ******************
 
-The standard units data file is written in Unicode using the UTF-8
-encoding.  Portions of the file that are not plain ASCII begin with
-`!utf8' and end with `!endutf8'.  As usual, the `!' must appear as the
-first character on the line.  If a line of a data file contains byte
-sequences that are invalid UTF-8 or non-printing UTF-8 then `units'
-ignores the entire line.
+The standard units data file is in Unicode, using UTF-8 encoding.  Most
+definitions use only ASCII characters (i.e., code points U+0000 through
+U+007F); definitions using non-ASCII characters appear in blocks
+beginning with `!utf8' and ending with `!endutf8'.
 
-   When `units' runs it checks the locale to determine the character
-set.  If UTF-8 is listed, then `units' reads the utf8 definitions.  If
-any other character set is in use, then `units' works in plain ASCII
-without support for extended characters.
+   When `units' starts, it checks the locale to determine the character
+set.  If `units' is compiled with Unicode support and definitions;
+otherwise these definitions are ignored.  When Unicode support is
+active, `units' will check every line of all of the units data files
+for invalid or non-printing UTF-8 sequences; if such sequences occur,
+`units' ignores the entire line.  In addition to checking validity,
+`units' determines the display width of non-ASCII characters to ensure
+proper positioning of the pointer in some error messages and to align
+columns for the `search' and `?' commands.
 
-14 Readline Support
+   At present, `units' does not support Unicode under Microsoft
+Windows.  The UTF-16 and UTF-32 encodings are not supported on any
+systems.
+
+   If definitions that contain non-ASCII characters are added to a units
+data file, those definitions should be enclosed within `!utf8' ...
+`!endutf8' to ensure that they are only loaded when Unicode support is
+available.  As usual, the `!' must appear as the first character on the
+line.  As discussed in *note Units Data Files::, it's usually best to
+put such definitions in supplemental data files linked by an `!include'
+command or in a personal units data file.
+
+   When Unicode support is not active, `units' makes no assumptions
+about character encoding, except that characters in the range 00-7F
+hexadecimal correspond to ASCII encoding.  Non-ASCII characters are
+simply sequences of bytes, and have no special meanings; for definitions
+in supplementary units data files, you can use any encoding consistent
+with this assumption.  For example, if you wish to use non-ASCII
+characters in definitions when running `units' under Windows, you can
+use a character set such as Windows "ANSI" (code page 1252 in the US
+and Western Europe).  You can even use UTF-8, though some messages may
+be improperly aligned, and `units' will not detect invalid UTF-8
+sequences.  If you use UTF-8 encoding when Unicode support is not
+active, you should place any definitions with non-ASCII characters
+_outside_ `!utf8' ... `!endutf8' blocks--otherwise, they will be
+ignored.
+
+   Typeset material other than code examples usually uses the Unicode
+minus (U+2212) rather than the ASCII hyphen-minus operator (U+002D)
+used in `units'; the figure dash (U+2012) and en dash (U+2013) are also
+occasionally used.  To allow such material to be copied and pasted for
+interactive use or in units data files, `units' converts these
+characters to U+002D before further processing.  Because of this, none
+of these characters can appear in unit names.
+
+16 Readline Support
 *******************
 
 If the `readline' package has been compiled in, then when `units' is
@@ -1734,7 +2410,7 @@ key and `units' will provide the rest of the unit name.  If `units'
 beeps, it means that there is no unique completion.  Pressing the <TAB>
 key a second time will print the list of all completions.
 
-15 Updating Currency Exchange Rates
+17 Updating Currency Exchange Rates
 ***********************************
 
 The units program includes currency exchange rates and prices for some
@@ -1742,18 +2418,19 @@ precious metals in the database.  Of course, these values change over
 time, sometimes very rapidly, and `units' cannot provide real time
 values.  To update the exchange rates run the `units_cur', which
 rewrites the files containing the currency rates, typically
-`/usr/local/share/units/currency.units'.  This program must be run with
-suitable permissions to write the file.  To keep the rates updated
-automatically, it could be run by a cron job on a Unix-like system, or
-a similar scheduling program on a different system.  Currency exchange
-rates are taken from Time Genie (`http://www.timegenie.com') and
-precious metals pricing from Packetizer (`www.packetizer.com').  These
-sites update once per day, so there is no benefit in running the update
-script more often than daily.  You can run `units_cur' with a filename
-specified on the command line and it will write the data to that file.
-If you give `-' for the file it will write to standard output.
+`/usr/share/units/currency.units'.  This program requires `python' and
+the `unidecode' package, and must be run with suitable permissions to
+write the file.  To keep the rates updated automatically, run it using
+a cron job on a Unix-like system, or a similar scheduling program on a
+different system.  Currency exchange rates are taken from Time Genie
+(`http://www.timegenie.com') and precious metals pricing from
+Packetizer (`www.packetizer.com').  These sites update once per day, so
+there is no benefit in running the update script more often than daily.
+You can run `units_cur' with a filename specified on the command line
+and it will write the data to that file.  If you give `-' for the file
+it will write to standard output.
 
-16 Database Command Syntax
+18 Database Command Syntax
 **************************
 
 UNIT DEFINITION
@@ -1762,14 +2439,15 @@ UNIT DEFINITION
 PREFIX- DEFINITION
      Define a prefix.
 
-FUNCNAME(VAR) units=[IN-UNITS,OUT-UNITS] domain=[X1,X2] range=[Y1,Y2] DEFINITION(VAR) ; INVERSE(FUNCNAME)
-     Define a nonlinear unit or unit function.  The three optional
-     keywords `units=', `range=' and `domain=' can appear in any order.
-     The definition of the inverse is optional.
+FUNCNAME(VAR) noerror units=[IN-UNITS,OUT-UNITS] domain=[X1,X2] range=[Y1,Y2] DEFINITION(VAR) ; INVERSE(FUNCNAME)
+     Define a nonlinear unit or unit function.  The four optional
+     keywords `noerror', `units=', `range=' and `domain=' can appear in
+     any order.  The definition of the inverse is optional.
 
-TABNAME[OUT-UNITS] PAIR-LIST
+TABNAME[OUT-UNITS] noerror PAIR-LIST
      Define a piecewise linear unit.  The pair list gives the points on
-     the table listed in ascending order.
+     the table listed in ascending order.  The `noerror' keyword is
+     optional.
 
 !endlocale
      End a block of definitions beginning with `!locale'
@@ -1801,20 +2479,20 @@ TABNAME[OUT-UNITS] PAIR-LIST
      Load the following definitions only if `units' is running with
      UTF-8 enabled.
 
-!var VARIABLE VALUE-LIST
-     Load the following definitions only if the environment variable,
-     VARIABLE is set to one of the values listed on the space separated
-     value list. If VARIABLE is not set then `units' prints an error
-     message and ignores the following definitions.
+!var ENVAR VALUE-LIST
+     Load the block of definitions that follows only if the environment
+     variable ENVAR is set to one of the values listed in the
+     space-separated value list.  If ENVAR is not set, `units' prints
+     an error message and ignores the block of definitions.
 
-!varnot VARIABLE VALUE-LIST
-     Load the following definitions only if the environment variable,
-     VARIABLE is NOT set to one of the values listed on the space
-     separated value list.  If VARIABLE is not set then `units' prints
-     an error message and ignores the following definitions.
+!varnot ENVAR VALUE-LIST
+     Load the block of definitions that follows only if the environment
+     variable ENVAR is set to value that is _not_ listed in the
+     space-separated value list.  If ENVAR is not set, `units' prints
+     an error message and ignores the block of definitions.
 
 
-17 GNU Free Documentation License
+19 GNU Free Documentation License
 *********************************
 
                      Version 1.3, 3 November 2008
@@ -2300,223 +2978,252 @@ permit their use in free software.
 Index
 *****
 
-! to indicate primitive units:                 See 9.2.      (line 1208)
-!endlocale:                                    See 11.       (line 1500)
-!endutf8:                                      See 13.       (line 1696)
-!include:                                      See 9.1.      (line 1166)
-!locale:                                       See 11.       (line 1500)
-!unitlist:                                     See 9.4.      (line 1440)
-!utf8:                                         See 13.       (line 1696)
-* operator:                                    See 5.1.      (line  397)
-** operator:                                   See 5.1.      (line  383)
-+ operator:                                    See 5.2.      (line  452)
-- as multiplication operator:                  See 5.6.      (line  620)
-- as subtraction operator:                     See 5.2.      (line  452)
---check (option for units):                    See 8.        (line 1014)
---check-verbose (option for units):            See 8.        (line 1022)
---compact (option for units):                  See 8.        (line 1081)
---file (option for units):                     See 8.        (line 1046)
---help (option for units):                     See 8.        (line 1057)
---locale (option for units):                   See 8.        (line 1154)
---minus (option for units):                    See 8.        (line 1061)
---newstar (option for units):                  See 8.        (line 1076)
---oldstar (option for units):                  See 8.        (line 1072)
---one-line (option for units):                 See 8.        (line 1128)
---output-format (option for units):            See 8.        (line 1030)
---product (option for units):                  See 8.        (line 1066)
---quiet (option for units):                    See 8.        (line 1087)
---silent (option for units):                   See 8.        (line 1087)
---strict (option for units):                   See 8.        (line 1119)
---terse (option for units):                    See 8.        (line 1135)
---verbose (option for units):                  See 8.        (line 1142)
---verbose-check (option for units):            See 8.        (line 1022)
---version (option for units):                  See 8.        (line 1148)
--1 (option for units):                         See 8.        (line 1128)
--c (option for units):                         See 8.        (line 1014)
--f (option for units):                         See 8.        (line 1046)
--h (option for units):                         See 8.        (line 1057)
--l (option for units):                         See 8.        (line 1154)
--m (option for units):                         See 8.        (line 1061)
--o (option for units):                         See 8.        (line 1030)
--p (option for units):                         See 8.        (line 1066)
--q (option for units):                         See 8.        (line 1087)
--s (option for units):                         See 8.        (line 1119)
--t (option for units):                         See 8.        (line 1135)
--V (option for units):                         See 8.        (line 1148)
--v (option for units):                         See 8.        (line 1142)
-? for unit completion with readline:           See 14.       (line 1721)
-? to show conformable units:                   See 2.        (line  201)
-abrasive grit size:                            See 6.2.      (line  728)
-addition of units:                             See 5.2.      (line  455)
-additional units data files:                   See 9.1.      (line 1166)
-backwards compatibility:                       See 5.6.      (line  609)
-British Imperial measure:                      See 4.        (line  281)
-circle, area of:                               See 6.2.      (line  734)
-command, ! to indicate primitive units:        See 9.2.      (line 1208)
-command, !endlocale:                           See 11.       (line 1500)
-command, !endutf8:                             See 13.       (line 1696)
-command, !endvar:                              See 11.       (line 1500)
-command, !include:                             See 9.1.      (line 1166)
-command, !locale:                              See 11.       (line 1500)
-command, !message:                             See 11.       (line 1500)
-command, !set:                                 See 11.       (line 1500)
-command, !unitlist:                            See 9.4.      (line 1440)
-command, !utf8:                                See 13.       (line 1696)
-command, !var:                                 See 11.       (line 1500)
-command, !varnot:                              See 11.       (line 1500)
-command-line options:                          See 8.        (line  996)
-command-line unit conversion:                  See 3.        (line  220)
-commands in units database:                    See 16.       (line 1759)
-compatibility:                                 See 5.6.      (line  609)
-compatibility with earlier versions:           See 5.6.      (line  609)
-completion, unit, using ? (readline only):     See 14.       (line 1721)
-conformable units, ? to show:                  See 2.        (line  201)
-currency, updating:                            See 15.       (line 1740)
-Darcy-Weisbach equation:                       See 5.5.      (line  568)
-data files, additional:                        See 9.1.      (line 1166)
-database syntax summary:                       See 16.       (line 1759)
-defining nonlinear units:                      See 9.3.      (line 1279)
-defining prefixes:                             See 9.2.      (line 1208)
-defining units:                                See 9.2.      (line 1208)
-defining units with `-':                       See 5.6.      (line  636)
-differences of units:                          See 5.2.      (line  455)
-dimensionless units:                           See 2.        (line  199)
-dimensionless units, defining:                 See 9.2.      (line 1238)
-division of numbers:                           See 5.1.      (line  435)
-division of units:                             See 5.1.      (line  397)
-environment dependent definitions:             See 11.       (line 1500)
-environment variable, HOME:                    See 12.       (line 1656)
-environment variable, LANG:                    See 12.       (line 1663)
-environment variable, LC_CTYPE:                See 12.       (line 1663)
-environment variable, MYUNITSFILE <1>:         See 12.       (line 1668)
-environment variable, MYUNITSFILE:             See 9.1.      (line 1201)
-environment variable, PAGER:                   See 12.       (line 1674)
-environment variable, UNITS_ENGLISH:           See 12.       (line 1681)
-environment variable, UNITSFILE:               See 12.       (line 1685)
-environment variables:                         See 12.       (line 1653)
-exchange rates, updating:                      See 15.       (line 1740)
-exponent operator:                             See 5.1.      (line  383)
-fractions, numerical:                          See 5.1.      (line  435)
-functions of units:                            See 9.3.      (line 1380)
-functions, built in:                           See 5.4.      (line  525)
-help <1>:                                      See 12.       (line 1674)
-help:                                          See 2.        (line  206)
-HOME environment variable:                     See 12.       (line 1656)
-hyphen as multiplication operator:             See 5.6.      (line  620)
-Imperial measure:                              See 4.        (line  281)
-include files:                                 See 9.2.      (line 1217)
-including additional units data files:         See 9.1.      (line 1166)
-incompatible units:                            See 2.        (line  166)
-interactive use:                               See 2.        (line   86)
-international mile:                            See 4.1.      (line  319)
-international yard:                            See 4.1.      (line  319)
-invoking units:                                See 8.        (line  996)
-LANG environment variable:                     See 12.       (line 1663)
-LC_CTYPE environment variable:                 See 12.       (line 1663)
-length measure, English customary:             See 4.1.      (line  319)
-length measure, UK:                            See 4.1.      (line  319)
-linear interpolation:                          See 9.3.      (line 1390)
-locale:                                        See 11.1.     (line 1507)
-locale.map:                                    See 11.1.     (line 1518)
-localization:                                  See 11.       (line 1500)
-measure, Imperial:                             See 4.        (line  281)
-mile, international:                           See 4.1.      (line  319)
-minus (-) operator, subtraction:               See 5.2.      (line  452)
-multiplication of units:                       See 5.1.      (line  397)
-multiplication, hyphen:                        See 5.6.      (line  620)
-MYUNITSFILE environment variable <1>:          See 12.       (line 1668)
-MYUNITSFILE environment variable:              See 9.1.      (line 1201)
-non-conformable units:                         See 2.        (line  166)
-non-interactive unit conversion:               See 3.        (line  220)
-nonlinear unit conversions <1>:                See 9.3.      (line 1279)
-nonlinear unit conversions:                    See 6.        (line  641)
-nonlinear units, defining:                     See 9.3.      (line 1279)
-nonlinear units, other:                        See 6.2.      (line  698)
-numbers as units:                              See 5.3.      (line  504)
-numeric output format:                         See 10.       (line 1463)
-numerical fractions:                           See 5.1.      (line  435)
-operator precedence:                           See 5.1.      (line  404)
-operator, (**):                                See 5.1.      (line  383)
-operator, caret (^):                           See 5.1.      (line  383)
-operator, hyphen (-) as multiplication:        See 5.6.      (line  620)
-operator, hyphen (-) as subtraction:           See 5.2.      (line  452)
-operator, minus (-):                           See 5.2.      (line  452)
-operator, per:                                 See 5.1.      (line  397)
-operator, plus (+):                            See 5.2.      (line  452)
-operator, slash (/):                           See 5.1.      (line  397)
-operator, solidus (/):                         See 5.1.      (line  397)
-operator, space:                               See 5.1.      (line  397)
-operator, star (*):                            See 5.1.      (line  397)
-operator, vertical bar (|):                    See 5.1.      (line  435)
-operators:                                     See 5.1.      (line  370)
-output format:                                 See 10.       (line 1463)
-PAGER environment variable:                    See 12.       (line 1674)
-parentheses <1>:                               See 9.3.      (line 1308)
-parentheses <2>:                               See 9.2.      (line 1247)
-parentheses <3>:                               See 5.5.      (line  588)
-parentheses <4>:                               See 5.2.      (line  479)
-parentheses:                                   See 5.1.      (line  383)
-per operator:                                  See 5.1.      (line  397)
-personal units data file:                      See 9.1.      (line 1186)
-piecewise linear units:                        See 9.3.      (line 1390)
-plus (+) operator:                             See 5.2.      (line  452)
-powers:                                        See 5.1.      (line  383)
-prefixes:                                      See 4.        (line  298)
-prefixes and exponents:                        See 5.1.      (line  404)
-prefixes, definition of:                       See 9.2.      (line 1208)
-primitive units:                               See 9.2.      (line 1208)
-products of units:                             See 5.1.      (line  397)
-quotients of units:                            See 5.1.      (line  397)
-readline, use with units:                      See 14.       (line 1711)
-reciprocal conversion:                         See 2.        (line  141)
-roots:                                         See 5.4.      (line  546)
-setlocale function:                            See 11.1.     (line 1518)
-slash (/) operator:                            See 5.1.      (line  397)
-solidus (/) operator:                          See 5.1.      (line  397)
-sphere, volume of:                             See 6.2.      (line  734)
-square roots:                                  See 5.4.      (line  546)
-star (*) operator:                             See 5.1.      (line  397)
-State Plane Coordinate System, US:             See 4.1.      (line  319)
-strict conversion:                             See 2.        (line  150)
-subtraction of units:                          See 5.2.      (line  455)
-sums and differences of units:                 See 5.2.      (line  452)
-sums of units <1>:                             See 7.        (line  754)
-sums of units:                                 See 5.2.      (line  455)
-survey foot, US:                               See 4.1.      (line  319)
-survey measure, US:                            See 4.1.      (line  319)
-survey mile, US:                               See 4.1.      (line  319)
-syntax of units database:                      See 16.       (line 1759)
-temperature conversions:                       See 6.1.      (line  647)
-Unicode support:                               See 13.       (line 1696)
-unit completion using ? (readline only):       See 14.       (line 1721)
-unit definitions:                              See 4.        (line  251)
-unit expressions:                              See 5.        (line  367)
-unit expressions, complicated:                 See 5.5.      (line  567)
-unit list aliases, defining:                   See 9.4.      (line 1440)
-unit lists:                                    See 7.        (line  754)
-unit name completion:                          See 14.       (line 1724)
-units data file, personal:                     See 9.1.      (line 1186)
-units data files, additional:                  See 9.1.      (line 1166)
-units definitions, adding:                     See 9.2.      (line 1208)
-units definitions, changing:                   See 9.2.      (line 1208)
-units functions:                               See 9.3.      (line 1380)
-units quotients:                               See 5.1.      (line  397)
-units, definition of:                          See 9.2.      (line 1208)
-units, lookup method:                          See 4.        (line  289)
-units, piecewise linear:                       See 9.3.      (line 1390)
-units, primitive:                              See 9.2.      (line 1208)
-units, sums and differences:                   See 5.2.      (line  452)
-units, sums of:                                See 7.        (line  754)
-UNITS_ENGLISH environment variable:            See 12.       (line 1681)
-UNITSFILE environment variable:                See 12.       (line 1685)
-US State Plane Coordinate System:              See 4.1.      (line  319)
-US survey foot:                                See 4.1.      (line  319)
-US survey measure:                             See 4.1.      (line  319)
-US survey mile:                                See 4.1.      (line  319)
-UTF-8:                                         See 13.       (line 1696)
-verbose output:                                See 2.        (line  132)
-vertical bar (|) operator:                     See 5.1.      (line  435)
-volume measure, English customary:             See 4.1.      (line  304)
-wire gauge:                                    See 6.2.      (line  706)
-yard, international:                           See 4.1.      (line  319)
-| operator:                                    See 5.1.      (line  435)
+! to indicate primitive units:                 See 10.2.     (line 1543)
+!endlocale:                                    See 12.       (line 2089)
+!endutf8:                                      See 15.       (line 2334)
+!include:                                      See 10.1.     (line 1498)
+!locale:                                       See 12.       (line 2089)
+!unitlist:                                     See 10.5.     (line 1876)
+!utf8:                                         See 15.       (line 2334)
+* operator:                                    See 5.1.      (line  394)
+** operator:                                   See 5.1.      (line  441)
++ operator:                                    See 5.2.      (line  500)
+- as multiplication operator:                  See 5.7.      (line  746)
+- as subtraction operator:                     See 5.2.      (line  500)
+--check (option for units):                    See 9.        (line 1265)
+--check-verbose (option for units):            See 9.        (line 1274)
+--compact (option for units):                  See 9.        (line 1374)
+--digits (option for units):                   See 9.        (line 1282)
+--exponential (option for units):              See 9.        (line 1299)
+--file (option for units):                     See 9.        (line 1330)
+--help (option for units):                     See 9.        (line 1350)
+--info (option for units):                     See 9.        (line 1459)
+--locale (option for units):                   See 9.        (line 1478)
+--log (option for units):                      See 9.        (line 1341)
+--minus (option for units):                    See 9.        (line 1354)
+--newstar (option for units):                  See 9.        (line 1369)
+--oldstar (option for units):                  See 9.        (line 1365)
+--one-line (option for units):                 See 9.        (line 1421)
+--output-format (option for units):            See 9.        (line 1308)
+--product (option for units):                  See 9.        (line 1359)
+--quiet (option for units):                    See 9.        (line 1380)
+--silent (option for units):                   See 9.        (line 1380)
+--strict (option for units):                   See 9.        (line 1412)
+--terse (option for units):                    See 9.        (line 1428)
+--unitsfile (option for units):                See 9.        (line 1473)
+--verbose (option for units):                  See 9.        (line 1437)
+--verbose-check (option for units):            See 9.        (line 1274)
+--version (option for units):                  See 9.        (line 1444)
+-1 (option for units):                         See 9.        (line 1421)
+-c (option for units):                         See 9.        (line 1265)
+-d (option for units):                         See 9.        (line 1282)
+-e (option for units):                         See 9.        (line 1299)
+-f (option for units):                         See 9.        (line 1330)
+-h (option for units):                         See 9.        (line 1350)
+-I (option for units):                         See 9.        (line 1459)
+-l (option for units):                         See 9.        (line 1478)
+-L (option for units):                         See 9.        (line 1341)
+-m (option for units):                         See 9.        (line 1354)
+-o (option for units):                         See 9.        (line 1308)
+-p (option for units):                         See 9.        (line 1359)
+-q (option for units):                         See 9.        (line 1380)
+-s (option for units):                         See 9.        (line 1412)
+-t (option for units):                         See 9.        (line 1428)
+-U (option for units):                         See 9.        (line 1473)
+-V (option for units):                         See 9.        (line 1444)
+-v (option for units):                         See 9.        (line 1437)
+? for unit completion with readline:           See 16.       (line 2397)
+? to show conformable units:                   See 2.        (line  215)
+_ to use result of previous conversion:        See 5.5.      (line  615)
+abrasive grit size:                            See 6.2.      (line  864)
+addition of units:                             See 5.2.      (line  503)
+additional units data files:                   See 10.1.     (line 1498)
+backwards compatibility:                       See 5.7.      (line  735)
+British Imperial measure:                      See 4.        (line  295)
+circle, area of:                               See 6.2.      (line  870)
+command, ! to indicate primitive units:        See 10.2.     (line 1543)
+command, !endlocale:                           See 12.       (line 2089)
+command, !endutf8:                             See 15.       (line 2334)
+command, !endvar:                              See 12.       (line 2089)
+command, !include:                             See 10.1.     (line 1498)
+command, !locale:                              See 12.       (line 2089)
+command, !message:                             See 12.       (line 2089)
+command, !set:                                 See 12.       (line 2089)
+command, !unitlist:                            See 10.5.     (line 1876)
+command, !utf8:                                See 15.       (line 2334)
+command, !var:                                 See 12.       (line 2089)
+command, !varnot:                              See 12.       (line 2089)
+command-line options:                          See 9.        (line 1221)
+command-line unit conversion:                  See 3.        (line  234)
+commands in units database:                    See 18.       (line 2436)
+compatibility:                                 See 5.7.      (line  735)
+compatibility with earlier versions:           See 5.7.      (line  735)
+completion, unit, using ? (readline only):     See 16.       (line 2397)
+conformable units, ? to show:                  See 2.        (line  215)
+currency, updating:                            See 17.       (line 2416)
+Darcy-Weisbach equation:                       See 5.6.      (line  694)
+data files:                                    See 14.       (line 2297)
+data files, additional:                        See 10.1.     (line 1498)
+database syntax summary:                       See 18.       (line 2436)
+defining nonlinear units:                      See 10.3.     (line 1617)
+defining piecewise linear units:               See 10.4.     (line 1786)
+defining prefixes:                             See 10.2.     (line 1543)
+defining unit list aliases:                    See 10.5.     (line 1876)
+defining units:                                See 10.2.     (line 1543)
+defining units with `-':                       See 5.7.      (line  762)
+differences of units:                          See 5.2.      (line  503)
+dimensionless units:                           See 2.        (line  213)
+dimensionless units, defining:                 See 10.2.     (line 1576)
+division of numbers:                           See 5.1.      (line  425)
+division of units:                             See 5.1.      (line  394)
+domain, nonlinear unit definitions:            See 10.3.     (line 1701)
+environment dependent definitions:             See 12.       (line 2089)
+environment variable, HOME:                    See 13.       (line 2245)
+environment variable, LANG:                    See 13.       (line 2255)
+environment variable, LC_CTYPE:                See 13.       (line 2255)
+environment variable, MYUNITSFILE <1>:         See 13.       (line 2260)
+environment variable, MYUNITSFILE:             See 10.1.     (line 1534)
+environment variable, PAGER:                   See 13.       (line 2266)
+environment variable, UNITS_ENGLISH:           See 13.       (line 2273)
+environment variable, UNITSFILE:               See 13.       (line 2277)
+environment variable, UNITSLOCALEMAP:          See 13.       (line 2285)
+environment variables:                         See 13.       (line 2242)
+exchange rates, updating:                      See 17.       (line 2416)
+exponent operator:                             See 5.1.      (line  441)
+files, data:                                   See 14.       (line 2297)
+flags, output format:                          See 11.2.     (line 1954)
+format specification, output:                  See 11.1.     (line 1917)
+fractions, numerical:                          See 5.1.      (line  425)
+functions of units:                            See 10.3.     (line 1773)
+functions, built in:                           See 5.4.      (line  573)
+help <1>:                                      See 13.       (line 2266)
+help:                                          See 2.        (line  220)
+HOME environment variable:                     See 13.       (line 2245)
+hyphen as multiplication operator:             See 5.7.      (line  746)
+Imperial measure:                              See 4.        (line  295)
+include files:                                 See 10.2.     (line 1552)
+including additional units data files:         See 10.1.     (line 1498)
+incompatible units:                            See 2.        (line  180)
+interactive use:                               See 2.        (line   99)
+international mile:                            See 4.1.      (line  335)
+international yard:                            See 4.1.      (line  335)
+invoking units:                                See 9.        (line 1221)
+LANG environment variable:                     See 13.       (line 2255)
+LC_CTYPE environment variable:                 See 13.       (line 2255)
+length measure, English customary:             See 4.1.      (line  335)
+length measure, UK:                            See 4.1.      (line  335)
+linear interpolation:                          See 10.4.     (line 1786)
+locale:                                        See 12.1.     (line 2096)
+locale_map.txt:                                See 12.1.     (line 2107)
+localization:                                  See 12.       (line 2089)
+log file:                                      See 8.        (line 1162)
+logging calculations:                          See 8.        (line 1162)
+measure, Imperial:                             See 4.        (line  295)
+mile, international:                           See 4.1.      (line  335)
+minus (-) operator, subtraction:               See 5.2.      (line  500)
+multiplication of units:                       See 5.1.      (line  394)
+multiplication, hyphen:                        See 5.7.      (line  746)
+MYUNITSFILE environment variable <1>:          See 13.       (line 2260)
+MYUNITSFILE environment variable:              See 10.1.     (line 1534)
+non-conformable units:                         See 2.        (line  180)
+non-interactive unit conversion:               See 3.        (line  234)
+nonlinear unit conversions <1>:                See 10.3.     (line 1617)
+nonlinear unit conversions:                    See 6.        (line  767)
+nonlinear units, defining:                     See 10.3.     (line 1617)
+nonlinear units, other:                        See 6.2.      (line  834)
+numbers as units:                              See 5.3.      (line  552)
+numeric output format:                         See 11.       (line 1900)
+numerical fractions:                           See 5.1.      (line  425)
+operator precedence:                           See 5.1.      (line  416)
+operator, (**):                                See 5.1.      (line  441)
+operator, caret (^):                           See 5.1.      (line  441)
+operator, hyphen (-) as multiplication:        See 5.7.      (line  746)
+operator, hyphen (-) as subtraction:           See 5.2.      (line  500)
+operator, minus (-):                           See 5.2.      (line  500)
+operator, per:                                 See 5.1.      (line  394)
+operator, plus (+):                            See 5.2.      (line  500)
+operator, slash (/):                           See 5.1.      (line  394)
+operator, solidus (/):                         See 5.1.      (line  394)
+operator, space:                               See 5.1.      (line  394)
+operator, star (*):                            See 5.1.      (line  394)
+operator, vertical bar (|):                    See 5.1.      (line  425)
+operators:                                     See 5.1.      (line  386)
+output field width:                            See 11.3.     (line 2009)
+output format:                                 See 11.       (line 1900)
+output format flags:                           See 11.2.     (line 1954)
+output format specification:                   See 11.1.     (line 1917)
+output precision:                              See 11.4.     (line 2035)
+PAGER environment variable:                    See 13.       (line 2266)
+parentheses <1>:                               See 10.3.     (line 1647)
+parentheses <2>:                               See 10.2.     (line 1585)
+parentheses <3>:                               See 5.6.      (line  714)
+parentheses <4>:                               See 5.2.      (line  527)
+parentheses:                                   See 5.1.      (line  409)
+per operator:                                  See 5.1.      (line  394)
+personal units data file:                      See 10.1.     (line 1520)
+piecewise linear units:                        See 10.4.     (line 1786)
+plus (+) operator:                             See 5.2.      (line  500)
+powers:                                        See 5.1.      (line  441)
+precision, output:                             See 11.4.     (line 2035)
+prefixes:                                      See 4.        (line  314)
+prefixes and exponents:                        See 5.1.      (line  453)
+prefixes, definition of:                       See 10.2.     (line 1543)
+previous result:                               See 5.5.      (line  615)
+primitive units:                               See 10.2.     (line 1543)
+products of units:                             See 5.1.      (line  394)
+quotients of units:                            See 5.1.      (line  394)
+range, nonlinear unit definitions:             See 10.3.     (line 1701)
+readline, use with units:                      See 16.       (line 2387)
+reciprocal conversion:                         See 2.        (line  155)
+roots:                                         See 5.4.      (line  594)
+setlocale function:                            See 12.1.     (line 2107)
+slash (/) operator:                            See 5.1.      (line  394)
+solidus (/) operator:                          See 5.1.      (line  394)
+sphere, volume of:                             See 6.2.      (line  870)
+square roots:                                  See 5.4.      (line  594)
+star (*) operator:                             See 5.1.      (line  394)
+State Plane Coordinate System, US:             See 4.1.      (line  335)
+strict conversion:                             See 2.        (line  164)
+subtraction of units:                          See 5.2.      (line  503)
+sums and differences of units:                 See 5.2.      (line  500)
+sums of units <1>:                             See 7.        (line  920)
+sums of units:                                 See 5.2.      (line  503)
+survey foot, US:                               See 4.1.      (line  335)
+survey measure, US:                            See 4.1.      (line  335)
+survey mile, US:                               See 4.1.      (line  335)
+syntax of units database:                      See 18.       (line 2436)
+temperature conversions:                       See 6.1.      (line  773)
+Unicode support:                               See 15.       (line 2334)
+unit completion using ? (readline only):       See 16.       (line 2397)
+unit definitions:                              See 4.        (line  265)
+unit expressions:                              See 5.        (line  383)
+unit expressions, complicated:                 See 5.6.      (line  693)
+unit list aliases, defining:                   See 10.5.     (line 1876)
+unit lists:                                    See 7.        (line  920)
+unit name completion:                          See 16.       (line 2400)
+units data file, personal:                     See 10.1.     (line 1520)
+units data files, additional:                  See 10.1.     (line 1498)
+units definitions, adding:                     See 10.2.     (line 1543)
+units definitions, changing:                   See 10.2.     (line 1543)
+units functions:                               See 10.3.     (line 1773)
+units quotients:                               See 5.1.      (line  394)
+units, definition of:                          See 10.2.     (line 1543)
+units, lookup method:                          See 4.        (line  305)
+units, piecewise linear:                       See 10.4.     (line 1786)
+units, primitive:                              See 10.2.     (line 1543)
+units, sums and differences:                   See 5.2.      (line  500)
+units, sums of:                                See 7.        (line  920)
+UNITS_ENGLISH environment variable:            See 13.       (line 2273)
+UNITSFILE environment variable:                See 13.       (line 2277)
+UNITSLOCALEMAP environment variable:           See 13.       (line 2285)
+US State Plane Coordinate System:              See 4.1.      (line  335)
+US survey foot:                                See 4.1.      (line  335)
+US survey measure:                             See 4.1.      (line  335)
+US survey mile:                                See 4.1.      (line  335)
+UTF-8:                                         See 15.       (line 2334)
+verbose output:                                See 2.        (line  146)
+vertical bar (|) operator:                     See 5.1.      (line  425)
+volume measure, English customary:             See 4.1.      (line  320)
+wire gauge:                                    See 6.2.      (line  842)
+yard, international:                           See 4.1.      (line  335)
+| operator:                                    See 5.1.      (line  425)

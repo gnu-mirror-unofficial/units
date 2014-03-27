@@ -9,11 +9,11 @@
 <link rel="next" href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License" title="GNU Free Documentation License">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -45,20 +45,21 @@ Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 <hr>
 </div>
 
-<h2 class="chapter">16 Database Command Syntax</h2>
+<h2 class="chapter">18 Database Command Syntax</h2>
 
-<p><a name="index-database-syntax-summary-222"></a><a name="index-syntax-of-units-database-223"></a><a name="index-commands-in-units-database-224"></a>
+<p><a name="index-database-syntax-summary-251"></a><a name="index-syntax-of-units-database-252"></a><a name="index-commands-in-units-database-253"></a>
      <dl>
 <dt><var>unit</var> <var>definition</var><dd>Define a regular unit.
 
      <br><dt><var>prefix</var><tt>- </tt><var>definition</var><dd>Define a prefix.
 
-     <br><dt><var>funcname</var><tt>(</tt><var>var</var><tt>) units=[</tt><var>in-units</var><tt>,</tt><var>out-units</var><tt>] domain=[</tt><var>x1</var><tt>,</tt><var>x2</var><tt>] range=[</tt><var>y1</var><tt>,</tt><var>y2</var><tt>] </tt><var>definition(var)</var><tt> ; </tt><var>inverse(funcname)</var><dd>Define a nonlinear unit or unit function.  The three optional keywords
+     <br><dt><var>funcname</var><tt>(</tt><var>var</var><tt>) noerror units=[</tt><var>in-units</var><tt>,</tt><var>out-units</var><tt>] domain=[</tt><var>x1</var><tt>,</tt><var>x2</var><tt>] range=[</tt><var>y1</var><tt>,</tt><var>y2</var><tt>] </tt><var>definition(var)</var><tt> ; </tt><var>inverse(funcname)</var><dd>Define a nonlinear unit or unit function.  The four optional keywords <samp><span class="command">noerror</span></samp>,
 <samp><span class="command">units=</span></samp>, <samp><span class="command">range=</span></samp> and <samp><span class="command">domain=</span></samp> can appear in
 any order.  The definition of the inverse is optional.
 
-     <br><dt><var>tabname</var><tt>[</tt><var>out-units</var><tt>] </tt><var>pair-list</var><dd>Define a piecewise linear unit.  The pair list gives the points on the
-table listed in ascending order.
+     <br><dt><var>tabname</var><tt>[</tt><var>out-units</var><tt>] noerror </tt><var>pair-list</var><dd>Define a piecewise linear unit.  The pair list gives the points on the
+table listed in ascending order.  The <samp><span class="command">noerror</span></samp> keyword is
+optional.
 
      <br><dt><tt>!endlocale</tt><dd>End a block of definitions beginning with &lsquo;<samp><span class="samp">!locale</span></samp>&rsquo;
 
@@ -82,17 +83,16 @@ value <em>only if</em> it is not already set.
      <br><dt><tt>!utf8</tt><dd>Load the following definitions only if <samp><span class="command">units</span></samp> is running with
 UTF-8 enabled.
 
-     <br><dt><tt>!var </tt><var>variable</var> <var>value-list</var><dd>Load the following definitions only if the environment variable,
-<var>variable</var> is set to one of the values listed on the space
-separated value list. If <var>variable</var> is not set then
-<samp><span class="command">units</span></samp> prints an error message and ignores the following
+     <br><dt><tt>!var </tt><var>envar</var> <var>value-list</var><dd>Load the block of definitions that follows only if the environment
+variable <var>envar</var> is set to one of the values listed in the
+space-separated value list.  If <var>envar</var> is not set,
+<samp><span class="command">units</span></samp> prints an error message and ignores the block of
 definitions.
 
-     <br><dt><tt>!varnot </tt><var>variable</var> <var>value-list</var><dd>Load the following definitions only if the environment variable,
-<var>variable</var> is <var>not</var> set to one of the values listed on the space
-separated value list.  If <var>variable</var> is not set then
-<samp><span class="command">units</span></samp> prints an error message and ignores the following
-definitions.
+     <br><dt><tt>!varnot </tt><var>envar</var> <var>value-list</var><dd>Load the block of definitions that follows only if the environment
+variable <var>envar</var> is set to value that is <em>not</em> listed in the
+space-separated value list.  If <var>envar</var> is not set, <samp><span class="command">units</span></samp>
+prints an error message and ignores the block of definitions.
 
    </dl>
 

@@ -9,11 +9,11 @@
 <link rel="next" href="Interactive-Use.html#Interactive-Use" title="Interactive Use">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -55,14 +55,19 @@ systems of measurement to their equivalents in other systems of
 measurement.  Like many similar programs, it can handle multiplicative
 scale changes. It can also handle nonlinear conversions such as
 Fahrenheit to
-<!-- man Celsius. -->
+<!-- man Celsius; -->
 <!-- noman -->
-Celsius.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
-See <a href="Temperature-Conversions.html#Temperature-Conversions">Temperature Conversions</a>. 
+Celsius;<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
+see <a href="Temperature-Conversions.html#Temperature-Conversions">Temperature Conversions</a>. 
 <!-- end noman -->
-<!-- man See the examples below. -->
+<!-- man see \fITemperature Conversions\fP. -->
 The program can also perform conversions from and to sums of
 units, such as converting between meters and feet plus inches.
+
+   <p>Basic operation is simple: you enter the units that you want to convert
+<em>from</em> and the units that you want to convert <em>to</em>. 
+You can use the program interactively with prompts, or you can use it
+from the command line.
 
    <p>Beyond simple unit conversions, <samp><span class="command">units</span></samp> can be used as a
 general-purpose scientific calculator that keeps track of units in its
@@ -70,18 +75,20 @@ calculations.  You can form arbitrary complex mathematical expressions
 of dimensions including sums, products, quotients, powers, and even roots
 of dimensions.  Thus you can ensure accuracy and dimensional consistency
 when working with long expressions that involve many different units
-that may combine in complex ways.
+that may combine in complex ways; for an illustration,
+<!-- man see \fIComplicated Unit Expressions\fP. -->
+<!-- noman -->
+see <a href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions">Complicated Unit Expressions</a>. 
+<!-- end noman -->
 
    <p>The units are defined in an external data file.  You can use the
 extensive data file that comes with this program, or you can
 provide your own data file to suit your needs.  You can also use your
 own data file to supplement the standard data file.
 
-   <p>Basic
-operation is simple: you enter the units that you want to convert
-<em>from</em> and the units that you want to convert <em>to</em>. 
-You can use the program interactively with prompts, or you can use it
-from the command line.
+   <p>You can change the default behavior of <samp><span class="command">units</span></samp> with various
+options given on the command line. See <a href="Invoking-Units.html#Invoking-Units">Invoking Units</a>, for a
+description of the available options.
 
    <div class="footnote">
 <hr>

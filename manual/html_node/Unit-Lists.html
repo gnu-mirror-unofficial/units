@@ -6,14 +6,14 @@
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="prev" href="Nonlinear-Conversions.html#Nonlinear-Conversions" title="Nonlinear Conversions">
-<link rel="next" href="Invoking-Units.html#Invoking-Units" title="Invoking Units">
+<link rel="next" href="Logging-Calculations.html#Logging-Calculations" title="Logging Calculations">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -39,7 +39,7 @@ Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
 <div class="node">
 <a name="Unit-Lists"></a>
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Invoking-Units.html#Invoking-Units">Invoking Units</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Logging-Calculations.html#Logging-Calculations">Logging Calculations</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="Nonlinear-Conversions.html#Nonlinear-Conversions">Nonlinear Conversions</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 <hr>
@@ -47,7 +47,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 
 <h2 class="chapter">7 Unit Lists: Conversion to Sums of Units</h2>
 
-<p><a name="index-sums-of-units-104"></a><a name="index-unit-lists-105"></a><a name="index-units_002c-sums-of-106"></a>
+<p><a name="index-sums-of-units-106"></a><a name="index-unit-lists-107"></a><a name="index-units_002c-sums-of-108"></a>
 Outside of the SI, it is sometimes desirable to convert a single
 unit to a sum of units&mdash;for example, feet to feet plus inches. 
 The conversion <em>from</em> sums of units was described in
@@ -68,10 +68,10 @@ rather the conversion to the particular sum that you have entered:
              * 11.228571
              / 0.089058524
 </pre>
-   <p class="noindent">The unit expression given at the &lsquo;<samp><span class="samp">You want:</span></samp>&rsquo; prompt is equivalent
-to asking for conversion to multiples of &lsquo;<samp><span class="samp">1 ft + 1 in + 1|8 in</span></samp>&rsquo;,
-which is 1.09375 ft, so the conversion in the previous example is
-equivalent to
+   <p class="noindent">The unit expression given at the &lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w --> prompt is
+equivalent to asking for conversion to multiples of
+&lsquo;<samp><span class="samp">1&nbsp;ft + 1&nbsp;in + 1|8&nbsp;in</span></samp>&rsquo;, which is 1.09375 ft, so the
+conversion in the previous example is equivalent to
 
 <pre class="example">     You have: 12.28125 ft
      You want: 1.09375 ft
@@ -138,7 +138,7 @@ list has no effect (e.g., &lsquo;<samp><span class="samp">ft;in;1|8 in;1|8 in</s
 <em>does</em> have an effect: it causes <samp><span class="command">units</span></samp> to treat the
 single unit as a list and produce a rounded value for the single unit. 
 Without the extra &lsquo;<samp><span class="samp">;</span></samp>&rsquo;, the <samp><span class="option">-r</span></samp> option has no effect on
-single unit conversions.  This example shows the ouput using the
+single unit conversions.  This example shows the output using the
 <samp><span class="option">-r</span></samp> option:
 
 <pre class="example">     You have: 12.28126 ft
@@ -151,8 +151,9 @@ single unit conversions.  This example shows the ouput using the
              147 in (rounded down to nearest in)
 </pre>
    <p class="noindent">Each unit that appears in the list must be conformable with the first
-unit on the list, and of course the listed units must also
-be comformable with the <em>You have</em> unit that you enter.
+unit on the list, and of course the listed units must also be
+conformable with the unit that you enter at the &lsquo;<samp><span class="samp">You&nbsp;have:</span></samp>&rsquo;<!-- /@w -->
+prompt.
 
 <pre class="example">     You have: meter
      You want: ft;kg
@@ -180,9 +181,9 @@ angles and time:
      You want; deg;arcmin;arcsec
          23 deg + 26 arcmin + 15.9144 arcsec
      
-         You have: 7.2319 hr
-         You want: hr;min;sec
-             7 hr + 13 min + 54.84 sec
+     You have: 7.2319 hr
+     You want: hr;min;sec
+         7 hr + 13 min + 54.84 sec
 </pre>
    <p class="noindent">In North America, recipes for cooking typically measure ingredients by
 volume, and use units that are not always convenient multiples of each
@@ -228,8 +229,8 @@ combined with a unity numerator, so that you get
    <p class="noindent">A user-specified fractional unit with a numerator other than 1 is never
 overridden, however&mdash;if a unit list specifies &lsquo;<samp><span class="samp">3|4 cup;1|2 cup</span></samp>&rsquo;,
 a result equivalent to 1&nbsp;1/2 cups will always be shown as
-&lsquo;<samp><span class="samp">2 * 3|4 cup</span></samp>&rsquo; whether or not the <samp><span class="option">--show-factor</span></samp> option is
-given.
+&lsquo;<samp><span class="samp">2 * 3|4&nbsp;cup</span></samp>&rsquo; whether or not the <samp><span class="option">--show-factor</span></samp> option
+is given.
 
    <p>Some applications for unit lists may be less obvious.  Suppose that you
 have a postal scale and wish to ensure that it's accurate at 1&nbsp;oz,
@@ -273,10 +274,10 @@ you can do the following conversions:
              2 tbsp + 2 tsp
 </pre>
    <p class="noindent">You cannot combine a unit list alias with other units: it must appear
-alone at the &lsquo;<samp><span class="samp">You want:</span></samp>&rsquo; prompt.
+alone at the &lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w --> prompt.
 
    <p>You can display the definition of a unit list alias by entering it at
-the &lsquo;<samp><span class="samp">You have:</span></samp>&rsquo; prompt:
+the &lsquo;<samp><span class="samp">You&nbsp;have:</span></samp>&rsquo;<!-- /@w --> prompt:
 
 <pre class="example">     You have: dms
              Definition: unit list, deg;arcmin;arcsec

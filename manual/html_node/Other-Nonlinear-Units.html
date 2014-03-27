@@ -9,11 +9,11 @@
 <link rel="prev" href="Temperature-Conversions.html#Temperature-Conversions" title="Temperature Conversions">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Units (version 2.00),
+This manual is for GNU Units (version 2.10),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012 Free Software Foundation, Inc.
+2011, 2012, 2013, 2014 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -46,10 +46,10 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Nonlinear-Conversions.html#Nonlinear-Co
 
 <h3 class="section">6.2 Other Nonlinear Units</h3>
 
-<p><a name="index-nonlinear-units_002c-other-99"></a>
+<p><a name="index-nonlinear-units_002c-other-101"></a>
 Some other examples of nonlinear units are numerous different ring
 sizes and wire gauges, the grit sizes used for abrasives, the decibel
-scale, shoe size, scales for the density of sugar (e.g. baume). 
+scale, shoe size, scales for the density of sugar (e.g., baume). 
 The standard data file also supplies units for computing the area of a
 circle and the volume of a sphere.  See the standard units data file
 for more details. 
@@ -57,7 +57,7 @@ Wire gauges
 with multiple zeroes are signified using negative numbers where two
 zeroes is &lsquo;<samp><span class="samp">-1</span></samp>&rsquo;.  Alternatively, you can use the synonyms &lsquo;<samp><span class="samp">g00</span></samp>&rsquo;,
 &lsquo;<samp><span class="samp">g000</span></samp>&rsquo;, and so on that are defined in the standard units data file. 
-<a name="index-wire-gauge-100"></a>
+<a name="index-wire-gauge-102"></a>
 <pre class="example">     You have: wiregauge(11)
      You want: inches
              * 0.090742002
@@ -79,13 +79,13 @@ zeroes is &lsquo;<samp><span class="samp">-1</span></samp>&rsquo;.  Alternativel
    <p class="noindent">The last example shows the conversion from P graded sand paper,
 which is the European standard and may be marked &ldquo;P600&rdquo; on the back,
 to the USA standard. 
-<a name="index-abrasive-grit-size-101"></a>
+<a name="index-abrasive-grit-size-103"></a>
 You can compute the area of a circle using the nonlinear unit,
 &lsquo;<samp><span class="samp">circlearea</span></samp>&rsquo;.  You can also do this using the circularinch or
 circleinch.  The next example shows two ways to compute the area of a
 circle with a five inch radius and one way to compute the volume of a
 sphere with a radius of one meter. 
-<a name="index-circle_002c-area-of-102"></a><a name="index-sphere_002c-volume-of-103"></a>
+<a name="index-circle_002c-area-of-104"></a><a name="index-sphere_002c-volume-of-105"></a>
 <pre class="example">     You have: circlearea(5 in)
      You want: in2
              * 78.539816
@@ -101,5 +101,37 @@ sphere with a radius of one meter.
              * 147.92573
              / 0.0067601492
 </pre>
+   <p class="noindent">The inverse of a nonlinear conversion is indicated by prefixing a tilde
+(&lsquo;<samp><span class="samp">~</span></samp>&rsquo;) to the nonlinear unit name:
+
+<pre class="example">     You have: ~wiregauge(0.090742002 inches)
+     You want:
+             Definition: 11
+</pre>
+   <p class="noindent">You can give a nonlinear unit definition without an argument or
+parentheses, and press &lt;Enter&gt; at the &lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w --> prompt to
+get the definition of a nonlinear unit; if the definition is not valid
+for all real numbers, the range of validity is also given.  If the
+definition requires specific units this information is also
+displayed:
+
+<pre class="example">     You have: tempC
+             Definition: tempC(x) = x K + stdtemp
+                         defined for x &gt;= -273.15
+     You have: ~tempC
+             Definition: ~tempC(tempC) = (tempC +(-stdtemp))/K
+                         defined for tempC &gt;= 0 K
+     You have: circlearea
+             Definition: circlearea(r) = pi r^2
+                         r has units m
+</pre>
+   <p class="noindent">To see the definition of the inverse use the &lsquo;<samp><span class="samp">~</span></samp>&rsquo; notation.  In
+this case the parameter in the functional definition will
+usually be the name of the unit.  Note that the inverse for
+&lsquo;<samp><span class="samp">tempC</span></samp>&rsquo; shows that it requires units of &lsquo;<samp><span class="samp">K</span></samp>&rsquo; in the
+specification of the allowed range of values. 
+Nonlinear unit conversions are described in more detail in
+<a href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">Defining Nonlinear Units</a>.
+
    </body></html>
 
