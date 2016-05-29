@@ -1,34 +1,9 @@
 <!--#include virtual="/server/header.html" -->
-<!-- Parent-Version: 1.68 $ -->
-
-<!-- This is the template document for GNU web pages.  We use
-     server side includes (#include) for common elements, for
-     instance, the very first line of the file.  If you're reading
-     this in its expanded form, you can retrieve the original source,
-     with the SSI statements intact, from
-     http://web.cvs.savannah.gnu.org/viewvc/*checkout*/www/server/standards/boilerplate.html?root=www&content-type=text%2Fplain
--->
-
-<!-- Instructions for adapting this boilerplate to a new project: -->
-
-<!-- 3. Of course update the actual information according to your project,
-        such as mailing lists, project locations, and maintainer name.  -->
-
-<!-- 4. You can use the patch-from-parent script to semi-automate
-        merging future changes to the boilerplate with your file:
-        http://web.cvs.savannah.gnu.org/viewvc/*checkout*/www/server/standards/patch-from-parent?root=www&content-type=text%2Fplain
-        -->
-
-<!-- If you would like to make sure your page validates with HTML5, that
-     would be a good thing.  To do that, change the first line from
-     to /server/html5-header.html before trying the validation.  Maybe
-     someday we will be able to make /server/header be HTML5.  -->
-
+<!-- Parent-Version: 1.79 -->
 <title>Units
 - GNU Project - Free Software Foundation</title>
-<!--#include virtual="/server/banner.html" -->
-<!--#set var="article_name" value="/server/standards/boilerplate" -->
 <!--#include virtual="/server/gnun/initial-translations-list.html" -->
+<!--#include virtual="/server/banner.html" -->
 <h2>GNU Units</h2>
 
 <p>GNU Units converts quantities expressed in various
@@ -45,7 +20,7 @@ calculations.  You can form arbitrary complex mathematical expressions
 of dimensions including sums, products, quotients, powers, and even roots
 of dimensions.  Thus you can ensure accuracy and dimensional consistency
 when working with long expressions that involve many different units
-that may combine in complex ways.  </P>
+that may combine in complex ways.  </p>
 
 <p>
 The units are defined in an external data file.  You can use the
@@ -58,7 +33,8 @@ own data file to supplement the standard data file.</p>
 
 <p>
 Two simple conversion examples:
-<pre>
+</p>
+<pre class="emph-box">
     You have: mile
     You want: km
             * 1.609344
@@ -69,44 +45,51 @@ Two simple conversion examples:
             * 0.00016630986
             / 6012.8727
 </pre>
-</p>
 
 <p>
 A calculation involving roots of units:
-<pre>
+</p>
+<pre class="emph-box">
     You have: (400 W/m^2 / stefanboltzmann)^(1/4)
     You have:
             Definition: 289.80882 K
 </pre>
-</p>
+
 
 <p>
 Temperature <em>differences</em> are converted using the syntax
 shown above with unit names like degC and degF.  But conversion of
 absolute temperatures requires a different syntax:
-<pre>
+</p>
+<pre class="emph-box">
     You have: tempF(45)
     You want: tempC
             7.2222222
 </pre>
-</p>
 
 <p>
 Converting from a sum of units:
-<pre>
+</p>
+<pre class="emph-box">
 You have: 17 yards + 2 feet + 5 inches
 You want: meter
         * 16.2814
         / 0.06141978
 </pre>
+
+<p>
 Converting to a sum of units such as hours plus minutes or feet plus inches:
-<pre>
+</p>
+<pre class="emph-box">
 You have: 7 meters
 You want: ft;in
         22 ft + 11.590551 in
 </pre>
+
+<p>
 Converting a sixth of a (US) cup to common US measures:
-<pre>
+</p>
+<pre class="emph-box">
 You have: 1|6 cup
 You want: usvol
         2 tbsp + 2 tsp
@@ -136,6 +119,7 @@ a mirror</a> if possible.</p>
 (via HTTP) and
 <a href="ftp://ftp.gnu.org/gnu/units/windows/">ftp://ftp.gnu.org/gnu/units/windows</a>
 (via FTP).  
+</p>
 
 <h3 id="documentation">Documentation</h3>
 
@@ -178,10 +162,10 @@ can be found at
 is currently being maintained by
 <a href="mailto:adrianm@gnu.org">Adrian Mariano</a>
 All general bug reports, feature requests or thoughts should go to him. 
-</li>
-<dd> The Windows binary distribution is maintained by 
+<p> The Windows binary distribution is maintained by 
 <a href="mailto:jeff_conrad@msn.com">Jeff Conrad</a>.
-</li>
+</p>
+</dd>
 
 </dl>
 
@@ -196,13 +180,30 @@ Software Foundation; either version&nbsp;3 of the License, or (at your
 option) any later version.</p>
 
 
-<!-- If needed, change the copyright block at the bottom. In general,
-     pages on the GNU web server should be under CC BY-ND 3.0 US.
-     Please do NOT change or remove this without talking
-     with the webmasters or licensing team first.
-     Please make sure the copyright date is consistent with the document.
-     For web pages, it is ok to list just the latest year the document
-     was modified, or published.
+</div><!-- for id="content", starts in the include above -->
+<!--#include virtual="/server/footer.html" -->
+<div id="footer">
+<div class="unprintable">
+
+<p>Please send general FSF &amp; GNU inquiries to
+<a href="mailto:gnu@gnu.org">&lt;gnu@gnu.org&gt;</a>.
+There are also <a href="/contact/">other ways to contact</a>
+the FSF.  Broken links and other corrections or suggestions can be sent
+to <a href="mailto:bug-units@gnu.org">&lt;bug-units@gnu.org&gt;</a>.</p>
+
+<p>Please see the <a
+href="/server/standards/README.translations.html">Translations
+README</a> for information on coordinating and submitting translations
+of this article.</p>
+</div>
+
+<!-- Regarding copyright, in general, standalone pages (as opposed to
+     files generated as part of manuals) on the GNU web server should
+     be under CC BY-ND 4.0.  Please do NOT change or remove this
+     without talking with the webmasters or licensing team first.
+     Please make sure the copyright date is consistent with the
+     document.  For web pages, it is ok to list just the latest year the
+     document was modified, or published.
      
      If you wish to list earlier years, that is ok too.
      Either "2001, 2002, 2003" or "2001-2003" are ok for specifying
@@ -213,48 +214,17 @@ option) any later version.</p>
      There is more detail about copyright years in the GNU Maintainers
      Information document, www.gnu.org/prep/maintain. -->
 
-
-</div><!-- for id="content", starts in the include above -->
-<!--#include virtual="/server/footer.html" -->
-<div id="footer">
-
-<p><!-- WEBMASTERS: Replace bug-units@gnu.org with webmasters@gnu.org and
-        remove this comment after completion. -->
-
-Please send general FSF &amp; GNU inquiries to
-<a href="mailto:gnu@gnu.org">&lt;gnu@gnu.org&gt;</a>.
-There are also <a href="/contact/">other ways to contact</a>
-the FSF.  Broken links and other corrections or suggestions can be sent
-to <a href="mailto:bug-units@gnu.org">&lt;bug-units@gnu.org&gt;</a>.</p>
-
-<p><!-- TRANSLATORS: Ignore the original text in this paragraph,
-        replace it with the translation of these two:
-
-        We work hard and do our best to provide accurate, good quality
-        translations.  However, we are not exempt from imperfection.
-        Please send your comments and general suggestions in this regard
-        to <a href="mailto:web-translators@gnu.org">
-        &lt;web-translators@gnu.org&gt;</a>.</p>
-
-        <p>For information on coordinating and submitting translations of
-        our web pages, see <a
-        href="/server/standards/README.translations.html">Translations
-        README</a>. -->
-
-For information on coordinating and submitting translations of this
-article, see <a
-href="/server/standards/README.translations.html">Translations README</a>.
-</p>
-
 <p>Copyright &copy; 2012 Free Software Foundation, Inc.</p>
 
 <p>This page is licensed under a <a rel="license"
-href="http://creativecommons.org/licenses/by-nd/3.0/us/">Creative
-Commons Attribution-NoDerivs 3.0 United States License</a>.</p>
+href="http://creativecommons.org/licenses/by-nd/4.0/">Creative
+Commons Attribution-NoDerivatives 4.0 International License</a>.</p>
 
-<p>Updated:
+<!--#include virtual="/server/bottom-notes.html" -->
+
+<p class="unprintable">Updated:
 <!-- timestamp start -->
-$Date: 2014/03/29 00:00:51 $
+$Date: 2016/05/29 14:23:40 $
 <!-- timestamp end -->
 </p>
 </div>
