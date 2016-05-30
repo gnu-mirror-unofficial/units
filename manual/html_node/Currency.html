@@ -1,70 +1,98 @@
-<html lang="en">
-<head>
-<title>Currency - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Readline-Support.html#Readline-Support" title="Readline Support">
-<link rel="next" href="Database-Syntax.html#Database-Syntax" title="Database Syntax">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Currency</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Currency">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Currency">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Database-Syntax.html#Database-Syntax" rel="next" title="Database Syntax">
+<link href="Readline-Support.html#Readline-Support" rel="prev" title="Readline Support">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Currency"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Database-Syntax.html#Database-Syntax">Database Syntax</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Readline-Support.html#Readline-Support">Readline Support</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
+Next: <a href="Database-Syntax.html#Database-Syntax" accesskey="n" rel="next">Database Syntax</a>, Previous: <a href="Readline-Support.html#Readline-Support" accesskey="p" rel="prev">Readline Support</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Updating-Currency-Exchange-Rates"></a>
 <h2 class="chapter">17 Updating Currency Exchange Rates</h2>
+<a name="index-currency_002c-updating"></a>
+<a name="index-exchange-rates_002c-updating"></a>
 
-<p><a name="index-currency_002c-updating-249"></a><a name="index-exchange-rates_002c-updating-250"></a>
-The units program includes currency exchange rates and prices for some
+<p>The units program includes currency exchange rates and prices for some
 precious metals in the database.  Of course, these values change over
-time, sometimes very rapidly, and <samp><span class="command">units</span></samp> cannot provide real
+time, sometimes very rapidly, and <code>units</code> cannot provide real
 time values.  To update the exchange rates run the
-<samp><span class="command">units_cur</span></samp>, which rewrites the files containing the currency
-rates, typically <samp><span class="file">/usr/share/units/currency.units</span></samp>.  This program
-requires <samp><span class="command">python</span></samp> and the <samp><span class="command">unidecode</span></samp> package, and must
+<code>units_cur</code>, which rewrites the files containing the currency
+rates, typically <samp>/usr/share/units/currency.units</samp>.  This program
+requires <code>python</code> and the <code>unidecode</code> package, and must
 be run with suitable permissions to write the file.  To keep the rates
 updated automatically, run it using a cron job on a Unix-like system, or
 a similar scheduling program on a different system.  Currency exchange
 rates are taken from Time Genie (<a href="http://www.timegenie.com">http://www.timegenie.com</a>) and
-precious metals pricing from Packetizer (<a href="www.packetizer.com">www.packetizer.com</a>). 
+precious metals pricing from Packetizer (<a href="www.packetizer.com">www.packetizer.com</a>).
 These sites update once per day, so there is no benefit in running the
-update script more often than daily.  You can run <samp><span class="command">units_cur</span></samp>
+update script more often than daily.  You can run <code>units_cur</code>
 with a filename specified on the command line and it will write the data
-to that file.  If you give &lsquo;<samp><span class="samp">-</span></samp>&rsquo; for the file it will write to
+to that file.  If you give &lsquo;<samp>-</samp>&rsquo; for the file it will write to
 standard output.
+</p>
 
-   </body></html>
 
+
+</body>
+</html>

@@ -1,94 +1,125 @@
-<html lang="en">
-<head>
-<title>Built-in Functions - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Unit-Expressions.html#Unit-Expressions" title="Unit Expressions">
-<link rel="prev" href="Numbers-as-Units.html#Numbers-as-Units" title="Numbers as Units">
-<link rel="next" href="Previous-Result.html#Previous-Result" title="Previous Result">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Built-in Functions</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Built-in Functions">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Built-in Functions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Unit-Expressions.html#Unit-Expressions" rel="up" title="Unit Expressions">
+<link href="Previous-Result.html#Previous-Result" rel="next" title="Previous Result">
+<link href="Numbers-as-Units.html#Numbers-as-Units" rel="prev" title="Numbers as Units">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
-<a name="Built-in-Functions"></a>
+
+<body lang="en">
 <a name="Built_002din-Functions"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Previous-Result.html#Previous-Result">Previous Result</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Numbers-as-Units.html#Numbers-as-Units">Numbers as Units</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Unit-Expressions.html#Unit-Expressions">Unit Expressions</a>
-<hr>
+Next: <a href="Previous-Result.html#Previous-Result" accesskey="n" rel="next">Previous Result</a>, Previous: <a href="Numbers-as-Units.html#Numbers-as-Units" accesskey="p" rel="prev">Numbers as Units</a>, Up: <a href="Unit-Expressions.html#Unit-Expressions" accesskey="u" rel="up">Unit Expressions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Built_002din-Functions-1"></a>
 <h3 class="section">5.4 Built-in Functions</h3>
+<a name="index-functions_002c-built-in"></a>
 
-<p><a name="index-functions_002c-built-in-83"></a>
-Several built-in functions are provided: &lsquo;<samp><span class="samp">sin</span></samp>&rsquo;, &lsquo;<samp><span class="samp">cos</span></samp>&rsquo;,
-&lsquo;<samp><span class="samp">tan</span></samp>&rsquo;, &lsquo;<samp><span class="samp">ln</span></samp>&rsquo;, &lsquo;<samp><span class="samp">log</span></samp>&rsquo;, &lsquo;<samp><span class="samp">log2</span></samp>&rsquo;, &lsquo;<samp><span class="samp">exp</span></samp>&rsquo;, &lsquo;<samp><span class="samp">acos</span></samp>&rsquo;,
-&lsquo;<samp><span class="samp">atan</span></samp>&rsquo; and &lsquo;<samp><span class="samp">asin</span></samp>&rsquo;.  The &lsquo;<samp><span class="samp">sin</span></samp>&rsquo;, &lsquo;<samp><span class="samp">cos</span></samp>&rsquo;, and &lsquo;<samp><span class="samp">tan</span></samp>&rsquo;
+<p>Several built-in functions are provided: &lsquo;<samp>sin</samp>&rsquo;, &lsquo;<samp>cos</samp>&rsquo;,
+&lsquo;<samp>tan</samp>&rsquo;, &lsquo;<samp>ln</samp>&rsquo;, &lsquo;<samp>log</samp>&rsquo;, &lsquo;<samp>log2</samp>&rsquo;, &lsquo;<samp>exp</samp>&rsquo;, &lsquo;<samp>acos</samp>&rsquo;,
+&lsquo;<samp>atan</samp>&rsquo; and &lsquo;<samp>asin</samp>&rsquo;.  The &lsquo;<samp>sin</samp>&rsquo;, &lsquo;<samp>cos</samp>&rsquo;, and &lsquo;<samp>tan</samp>&rsquo;
 functions require either a dimensionless argument or an argument with
 dimensions of angle.
+</p>
+<div class="example">
+<pre class="example">You have: sin(30 degrees)
+You want:
+        Definition: 0.5
 
-<pre class="example">     You have: sin(30 degrees)
-     You want:
-             Definition: 0.5
-     
-     You have: sin(pi/2)
-     You want:
-             Definition: 1
-     
-     You have: sin(3 kg)
-                       ^
-     Unit not dimensionless
-</pre>
-   <p class="noindent">The other functions on the list require dimensionless arguments.  The
+You have: sin(pi/2)
+You want:
+        Definition: 1
+
+You have: sin(3 kg)
+                  ^
+Unit not dimensionless
+</pre></div>
+
+<p>The other functions on the list require dimensionless arguments.  The
 inverse trigonometric functions return arguments with dimensions of
 angle.
-
-   <p><a name="index-roots-84"></a><a name="index-square-roots-85"></a>If you wish to take roots of units, you may use the &lsquo;<samp><span class="samp">sqrt</span></samp>&rsquo; or
-&lsquo;<samp><span class="samp">cuberoot</span></samp>&rsquo; functions.  These functions require that the argument
+</p>
+<a name="index-roots"></a>
+<a name="index-square-roots"></a>
+<p>If you wish to take roots of units, you may use the &lsquo;<samp>sqrt</samp>&rsquo; or
+&lsquo;<samp>cuberoot</samp>&rsquo; functions.  These functions require that the argument
 have the appropriate root.  You can obtain higher roots by using
 fractional exponents:
+</p>
+<div class="example">
+<pre class="example">You have: sqrt(acre)
+You want: feet
+        * 208.71074
+        / 0.0047913202
 
-<pre class="example">     You have: sqrt(acre)
-     You want: feet
-             * 208.71074
-             / 0.0047913202
-     
-     You have: (400 W/m^2 / stefanboltzmann)^(1/4)
-     You have:
-             Definition: 289.80882 K
-     
-     You have: cuberoot(hectare)
-                               ^
-     Unit not a root
-</pre>
-   </body></html>
+You have: (400 W/m^2 / stefanboltzmann)^(1/4)
+You have:
+        Definition: 289.80882 K
 
+You have: cuberoot(hectare)
+                          ^
+Unit not a root
+</pre></div>
+
+
+
+
+</body>
+</html>

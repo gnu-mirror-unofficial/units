@@ -1,137 +1,184 @@
-<html lang="en">
-<head>
-<title>Other Nonlinear Units - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Nonlinear-Conversions.html#Nonlinear-Conversions" title="Nonlinear Conversions">
-<link rel="prev" href="Temperature-Conversions.html#Temperature-Conversions" title="Temperature Conversions">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Other Nonlinear Units</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Other Nonlinear Units">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Other Nonlinear Units">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Nonlinear-Conversions.html#Nonlinear-Conversions" rel="up" title="Nonlinear Conversions">
+<link href="Unit-Lists.html#Unit-Lists" rel="next" title="Unit Lists">
+<link href="Temperature-Conversions.html#Temperature-Conversions" rel="prev" title="Temperature Conversions">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Other-Nonlinear-Units"></a>
+<div class="header">
 <p>
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Temperature-Conversions.html#Temperature-Conversions">Temperature Conversions</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Nonlinear-Conversions.html#Nonlinear-Conversions">Nonlinear Conversions</a>
-<hr>
+Previous: <a href="Temperature-Conversions.html#Temperature-Conversions" accesskey="p" rel="prev">Temperature Conversions</a>, Up: <a href="Nonlinear-Conversions.html#Nonlinear-Conversions" accesskey="u" rel="up">Nonlinear Conversions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Other-Nonlinear-Units-1"></a>
 <h3 class="section">6.2 Other Nonlinear Units</h3>
+<a name="index-nonlinear-units_002c-other"></a>
 
-<p><a name="index-nonlinear-units_002c-other-101"></a>
-Some other examples of nonlinear units are numerous different ring
+<p>Some other examples of nonlinear units are numerous different ring
 sizes and wire gauges, the grit sizes used for abrasives, the decibel
-scale, shoe size, scales for the density of sugar (e.g., baume). 
+scale, shoe size, scales for the density of sugar (e.g., baume).
 The standard data file also supplies units for computing the area of a
 circle and the volume of a sphere.  See the standard units data file
-for more details. 
+for more details.
 Wire gauges
 with multiple zeroes are signified using negative numbers where two
-zeroes is &lsquo;<samp><span class="samp">-1</span></samp>&rsquo;.  Alternatively, you can use the synonyms &lsquo;<samp><span class="samp">g00</span></samp>&rsquo;,
-&lsquo;<samp><span class="samp">g000</span></samp>&rsquo;, and so on that are defined in the standard units data file. 
-<a name="index-wire-gauge-102"></a>
-<pre class="example">     You have: wiregauge(11)
-     You want: inches
-             * 0.090742002
-             / 11.020255
-     
-     You have: brwiregauge(g00)
-     You want: inches
-             * 0.348
-             / 2.8735632
-     
-     You have: 1 mm
-     You want: wiregauge
-             18.201919
-     
-     You have: grit_P(600)
-     You want: grit_ansicoated
-             342.76923
-</pre>
-   <p class="noindent">The last example shows the conversion from P graded sand paper,
+zeroes is &lsquo;<samp>-1</samp>&rsquo;.  Alternatively, you can use the synonyms &lsquo;<samp>g00</samp>&rsquo;,
+&lsquo;<samp>g000</samp>&rsquo;, and so on that are defined in the standard units data file.
+<a name="index-wire-gauge"></a>
+</p>
+<div class="example">
+<pre class="example">You have: wiregauge(11)
+You want: inches
+        * 0.090742002
+        / 11.020255
+
+You have: brwiregauge(g00)
+You want: inches
+        * 0.348
+        / 2.8735632
+
+You have: 1 mm
+You want: wiregauge
+        18.201919
+
+You have: grit_P(600)
+You want: grit_ansicoated
+        342.76923
+</pre></div>
+
+<p>The last example shows the conversion from P graded sand paper,
 which is the European standard and may be marked &ldquo;P600&rdquo; on the back,
-to the USA standard. 
-<a name="index-abrasive-grit-size-103"></a>
-You can compute the area of a circle using the nonlinear unit,
-&lsquo;<samp><span class="samp">circlearea</span></samp>&rsquo;.  You can also do this using the circularinch or
+to the USA standard.
+<a name="index-abrasive-grit-size"></a>
+</p>
+<p>You can compute the area of a circle using the nonlinear unit,
+&lsquo;<samp>circlearea</samp>&rsquo;.  You can also do this using the circularinch or
 circleinch.  The next example shows two ways to compute the area of a
 circle with a five inch radius and one way to compute the volume of a
-sphere with a radius of one meter. 
-<a name="index-circle_002c-area-of-104"></a><a name="index-sphere_002c-volume-of-105"></a>
-<pre class="example">     You have: circlearea(5 in)
-     You want: in2
-             * 78.539816
-             / 0.012732395
-     
-     You have: 10^2 circleinch
-     You want: in2
-             * 78.539816
-             / 0.012732395
-     
-     You have: spherevol(meter)
-     You want: ft3
-             * 147.92573
-             / 0.0067601492
-</pre>
-   <p class="noindent">The inverse of a nonlinear conversion is indicated by prefixing a tilde
-(&lsquo;<samp><span class="samp">~</span></samp>&rsquo;) to the nonlinear unit name:
+sphere with a radius of one meter.
+<a name="index-circle_002c-area-of"></a>
+<a name="index-sphere_002c-volume-of"></a>
+</p>
+<div class="example">
+<pre class="example">You have: circlearea(5 in)
+You want: in2
+        * 78.539816
+        / 0.012732395
 
-<pre class="example">     You have: ~wiregauge(0.090742002 inches)
-     You want:
-             Definition: 11
-</pre>
-   <p class="noindent">You can give a nonlinear unit definition without an argument or
-parentheses, and press &lt;Enter&gt; at the &lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w --> prompt to
+You have: 10^2 circleinch
+You want: in2
+        * 78.539816
+        / 0.012732395
+
+You have: spherevol(meter)
+You want: ft3
+        * 147.92573
+        / 0.0067601492
+</pre></div>
+
+<p>The inverse of a nonlinear conversion is indicated by prefixing a tilde
+(&lsquo;<samp>~</samp>&rsquo;) to the nonlinear unit name:
+</p>
+<div class="example">
+<pre class="example">You have: ~wiregauge(0.090742002 inches)
+You want:
+        Definition: 11
+</pre></div>
+
+
+
+<p>You can give a nonlinear unit definition without an argument or
+parentheses, and press <tt class="key">Enter</tt> at the &lsquo;<samp>You&nbsp;want:</samp>&rsquo;<!-- /@w --> prompt to
 get the definition of a nonlinear unit; if the definition is not valid
 for all real numbers, the range of validity is also given.  If the
 definition requires specific units this information is also
 displayed:
+</p>
+<div class="example">
+<pre class="example">You have: tempC
+        Definition: tempC(x) = x K + stdtemp
+                    defined for x &gt;= -273.15
+You have: ~tempC
+        Definition: ~tempC(tempC) = (tempC +(-stdtemp))/K
+                    defined for tempC &gt;= 0 K
+You have: circlearea
+        Definition: circlearea(r) = pi r^2
+                    r has units m
+</pre></div>
 
-<pre class="example">     You have: tempC
-             Definition: tempC(x) = x K + stdtemp
-                         defined for x &gt;= -273.15
-     You have: ~tempC
-             Definition: ~tempC(tempC) = (tempC +(-stdtemp))/K
-                         defined for tempC &gt;= 0 K
-     You have: circlearea
-             Definition: circlearea(r) = pi r^2
-                         r has units m
-</pre>
-   <p class="noindent">To see the definition of the inverse use the &lsquo;<samp><span class="samp">~</span></samp>&rsquo; notation.  In
+<p>To see the definition of the inverse use the &lsquo;<samp>~</samp>&rsquo; notation.  In
 this case the parameter in the functional definition will
 usually be the name of the unit.  Note that the inverse for
-&lsquo;<samp><span class="samp">tempC</span></samp>&rsquo; shows that it requires units of &lsquo;<samp><span class="samp">K</span></samp>&rsquo; in the
-specification of the allowed range of values. 
+&lsquo;<samp>tempC</samp>&rsquo; shows that it requires units of &lsquo;<samp>K</samp>&rsquo; in the
+specification of the allowed range of values.  
 Nonlinear unit conversions are described in more detail in
 <a href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">Defining Nonlinear Units</a>.
+</p>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Temperature-Conversions.html#Temperature-Conversions" accesskey="p" rel="prev">Temperature Conversions</a>, Up: <a href="Nonlinear-Conversions.html#Nonlinear-Conversions" accesskey="u" rel="up">Nonlinear Conversions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-   </body></html>
 
+
+</body>
+</html>

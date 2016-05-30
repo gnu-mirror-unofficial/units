@@ -1,102 +1,165 @@
-<html lang="en">
-<head>
-<title>Environment Vars - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Localization.html#Localization" title="Localization">
-<link rel="next" href="Data-Files.html#Data-Files" title="Data Files">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Environment Vars</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Environment Vars">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Environment Vars">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Data-Files.html#Data-Files" rel="next" title="Data Files">
+<link href="Additional-Localization.html#Additional-Localization" rel="prev" title="Additional Localization">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Environment-Vars"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Data-Files.html#Data-Files">Data Files</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Localization.html#Localization">Localization</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
+Next: <a href="Data-Files.html#Data-Files" accesskey="n" rel="next">Data Files</a>, Previous: <a href="Localization.html#Localization" accesskey="p" rel="prev">Localization</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Environment-Variables"></a>
 <h2 class="chapter">13 Environment Variables</h2>
+<a name="index-environment-variables"></a>
 
-<p><a name="index-environment-variables-218"></a>
-The <samp><span class="command">units</span></samp> program uses the following environment variables:
-
-     <dl>
-<dt><samp><span class="env">HOME</span></samp><dd><a name="index-HOME-environment-variable-219"></a><a name="index-environment-variable_002c-HOME-220"></a>Specifies the location of your home directory; it is used by
-<samp><span class="command">units</span></samp> to find a personal units data file &lsquo;<samp><span class="samp">.units</span></samp>&rsquo;.  On
-systems running Microsoft Windows, the file is &lsquo;<samp><span class="samp">unitdef.units</span></samp>&rsquo;, and
-if <samp><span class="env">HOME</span></samp> does not exist, <samp><span class="command">units</span></samp> tries to determine your
-home directory from the <samp><span class="env">HOMEDRIVE</span></samp> and <samp><span class="env">HOMEPATH</span></samp> environment
+<p>The <code>units</code> program uses the following environment variables:
+</p>
+<dl compact="compact">
+<dt><code>HOME</code></dt>
+<dd><a name="index-HOME-environment-variable"></a>
+<a name="index-environment-variable_002c-HOME"></a>
+<p>Specifies the location of your home directory; it is used by
+<code>units</code> to find a personal units data file &lsquo;<samp>.units</samp>&rsquo;.  On
+systems running Microsoft Windows, the file is &lsquo;<samp>unitdef.units</samp>&rsquo;, and
+if <code>HOME</code> does not exist, <code>units</code> tries to determine your
+home directory from the <code>HOMEDRIVE</code> and <code>HOMEPATH</code> environment
 variables; if these variables do not exist, units finally tries
-<samp><span class="env">USERPROFILE</span></samp>&mdash;typically <samp><span class="file">C:\Users\</span><var>username</var></samp> (Windows
+<code>USERPROFILE</code>&mdash;typically <samp>C:\Users\<var>username</var></samp> (Windows
 Vista and Windows&nbsp;7) or
-<samp><span class="file">C:\Documents&nbsp;and&nbsp;Settings\</span><var>username</var></samp><!-- /@w --> (Windows&nbsp;XP).
-
-     <br><dt><samp><span class="env">LC_CTYPE, LANG</span></samp><dd><a name="index-LANG-environment-variable-221"></a><a name="index-LC_005fCTYPE-environment-variable-222"></a><a name="index-environment-variable_002c-LANG-223"></a><a name="index-environment-variable_002c-LC_005fCTYPE-224"></a>Checked to determine the locale if <samp><span class="command">units</span></samp> cannot obtain it
+<samp>C:\Documents&nbsp;and&nbsp;Settings\<var>username</var></samp><!-- /@w --> (Windows&nbsp;XP).
+</p>
+</dd>
+<dt><code>LC_CTYPE, LANG</code></dt>
+<dd><a name="index-LANG-environment-variable"></a>
+<a name="index-LC_005fCTYPE-environment-variable"></a>
+<a name="index-environment-variable_002c-LANG"></a>
+<a name="index-environment-variable_002c-LC_005fCTYPE"></a>
+<p>Checked to determine the locale if <code>units</code> cannot obtain it
 from the operating system.  Sections of the
 standard units data file are specific to certain locales.
-
-     <br><dt><samp><span class="env">MYUNITSFILE</span></samp><dd><a name="index-MYUNITSFILE-environment-variable-225"></a><a name="index-environment-variable_002c-MYUNITSFILE-226"></a>Specifies your personal units data file.  If this variable exists,
-<samp><span class="command">units</span></samp> uses its value rather than searching your home
-directory for &lsquo;<samp><span class="samp">.units</span></samp>&rsquo;.  The personal units file will not be
-loaded if any data files are given using the &lsquo;<samp><span class="samp">-f</span></samp>&rsquo; option.
-
-     <br><dt><samp><span class="env">PAGER</span></samp><dd><a name="index-PAGER-environment-variable-227"></a><a name="index-environment-variable_002c-PAGER-228"></a><a name="index-help-229"></a>Specifies the pager to use for help and for displaying the conformable
+</p>
+</dd>
+<dt><code>MYUNITSFILE</code></dt>
+<dd><a name="index-MYUNITSFILE-environment-variable-1"></a>
+<a name="index-environment-variable_002c-MYUNITSFILE-1"></a>
+<p>Specifies your personal units data file.  If this variable exists,
+<code>units</code> uses its value rather than searching your home
+directory for &lsquo;<samp>.units</samp>&rsquo;.  The personal units file will not be
+loaded if any data files are given using the <samp>-f</samp> option.
+</p>
+</dd>
+<dt><code>PAGER</code></dt>
+<dd><a name="index-PAGER-environment-variable"></a>
+<a name="index-environment-variable_002c-PAGER"></a>
+<a name="index-help-1"></a>
+<p>Specifies the pager to use for help and for displaying the conformable
 units.  The help function browses the units database and calls
-the pager using the &lsquo;<samp><span class="samp">+n</span></samp>&rsquo;<var>n</var> syntax for specifying a line
-number.  The default pager is <samp><span class="command">more</span></samp>; <samp><span class="env">PAGER</span></samp> can be used
-to specify alternatives such as <samp><span class="command">less</span></samp>, <samp><span class="command">pg</span></samp>,
-<samp><span class="command">emacs</span></samp>, or <samp><span class="command">vi</span></samp>.
-
-     <br><dt><samp><span class="env">UNITS_ENGLISH</span></samp><dd><a name="index-UNITS_005fENGLISH-environment-variable-230"></a><a name="index-environment-variable_002c-UNITS_005fENGLISH-231"></a>Set to either &lsquo;<samp><span class="samp">US</span></samp>&rsquo; or
-&lsquo;<samp><span class="samp">GB</span></samp>&rsquo; to choose United States or British volume definitions,
+the pager using the &lsquo;<samp>+n</samp>&rsquo;<var>n</var> syntax for specifying a line
+number.  The default pager is <code>more</code>; <code>PAGER</code> can be used
+to specify alternatives such as <code>less</code>, <code>pg</code>,
+<code>emacs</code>, or <code>vi</code>.
+</p>
+</dd>
+<dt><code>UNITS_ENGLISH</code></dt>
+<dd><a name="index-UNITS_005fENGLISH-environment-variable"></a>
+<a name="index-environment-variable_002c-UNITS_005fENGLISH"></a>
+<p>Set to either &lsquo;<samp>US</samp>&rsquo; or
+&lsquo;<samp>GB</samp>&rsquo; to choose United States or British volume definitions,
 overriding the default from your locale.
-
-     <br><dt><samp><span class="env">UNITSFILE</span></samp><dd><a name="index-UNITSFILE-environment-variable-232"></a><a name="index-environment-variable_002c-UNITSFILE-233"></a>Specifies the units data file to use (instead of the default). 
+</p>
+</dd>
+<dt><code>UNITSFILE</code></dt>
+<dd><a name="index-UNITSFILE-environment-variable"></a>
+<a name="index-environment-variable_002c-UNITSFILE"></a>
+<p>Specifies the units data file to use (instead of the default).
 You can only specify a single units data file using this environment
-variable.  If units data files are given using the <samp><span class="option">-f</span></samp> option,
-the file specified by <samp><span class="env">UNITSFILE</span></samp> will be not be loaded unless the
-<samp><span class="option">-f</span></samp> option is given with the empty string
-(&lsquo;<samp><span class="samp">units&nbsp;-f&nbsp;""</span></samp>&rsquo;<!-- /@w -->).
-
-     <br><dt><samp><span class="env">UNITSLOCALEMAP</span></samp><dd><a name="index-UNITSLOCALEMAP-environment-variable-234"></a><a name="index-environment-variable_002c-UNITSLOCALEMAP-235"></a>Windows only; this variable has no effect on Unix-like systems. 
-Specifies the units locale map file to use (instead of the default). 
+variable.  If units data files are given using the <samp>-f</samp> option,
+the file specified by <code>UNITSFILE</code> will be not be loaded unless the
+<samp>-f</samp> option is given with the empty string
+(&lsquo;<samp>units&nbsp;<span class="nolinebreak">-f</span>&nbsp;&quot;&quot;</samp>&rsquo;<!-- /@w -->).
+</p>
+</dd>
+<dt><code>UNITSLOCALEMAP</code></dt>
+<dd><a name="index-UNITSLOCALEMAP-environment-variable"></a>
+<a name="index-environment-variable_002c-UNITSLOCALEMAP"></a>
+<p>Windows only; this variable has no effect on Unix-like systems.
+Specifies the units locale map file to use (instead of the default).
 This variable seldom needs to be set, but you can use it to ensure that
 the locale map file will be found if you specify a location for the
-units data file using either the <samp><span class="option">-f</span></samp> option or the
-<samp><span class="env">UNITSFILE</span></samp> environment variable, and that location does not also
+units data file using either the <samp>-f</samp> option or the
+<code>UNITSFILE</code> environment variable, and that location does not also
 contain the locale map file.
+</p>
+</dd>
+</dl>
 
-   </dl>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Data-Files.html#Data-Files" accesskey="n" rel="next">Data Files</a>, Previous: <a href="Localization.html#Localization" accesskey="p" rel="prev">Localization</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-   </body></html>
 
+
+</body>
+</html>

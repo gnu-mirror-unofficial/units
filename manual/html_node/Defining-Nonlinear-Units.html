@@ -1,149 +1,189 @@
-<html lang="en">
-<head>
-<title>Defining Nonlinear Units - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
-<link rel="prev" href="Defining-New-Units.html#Defining-New-Units" title="Defining New Units">
-<link rel="next" href="Piecewise-Linear-Units.html#Piecewise-Linear-Units" title="Piecewise Linear Units">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Defining Nonlinear Units</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Defining Nonlinear Units">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Defining Nonlinear Units">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" rel="up" title="Defining Your Own Units">
+<link href="Piecewise-Linear-Units.html#Piecewise-Linear-Units" rel="next" title="Piecewise Linear Units">
+<link href="Defining-New-Units.html#Defining-New-Units" rel="prev" title="Defining New Units">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Defining-Nonlinear-Units"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Piecewise-Linear-Units.html#Piecewise-Linear-Units">Piecewise Linear Units</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Defining-New-Units.html#Defining-New-Units">Defining New Units</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>
-<hr>
+Next: <a href="Piecewise-Linear-Units.html#Piecewise-Linear-Units" accesskey="n" rel="next">Piecewise Linear Units</a>, Previous: <a href="Defining-New-Units.html#Defining-New-Units" accesskey="p" rel="prev">Defining New Units</a>, Up: <a href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" accesskey="u" rel="up">Defining Your Own Units</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Defining-Nonlinear-Units-1"></a>
 <h3 class="section">10.3 Defining Nonlinear Units</h3>
-
-<p><a name="index-defining-nonlinear-units-179"></a><a name="index-nonlinear-units_002c-defining-180"></a><a name="index-nonlinear-unit-conversions-181"></a>Some unit conversions of interest are nonlinear; for
+<a name="index-defining-nonlinear-units"></a>
+<a name="index-nonlinear-units_002c-defining"></a>
+<a name="index-nonlinear-unit-conversions-1"></a>
+<p>Some unit conversions of interest are nonlinear; for
 example, temperature conversions between the Fahrenheit and Celsius
 scales cannot be done by simply multiplying by conversion factors.
-
-   <p>When you give a linear unit definition such as &lsquo;<samp><span class="samp">inch 2.54&nbsp;cm</span></samp>&rsquo;
-you are providing information that <samp><span class="command">units</span></samp> uses to convert
+</p>
+<p>When you give a linear unit definition such as &lsquo;<samp>inch 2.54&nbsp;cm</samp>&rsquo;
+you are providing information that <code>units</code> uses to convert
 values in inches into primitive units of meters.  For nonlinear units,
 you give a functional definition that provides the same information.
-
-   <p>Nonlinear units are represented using a functional notation. 
+</p>
+<p>Nonlinear units are represented using a functional notation.
 It is best to regard this notation not as a function call but
 as a way of adding units to a number, much the same way that
-writing a linear unit name after a number adds units to that number. 
+writing a linear unit name after a number adds units to that number.
 Internally, nonlinear units are defined by a pair of functions
 that convert to and from linear units in the database, so that
 an eventual conversion to primitive units is possible.
+</p>
+<p>Here is an example nonlinear unit definition:
+</p>
+<div class="example">
+<pre class="example">tempF(x) units=[1;K] domain=[-459.67,) range=[0,) \
+            (x+(-32)) degF + stdtemp ; (tempF+(-stdtemp))/degF + 32
+</pre></div>
 
-   <p>Here is an example nonlinear unit definition:
-
-<pre class="example">     tempF(x) units=[1;K] domain=[-459.67,) range=[0,) \
-                 (x+(-32)) degF + stdtemp ; (tempF+(-stdtemp))/degF + 32
-</pre>
-   <p class="noindent">A nonlinear unit definition comprises a unit name, a formal parameter
+<p>A nonlinear unit definition comprises a unit name, a formal parameter
 name, two functions, and optional specifications for units, the domain,
 and the range (the domain of the inverse function).  The functions tell
-<samp><span class="command">units</span></samp> how to convert to and from the new unit.  To produce
+<code>units</code> how to convert to and from the new unit.  To produce
 valid results, the arguments of these functions need to have the correct
 dimensions and be within the domains for which the functions are
 defined.
+</p>
+<a name="index-parentheses-7"></a>
 
-   <p><a name="index-parentheses-182"></a>
-The definition begins with the unit name followed immediately (with no
-spaces) by a &lsquo;<samp><span class="samp">(</span></samp>&rsquo; character.  In the parentheses is the name of the
+<p>The definition begins with the unit name followed immediately (with no
+spaces) by a &lsquo;<samp>(</samp>&rsquo; character.  In the parentheses is the name of the
 formal parameter.  Next is an optional specification of the units
 required by the functions in the definition.  In the example above,
-the &lsquo;<samp><span class="samp">units=[1;K]</span></samp>&rsquo; specification indicates that the
-&lsquo;<samp><span class="samp">tempF</span></samp>&rsquo; function requires an input argument conformable with
-&lsquo;<samp><span class="samp">1</span></samp>&rsquo; (i.e., the argument is dimensionless), and that the inverse
-function requires an input argument conformable with &lsquo;<samp><span class="samp">K</span></samp>&rsquo;.  For
+the &lsquo;<samp>units=[1;K]</samp>&rsquo; specification indicates that the
+&lsquo;<samp>tempF</samp>&rsquo; function requires an input argument conformable with
+&lsquo;<samp>1</samp>&rsquo; (i.e., the argument is dimensionless), and that the inverse
+function requires an input argument conformable with &lsquo;<samp>K</samp>&rsquo;.  For
 normal nonlinear units definition, the forward function will always take
 a dimensionless argument; in general, the inverse function will need
-units that match the quantity measured by your nonlinear unit. 
-Specifying the units enables <samp><span class="command">units</span></samp> to perform error checking
+units that match the quantity measured by your nonlinear unit.
+Specifying the units enables <code>units</code> to perform error checking
 on function arguments, and also to assign units to domain and range
 specifications, which are described later.
+</p>
+<p>Next the function definitions appear.  In the example above, the
+&lsquo;<samp>tempF</samp>&rsquo; function is defined by
+</p>
+<div class="example">
+<pre class="example">tempF(x) = (x+(-32)) degF + stdtemp
+</pre></div>
 
-   <p>Next the function definitions appear.  In the example above, the
-&lsquo;<samp><span class="samp">tempF</span></samp>&rsquo; function is defined by
-
-<pre class="example">     tempF(x) = (x+(-32)) degF + stdtemp
-</pre>
-   <p class="noindent">This gives a rule for converting &lsquo;<samp><span class="samp">x</span></samp>&rsquo; in the units &lsquo;<samp><span class="samp">tempF</span></samp>&rsquo;
+<p>This gives a rule for converting &lsquo;<samp>x</samp>&rsquo; in the units &lsquo;<samp>tempF</samp>&rsquo;
 to linear units of absolute temperature, which makes it possible to
 convert from tempF to other units.
-
-   <p>To enable conversions to Fahrenheit, you must give a rule for the
-inverse conversions.  The inverse will be &lsquo;<samp><span class="samp">x(tempF)</span></samp>&rsquo; and its
-definition appears after a &lsquo;<samp><span class="samp">;</span></samp>&rsquo; character.  In our example, the
+</p>
+<p>To enable conversions to Fahrenheit, you must give a rule for the
+inverse conversions.  The inverse will be &lsquo;<samp>x(tempF)</samp>&rsquo; and its
+definition appears after a &lsquo;<samp>;</samp>&rsquo; character.  In our example, the
 inverse is
+</p>
+<div class="example">
+<pre class="example">x(tempF) = (tempF+(-stdtemp))/degF + 32
+</pre></div>
 
-<pre class="example">     x(tempF) = (tempF+(-stdtemp))/degF + 32
-</pre>
-   <p class="noindent">This inverse definition takes an absolute temperature as its argument
+<p>This inverse definition takes an absolute temperature as its argument
 and converts it to the Fahrenheit temperature.  The inverse can be
-omitted by leaving out the &lsquo;<samp><span class="samp">;</span></samp>&rsquo; character and the inverse
+omitted by leaving out the &lsquo;<samp>;</samp>&rsquo; character and the inverse
 definition, but then conversions <em>to</em> the unit will not be
-possible.  If the inverse definition is omitted, the <samp><span class="option">--check</span></samp>
+possible.  If the inverse definition is omitted, the <samp>--check</samp>
 option will display a warning.  It is up to you to calculate and enter
 the correct inverse function to obtain proper conversions; the
-<samp><span class="option">--check</span></samp> option tests the inverse at one point and prints an
+<samp>--check</samp> option tests the inverse at one point and prints an
 error if it is not valid there, but this is not a guarantee that your
 inverse is correct.
+</p>
+<p>With some definitions, the units may vary.  For example, the definition
+</p>
+<div class="example">
+<pre class="example">square(x)       x^2
+</pre></div>
 
-   <p>With some definitions, the units may vary.  For example, the definition
-
-<pre class="example">     square(x)       x^2
-</pre>
-   <p class="noindent">can have any arbitrary units, and can also take dimensionless arguments. 
-In such a case, you should <em>not</em> specify units. 
+<p>can have any arbitrary units, and can also take dimensionless arguments.
+In such a case, you should <em>not</em> specify units.
 If a definition takes a root of its arguments, the definition is valid
 only for units that yield such a root.  For example,
+</p>
+<div class="example">
+<pre class="example">squirt(x)       sqrt(x)
+</pre></div>
 
-<pre class="example">     squirt(x)       sqrt(x)
-</pre>
-   <p class="noindent">is valid for a dimensionless argument, and for arguments with even
+<p>is valid for a dimensionless argument, and for arguments with even
 powers of units.
+</p>
+<a name="index-domain_002c-nonlinear-unit-definitions"></a>
+<a name="index-range_002c-nonlinear-unit-definitions"></a>
 
-   <p><a name="index-domain_002c-nonlinear-unit-definitions-183"></a><a name="index-range_002c-nonlinear-unit-definitions-184"></a>
-Some definitions may not be valid for all real numbers.  In such cases,
-<samp><span class="command">units</span></samp> can handle errors better if you specify an appropriate
+<p>Some definitions may not be valid for all real numbers.  In such cases,
+<code>units</code> can handle errors better if you specify an appropriate
 domain and range.  You specify the domain and range as shown below:
+</p>
+<div class="example">
+<pre class="example">baume(d) units=[1;g/cm^3] domain=[0,130.5] range=[1,10] \
+         (145/(145-d)) g/cm^3 ; (baume+-g/cm^3) 145 / baume
+</pre></div>
 
-<pre class="example">     baume(d) units=[1;g/cm^3] domain=[0,130.5] range=[1,10] \
-              (145/(145-d)) g/cm^3 ; (baume+-g/cm^3) 145 / baume
-</pre>
-   <p class="noindent">In this example the domain is specified after &lsquo;<samp><span class="samp">domain=</span></samp>&rsquo; with
+<p>In this example the domain is specified after &lsquo;<samp>domain=</samp>&rsquo; with
 the endpoints given in brackets.  In accord with mathematical
 convention, square brackets indicate a closed interval (one that
 includes its endpoints), and parentheses indicate an open interval (one
@@ -151,74 +191,96 @@ that does not include its endpoints).  An interval can be open or closed
 on one or both ends; an interval that is unbounded on either end is
 indicated by omitting the limit on that end.  For example, a quantity to
 which decibel (dB) is applied may have any value greater than zero, so
-the range is indicated by &lsquo;<samp><span class="samp">(0,)</span></samp>&rsquo;:
+the range is indicated by &lsquo;<samp>(0,)</samp>&rsquo;:
+</p>
+<div class="example">
+<pre class="example">decibel(x) units=[1;1] range=(0,) 10^(x/10); 10 log(decibel)
+</pre></div>
 
-<pre class="example">     decibel(x) units=[1;1] range=(0,) 10^(x/10); 10 log(decibel)
-</pre>
-   <p class="noindent">If the domain or range is given, the second endpoint must be greater
+<p>If the domain or range is given, the second endpoint must be greater
 than the first.
-
-   <p>The domain and range specifications can appear independently and in any
-order along with the units specification. 
+</p>
+<p>The domain and range specifications can appear independently and in any
+order along with the units specification.
 The values for the domain and range endpoints are attached to the units
 given in the units specification, and if necessary, the parameter value
 is adjusted for comparison with the endpoints.  For example, if a
-definition includes &lsquo;<samp><span class="samp">units=[1;ft]</span></samp>&rsquo; and &lsquo;<samp><span class="samp">range=[3,)</span></samp>&rsquo;, the range
+definition includes &lsquo;<samp>units=[1;ft]</samp>&rsquo; and &lsquo;<samp>range=[3,)</samp>&rsquo;, the range
 will be taken as 3&nbsp;ft to infinity.  If the function is passed a
-parameter of &lsquo;<samp><span class="samp">900&nbsp;mm</span></samp>&rsquo;<!-- /@w -->, that value will be adjusted to
-2.9527559&nbsp;ft, which is outside the specified range. 
+parameter of &lsquo;<samp>900&nbsp;mm</samp>&rsquo;<!-- /@w -->, that value will be adjusted to
+2.9527559&nbsp;ft, which is outside the specified range.
 If you omit the units specification from the previous example,
-<samp><span class="command">units</span></samp> can not tell whether you intend the lower endpoint
+<code>units</code> can not tell whether you intend the lower endpoint
 to be 3&nbsp;ft or 3&nbsp;microfurlongs, and can not adjust the
-parameter value of 900&nbsp;mm for comparison.  Without units,
+parameter value of 900&nbsp;mm for comparison.  Without units, 
 numerical values other than zero or plus or minus infinity for domain or
 range endpoints are meaningless, and accordingly they are not allowed.  If
 you give other values without units then the definition will be ignored
 and you will get an error message.
-
-   <p>Although the units, domain, and range specifications are optional, it's
+</p>
+<p>Although the units, domain, and range specifications are optional, it&rsquo;s
 best to give them when they are applicable; doing so allows
-<samp><span class="command">units</span></samp> to perform better error checking and give more helpful
+<code>units</code> to perform better error checking and give more helpful
 error messages.  Giving the domain and range also enables the
-<samp><span class="option">--check</span></samp> option to find a point in the domain to use for its
+<samp>--check</samp> option to find a point in the domain to use for its
 point check of your inverse definition.
-
-   <p>You can make synonyms for nonlinear units by providing both the
+</p>
+<p>You can make synonyms for nonlinear units by providing both the
 forward and inverse functions; inverse functions can be obtained using
-the &lsquo;<samp><span class="samp">~</span></samp>&rsquo; operator.  So to create a synonym for &lsquo;<samp><span class="samp">tempF</span></samp>&rsquo; you
+the &lsquo;<samp>~</samp>&rsquo; operator.  So to create a synonym for &lsquo;<samp>tempF</samp>&rsquo; you
 could write
+</p>
+<div class="example">
+<pre class="example">fahrenheit(x) units=[1;K] tempF(x); ~tempF(fahrenheit)
+</pre></div>
 
-<pre class="example">     fahrenheit(x) units=[1;K] tempF(x); ~tempF(fahrenheit)
-</pre>
-   <p class="noindent">This is useful for creating a nonlinear unit
+<p>This is useful for creating a nonlinear unit
 definition that differs slightly from an existing definition without
 having to repeat the original functions.  For example,
+</p>
+<div class="example">
+<pre class="example">dBW(x)     units=[1;W] range=[0,) dB(x) W ;  ~dB(dBW/W) 
+</pre></div>
 
-<pre class="example">     dBW(x)     units=[1;W] range=[0,) dB(x) W ;  ~dB(dBW/W)
-</pre>
-   <p class="noindent">If you wish a synonym to refer to an existing nonlinear unit without
+<p>If you wish a synonym to refer to an existing nonlinear unit without
 modification, you can do so more simply by adding the synonym with
 appended parentheses as a new unit, with the existing nonlinear
 unit&mdash;without parentheses&mdash;as the definition.  So to create a synonym
-for &lsquo;<samp><span class="samp">tempF</span></samp>&rsquo; you could write
+for &lsquo;<samp>tempF</samp>&rsquo; you could write
+</p>
+<div class="example">
+<pre class="example">fahrenheit()  tempF
+</pre></div>
 
-<pre class="example">     fahrenheit()  tempF
-</pre>
-   <p class="noindent">The definition must be a nonlinear unit; for example, the synonym
+<p>The definition must be a nonlinear unit; for example, the synonym
+</p>
+<div class="example">
+<pre class="example">fahrenheit()  meter
+</pre></div>
 
-<pre class="example">     fahrenheit()  meter
-</pre>
-   <p class="noindent">will result in an error message when <samp><span class="command">units</span></samp> starts.
-
-   <p><a name="index-units-functions-185"></a><a name="index-functions-of-units-186"></a>You may occasionally wish to define a function that operates on units. 
+<p>will result in an error message when <code>units</code> starts.
+</p>
+<a name="index-units-functions"></a>
+<a name="index-functions-of-units"></a>
+<p>You may occasionally wish to define a function that operates on units.
 This can be done using a nonlinear unit definition.  For example, the
 definition below provides conversion between radius and the area of a
 circle.  This definition requires a length as input and
-produces an area as output, as indicated by the &lsquo;<samp><span class="samp">units=</span></samp>&rsquo; specification. 
+produces an area as output, as indicated by the &lsquo;<samp>units=</samp>&rsquo; specification.
 Specifying the range as the nonnegative numbers can prevent cryptic
 error messages.
+</p>
+<div class="example">
+<pre class="example">circlearea(r) units=[m;m^2] range=[0,)   pi r^2 ; sqrt(circlearea/pi)
+</pre></div>
 
-<pre class="example">     circlearea(r) units=[m;m^2] range=[0,)   pi r^2 ; sqrt(circlearea/pi)
-</pre>
-   </body></html>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Piecewise-Linear-Units.html#Piecewise-Linear-Units" accesskey="n" rel="next">Piecewise Linear Units</a>, Previous: <a href="Defining-New-Units.html#Defining-New-Units" accesskey="p" rel="prev">Defining New Units</a>, Up: <a href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" accesskey="u" rel="up">Defining Your Own Units</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
+
+
+</body>
+</html>

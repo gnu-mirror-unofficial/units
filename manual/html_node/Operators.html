@@ -1,175 +1,253 @@
-<html lang="en">
-<head>
-<title>Operators - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Unit-Expressions.html#Unit-Expressions" title="Unit Expressions">
-<link rel="next" href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units" title="Sums and Differences of Units">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Operators</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Operators">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Operators">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Unit-Expressions.html#Unit-Expressions" rel="up" title="Unit Expressions">
+<link href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units" rel="next" title="Sums and Differences of Units">
+<link href="Unit-Expressions.html#Unit-Expressions" rel="prev" title="Unit Expressions">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Operators"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units">Sums and Differences of Units</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Unit-Expressions.html#Unit-Expressions">Unit Expressions</a>
-<hr>
+Next: <a href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units" accesskey="n" rel="next">Sums and Differences of Units</a>, Up: <a href="Unit-Expressions.html#Unit-Expressions" accesskey="u" rel="up">Unit Expressions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Operators-1"></a>
 <h3 class="section">5.1 Operators</h3>
+<a name="index-operators"></a>
 
-<p><a name="index-operators-36"></a>
-You can enter more complicated units by combining units with operations
+<p>You can enter more complicated units by combining units with operations
 such as multiplication, division, powers, addition, subtraction, and
 parentheses for grouping.  You can use the customary symbols for these
-operators when <samp><span class="command">units</span></samp> is invoked with its default options. 
-Additionally, <samp><span class="command">units</span></samp> supports some extensions, including high
+operators when <code>units</code> is invoked with its default options.
+Additionally, <code>units</code> supports some extensions, including high
 priority multiplication using a space, and a high priority numerical
-division operator (&lsquo;<samp><span class="samp">|</span></samp>&rsquo;) that can simplify some expressions.
+division operator (&lsquo;<samp>|</samp>&rsquo;) that can simplify some expressions.
+</p>
+<a name="index-products-of-units"></a>
+<a name="index-quotients-of-units"></a>
+<a name="index-units-quotients"></a>
+<a name="index-multiplication-of-units"></a>
+<a name="index-division-of-units"></a>
+<a name="index-operator_002c-per"></a>
+<a name="index-per-operator"></a>
+<a name="index-operator_002c-space"></a>
+<a name="index-operator_002c-star-_0028_002a_0029"></a>
+<a name="index-star-_0028_002a_0029-operator"></a>
+<a name="index-_002a-operator"></a>
+<a name="index-operator_002c-slash-_0028_002f_0029"></a>
+<a name="index-slash-_0028_002f_0029-operator"></a>
+<a name="index-operator_002c-solidus-_0028_002f_0029"></a>
+<a name="index-solidus-_0028_002f_0029-operator"></a>
 
-   <p><a name="index-products-of-units-37"></a><a name="index-quotients-of-units-38"></a><a name="index-units-quotients-39"></a><a name="index-multiplication-of-units-40"></a><a name="index-division-of-units-41"></a><a name="index-operator_002c-_0040samp_007bper_007d-42"></a><a name="index-g_t_0040samp_007bper_007d-operator-43"></a><a name="index-operator_002c-space-44"></a><a name="index-operator_002c-star-_0028_0040samp_007b_002a_007d_0029-45"></a><a name="index-star-_0028_0040samp_007b_002a_007d_0029-operator-46"></a><a name="index-g_t_0040samp_007b_002a_007d-operator-47"></a><a name="index-operator_002c-slash-_0028_0040samp_007b_002f_007d_0029-48"></a><a name="index-slash-_0028_0040samp_007b_002f_007d_0029-operator-49"></a><a name="index-operator_002c-solidus-_0028_0040samp_007b_002f_007d_0029-50"></a><a name="index-solidus-_0028_0040samp_007b_002f_007d_0029-operator-51"></a>
-You multiply units using a space or an asterisk (&lsquo;<samp><span class="samp">*</span></samp>&rsquo;). 
+<p>You multiply units using a space or an asterisk (&lsquo;<samp>*</samp>&rsquo;).
 The next example shows both forms:
+</p>
+<div class="example">
+<pre class="example">You have: arabicfoot * arabictradepound * force
+You want: ft lbf
+        * 0.7296
+        / 1.370614
+</pre></div>
 
-<pre class="example">     You have: arabicfoot * arabictradepound * force
-     You want: ft lbf
-             * 0.7296
-             / 1.370614
-</pre>
-   <p class="noindent">You can divide units using the slash (&lsquo;<samp><span class="samp">/</span></samp>&rsquo;) or with &lsquo;<samp><span class="samp">per</span></samp>&rsquo;:
+<p>You can divide units using the slash (&lsquo;<samp>/</samp>&rsquo;) or with &lsquo;<samp>per</samp>&rsquo;:
+</p>
+<div class="example">
+<pre class="example">You have: furlongs per fortnight
+You want: m/s
+        * 0.00016630986
+        / 6012.8727
+</pre></div>
 
-<pre class="example">     You have: furlongs per fortnight
-     You want: m/s
-             * 0.00016630986
-             / 6012.8727
-</pre>
-   <p><a name="index-parentheses-52"></a>You can use parentheses for grouping:
+<a name="index-parentheses"></a>
+<p>You can use parentheses for grouping:
+</p>
+<div class="example">
+<pre class="example">You have: (1/2) kg / (kg/meter)
+You want: league
+        * 0.00010356166
+        / 9656.0833
+</pre></div>
 
-<pre class="example">     You have: (1/2) kg / (kg/meter)
-     You want: league
-             * 0.00010356166
-             / 9656.0833
-</pre>
-   <p><a name="index-operator-precedence-53"></a><a name="index-parentheses-54"></a>
-Multiplication using a space has a higher precedence
+<a name="index-operator-precedence"></a>
+<a name="index-parentheses-1"></a>
+
+<p>Multiplication using a space has a higher precedence
 than division using a slash and is evaluated left to right;
-in effect, the first &lsquo;<samp><span class="samp">/</span></samp>&rsquo; character marks the beginning of the
-denominator of a unit expression. 
+in effect, the first &lsquo;<samp>/</samp>&rsquo; character marks the beginning of the
+denominator of a unit expression.
 This makes it simple to enter a quotient with several terms in the
-denominator: &lsquo;<samp><span class="samp">J&nbsp;/&nbsp;mol&nbsp;K</span></samp>&rsquo;<!-- /@w -->. 
-The &lsquo;<samp><span class="samp">*</span></samp>&rsquo; and &lsquo;<samp><span class="samp">/</span></samp>&rsquo; operators have the same precedence, and are
-evaluated left to right; if you multiply with &lsquo;<samp><span class="samp">*</span></samp>&rsquo;, you must group
-the terms in the denominator with parentheses: &lsquo;<samp><span class="samp">J&nbsp;/&nbsp;(mol&nbsp;*&nbsp;K)</span></samp>&rsquo;<!-- /@w -->.
+denominator: &lsquo;<samp>J&nbsp;/&nbsp;mol&nbsp;K</samp>&rsquo;<!-- /@w -->.
+The &lsquo;<samp>*</samp>&rsquo; and &lsquo;<samp>/</samp>&rsquo; operators have the same precedence, and are
+evaluated left to right; if you multiply with &lsquo;<samp>*</samp>&rsquo;, you must group
+the terms in the denominator with parentheses: &lsquo;<samp>J&nbsp;/&nbsp;(mol&nbsp;*&nbsp;K)</samp>&rsquo;<!-- /@w -->.
+</p>
+<a name="index-fractions_002c-numerical"></a>
+<a name="index-numerical-fractions"></a>
+<a name="index-division-of-numbers"></a>
+<a name="index-operator_002c-vertical-bar-_0028_007c_0029"></a>
+<a name="index-vertical-bar-_0028_007c_0029-operator"></a>
+<a name="index-_007c-operator"></a>
 
-   <p><a name="index-fractions_002c-numerical-55"></a><a name="index-numerical-fractions-56"></a><a name="index-division-of-numbers-57"></a><a name="index-operator_002c-vertical-bar-_0028_0040samp_007b_007c_007d_0029-58"></a><a name="index-vertical-bar-_0028_0040samp_007b_007c_007d_0029-operator-59"></a><a name="index-g_t_0040samp_007b_007c_007d-operator-60"></a>
-The higher precedence of the space operator may not always be advantageous. 
-For example, &lsquo;<samp><span class="samp">m/s&nbsp;s/day</span></samp>&rsquo;<!-- /@w --> is equivalent to
-&lsquo;<samp><span class="samp">m&nbsp;/&nbsp;s&nbsp;s&nbsp;day</span></samp>&rsquo;<!-- /@w --> and has dimensions of length per time cubed. 
-Similarly, &lsquo;<samp><span class="samp">1/2&nbsp;meter</span></samp>&rsquo;<!-- /@w --> refers to a unit of reciprocal length
+<p>The higher precedence of the space operator may not always be advantageous.
+For example, &lsquo;<samp>m/s&nbsp;s/day</samp>&rsquo;<!-- /@w --> is equivalent to
+&lsquo;<samp>m&nbsp;/&nbsp;s&nbsp;s&nbsp;day</samp>&rsquo;<!-- /@w --> and has dimensions of length per time cubed.
+Similarly, &lsquo;<samp>1/2&nbsp;meter</samp>&rsquo;<!-- /@w --> refers to a unit of reciprocal length
 equivalent to 0.5/meter, perhaps not what you would intend if
 you entered that expression.  The get a half meter you would need to
-use parentheses: &lsquo;<samp><span class="samp">(1/2)&nbsp;meter</span></samp>&rsquo;<!-- /@w -->. 
-The &lsquo;<samp><span class="samp">*</span></samp>&rsquo; operator is convenient for multiplying a sequence of
-quotients.  For example, &lsquo;<samp><span class="samp">m/s&nbsp;*&nbsp;s/day</span></samp>&rsquo;<!-- /@w --> is equivalent to
-&lsquo;<samp><span class="samp">m/day</span></samp>&rsquo;.  Similarly, you could write &lsquo;<samp><span class="samp">1/2&nbsp;*&nbsp;meter</span></samp>&rsquo;<!-- /@w --> to get
+use parentheses: &lsquo;<samp>(1/2)&nbsp;meter</samp>&rsquo;<!-- /@w -->.
+The &lsquo;<samp>*</samp>&rsquo; operator is convenient for multiplying a sequence of
+quotients.  For example, &lsquo;<samp>m/s&nbsp;*&nbsp;s/day</samp>&rsquo;<!-- /@w --> is equivalent to
+&lsquo;<samp>m/day</samp>&rsquo;.  Similarly, you could write &lsquo;<samp>1/2&nbsp;*&nbsp;meter</samp>&rsquo;<!-- /@w --> to get
 half a meter.
-
-   <p>The <samp><span class="command">units</span></samp> program supports another option for numerical fractions:
+</p>
+<p>The <code>units</code> program supports another option for numerical fractions:
 you can indicate division of <em>numbers</em> with the vertical bar
-(&lsquo;<samp><span class="samp">|</span></samp>&rsquo;), so if you wanted half a meter you could write
-&lsquo;<samp><span class="samp">1|2&nbsp;meter</span></samp>&rsquo;<!-- /@w -->. 
+(&lsquo;<samp>|</samp>&rsquo;), so if you wanted half a meter you could write
+&lsquo;<samp>1|2&nbsp;meter</samp>&rsquo;<!-- /@w -->.
 You cannot use the vertical bar to indicate division of non-numerical
-units (e.g., &lsquo;<samp><span class="samp">m|s</span></samp>&rsquo; results in an error message).
+units (e.g., &lsquo;<samp>m|s</samp>&rsquo; results in an error message).
+</p>
+<a name="index-powers"></a>
+<a name="index-exponent-operator"></a>
+<a name="index-operator_002c-caret-_0028_005e_0029"></a>
+<a name="index-operator_002c-_0028_002a_002a_0029"></a>
+<a name="index-_002a_002a-operator"></a>
+<a name="index-parentheses-2"></a>
 
-   <p><a name="index-powers-61"></a><a name="index-exponent-operator-62"></a><a name="index-operator_002c-caret-_0028_0040samp_007b_005e_007d_0029-63"></a><a name="index-operator_002c-_0028_0040samp_007b_002a_002a_007d_0029-64"></a><a name="index-g_t_0040samp_007b_002a_002a_007d-operator-65"></a><a name="index-parentheses-66"></a>
-Powers of units can be specified using the &lsquo;<samp><span class="samp">^</span></samp>&rsquo; character, as shown in
+<p>Powers of units can be specified using the &lsquo;<samp>^</samp>&rsquo; character, as shown in
 the following example, or by simple concatenation of a unit and its
-exponent: &lsquo;<samp><span class="samp">cm3</span></samp>&rsquo; is equivalent to &lsquo;<samp><span class="samp">cm^3</span></samp>&rsquo;;
-if the exponent is more than one digit, the &lsquo;<samp><span class="samp">^</span></samp>&rsquo; is required. 
-You can also use &lsquo;<samp><span class="samp">**</span></samp>&rsquo; as an exponent operator.
+exponent: &lsquo;<samp>cm3</samp>&rsquo; is equivalent to &lsquo;<samp>cm^3</samp>&rsquo;;
+if the exponent is more than one digit, the &lsquo;<samp>^</samp>&rsquo; is required.
+You can also use &lsquo;<samp>**</samp>&rsquo; as an exponent operator.
+</p>
+<div class="example">
+<pre class="example">You have: cm^3
+You want: gallons
+        * 0.00026417205
+        / 3785.4118
+</pre></div>
 
-<pre class="example">     You have: cm^3
-     You want: gallons
-             * 0.00026417205
-             / 3785.4118
-</pre>
-   <p class="noindent">Concatenation only works with a single unit name: if you write &lsquo;<samp><span class="samp">(m/s)2</span></samp>&rsquo;,
-<samp><span class="command">units</span></samp> will treat it as multiplication by 2. 
-<a name="index-prefixes-and-exponents-67"></a>When a unit includes a prefix, exponent operators apply to the
-combination, so &lsquo;<samp><span class="samp">centimeter3</span></samp>&rsquo; gives cubic centimeters.  If you
+<p>Concatenation only works with a single unit name: if you write &lsquo;<samp>(m/s)2</samp>&rsquo;,
+<code>units</code> will treat it as multiplication by 2.
+<a name="index-prefixes-and-exponents"></a>
+When a unit includes a prefix, exponent operators apply to the
+combination, so &lsquo;<samp>centimeter3</samp>&rsquo; gives cubic centimeters.  If you
 separate the prefix from the unit with any multiplication operator (e.g.,
-&lsquo;<samp><span class="samp">centi meter^3</span></samp>&rsquo;), the prefix is treated as a separate unit, so
+&lsquo;<samp>centi meter^3</samp>&rsquo;), the prefix is treated as a separate unit, so
 the exponent applies only to the unit without the prefix.  The second
-example is equivalent to &lsquo;<samp><span class="samp">centi * (meter^3)</span></samp>&rsquo;, and gives a hundredth
-of a cubic meter, not a cubic centimeter.  The <samp><span class="command">units</span></samp> program
+example is equivalent to &lsquo;<samp>centi * (meter^3)</samp>&rsquo;, and gives a hundredth
+of a cubic meter, not a cubic centimeter.  The <code>units</code> program
 is limited internally to products of 99 units; accordingly, expressions
-like &lsquo;<samp><span class="samp">meter^100</span></samp>&rsquo; or &lsquo;<samp><span class="samp">joule^34</span></samp>&rsquo; (represented internally as
-&lsquo;<samp><span class="samp">kg^34&nbsp;m^68&nbsp;/&nbsp;s^68</span></samp>&rsquo;<!-- /@w -->) will fail.
-
-   <p>The &lsquo;<samp><span class="samp">|</span></samp>&rsquo;
+like &lsquo;<samp>meter^100</samp>&rsquo; or &lsquo;<samp>joule^34</samp>&rsquo; (represented internally as
+&lsquo;<samp>kg^34&nbsp;m^68&nbsp;/&nbsp;s^68</samp>&rsquo;<!-- /@w -->) will fail.
+</p>
+<p>The &lsquo;<samp>|</samp>&rsquo;
 operator has the highest precedence, so you can write the square root of
-two thirds as &lsquo;<samp><span class="samp">2|3^1|2</span></samp>&rsquo;. 
-The &lsquo;<samp><span class="samp">^</span></samp>&rsquo; operator has the second highest precedence, and is
+two thirds as &lsquo;<samp>2|3^1|2</samp>&rsquo;.
+The &lsquo;<samp>^</samp>&rsquo; operator has the second highest precedence, and is
 evaluated right to left, as usual:
+</p>
+<div class="example">
+<pre class="example">You have: 5 * 2^3^2
+You want:
+        Definition: 2560
+</pre></div>
 
-<pre class="example">     You have: 5 * 2^3^2
-     You want:
-             Definition: 2560
-</pre>
-   <p class="noindent">With a dimensionless base unit, any dimensionless exponent is meaningful
-(e.g., &lsquo;<samp><span class="samp">pi^exp(2.371)</span></samp>&rsquo;).  Even though angle is sometimes treated as
+<p>With a dimensionless base unit, any dimensionless exponent is meaningful
+(e.g., &lsquo;<samp>pi^exp(2.371)</samp>&rsquo;).  Even though angle is sometimes treated as
 dimensionless, exponents cannot have dimensions of angle:
+</p>
+<div class="example">
+<pre class="example">You have: 2^radian
+                 ^
+Exponent not dimensionless
+</pre></div>
 
-<pre class="example">     You have: 2^radian
-                      ^
-     Exponent not dimensionless
-</pre>
-   <p class="noindent">If the base unit is not dimensionless, the
+<p>If the base unit is not dimensionless, the
 exponent must be a rational number <var>p</var>/<var>q</var><!-- /@w -->, and the
-dimension of the unit must be a power of <var>q</var>, so &lsquo;<samp><span class="samp">gallon^2|3</span></samp>&rsquo;
-works but &lsquo;<samp><span class="samp">acre^2|3</span></samp>&rsquo; fails.  An exponent using the slash (&lsquo;<samp><span class="samp">/</span></samp>&rsquo;)
-operator (e.g., &lsquo;<samp><span class="samp">acre^(2/3)</span></samp>&rsquo;) is also acceptable; the parentheses
-are needed because the precedence of &lsquo;<samp><span class="samp">^</span></samp>&rsquo; is higher than that of
-&lsquo;<samp><span class="samp">/</span></samp>&rsquo;.  Since <samp><span class="command">units</span></samp> cannot represent dimensions with
+dimension of the unit must be a power of <var>q</var>, so &lsquo;<samp>gallon^2|3</samp>&rsquo;
+works but &lsquo;<samp>acre^2|3</samp>&rsquo; fails.  An exponent using the slash (&lsquo;<samp>/</samp>&rsquo;)
+operator (e.g., &lsquo;<samp>gallon^(2/3)</samp>&rsquo;) is also acceptable; the parentheses
+are needed because the precedence of &lsquo;<samp>^</samp>&rsquo; is higher than that of
+&lsquo;<samp>/</samp>&rsquo;.  Since <code>units</code> cannot represent dimensions with
 exponents greater than 99, a fully reduced exponent must have
 <var>q</var>&nbsp;&lt;&nbsp;100<!-- /@w -->.  When raising a non-dimensionless unit to a power,
-<samp><span class="command">units</span></samp> attempts to convert a decimal exponent to a rational
+<code>units</code> attempts to convert a decimal exponent to a rational
 number with <var>q</var>&nbsp;&lt;&nbsp;100<!-- /@w -->.  If this is not possible
-<samp><span class="command">units</span></samp> displays an error message:
+<code>units</code> displays an error message:
+</p>
+<div class="example">
+<pre class="example">You have: ft^1.234
+Base unit not dimensionless; rational exponent required
+</pre></div>
 
-<pre class="example">     You have: ft^1.234
-     Base unit not dimensionless; rational exponent required
-</pre>
-   <p class="noindent">A decimal exponent must match its rational representation to machine
-precision, so &lsquo;<samp><span class="samp">acre^1.5</span></samp>&rsquo; works but &lsquo;<samp><span class="samp">gallon^0.666</span></samp>&rsquo; does not.
+<p>A decimal exponent must match its rational representation to machine
+precision, so &lsquo;<samp>acre^1.5</samp>&rsquo; works but &lsquo;<samp>gallon^0.666</samp>&rsquo; does not.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units" accesskey="n" rel="next">Sums and Differences of Units</a>, Up: <a href="Unit-Expressions.html#Unit-Expressions" accesskey="u" rel="up">Unit Expressions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-   </body></html>
 
+
+</body>
+</html>

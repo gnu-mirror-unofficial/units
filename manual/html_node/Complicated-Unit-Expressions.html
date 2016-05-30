@@ -1,149 +1,132 @@
-<html lang="en">
-<head>
-<title>Complicated Unit Expressions - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Unit-Expressions.html#Unit-Expressions" title="Unit Expressions">
-<link rel="prev" href="Previous-Result.html#Previous-Result" title="Previous Result">
-<link rel="next" href="Backwards-Compatibility.html#Backwards-Compatibility" title="Backwards Compatibility">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Complicated Unit Expressions</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Complicated Unit Expressions">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Complicated Unit Expressions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Unit-Expressions.html#Unit-Expressions" rel="up" title="Unit Expressions">
+<link href="Backwards-Compatibility.html#Backwards-Compatibility" rel="next" title="Backwards Compatibility">
+<link href="Previous-Result.html#Previous-Result" rel="prev" title="Previous Result">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Complicated-Unit-Expressions"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Backwards-Compatibility.html#Backwards-Compatibility">Backwards Compatibility</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Previous-Result.html#Previous-Result">Previous Result</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Unit-Expressions.html#Unit-Expressions">Unit Expressions</a>
-<hr>
+Next: <a href="Backwards-Compatibility.html#Backwards-Compatibility" accesskey="n" rel="next">Backwards Compatibility</a>, Previous: <a href="Previous-Result.html#Previous-Result" accesskey="p" rel="prev">Previous Result</a>, Up: <a href="Unit-Expressions.html#Unit-Expressions" accesskey="u" rel="up">Unit Expressions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Complicated-Unit-Expressions-1"></a>
 <h3 class="section">5.6 Complicated Unit Expressions</h3>
+<a name="index-unit-expressions_002c-complicated"></a>
 
-<p><a name="index-unit-expressions_002c-complicated-88"></a>
-The <samp><span class="command">units</span></samp> program is especially helpful in ensuring accuracy
-and dimensional consistency when converting lengthy unit expressions. 
-<!-- noman -->
-<a name="index-Darcy_002d_002dWeisbach-equation-89"></a>For example, one form of the Darcy&ndash;Weisbach fluid-flow equation is
+<p>The <code>units</code> program is especially helpful in ensuring accuracy
+and dimensional consistency when converting lengthy unit expressions.
+<a name="index-Darcy_002d_002dWeisbach-equation"></a>
+For example, one form of the Darcy&ndash;Weisbach fluid-flow equation is
+</p>
+<div class="example">
+<pre class="example"> Delta P = (8/pi^2) rho f L (Q^2 / d^5)
+</pre></div>
 
-<pre class="example">      Delta P = (8/pi^2) rho f L (Q^2 / d^5)
-</pre>
-   <p class="noindent">where  \Delta P is the pressure drop, \rho is the mass density,
-f is the (dimensionless) friction factor, L is the length
-of the pipe, Q is the volumetric flow rate, and d
-is the pipe diameter. 
+<p>where <em>\Delta P</em> is the pressure drop, <em>\rho</em> is the mass density,
+<em>f</em> is the (dimensionless) friction factor, <em>L</em> is the length
+of the pipe, <em>Q</em> is the volumetric flow rate, and <em>d</em>
+is the pipe diameter.
 It might be desired to have the equation in the form
+</p>
+<div class="example">
+<pre class="example">   Delta P = A1 rho f L (Q^2 / d^5)
+</pre></div>
 
-<pre class="example">        Delta P = A1 rho f L (Q^2 / d^5)
-</pre>
-   <!-- end noman -->
-<!--  -->
-<!-- nroff-assume neqn is not available -->
-<!--  -->
-<!-- man .if t .ig ++ -->
-<!-- man For example, one form of the Darcy-Weisbach fluid-flow equation is -->
-<!-- man .RS 5n -->
-<!-- man .PP -->
-<!-- man Delta \fIP\fP = (8 / pi)^2 (rho \fIfLQ\fP^2) / \fId\fP^5, -->
-<!-- man .RE -->
-<!-- man .PP -->
-<!-- man where Delta \fIP\fP is the pressure drop, rho is the mass density, -->
-<!-- man \fIf\fP is the (dimensionless) friction factor, \fIL\fP is the length -->
-<!-- man of the pipe, \fIQ\fP is the volumetric flow rate, and \fId\fP -->
-<!-- man is the pipe diameter. -->
-<!-- man It might be desired to have the equation in the form -->
-<!-- man .RS 5n -->
-<!-- man .PP -->
-<!-- man Delta \fIP\fP = A1 rho \fIfLQ\fP^2 / \fId\fP^5 -->
-<!-- man .RE -->
-<!-- man .PP -->
-<!-- man .++ -->
-<!--  -->
-<!-- troff -->
-<!--  -->
-<!-- man .if n .ig ++ -->
-<!-- man .EQ -->
-<!-- man delim $$ -->
-<!-- man .EN -->
-<!-- don’t assume en dash is available -->
-<!-- man For example, one form of the Darcy\-Weisbach fluid-flow equation is -->
-<!-- man .RS 5n -->
-<!-- man .PP -->
-<!-- man .EQ -->
-<!-- man DELTA P = 8 over pi sup 2 rho fL Q sup 2 over d sup 5 , -->
-<!-- man .EN -->
-<!-- man .RE -->
-<!-- man .PP -->
-<!-- man where $DELTA P$ is the pressure drop, $rho$ is the mass density, -->
-<!-- man $f$ is the (dimensionless) friction factor, $L$ is the length -->
-<!-- man of the pipe, $Q$ is the volumetric flow rate, and $d$ -->
-<!-- man is the pipe diameter. -->
-<!-- man It might be desired to have the equation in the form -->
-<!-- man .RS 5n -->
-<!-- man .PP -->
-<!-- man .EQ -->
-<!-- man DELTA P = A sub 1 rho fL Q sup 2 over d sup 5 -->
-<!-- man .EN -->
-<!-- man .RE -->
-<!-- man .PP -->
-<!-- man .EQ -->
-<!-- man delim off -->
-<!-- man .EN -->
-<!-- man .++ -->
-<p class="noindent">that accepted the user's normal units; for typical units used in the US,
+<p>that accepted the user&rsquo;s normal units; for typical units used in the US,
 the required conversion could be something like
+</p>
+<div class="example">
+<pre class="example">You have: (8/pi^2)(lbm/ft^3)ft(ft^3/s)^2(1/in^5)
+You want: psi
+        * 43.533969
+        / 0.022970568
+</pre></div>
 
-<pre class="example">     You have: (8/pi^2)(lbm/ft^3)ft(ft^3/s)^2(1/in^5)
-     You want: psi
-             * 43.533969
-             / 0.022970568
-</pre>
-   <p><a name="index-parentheses-90"></a>The parentheses allow individual terms in the expression to be entered naturally,
+<a name="index-parentheses-4"></a>
+<p>The parentheses allow individual terms in the expression to be entered naturally,
 as they might be read from the formula.  Alternatively, the
-multiplication could be done with the &lsquo;<samp><span class="samp">*</span></samp>&rsquo; rather than a space;
-then parentheses are needed only around &lsquo;<samp><span class="samp">ft^3/s</span></samp>&rsquo; because of its
+multiplication could be done with the &lsquo;<samp>*</samp>&rsquo; rather than a space;
+then parentheses are needed only around &lsquo;<samp>ft^3/s</samp>&rsquo; because of its
 exponent:
+</p>
+<div class="example">
+<pre class="example">You have: 8/pi^2 * lbm/ft^3 * ft * (ft^3/s)^2 /in^5
+You want: psi
+        * 43.533969
+        / 0.022970568
+</pre></div>
 
-<pre class="example">     You have: 8/pi^2 * lbm/ft^3 * ft * (ft^3/s)^2 /in^5
-     You want: psi
-             * 43.533969
-             / 0.022970568
-</pre>
-   <p class="noindent">Without parentheses, and using spaces for multiplication, the previous
+<p>Without parentheses, and using spaces for multiplication, the previous
 conversion would need to be entered as
+</p>
+<div class="example">
+<pre class="example">You have: 8 lb ft ft^3 ft^3 / pi^2 ft^3 s^2 in^5
+You want: psi
+        * 43.533969
+        / 0.022970568
+</pre></div>
 
-<pre class="example">     You have: 8 lb ft ft^3 ft^3 / pi^2 ft^3 s^2 in^5
-     You want: psi
-             * 43.533969
-             / 0.022970568
-</pre>
-   </body></html>
 
+
+
+</body>
+</html>

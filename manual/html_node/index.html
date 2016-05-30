@@ -1,143 +1,200 @@
-<html lang="en">
-<head>
-<title>Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="#Top">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled "GNU Free Documentation License".
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Top</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Top">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Top">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="/manual" rel="up" title="(dir)">
+<link href="Overview.html#Overview" rel="next" title="Overview">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<h1 class="settitle">Units: A Unit Conversion Program and Scientific Calculator</h1>
+
+<body lang="en">
+<h1 class="settitle" align="center">Units: A Unit Conversion Program and Scientific Calculator</h1>
+
+
+
+
+<a name="SEC_Contents"></a>
+<h2 class="contents-heading">Table of Contents</h2>
+
 <div class="contents">
-<h2>Table of Contents</h2>
-<ul>
-<li><a name="toc_Top" href="index.html#Top">Units Conversion</a>
-<li><a name="toc_Overview" href="Overview.html#Overview">1 Overview of <samp><span class="command">units</span></samp></a>
-<li><a name="toc_Interactive-Use" href="Interactive-Use.html#Interactive-Use">2 Interacting with <samp><span class="command">units</span></samp></a>
-<li><a name="toc_Command-Line-Use" href="Command-Line-Use.html#Command-Line-Use">3 Using <samp><span class="command">units</span></samp> Non-Interactively</a>
-<li><a name="toc_Unit-Definitions" href="Unit-Definitions.html#Unit-Definitions">4 Unit Definitions</a>
-<ul>
-<li><a href="Unit-Definitions.html#Unit-Definitions">4.1 English Customary Units</a>
-</li></ul>
-<li><a name="toc_Unit-Expressions" href="Unit-Expressions.html#Unit-Expressions">5 Unit Expressions</a>
-<ul>
-<li><a href="Operators.html#Operators">5.1 Operators</a>
-<li><a href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units">5.2 Sums and Differences of Units</a>
-<li><a href="Numbers-as-Units.html#Numbers-as-Units">5.3 Numbers as Units</a>
-<li><a href="Built_002din-Functions.html#Built_002din-Functions">5.4 Built-in Functions</a>
-<li><a href="Previous-Result.html#Previous-Result">5.5 Previous Result</a>
-<li><a href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions">5.6 Complicated Unit Expressions</a>
-<li><a href="Backwards-Compatibility.html#Backwards-Compatibility">5.7 Backwards Compatibility: &lsquo;<samp><span class="samp">*</span></samp>&rsquo; and &lsquo;<samp><span class="samp">-</span></samp>&rsquo;</a>
-</li></ul>
-<li><a name="toc_Nonlinear-Conversions" href="Nonlinear-Conversions.html#Nonlinear-Conversions">6 Nonlinear Unit Conversions</a>
-<ul>
-<li><a href="Temperature-Conversions.html#Temperature-Conversions">6.1 Temperature Conversions</a>
-<li><a href="Other-Nonlinear-Units.html#Other-Nonlinear-Units">6.2 Other Nonlinear Units</a>
-</li></ul>
-<li><a name="toc_Unit-Lists" href="Unit-Lists.html#Unit-Lists">7 Unit Lists: Conversion to Sums of Units</a>
-<li><a name="toc_Logging-Calculations" href="Logging-Calculations.html#Logging-Calculations">8 Logging Calculations</a>
-<li><a name="toc_Invoking-Units" href="Invoking-Units.html#Invoking-Units">9 Invoking <samp><span class="command">units</span></samp></a>
-<li><a name="toc_Defining-Your-Own-Units" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">10 Adding Your Own Definitions</a>
-<ul>
-<li><a href="Units-Data-Files.html#Units-Data-Files">10.1 Units Data Files</a>
-<li><a href="Defining-New-Units.html#Defining-New-Units">10.2 Defining New Units and Prefixes</a>
-<li><a href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">10.3 Defining Nonlinear Units</a>
-<li><a href="Piecewise-Linear-Units.html#Piecewise-Linear-Units">10.4 Defining Piecewise Linear Units</a>
-<li><a href="Defining-Unit-List-Aliases.html#Defining-Unit-List-Aliases">10.5 Defining Unit List Aliases</a>
-</li></ul>
-<li><a name="toc_Numeric-Output-Format" href="Numeric-Output-Format.html#Numeric-Output-Format">11 Numeric Output Format</a>
-<ul>
-<li><a href="Format-Specification.html#Format-Specification">11.1 Format Specification</a>
-<li><a href="Flags.html#Flags">11.2 Flags</a>
-<li><a href="Field-Width.html#Field-Width">11.3 Field Width</a>
-<li><a href="Precision.html#Precision">11.4 Precision</a>
-</li></ul>
-<li><a name="toc_Localization" href="Localization.html#Localization">12 Localization</a>
-<ul>
-<li><a href="Locale.html#Locale">12.1 Locale</a>
-<li><a href="Additional-Localization.html#Additional-Localization">12.2 Additional Localization</a>
-</li></ul>
-<li><a name="toc_Environment-Vars" href="Environment-Vars.html#Environment-Vars">13 Environment Variables</a>
-<li><a name="toc_Data-Files" href="Data-Files.html#Data-Files">14 Data Files</a>
-<li><a name="toc_Unicode-Support" href="Unicode-Support.html#Unicode-Support">15 Unicode Support</a>
-<li><a name="toc_Readline-Support" href="Readline-Support.html#Readline-Support">16 Readline Support</a>
-<li><a name="toc_Currency" href="Currency.html#Currency">17 Updating Currency Exchange Rates</a>
-<li><a name="toc_Database-Syntax" href="Database-Syntax.html#Database-Syntax">18 Database Command Syntax</a>
-<li><a name="toc_GNU-Free-Documentation-License" href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License">19 GNU Free Documentation License</a>
-<li><a name="toc_Index" href="Index.html#Index">Index</a>
-</li></ul>
-</div>
 
-
-
-<div class="node">
-<a name="Top"></a>
-<p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Overview.html#Overview">Overview</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="../index.html#dir">(dir)</a>
-<hr>
-</div>
-
-<h2 class="unnumbered">Units Conversion</h2>
-
-<!-- noman -->
-<p>This manual describes the <samp><span class="command">units</span></samp> command for units conversion and
-how you can use it as a powerful scientific calculator that keeps
-track of units. 
-This is Edition 2.10 of <cite>The Units Conversion Manual</cite>
-for <samp><span class="command">units</span></samp> Version 2.10. 
-<!-- end noman -->
-
-<ul class="menu">
-<li><a accesskey="1" href="Overview.html#Overview">Overview</a>:             What does <samp><span class="command">units</span></samp> do? 
-<li><a accesskey="2" href="Interactive-Use.html#Interactive-Use">Interactive Use</a>:      How to use <samp><span class="command">units</span></samp>. 
-<li><a accesskey="3" href="Command-Line-Use.html#Command-Line-Use">Command Line Use</a>:     How to use <samp><span class="command">units</span></samp> noninteractively. 
-<li><a accesskey="4" href="Unit-Definitions.html#Unit-Definitions">Unit Definitions</a>:     What units are defined? 
-<li><a accesskey="5" href="Unit-Expressions.html#Unit-Expressions">Unit Expressions</a>:     Forming compound units. 
-<li><a accesskey="6" href="Nonlinear-Conversions.html#Nonlinear-Conversions">Nonlinear Conversions</a>:  Nonlinear unit conversions (e.g., temperature). 
-<li><a accesskey="7" href="Unit-Lists.html#Unit-Lists">Unit Lists</a>: 		Conversion to sums of units (e.g., feet and inches). 
-<li><a accesskey="8" href="Logging-Calculations.html#Logging-Calculations">Logging Calculations</a>:  Logging conversions and calculations in a file. 
-<li><a accesskey="9" href="Invoking-Units.html#Invoking-Units">Invoking Units</a>:       Command line options. 
-<li><a href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>:   Adding your own unit definitions
-<li><a href="Numeric-Output-Format.html#Numeric-Output-Format">Numeric Output Format</a>:  How to change the output format
-<li><a href="Localization.html#Localization">Localization</a>:         How to define and use regional unit names. 
-<li><a href="Environment-Vars.html#Environment-Vars">Environment Vars</a>:     Environment variables used by <samp><span class="command">units</span></samp>. 
-<li><a href="Data-Files.html#Data-Files">Data Files</a>:           Descriptions and locations of units data files. 
-<li><a href="Unicode-Support.html#Unicode-Support">Unicode Support</a>:      Support for Unicode (UTF-8). 
-<li><a href="Readline-Support.html#Readline-Support">Readline Support</a>:     Unit name completion and editing. 
-<li><a href="Currency.html#Currency">Currency</a>:             Updating currency exchange rates. 
-<li><a href="Database-Syntax.html#Database-Syntax">Database Syntax</a>:      Summary of database command syntax. 
-<li><a href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License">GNU Free Documentation License</a>:   License. 
-<li><a href="Index.html#Index">Index</a>:                General index. 
+<ul class="no-bullet">
+  <li><a name="toc-Overview-of-units" href="Overview.html#Overview">1 Overview of <code>units</code></a></li>
+  <li><a name="toc-Interacting-with-units" href="Interactive-Use.html#Interactive-Use">2 Interacting with <code>units</code></a></li>
+  <li><a name="toc-Using-units-Non_002dInteractively" href="Command-Line-Use.html#Command-Line-Use">3 Using <code>units</code> Non-Interactively</a></li>
+  <li><a name="toc-Unit-Definitions-1" href="Unit-Definitions.html#Unit-Definitions">4 Unit Definitions</a>
+  <ul class="no-bullet">
+    <li><a name="toc-English-Customary-Units" href="Unit-Definitions.html#English-Customary-Units">4.1 English Customary Units</a></li>
+  </ul></li>
+  <li><a name="toc-Unit-Expressions-1" href="Unit-Expressions.html#Unit-Expressions">5 Unit Expressions</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Operators-1" href="Operators.html#Operators">5.1 Operators</a></li>
+    <li><a name="toc-Sums-and-Differences-of-Units-1" href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units">5.2 Sums and Differences of Units</a></li>
+    <li><a name="toc-Numbers-as-Units-1" href="Numbers-as-Units.html#Numbers-as-Units">5.3 Numbers as Units</a></li>
+    <li><a name="toc-Built_002din-Functions-1" href="Built_002din-Functions.html#Built_002din-Functions">5.4 Built-in Functions</a></li>
+    <li><a name="toc-Previous-Result-1" href="Previous-Result.html#Previous-Result">5.5 Previous Result</a></li>
+    <li><a name="toc-Complicated-Unit-Expressions-1" href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions">5.6 Complicated Unit Expressions</a></li>
+    <li><a name="toc-Backwards-Compatibility_003a-_002a-and-_002d" href="Backwards-Compatibility.html#Backwards-Compatibility">5.7 Backwards Compatibility: &lsquo;<samp>*</samp>&rsquo; and &lsquo;<samp>-</samp>&rsquo;</a></li>
+  </ul></li>
+  <li><a name="toc-Nonlinear-Unit-Conversions" href="Nonlinear-Conversions.html#Nonlinear-Conversions">6 Nonlinear Unit Conversions</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Temperature-Conversions-1" href="Temperature-Conversions.html#Temperature-Conversions">6.1 Temperature Conversions</a></li>
+    <li><a name="toc-Other-Nonlinear-Units-1" href="Other-Nonlinear-Units.html#Other-Nonlinear-Units">6.2 Other Nonlinear Units</a></li>
+  </ul></li>
+  <li><a name="toc-Unit-Lists_003a-Conversion-to-Sums-of-Units" href="Unit-Lists.html#Unit-Lists">7 Unit Lists: Conversion to Sums of Units</a></li>
+  <li><a name="toc-Logging-Calculations-1" href="Logging-Calculations.html#Logging-Calculations">8 Logging Calculations</a></li>
+  <li><a name="toc-Invoking-units" href="Invoking-Units.html#Invoking-Units">9 Invoking <code>units</code></a></li>
+  <li><a name="toc-Adding-Your-Own-Definitions" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">10 Adding Your Own Definitions</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Units-Data-Files-1" href="Units-Data-Files.html#Units-Data-Files">10.1 Units Data Files</a></li>
+    <li><a name="toc-Defining-New-Units-and-Prefixes" href="Defining-New-Units.html#Defining-New-Units">10.2 Defining New Units and Prefixes</a></li>
+    <li><a name="toc-Defining-Nonlinear-Units-1" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">10.3 Defining Nonlinear Units</a></li>
+    <li><a name="toc-Defining-Piecewise-Linear-Units" href="Piecewise-Linear-Units.html#Piecewise-Linear-Units">10.4 Defining Piecewise Linear Units</a></li>
+    <li><a name="toc-Defining-Unit-List-Aliases-1" href="Defining-Unit-List-Aliases.html#Defining-Unit-List-Aliases">10.5 Defining Unit List Aliases</a></li>
+  </ul></li>
+  <li><a name="toc-Numeric-Output-Format-1" href="Numeric-Output-Format.html#Numeric-Output-Format">11 Numeric Output Format</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Format-Specification-1" href="Format-Specification.html#Format-Specification">11.1 Format Specification</a></li>
+    <li><a name="toc-Flags-1" href="Flags.html#Flags">11.2 Flags</a></li>
+    <li><a name="toc-Field-Width-1" href="Field-Width.html#Field-Width">11.3 Field Width</a></li>
+    <li><a name="toc-Precision-1" href="Precision.html#Precision">11.4 Precision</a></li>
+  </ul></li>
+  <li><a name="toc-Localization-1" href="Localization.html#Localization">12 Localization</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Locale-1" href="Locale.html#Locale">12.1 Locale</a></li>
+    <li><a name="toc-Additional-Localization-1" href="Additional-Localization.html#Additional-Localization">12.2 Additional Localization</a></li>
+  </ul></li>
+  <li><a name="toc-Environment-Variables" href="Environment-Vars.html#Environment-Vars">13 Environment Variables</a></li>
+  <li><a name="toc-Data-Files-1" href="Data-Files.html#Data-Files">14 Data Files</a></li>
+  <li><a name="toc-Unicode-Support-1" href="Unicode-Support.html#Unicode-Support">15 Unicode Support</a></li>
+  <li><a name="toc-Readline-Support-1" href="Readline-Support.html#Readline-Support">16 Readline Support</a></li>
+  <li><a name="toc-Updating-Currency-Exchange-Rates" href="Currency.html#Currency">17 Updating Currency Exchange Rates</a></li>
+  <li><a name="toc-Database-Command-Syntax" href="Database-Syntax.html#Database-Syntax">18 Database Command Syntax</a></li>
+  <li><a name="toc-GNU-Free-Documentation-License-1" href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License">19 GNU Free Documentation License</a></li>
+  <li><a name="toc-Index-1" href="Index.html#Index">Index</a></li>
 </ul>
+</div>
 
-<!-- noman -->
-   </body></html>
 
+
+<a name="Top"></a>
+<div class="header">
+<p>
+Next: <a href="Overview.html#Overview" accesskey="n" rel="next">Overview</a>, Up: <a href="/manual" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Units-Conversion"></a>
+<h1 class="top">Units Conversion</h1>
+
+<p>This manual describes the <code>units</code> command for units conversion and
+how you can use it as a powerful scientific calculator that keeps
+track of units.
+This is Edition 2.11 of <cite>The Units Conversion Manual</cite>
+for <code>units</code> Version 2.12.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Overview.html#Overview" accesskey="1">Overview</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">What does <code>units</code> do?
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Interactive-Use.html#Interactive-Use" accesskey="2">Interactive Use</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How to use <code>units</code>.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Command-Line-Use.html#Command-Line-Use" accesskey="3">Command Line Use</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How to use <code>units</code> non-interactively.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Unit-Definitions.html#Unit-Definitions" accesskey="4">Unit Definitions</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">What units are defined?
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Unit-Expressions.html#Unit-Expressions" accesskey="5">Unit Expressions</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Forming compound units.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Nonlinear-Conversions.html#Nonlinear-Conversions" accesskey="6">Nonlinear Conversions</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Nonlinear unit conversions (e.g., temperature).
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Unit-Lists.html#Unit-Lists" accesskey="7">Unit Lists</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Conversion to sums of units (e.g., feet and inches).
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Logging-Calculations.html#Logging-Calculations" accesskey="8">Logging Calculations</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Logging conversions and calculations in a file.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Invoking-Units.html#Invoking-Units" accesskey="9">Invoking Units</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Command line options.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Adding your own unit definitions
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Numeric-Output-Format.html#Numeric-Output-Format">Numeric Output Format</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How to change the output format
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Localization.html#Localization">Localization</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How to define and use regional unit names.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Environment-Vars.html#Environment-Vars">Environment Vars</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Environment variables used by <code>units</code>.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Data-Files.html#Data-Files">Data Files</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Descriptions and locations of units data files.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Unicode-Support.html#Unicode-Support">Unicode Support</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Support for Unicode (UTF-8).
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Readline-Support.html#Readline-Support">Readline Support</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Unit name completion and editing.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Currency.html#Currency">Currency</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Updating currency exchange rates.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Database-Syntax.html#Database-Syntax">Database Syntax</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Summary of database command syntax.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License">GNU Free Documentation License</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">License.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Index.html#Index">Index</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">General index.
+</td></tr>
+</table>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Overview.html#Overview" accesskey="n" rel="next">Overview</a>, Up: <a href="/manual" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

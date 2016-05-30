@@ -1,71 +1,96 @@
-<html lang="en">
-<head>
-<title>Additional Localization - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Localization.html#Localization" title="Localization">
-<link rel="prev" href="Locale.html#Locale" title="Locale">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Additional Localization</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Additional Localization">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Additional Localization">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Localization.html#Localization" rel="up" title="Localization">
+<link href="Environment-Vars.html#Environment-Vars" rel="next" title="Environment Vars">
+<link href="Locale.html#Locale" rel="prev" title="Locale">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
-<a name="Additional-Localization"></a>
-<p>
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Locale.html#Locale">Locale</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Localization.html#Localization">Localization</a>
-<hr>
-</div>
 
+<body lang="en">
+<a name="Additional-Localization"></a>
+<div class="header">
+<p>
+Previous: <a href="Locale.html#Locale" accesskey="p" rel="prev">Locale</a>, Up: <a href="Localization.html#Localization" accesskey="u" rel="up">Localization</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Additional-Localization-1"></a>
 <h3 class="section">12.2 Additional Localization</h3>
 
-<p>Sometimes the locale isn't sufficient to determine unit preferences. 
+<p>Sometimes the locale isn&rsquo;t sufficient to determine unit preferences.
 There could be regional preferences, or a company could have specific
 preferences.  Though probably uncommon, such differences could arise
 with the choice of English customary units outside of English-speaking
-countries.  To address this, <samp><span class="command">units</span></samp> allows specifying
-definitions that depend on environment variable settings. 
+countries.  To address this, <code>units</code> allows specifying
+definitions that depend on environment variable settings.
 The environment variables can be controled based on the current locale,
 or the user can set them to force a particular group of definitions.
-
-   <p>A conditional block of definitions in a units data file begins with
-either &lsquo;<samp><span class="samp">!var</span></samp>&rsquo; or &lsquo;<samp><span class="samp">!varnot</span></samp>&rsquo; following by an environment
+</p>
+<p>A conditional block of definitions in a units data file begins with
+either &lsquo;<samp>!var</samp>&rsquo; or &lsquo;<samp>!varnot</samp>&rsquo; following by an environment
 variable name and then a space separated
-list of values.  The leading &lsquo;<samp><span class="samp">!</span></samp>&rsquo; must appear in the first column of a units
-data file, and the conditional block is terminated by &lsquo;<samp><span class="samp">!endvar</span></samp>&rsquo;. 
-Definitions in blocks beginning with &lsquo;<samp><span class="samp">!var</span></samp>&rsquo; are executed only if the
-environment variable is exactly equal to one of the listed values. 
-Definitions in blocks beginning with &lsquo;<samp><span class="samp">!varnot</span></samp>&rsquo; are executed only if the
+list of values.  The leading &lsquo;<samp>!</samp>&rsquo; must appear in the first column of a units
+data file, and the conditional block is terminated by &lsquo;<samp>!endvar</samp>&rsquo;.
+Definitions in blocks beginning with &lsquo;<samp>!var</samp>&rsquo; are executed only if the
+environment variable is exactly equal to one of the listed values.
+Definitions in blocks beginning with &lsquo;<samp>!varnot</samp>&rsquo; are executed only if the
 environment variable does <em>not</em> equal any of the list values.
-
-   <p>The inch has long been a customary measure of length in many places. 
+</p>
+<p>The inch has long been a customary measure of length in many places.
 The word comes from the latin <em>uncia</em> meaning &ldquo;one twelfth,&rdquo;
 referring to its relationship with the foot.  By the 20th century, the
 inch was officially defined in English-speaking countries relative to
@@ -73,79 +98,91 @@ the yard, but until 1959, the yard differed slightly among those
 countries.  In France the customary inch, which was displaced in 1799
 by the meter, had a different length based on a french foot.  These
 customary definitions could be accommodated as follows:
+</p>
+<div class="example">
+<pre class="example">!var INCH_UNIT usa
+yard          3600|3937 m
+!endvar
+</pre><pre class="example">!var INCH_UNIT canada
+yard          0.9144 meter
+!endvar
+</pre><pre class="example">!var INCH_UNIT uk
+yard          0.91439841 meter
+!endvar
+</pre><pre class="example">!var INCH_UNIT canada uk usa
+foot          1|3 yard
+inch          1|12 foot
+!endvar
+</pre><pre class="example">!var INCH_UNIT france
+foot          144|443.296 m
+inch          1|12 foot
+line          1|12 inch
+!endvar
+</pre><pre class="example">!varnot INCH_UNIT usa uk france canada
+!message Unknown value for INCH_UNIT
+!endvar
+</pre></div>
 
-<pre class="example">     !var INCH_UNIT usa
-     yard          3600|3937 m
-     !endvar
-     !var INCH_UNIT canada
-     yard          0.9144 meter
-     !endvar
-     !var INCH_UNIT uk
-     yard          0.91439841 meter
-     !endvar
-     !var INCH_UNIT canada uk usa
-     foot          1|3 yard
-     inch          1|12 foot
-     !endvar
-     !var INCH_UNIT france
-     foot          144|443.296 m
-     inch          1|12 foot
-     line          1|12 inch
-     !endvar
-     !varnot INCH_UNIT usa uk france canada
-     !message Unknown value for INCH_UNIT
-     !endvar
-</pre>
-   <p class="noindent">When <samp><span class="command">units</span></samp> reads the above definitions it will check the
-environment variable <samp><span class="env">INCH_UNIT</span></samp> and load only the definitions for
-the appropriate section.  If <samp><span class="env">INCH_UNIT</span></samp> is unset or is not set to
-one of the four values listed then <samp><span class="command">units</span></samp> will run the last
+<p>When <code>units</code> reads the above definitions it will check the
+environment variable <code>INCH_UNIT</code> and load only the definitions for
+the appropriate section.  If <code>INCH_UNIT</code> is unset or is not set to
+one of the four values listed then <code>units</code> will run the last
 block.  In this case that block uses the
-&lsquo;<samp><span class="samp">!message</span></samp>&rsquo; command to display a warning message.  Alternatively
+&lsquo;<samp>!message</samp>&rsquo; command to display a warning message.  Alternatively
 that block could set default values.
-
-   <p>In order to create default values that are overridden by user settings
-the data file can use the &lsquo;<samp><span class="samp">!set</span></samp>&rsquo; command, which sets an
+</p>
+<p>In order to create default values that are overridden by user settings
+the data file can use the &lsquo;<samp>!set</samp>&rsquo; command, which sets an
 environment variable <em>only if it is not already set</em>;  these
-settings are only for the current <samp><span class="command">units</span></samp> invocation and do
+settings are only for the current <code>units</code> invocation and do
 not persist.  So if the example above were preceded by
-&lsquo;<samp><span class="samp">!set INCH_UNIT france</span></samp>&rsquo; then this would make &lsquo;<samp><span class="samp">france</span></samp>&rsquo; the
-default value for <samp><span class="env">INCH_UNIT</span></samp>.  If the user had set the variable
-in the environment before invoking <samp><span class="command">units</span></samp>, then
-<samp><span class="command">units</span></samp> would use the user's value.
-
-   <p>To link these settings to the user's locale you combine the &lsquo;<samp><span class="samp">!set</span></samp>&rsquo;
-command with the &lsquo;<samp><span class="samp">!locale</span></samp>&rsquo; command. 
+&lsquo;<samp>!set INCH_UNIT france</samp>&rsquo; then this would make &lsquo;<samp>france</samp>&rsquo; the
+default value for <code>INCH_UNIT</code>.  If the user had set the variable
+in the environment before invoking <code>units</code>, then
+<code>units</code> would use the user&rsquo;s value.
+</p>
+<p>To link these settings to the user&rsquo;s locale you combine the &lsquo;<samp>!set</samp>&rsquo;
+command with the &lsquo;<samp>!locale</samp>&rsquo; command.
 If you wanted to combine the above example with suitable locales you
 could do by <em>preceding</em> the above definition with the following:
+</p>
+<div class="example">
+<pre class="example">!locale en_US
+!set INCH_UNIT usa
+!endlocale
+!locale en_GB
+!set INCH_UNIT uk
+!endlocale
+!locale en_CA
+!set INCH_UNIT canada
+!endlocale
+!locale fr_FR
+!set INCH_UNIT france
+!endlocale
+!set INCH_UNIT france
+</pre></div>
 
-<pre class="example">     !locale en_US
-     !set INCH_UNIT usa
-     !endlocale
-     !locale en_GB
-     !set INCH_UNIT uk
-     !endlocale
-     !locale en_CA
-     !set INCH_UNIT canada
-     !endlocale
-     !locale fr_FR
-     !set INCH_UNIT france
-     !endlocale
-     !set INCH_UNIT france
-</pre>
-   <p class="noindent">These definitions set the overall default for <samp><span class="env">INCH_UNIT</span></samp> to
-&lsquo;<samp><span class="samp">france</span></samp>&rsquo; and set default values for four locales appropriately. 
+<p>These definitions set the overall default for <code>INCH_UNIT</code> to
+&lsquo;<samp>france</samp>&rsquo; and set default values for four locales appropriately.
 The overall default setting comes last so that it only applies when
-<samp><span class="env">INCH_UNIT</span></samp> was not set by one of the other commands or by the
+<code>INCH_UNIT</code> was not set by one of the other commands or by the
 user.
-
-   <p>If the variable given after &lsquo;<samp><span class="samp">!var</span></samp>&rsquo; or &lsquo;<samp><span class="samp">!varnot</span></samp>&rsquo; is undefined
-then <samp><span class="command">units</span></samp> prints an error message and ignores the
-definitions that follow.  Use &lsquo;<samp><span class="samp">!set</span></samp>&rsquo; to create defaults to
-prevent this situation from arising.  The <samp><span class="option">-c</span></samp>
+</p>
+<p>If the variable given after &lsquo;<samp>!var</samp>&rsquo; or &lsquo;<samp>!varnot</samp>&rsquo; is undefined
+then <code>units</code> prints an error message and ignores the
+definitions that follow.  Use &lsquo;<samp>!set</samp>&rsquo; to create defaults to
+prevent this situation from arising.  The <samp>-c</samp>
 option only checks the definitions that are active for the current
 environment and locale, so when adding new definitions take care to
 check that all cases give rise to a well defined set of definitions.
+</p>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Locale.html#Locale" accesskey="p" rel="prev">Locale</a>, Up: <a href="Localization.html#Localization" accesskey="u" rel="up">Localization</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-   </body></html>
 
+
+</body>
+</html>

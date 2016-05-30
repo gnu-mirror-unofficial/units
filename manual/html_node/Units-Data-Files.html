@@ -1,98 +1,142 @@
-<html lang="en">
-<head>
-<title>Units Data Files - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
-<link rel="next" href="Defining-New-Units.html#Defining-New-Units" title="Defining New Units">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Units Data Files</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Units Data Files">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Units Data Files">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" rel="up" title="Defining Your Own Units">
+<link href="Defining-New-Units.html#Defining-New-Units" rel="next" title="Defining New Units">
+<link href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" rel="prev" title="Defining Your Own Units">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Units-Data-Files"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Defining-New-Units.html#Defining-New-Units">Defining New Units</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>
-<hr>
+Next: <a href="Defining-New-Units.html#Defining-New-Units" accesskey="n" rel="next">Defining New Units</a>, Up: <a href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" accesskey="u" rel="up">Defining Your Own Units</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Units-Data-Files-1"></a>
 <h3 class="section">10.1 Units Data Files</h3>
+<a name="index-additional-units-data-files"></a>
+<a name="index-data-files_002c-additional"></a>
+<a name="index-units-data-files_002c-additional"></a>
+<a name="index-_0021include"></a>
+<a name="index-command_002c-_0021include"></a>
+<a name="index-including-additional-units-data-files"></a>
 
-<p><a name="index-additional-units-data-files-155"></a><a name="index-data-files_002c-additional-156"></a><a name="index-units-data-files_002c-additional-157"></a><a name="index-g_t_0040samp_007b_0021include_007d-158"></a><a name="index-command_002c-_0040samp_007b_0021include_007d-159"></a><a name="index-including-additional-units-data-files-160"></a>
-The units and prefixes that <samp><span class="command">units</span></samp> can convert are
+<p>The units and prefixes that <code>units</code> can convert are
 defined in the units
-data file, typically <samp><span class="file">/usr/share/units/definitions.units</span></samp>. 
-If you can't find this file, run <samp><span class="command">units&nbsp;--version</span></samp> to get
+data file, typically <samp>/usr/share/units/definitions.units</samp>.
+If you can&rsquo;t find this file, run <code>units&nbsp;--version</code> to get
 information on the file locations for your installation.  Although you
 can extend or modify this data file if you have appropriate user
-privileges, it's usually better to put extensions in separate files so
-that the definitions will be preserved if you update <samp><span class="command">units</span></samp>.
-
-   <p>You can include additional data files in the units database using
-the &lsquo;<samp><span class="samp">!include</span></samp>&rsquo; command in the standard units data file. For
+privileges, it&rsquo;s usually better to put extensions in separate files so
+that the definitions will be preserved if you update <code>units</code>.
+</p>
+<p>You can include additional data files in the units database using
+the &lsquo;<samp>!include</samp>&rsquo; command in the standard units data file. For
 example
+</p>
+<div class="example">
+<pre class="example">!include    /usr/local/share/units/local.units
+</pre></div>
 
-<pre class="example">     !include    /usr/local/share/units/local.units
-</pre>
-   <p class="noindent">might be appropriate for a site-wide supplemental data file. 
-The location of the &lsquo;<samp><span class="samp">!include</span></samp>&rsquo; statement in the standard units
+<p>might be appropriate for a site-wide supplemental data file.
+The location of the &lsquo;<samp>!include</samp>&rsquo; statement in the standard units
 data file is important; later definitions replace earlier ones,
 so any definitions in an included file will override definitions before
-the &lsquo;<samp><span class="samp">!include</span></samp>&rsquo; statement in the standard units data file. 
+the &lsquo;<samp>!include</samp>&rsquo; statement in the standard units data file.
 With normal invocation, no warning is given about redefinitions; to
-ensure that you don't have an unintended redefinition, run
-<samp><span class="command">units&nbsp;-c</span></samp> after making changes to any units data file.
+ensure that you don&rsquo;t have an unintended redefinition, run
+<code>units&nbsp;-c</code> after making changes to any units data file.
+</p>
+<a name="index-personal-units-data-file"></a>
+<a name="index-units-data-file_002c-personal"></a>
 
-   <p><a name="index-personal-units-data-file-161"></a><a name="index-units-data-file_002c-personal-162"></a>
-If you want to add your own units in addition to or in place of
+<p>If you want to add your own units in addition to or in place of
 standard or site-wide supplemental units data files, you can include
-them in the <samp><span class="file">.units</span></samp> file in your home directory.  If this
+them in the <samp>.units</samp> file in your home directory.  If this
 file exists it is read after the standard units data file, so that any
 definitions in this file will replace definitions of the same units in
 the standard data file or in files included from the standard data
 file.  This file will not be read if any units files are specified on
 the command line.  (Under Windows the personal units file is
-named <samp><span class="file">unitdef.units</span></samp>.)  Running <samp><span class="command">units&nbsp;-V</span></samp><!-- /@w --> will
+named <samp>unitdef.units</samp>.)  Running <code>units&nbsp;<span class="nolinebreak">-V</span></code><!-- /@w --> will
 display the location and name of your personal units file.
-
-   <p>The <samp><span class="command">units</span></samp> program first tries to determine your home
-directory from the <samp><span class="env">HOME</span></samp> environment variable.  On systems running
-Microsoft Windows, if <samp><span class="env">HOME</span></samp> does not exist, <samp><span class="command">units</span></samp>
-attempts to find your home directory from <samp><span class="env">HOMEDRIVE</span></samp>,
-<samp><span class="env">HOMEPATH</span></samp> and <samp><span class="env">USERPROFILE</span></samp>. 
-<a name="index-MYUNITSFILE-environment-variable-163"></a><a name="index-environment-variable_002c-MYUNITSFILE-164"></a>You can specify an arbitrary file as your personal units data file with
-the <samp><span class="env">MYUNITSFILE</span></samp> environment variable; if this variable exists, its
-value is used without searching your home directory. 
+</p>
+<p>The <code>units</code> program first tries to determine your home
+directory from the <code>HOME</code> environment variable.  On systems running
+Microsoft Windows, if <code>HOME</code> does not exist, <code>units</code>
+attempts to find your home directory from <code>HOMEDRIVE</code>,
+<code>HOMEPATH</code> and <code>USERPROFILE</code>.
+<a name="index-MYUNITSFILE-environment-variable"></a>
+<a name="index-environment-variable_002c-MYUNITSFILE"></a>
+You can specify an arbitrary file as your personal units data file with
+the <code>MYUNITSFILE</code> environment variable; if this variable exists, its
+value is used without searching your home directory.
 The default units data files are described in more detail in
 <a href="Data-Files.html#Data-Files">Data Files</a>.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Defining-New-Units.html#Defining-New-Units" accesskey="n" rel="next">Defining New Units</a>, Up: <a href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" accesskey="u" rel="up">Defining Your Own Units</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-   </body></html>
 
+
+</body>
+</html>

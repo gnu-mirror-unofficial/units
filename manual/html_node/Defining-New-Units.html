@@ -1,130 +1,180 @@
-<html lang="en">
-<head>
-<title>Defining New Units - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
-<link rel="prev" href="Units-Data-Files.html#Units-Data-Files" title="Units Data Files">
-<link rel="next" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units" title="Defining Nonlinear Units">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Defining New Units</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Defining New Units">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Defining New Units">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" rel="up" title="Defining Your Own Units">
+<link href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units" rel="next" title="Defining Nonlinear Units">
+<link href="Units-Data-Files.html#Units-Data-Files" rel="prev" title="Units Data Files">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Defining-New-Units"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">Defining Nonlinear Units</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Units-Data-Files.html#Units-Data-Files">Units Data Files</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>
-<hr>
+Next: <a href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units" accesskey="n" rel="next">Defining Nonlinear Units</a>, Previous: <a href="Units-Data-Files.html#Units-Data-Files" accesskey="p" rel="prev">Units Data Files</a>, Up: <a href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" accesskey="u" rel="up">Defining Your Own Units</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Defining-New-Units-and-Prefixes"></a>
 <h3 class="section">10.2 Defining New Units and Prefixes</h3>
+<a name="index-defining-units"></a>
+<a name="index-units_002c-definition-of"></a>
+<a name="index-units-definitions_002c-adding"></a>
+<a name="index-units-definitions_002c-changing"></a>
+<a name="index-prefixes_002c-definition-of"></a>
+<a name="index-defining-prefixes"></a>
+<a name="index-primitive-units"></a>
+<a name="index-units_002c-primitive"></a>
+<a name="index-_0021-to-indicate-primitive-units"></a>
+<a name="index-command_002c-_0021-to-indicate-primitive-units"></a>
 
-<p><a name="index-defining-units-165"></a><a name="index-units_002c-definition-of-166"></a><a name="index-units-definitions_002c-adding-167"></a><a name="index-units-definitions_002c-changing-168"></a><a name="index-prefixes_002c-definition-of-169"></a><a name="index-defining-prefixes-170"></a><a name="index-primitive-units-171"></a><a name="index-units_002c-primitive-172"></a><a name="index-g_t_0040samp_007b_0021_007d-to-indicate-primitive-units-173"></a><a name="index-command_002c-_0040samp_007b_0021_007d-to-indicate-primitive-units-174"></a>
-A unit is specified on a single line by giving its name and an
-equivalence.  Comments start with a &lsquo;<samp><span class="samp">#</span></samp>&rsquo; character, which can appear
-anywhere in a line.  The backslash character (&lsquo;<samp><span class="samp">\</span></samp>&rsquo;)
+<p>A unit is specified on a single line by giving its name and an
+equivalence.  Comments start with a &lsquo;<samp>#</samp>&rsquo; character, which can appear
+anywhere in a line.  The backslash character (&lsquo;<samp>\</samp>&rsquo;)
 acts as a continuation
 character if it appears as the last character on a line, making it
-possible to spread definitions out over several lines if desired. 
-A file can be included by giving the command &lsquo;<samp><span class="samp">!include</span></samp>&rsquo; followed by
-the file's name.  The &lsquo;<samp><span class="samp">!</span></samp>&rsquo; must be the first character on the
+possible to spread definitions out over several lines if desired.
+A file can be included by giving the command &lsquo;<samp>!include</samp>&rsquo; followed by
+the file&rsquo;s name.  The &lsquo;<samp>!</samp>&rsquo; must be the first character on the
 line.  The file will be sought in the same directory as the
 parent file unless you give a full path.  The name of the file to be
-included cannot contain the comment character &lsquo;<samp><span class="samp">#</span></samp>&rsquo;. 
-<a name="index-include-files-175"></a>
-Unit names must not contain any of the operator characters &lsquo;<samp><span class="samp">+</span></samp>&rsquo;,
-&lsquo;<samp><span class="samp">-</span></samp>&rsquo;, &lsquo;<samp><span class="samp">*</span></samp>&rsquo;, &lsquo;<samp><span class="samp">/</span></samp>&rsquo;, &lsquo;<samp><span class="samp">|</span></samp>&rsquo;, &lsquo;<samp><span class="samp">^</span></samp>&rsquo;, &lsquo;<samp><span class="samp">;</span></samp>&rsquo;, &lsquo;<samp><span class="samp">~</span></samp>&rsquo;,
-the comment character &lsquo;<samp><span class="samp">#</span></samp>&rsquo;, or parentheses.  They cannot begin or
-end with an underscore (&lsquo;<samp><span class="samp">_</span></samp>&rsquo;), a comma (&lsquo;<samp><span class="samp">,</span></samp>&rsquo;) or a decimal point
-(&lsquo;<samp><span class="samp">.</span></samp>&rsquo;).  The figure dash (U+2012), typographical minus (`&minus;';
-U+2212), and en dash (`&ndash;'; U+2013) are converted to the operator
-&lsquo;<samp><span class="samp">-</span></samp>&rsquo;, so none of these characters can appear in unit names.  Names
+included cannot contain the comment character &lsquo;<samp>#</samp>&rsquo;.
+<a name="index-include-files"></a>
+</p>
+<p>Unit names must not contain any of the operator characters &lsquo;<samp>+</samp>&rsquo;,
+&lsquo;<samp>-</samp>&rsquo;, &lsquo;<samp>*</samp>&rsquo;, &lsquo;<samp>/</samp>&rsquo;, &lsquo;<samp>|</samp>&rsquo;, &lsquo;<samp>^</samp>&rsquo;, &lsquo;<samp>;</samp>&rsquo;, &lsquo;<samp>~</samp>&rsquo;,
+the comment character &lsquo;<samp>#</samp>&rsquo;, or parentheses.  They cannot begin or
+end with an underscore (&lsquo;<samp>_</samp>&rsquo;), a comma (&lsquo;<samp>,</samp>&rsquo;) or a decimal point
+(&lsquo;<samp>.</samp>&rsquo;).  The figure dash (U+2012), typographical minus (&lsquo;-&rsquo;;
+U+2212), and en dash (&lsquo;&ndash;&rsquo;; U+2013) are converted to the operator
+&lsquo;<samp>-</samp>&rsquo;, so none of these characters can appear in unit names.  Names
 cannot begin with a digit, and if a name ends in a digit other than
 zero, the digit must be preceded by a string beginning with an
 underscore, and afterwards consisting only of digits, decimal points, or
-commas.  For example, &lsquo;<samp><span class="samp">foo_2</span></samp>&rsquo;, &lsquo;<samp><span class="samp">foo_2,1</span></samp>&rsquo;, or &lsquo;<samp><span class="samp">foo_3.14</span></samp>&rsquo;
-are valid names but &lsquo;<samp><span class="samp">foo2</span></samp>&rsquo; or &lsquo;<samp><span class="samp">foo_a2</span></samp>&rsquo; are invalid. 
+commas.  For example, &lsquo;<samp>foo_2</samp>&rsquo;, &lsquo;<samp>foo_2,1</samp>&rsquo;, or &lsquo;<samp>foo_3.14</samp>&rsquo;
+are valid names but &lsquo;<samp>foo2</samp>&rsquo; or &lsquo;<samp>foo_a2</samp>&rsquo; are invalid.
 You could define nitrous oxide as
+</p>
+<div class="example">
+<pre class="example">N2O     nitrogen 2  + oxygen
+</pre></div>
 
-<pre class="example">     N2O     nitrogen 2  + oxygen
-</pre>
-   <p class="noindent">but would need to define nitrogen dioxide as
+<p>but would need to define nitrogen dioxide as
+</p>
+<div class="example">
+<pre class="example">NO_2    nitrogen + oxygen 2
+</pre></div>
 
-<pre class="example">     NO_2    nitrogen + oxygen 2
-</pre>
-   <p class="noindent">Be careful to define new units in terms of old ones so that a
-reduction leads to the primitive units, which are marked with &lsquo;<samp><span class="samp">!</span></samp>&rsquo;
+<p>Be careful to define new units in terms of old ones so that a
+reduction leads to the primitive units, which are marked with &lsquo;<samp>!</samp>&rsquo;
 characters.  Dimensionless units are indicated by using the string
-&lsquo;<samp><span class="samp">!dimensionless</span></samp>&rsquo; for the unit definition. 
-<a name="index-dimensionless-units_002c-defining-176"></a>
-When adding new units, be sure to use the <samp><span class="option">-c</span></samp> option to check
+&lsquo;<samp>!dimensionless</samp>&rsquo; for the unit definition.
+<a name="index-dimensionless-units_002c-defining"></a>
+</p>
+<p>When adding new units, be sure to use the <samp>-c</samp> option to check
 that the new units reduce properly.  If you create a loop in the units
-definitions, then <samp><span class="command">units</span></samp> will hang when invoked with the
-<samp><span class="option">-c</span></samp> option.  You will need to use the <samp><span class="option">--check-verbose</span></samp>
+definitions, then <code>units</code> will hang when invoked with the
+<samp>-c</samp> option.  You will need to use the <samp>--check-verbose</samp>
 option, which prints out each unit as it is checked.  The program will
 still hang, but the last unit printed will be the unit that caused the
 infinite loop.
+</p>
+<a name="index-parentheses-5"></a>
 
-   <p><a name="index-parentheses-177"></a>
-If you define any units that contain
-&lsquo;<samp><span class="samp">+</span></samp>&rsquo; characters, carefully check them because the <samp><span class="option">-c</span></samp> option
-will not catch non-conformable sums.  Be careful with the &lsquo;<samp><span class="samp">-</span></samp>&rsquo;
-operator as well.  When used as a binary operator, the &lsquo;<samp><span class="samp">-</span></samp>&rsquo;
+<p>If you define any units that contain
+&lsquo;<samp>+</samp>&rsquo; characters, carefully check them because the <samp>-c</samp> option
+will not catch non-conformable sums.  Be careful with the &lsquo;<samp>-</samp>&rsquo;
+operator as well.  When used as a binary operator, the &lsquo;<samp>-</samp>&rsquo;
 character can perform addition or multiplication
-depending on the options used to invoke <samp><span class="command">units</span></samp>. 
-To ensure consistent behavior use &lsquo;<samp><span class="samp">-</span></samp>&rsquo; only as a unary negation
+depending on the options used to invoke <code>units</code>.
+To ensure consistent behavior use &lsquo;<samp>-</samp>&rsquo; only as a unary negation
 operator when writing units definitions.  To multiply two units leave a
-space or use the &lsquo;<samp><span class="samp">*</span></samp>&rsquo; operator with care, recalling that it has
+space or use the &lsquo;<samp>*</samp>&rsquo; operator with care, recalling that it has
 two possible precedence values and may require parentheses to ensure
 consistent behavior.  To compute the difference
-of &lsquo;<samp><span class="samp">foo</span></samp>&rsquo; and &lsquo;<samp><span class="samp">bar</span></samp>&rsquo; write &lsquo;<samp><span class="samp">foo+(-bar)</span></samp>&rsquo; or even &lsquo;<samp><span class="samp">foo+-bar</span></samp>&rsquo;.
-
-   <p>Here is an example of a short data file that defines some basic
+of &lsquo;<samp>foo</samp>&rsquo; and &lsquo;<samp>bar</samp>&rsquo; write &lsquo;<samp>foo+(-bar)</samp>&rsquo; or even &lsquo;<samp>foo+-bar</samp>&rsquo;.
+</p>
+<p>Here is an example of a short data file that defines some basic
 units:
+</p>
+<div class="example">
+<pre class="example">m       !               # The meter is a primitive unit
+sec     !               # The second is a primitive unit
+rad     !dimensionless  # A dimensionless primitive unit
+micro-  1e-6            # Define a prefix
+minute  60 sec          # A minute is 60 seconds
+hour    60 min          # An hour is 60 minutes
+inch    0.0254 m        # Inch defined in terms of meters
+ft      12 inches       # The foot defined in terms of inches
+mile    5280 ft         # And the mile
+</pre></div>
 
-<pre class="example">     m       !               # The meter is a primitive unit
-     sec     !               # The second is a primitive unit
-     rad     !dimensionless  # A dimensionless primitive unit
-     micro-  1e-6            # Define a prefix
-     minute  60 sec          # A minute is 60 seconds
-     hour    60 min          # An hour is 60 minutes
-     inch    0.0254 m        # Inch defined in terms of meters
-     ft      12 inches       # The foot defined in terms of inches
-     mile    5280 ft         # And the mile
-</pre>
-   <p><a name="index-parentheses-178"></a>A unit that ends with a &lsquo;<samp><span class="samp">-</span></samp>&rsquo; character is a prefix.  If a prefix
-definition contains any &lsquo;<samp><span class="samp">/</span></samp>&rsquo; characters, be sure they are protected
-by parentheses.  If you define &lsquo;<samp><span class="samp">half- 1/2</span></samp>&rsquo; then &lsquo;<samp><span class="samp">halfmeter</span></samp>&rsquo;
-would be equivalent to &lsquo;<samp><span class="samp">1 / (2&nbsp;meter)</span></samp>&rsquo;.
+<a name="index-parentheses-6"></a>
+<p>A unit that ends with a &lsquo;<samp>-</samp>&rsquo; character is a prefix.  If a prefix
+definition contains any &lsquo;<samp>/</samp>&rsquo; characters, be sure they are protected
+by parentheses.  If you define &lsquo;<samp>half- 1/2</samp>&rsquo; then &lsquo;<samp>halfmeter</samp>&rsquo;
+would be equivalent to &lsquo;<samp>1 / (2&nbsp;meter)</samp>&rsquo;.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units" accesskey="n" rel="next">Defining Nonlinear Units</a>, Previous: <a href="Units-Data-Files.html#Units-Data-Files" accesskey="p" rel="prev">Units Data Files</a>, Up: <a href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" accesskey="u" rel="up">Defining Your Own Units</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-   </body></html>
 
+
+</body>
+</html>

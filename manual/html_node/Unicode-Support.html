@@ -1,104 +1,141 @@
-<html lang="en">
-<head>
-<title>Unicode Support - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Data-Files.html#Data-Files" title="Data Files">
-<link rel="next" href="Readline-Support.html#Readline-Support" title="Readline Support">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Unicode Support</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Unicode Support">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Unicode Support">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Readline-Support.html#Readline-Support" rel="next" title="Readline Support">
+<link href="Data-Files.html#Data-Files" rel="prev" title="Data Files">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Unicode-Support"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Readline-Support.html#Readline-Support">Readline Support</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Data-Files.html#Data-Files">Data Files</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
+Next: <a href="Readline-Support.html#Readline-Support" accesskey="n" rel="next">Readline Support</a>, Previous: <a href="Data-Files.html#Data-Files" accesskey="p" rel="prev">Data Files</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Unicode-Support-1"></a>
 <h2 class="chapter">15 Unicode Support</h2>
+<a name="index-Unicode-support"></a>
+<a name="index-UTF_002d8"></a>
+<a name="index-_0021utf8"></a>
+<a name="index-command_002c-_0021utf8"></a>
+<a name="index-_0021endutf8"></a>
+<a name="index-command_002c-_0021endutf8"></a>
 
-<p><a name="index-Unicode-support-238"></a><a name="index-UTF_002d8-239"></a><a name="index-g_t_0040samp_007b_0021utf8_007d-240"></a><a name="index-command_002c-_0040samp_007b_0021utf8_007d-241"></a><a name="index-g_t_0040samp_007b_0021endutf8_007d-242"></a><a name="index-command_002c-_0040samp_007b_0021endutf8_007d-243"></a>
-The standard units data file is in Unicode, using UTF-8 encoding.  Most
+<p>The standard units data file is in Unicode, using UTF-8 encoding.  Most
 definitions use only ASCII characters (i.e., code points U+0000 through
 U+007F); definitions using non-ASCII characters appear in blocks
-beginning with &lsquo;<samp><span class="samp">!utf8</span></samp>&rsquo; and ending with &lsquo;<samp><span class="samp">!endutf8</span></samp>&rsquo;.
-
-   <p>When <samp><span class="command">units</span></samp> starts, it checks the locale to determine the
-character set.  If <samp><span class="command">units</span></samp> is compiled with Unicode support and
+beginning with &lsquo;<samp>!utf8</samp>&rsquo; and ending with &lsquo;<samp>!endutf8</samp>&rsquo;.
+</p>
+<p>When <code>units</code> starts, it checks the locale to determine the
+character set.  If <code>units</code> is compiled with Unicode support and
 definitions; otherwise these definitions are ignored.  When Unicode
-support is active, <samp><span class="command">units</span></samp> will check every line of all of the
+support is active, <code>units</code> will check every line of all of the
 units data files for invalid or non-printing UTF-8 sequences; if such
-sequences occur, <samp><span class="command">units</span></samp> ignores the entire line.  In addition
-to checking validity, <samp><span class="command">units</span></samp> determines the display width of
+sequences occur, <code>units</code> ignores the entire line.  In addition
+to checking validity, <code>units</code> determines the display width of
 non-ASCII characters to ensure proper positioning of the pointer in some
-error messages and to align columns for the &lsquo;<samp><span class="samp">search</span></samp>&rsquo; and &lsquo;<samp><span class="samp">?</span></samp>&rsquo;
+error messages and to align columns for the &lsquo;<samp>search</samp>&rsquo; and &lsquo;<samp>?</samp>&rsquo;
 commands.
-
-   <p>At present, <samp><span class="command">units</span></samp> does not support Unicode under Microsoft
+</p>
+<p>At present, <code>units</code> does not support Unicode under Microsoft
 Windows.  The UTF-16 and UTF-32 encodings are not supported on any
 systems.
-
-   <p>If definitions that contain non-ASCII characters are added to a units
-data file, those definitions should be enclosed within &lsquo;<samp><span class="samp">!utf8</span></samp>&rsquo;
-<small class="dots">...</small> &lsquo;<samp><span class="samp">!endutf8</span></samp>&rsquo; to ensure that they are only loaded when
-Unicode support is available.  As usual, the &lsquo;<samp><span class="samp">!</span></samp>&rsquo; must appear as
+</p>
+<p>If definitions that contain non-ASCII characters are added to a units
+data file, those definitions should be enclosed within &lsquo;<samp>!utf8</samp>&rsquo;
+&hellip; &lsquo;<samp>!endutf8</samp>&rsquo; to ensure that they are only loaded when
+Unicode support is available.  As usual, the &lsquo;<samp>!</samp>&rsquo; must appear as
 the first character on the line.  As discussed in
-<a href="Units-Data-Files.html#Units-Data-Files">Units Data Files</a>, it's usually best to put such definitions in
-supplemental data files linked by an &lsquo;<samp><span class="samp">!include</span></samp>&rsquo; command or in a
+<a href="Units-Data-Files.html#Units-Data-Files">Units Data Files</a>, it&rsquo;s usually best to put such definitions in
+supplemental data files linked by an &lsquo;<samp>!include</samp>&rsquo; command or in a
 personal units data file.
-
-   <p>When Unicode support is not active, <samp><span class="command">units</span></samp> makes no assumptions
+</p>
+<p>When Unicode support is not active, <code>units</code> makes no assumptions
 about character encoding, except that characters in the range 00&ndash;7F
 hexadecimal correspond to ASCII encoding.  Non-ASCII characters are
 simply sequences of bytes, and have no special meanings; for definitions
 in supplementary units data files, you can use any encoding consistent
 with this assumption.  For example, if you wish to use non-ASCII
-characters in definitions when running <samp><span class="command">units</span></samp> under Windows,
+characters in definitions when running <code>units</code> under Windows,
 you can use a character set such as Windows &ldquo;ANSI&rdquo; (code page 1252 in
 the US and Western Europe).  You can even use UTF-8, though some
-messages may be improperly aligned, and <samp><span class="command">units</span></samp> will not detect
+messages may be improperly aligned, and <code>units</code> will not detect
 invalid UTF-8 sequences.  If you use UTF-8 encoding when Unicode support
 is not active, you should place any definitions with non-ASCII
-characters <em>outside</em> &lsquo;<samp><span class="samp">!utf8</span></samp>&rsquo; <small class="dots">...</small> &lsquo;<samp><span class="samp">!endutf8</span></samp>&rsquo;
+characters <em>outside</em> &lsquo;<samp>!utf8</samp>&rsquo; &hellip; &lsquo;<samp>!endutf8</samp>&rsquo;
 blocks&mdash;otherwise, they will be ignored.
-
-   <p>Typeset material other than code examples usually uses the Unicode minus
+</p>
+<p>Typeset material other than code examples usually uses the Unicode minus
 (U+2212) rather than the ASCII hyphen-minus operator (U+002D) used in
-<samp><span class="command">units</span></samp>; the figure dash (U+2012) and en dash (U+2013) are also
+<code>units</code>; the figure dash (U+2012) and en dash (U+2013) are also
 occasionally used.  To allow such material to be copied and pasted for
-interactive use or in units data files, <samp><span class="command">units</span></samp> converts these
+interactive use or in units data files, <code>units</code> converts these
 characters to U+002D before further processing.  Because of this, none
 of these characters can appear in unit names.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Readline-Support.html#Readline-Support" accesskey="n" rel="next">Readline Support</a>, Previous: <a href="Data-Files.html#Data-Files" accesskey="p" rel="prev">Data Files</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-   </body></html>
 
+
+</body>
+</html>

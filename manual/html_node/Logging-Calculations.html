@@ -1,108 +1,162 @@
-<html lang="en">
-<head>
-<title>Logging Calculations - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Unit-Lists.html#Unit-Lists" title="Unit Lists">
-<link rel="next" href="Invoking-Units.html#Invoking-Units" title="Invoking Units">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Logging Calculations</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Logging Calculations">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Logging Calculations">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Invoking-Units.html#Invoking-Units" rel="next" title="Invoking Units">
+<link href="Unit-Lists.html#Unit-Lists" rel="prev" title="Unit Lists">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Logging-Calculations"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Invoking-Units.html#Invoking-Units">Invoking Units</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Unit-Lists.html#Unit-Lists">Unit Lists</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
+Next: <a href="Invoking-Units.html#Invoking-Units" accesskey="n" rel="next">Invoking Units</a>, Previous: <a href="Unit-Lists.html#Unit-Lists" accesskey="p" rel="prev">Unit Lists</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Logging-Calculations-1"></a>
 <h2 class="chapter">8 Logging Calculations</h2>
+<a name="index-logging-calculations"></a>
+<a name="index-log-file"></a>
 
-<p><a name="index-logging-calculations-109"></a><a name="index-log-file-110"></a>
-The <samp><span class="option">--log</span></samp> option allows you to save the results of calculations
+<p>The <samp>--log</samp> option allows you to save the results of calculations
 in a file; this can be useful if you need a permanent record of your
 work.  For example, the fluid-flow conversion in
 <a href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions">Complicated Unit Expressions</a>, is lengthy, and if you were to use
 it in designing a piping system, you might want a record of it for the
 project file.  If the interactive session
+</p>
+<div class="example">
+<pre class="example"># Conversion factor A1 for pressure drop
+# dP = A1 rho f L Q^2/d^5
+You have: (8/pi^2) (lbm/ft^3)ft(ft^3/s)^2(1/in^5) # Input units
+You want: psi
+        * 43.533969
+        / 0.022970568
+</pre></div>
 
-<pre class="example">     You have: (8/pi^2)(lbm/ft^3)ft(ft^3/s)^2(1/in^5)
-     You want: psi
-             * 43.533969
-             / 0.022970568
-</pre>
-   <p class="noindent">were logged, the log file would contain
+<p>were logged, the log file would contain
+</p>
+<div class="example">
+<pre class="example">### Log started Fri Oct 02 15:55:35 2015
 
-<pre class="example">     From: (8/pi^2)(lbm/ft^3)ft(ft^3/s)^2(1/in^5)
-     To:   psi
-             * 43.533969
-             / 0.022970568
-</pre>
-   <p class="noindent">The log includes conformability errors between the units at the
-&lsquo;<samp><span class="samp">You&nbsp;have:</span></samp>&rsquo;<!-- /@w --> and &lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w --> prompts, but not other
+# Conversion factor A1 for pressure drop
+# dP = A1 rho f L Q^2/d^5
+From: (8/pi^2) (lbm/ft^3)ft(ft^3/s)^2(1/in^5)   # Input units
+To:   psi
+        * 43.533969
+        / 0.022970568
+</pre></div>
+
+<p>The time is written to the log file when the file is opened.
+</p>
+<p>The use of comments can help clarify the meaning of calculations for
+the log.  
+The log includes conformability errors between the units at the
+&lsquo;<samp>You&nbsp;have:</samp>&rsquo;<!-- /@w --> and &lsquo;<samp>You&nbsp;want:</samp>&rsquo;<!-- /@w --> prompts, but not other
 errors, including lack of conformability of items in sums or differences
 or among items in a unit list.  For example, a conversion between zenith
 angle and elevation angle could involve
+</p>
+<div class="example">
+<pre class="example">You have: 90 deg - (5 deg + 22 min + 9 sec)
+                                   ^
+Illegal sum or difference of non-conformable units
+You have: 90 deg - (5 deg + 22 arcmin + 9 arcsec)
+You want: dms
+        84 deg + 37 arcmin + 51 arcsec
+You have: _
+You want: deg
+        * 84.630833
+        / 0.011816024
+You have:
+</pre></div>
 
-<pre class="example">     You have: 90 deg - (5 deg + 22 min + 9 sec)
-                                        ^
-     Illegal sum or difference of non-conformable units
-     You have: 90 deg - (5 deg + 22 arcmin + 9 arcsec)
-     You want: dms
-             84 deg + 37 arcmin + 51 arcsec
-     You have: _
-     You want: deg
-             * 84.630833
-             / 0.011816024
-     You have:
-</pre>
-   <p class="noindent">The log file would contain
+<p>The log file would contain
+</p>
+<div class="example">
+<pre class="example">From: 90 deg - (5 deg + 22 arcmin + 9 arcsec)
+To:   deg;arcmin;arcsec
+        84 deg + 37 arcmin + 51 arcsec
+From: _
+To:   deg
+        * 84.630833
+        / 0.011816024
+</pre></div>
 
-<pre class="example">     From: 90 deg - (5 deg + 22 arcmin + 9 arcsec)
-     To:   deg;arcmin;arcsec
-             84 deg + 37 arcmin + 51 arcsec
-     From: _
-     To:   deg
-             * 84.630833
-             / 0.011816024
-</pre>
-   <p class="noindent">The initial entry error (forgetting that minutes have dimension of time,
+<p>The initial entry error (forgetting that minutes have dimension of time,
 and that arcminutes must be used for dimensions of angle) does not
 appear in the output.  When converting to a unit list alias,
-<samp><span class="command">units</span></samp> expands the alias in the log file.
+<code>units</code> expands the alias in the log file.
+</p>
+<p>The &lsquo;<samp>From:</samp>&rsquo; and &lsquo;<samp>To:</samp>&rsquo; tags are written to the log file even if
+the <samp>--quiet</samp> option is given.  If the log file exists when
+<code>units</code> is invoked, the new results are appended to the log file.
+The time is written to the log file each time the file is opened.
+The <samp>--log</samp> option is ignored when <code>units</code> is used
+non-interactively.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Invoking-Units.html#Invoking-Units" accesskey="n" rel="next">Invoking Units</a>, Previous: <a href="Unit-Lists.html#Unit-Lists" accesskey="p" rel="prev">Unit Lists</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-   <p>The &lsquo;<samp><span class="samp">From:</span></samp>&rsquo; and &lsquo;<samp><span class="samp">To:</span></samp>&rsquo; tags are written to the log file even if
-the &lsquo;<samp><span class="samp">--quiet</span></samp>&rsquo; option is given.  If the log file exists when
-<samp><span class="command">units</span></samp> is invoked, the new results are appended to the log file.
 
-   </body></html>
 
+</body>
+</html>

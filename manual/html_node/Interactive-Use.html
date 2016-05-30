@@ -1,192 +1,263 @@
-<html lang="en">
-<head>
-<title>Interactive Use - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Overview.html#Overview" title="Overview">
-<link rel="next" href="Command-Line-Use.html#Command-Line-Use" title="Command Line Use">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Interactive Use</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Interactive Use">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Interactive Use">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Command-Line-Use.html#Command-Line-Use" rel="next" title="Command Line Use">
+<link href="Overview.html#Overview" rel="prev" title="Overview">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Interactive-Use"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Command-Line-Use.html#Command-Line-Use">Command Line Use</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Overview.html#Overview">Overview</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
+Next: <a href="Command-Line-Use.html#Command-Line-Use" accesskey="n" rel="next">Command Line Use</a>, Previous: <a href="Overview.html#Overview" accesskey="p" rel="prev">Overview</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
+<hr>
+<a name="Interacting-with-units"></a>
+<h2 class="chapter">2 Interacting with <code>units</code></h2>
+<a name="index-interactive-use"></a>
 
-<h2 class="chapter">2 Interacting with <samp><span class="command">units</span></samp></h2>
-
-<p><a name="index-interactive-use-1"></a>
-To invoke units for interactive use, type <kbd>units</kbd> at your shell
+<p>To invoke units for interactive use, type <kbd>units</kbd> at your shell
 prompt.  The program will print something like this:
+</p>
+<div class="example">
+<pre class="example">Currency exchange rates from www.timegenie.com on 2014-03-05 
+2860 units, 109 prefixes, 85 nonlinear units
 
-<pre class="example">     Currency exchange rates from www.timegenie.com on 2014-03-05
-     2860 units, 109 prefixes, 85 nonlinear units
-     
-     You have:
-</pre>
-   <p class="noindent">At the &lsquo;<samp><span class="samp">You&nbsp;have:</span></samp>&rsquo;<!-- /@w --> prompt, type the quantity and units that
+You have:
+</pre></div>
+
+<p>At the &lsquo;<samp>You&nbsp;have:</samp>&rsquo;<!-- /@w --> prompt, type the quantity and units that
 you are converting <em>from</em>.  For example, if you want to convert ten
-meters to feet, type <kbd>10 meters</kbd>.  Next, <samp><span class="command">units</span></samp> will print
-&lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w -->.  You should type the units you want to convert
+meters to feet, type <kbd>10 meters</kbd>.  Next, <code>units</code> will print
+&lsquo;<samp>You&nbsp;want:</samp>&rsquo;<!-- /@w -->.  You should type the units you want to convert
 <em>to</em>.  To convert to feet, you would type <kbd>feet</kbd>.  If the
-<samp><span class="command">readline</span></samp> library was compiled in then &lt;tab&gt; will
+<code>readline</code> library was compiled in then <tt class="key">tab</tt> will
 complete unit names. See <a href="Readline-Support.html#Readline-Support">Readline Support</a>, for more information
-about <samp><span class="command">readline</span></samp>.  To quit the program under Unix, press
-&lt;Ctrl-C&gt; or &lt;Ctrl-D&gt;. Under Windows, press &lt;Ctrl-C&gt; or
-&lt;Ctrl-Z&gt;; with the latter, you may also need to press &lt;Enter&gt;.
-
-   <p>The result will be displayed in two ways.  The first line of output,
-which is marked with a &lsquo;<samp><span class="samp">*</span></samp>&rsquo; to indicate multiplication, gives the
+about <code>readline</code>.  To quit the program under Unix, press
+<tt class="key">Ctrl-C</tt> or <tt class="key">Ctrl-D</tt>. Under Windows, press <tt class="key">Ctrl-C</tt> or
+<tt class="key">Ctrl-Z</tt>; with the latter, you may also need to press <tt class="key">Enter</tt>.
+</p>
+<p>The result will be displayed in two ways.  The first line of output,
+which is marked with a &lsquo;<samp>*</samp>&rsquo; to indicate multiplication, gives the
 result of the conversion you have asked for.  The second line of output,
-which is marked with a &lsquo;<samp><span class="samp">/</span></samp>&rsquo; to indicate division, gives the inverse
+which is marked with a &lsquo;<samp>/</samp>&rsquo; to indicate division, gives the inverse
 of the conversion factor.  If you convert 10 meters to feet,
-<samp><span class="command">units</span></samp> will print
+<code>units</code> will print
+</p>
+<div class="example">
+<pre class="example">    * 32.808399
+    / 0.03048
+</pre></div>
 
-<pre class="example">         * 32.808399
-         / 0.03048
-</pre>
-   <p class="noindent">which tells you that 10 meters equals about 32.8 feet. 
-The second number gives the conversion in the opposite direction. 
+<p>which tells you that 10 meters equals about 32.8 feet.
+The second number gives the conversion in the opposite direction.
 In this case, it tells you that 1 foot is equal to about
-0.03 dekameters since the dekameter is 10 meters. 
+0.03 dekameters since the dekameter is 10 meters.
 It also tells you that 1/32.8 is about 0.03.
-
-   <p>The <samp><span class="command">units</span></samp> program prints the inverse because sometimes it is a
+</p>
+<p>The <code>units</code> program prints the inverse because sometimes it is a
 more convenient number.  In the example above, for example, the inverse
-value is an exact conversion: a foot is exactly 0.03048 dekameters. 
+value is an exact conversion: a foot is exactly 0.03048 dekameters.
 But the number given the other direction is inexact.
+</p>
+<p>If you convert grains to pounds, you will see the following:
+</p>
+<div class="example">
+<pre class="example">You have: grains
+You want: pounds
+        * 0.00014285714
+        / 7000
+</pre></div>
 
-   <p>If you convert grains to pounds, you will see the following:
-
-<pre class="example">     You have: grains
-     You want: pounds
-             * 0.00014285714
-             / 7000
-</pre>
-   <p class="noindent">From the second line of the output you can immediately see that a grain
+<p>   From the second line of the output you can immediately see that a grain
 is equal to a seven thousandth of a pound.  This is not so obvious from
-the first line of the output. 
+the first line of the output.
 If you find  the output format  confusing, try using the
-<samp><span class="option">--verbose</span></samp> option:
-<a name="index-verbose-output-2"></a>
-<pre class="example">     You have: grain
-     You want: aeginamina
-             grain = 0.00010416667 aeginamina
-             grain = (1 / 9600) aeginamina
-</pre>
-   <p class="noindent">If you request a conversion between units that measure reciprocal
-dimensions, then <samp><span class="command">units</span></samp> will display the conversion results with an extra
+<samp>--verbose</samp> option:
+<a name="index-verbose-output"></a>
+</p>
+<div class="example">
+<pre class="example">You have: grain
+You want: aeginamina
+        grain = 0.00010416667 aeginamina
+        grain = (1 / 9600) aeginamina
+</pre></div>
+
+<p>If you request a conversion between units that measure reciprocal
+dimensions, then <code>units</code> will display the conversion results with an extra
 note indicating that reciprocal conversion has been done:
-<a name="index-reciprocal-conversion-3"></a>
-<pre class="example">     You have: 6 ohms
-     You want: siemens
-             reciprocal conversion
-             * 0.16666667
-             / 6
-</pre>
-   <p class="noindent">Reciprocal conversion can be suppressed by using the <samp><span class="option">--strict</span></samp> option. 
+<a name="index-reciprocal-conversion"></a>
+</p>
+<div class="example">
+<pre class="example">You have: 6 ohms
+You want: siemens
+        reciprocal conversion
+        * 0.16666667
+        / 6
+</pre></div>
+
+<p>Reciprocal conversion can be suppressed by using the <samp>--strict</samp> option.
 As usual, use
-the <samp><span class="option">--verbose</span></samp> option to get more comprehensible output:
-<a name="index-verbose-output-4"></a><a name="index-strict-conversion-5"></a>
-<pre class="example">     You have: tex
-     You want: typp
-             reciprocal conversion
-             1 / tex = 496.05465 typp
-             1 / tex = (1 / 0.0020159069) typp
-     
-     You have: 20 mph
-     You want: sec/mile
-             reciprocal conversion
-             1 / 20 mph = 180 sec/mile
-             1 / 20 mph = (1 / 0.0055555556) sec/mile
-</pre>
-   <p class="noindent">If you enter incompatible unit types, the <samp><span class="command">units</span></samp> program will
+the <samp>--verbose</samp> option to get more comprehensible output:
+<a name="index-verbose-output-1"></a>
+<a name="index-strict-conversion"></a>
+</p>
+<div class="example">
+<pre class="example">You have: tex
+You want: typp
+        reciprocal conversion
+        1 / tex = 496.05465 typp
+        1 / tex = (1 / 0.0020159069) typp
+
+You have: 20 mph
+You want: sec/mile
+        reciprocal conversion
+        1 / 20 mph = 180 sec/mile
+        1 / 20 mph = (1 / 0.0055555556) sec/mile
+</pre></div>
+
+<p>If you enter incompatible unit types, the <code>units</code> program will
 print a message indicating that the units are not conformable and
 it will display the reduced form for each unit:
-<a name="index-incompatible-units-6"></a><a name="index-non_002dconformable-units-7"></a>
-<pre class="example">     You have: ergs/hour
-     You want: fathoms kg^2 / day
-     conformability error
-             2.7777778e-11 kg m^2 / sec^3
-             2.1166667e-05 kg^2 m / sec
-</pre>
-   <p class="noindent">If you only want to find the reduced form or definition of a unit,
-simply press &lt;Enter&gt; at the &lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w --> prompt.  Here is an
-example:
+<a name="index-incompatible-units"></a>
+<a name="index-non_002dconformable-units"></a>
+</p>
+<div class="example">
+<pre class="example">You have: ergs/hour
+You want: fathoms kg^2 / day
+conformability error
+        2.7777778e-11 kg m^2 / sec^3
+        2.1166667e-05 kg^2 m / sec
+</pre></div>
 
-<pre class="example">     You have: jansky
-     You want:
-             Definition: fluxunit = 1e-26 W/m^2 Hz = 1e-26 kg / s^2
-</pre>
-   <p class="noindent">The output from <samp><span class="command">units</span></samp> indicates that the jansky is defined to be
+<p>If you only want to find the reduced form or definition of a unit,
+simply press <tt class="key">Enter</tt> at the &lsquo;<samp>You&nbsp;want:</samp>&rsquo;<!-- /@w --> prompt.  Here is an
+example:
+</p>
+<div class="example">
+<pre class="example">You have: jansky
+You want:
+        Definition: fluxunit = 1e-26 W/m^2 Hz = 1e-26 kg / s^2
+</pre></div>
+
+<p>The output from <code>units</code> indicates that the jansky is defined to be
 equal to a fluxunit which in turn is defined to be a certain combination
 of watts, meters, and hertz.  The fully reduced (and in this case
 somewhat more cryptic) form appears on the far right.
-
-   <p>Some named units are treated as dimensionless in some situations. 
+</p>
+<p>Some named units are treated as dimensionless in some situations.
 These units include the radian and steradian.  These units will be
 treated as equal to 1 in units conversions.  Power is equal to torque
 times angular velocity.  This conversion can only be performed if the
 radian is dimensionless.
+</p>
+<div class="example">
+<pre class="example">You have: (14 ft lbf) (12 radians/sec)
+You want: watts
+        * 227.77742
+        / 0.0043902509
+</pre></div>
 
-<pre class="example">     You have: (14 ft lbf) (12 radians/sec)
-     You want: watts
-             * 227.77742
-             / 0.0043902509
-</pre>
-   <p class="noindent">Named dimensionless units are not treated as dimensionless
+<p>It is also possible to compute roots and other non-integer powers of
+dimensionless units; this allows computations such as the altitude of
+geosynchronous orbit:
+</p>
+<div class="example">
+<pre class="example">You have: cuberoot(G earthmass / (circle/siderealday)^2) - earthradius
+You want: miles
+        * 22243.267
+        / 4.4957425e-05
+</pre></div>
+
+<p>Named dimensionless units are not treated as dimensionless
 in other contexts.  They cannot be used as exponents
-so for example, &lsquo;<samp><span class="samp">meter^radian</span></samp>&rsquo; is not allowed. 
-<a name="index-dimensionless-units-8"></a>
-<a name="index-g_t_0040samp_007b_003f_007d-to-show-conformable-units-9"></a><a name="index-conformable-units_002c-_0040samp_007b_003f_007d-to-show-10"></a>If you want a list of options you can type <kbd>?</kbd> at the
-&lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w --> prompt.  The program will display a list of named
+so for example, &lsquo;<samp>meter^radian</samp>&rsquo; is forbidden.
+<a name="index-dimensionless-units"></a>
+</p>
+<a name="index-_003f-to-show-conformable-units"></a>
+<a name="index-conformable-units_002c-_003f-to-show"></a>
+<p>If you want a list of options you can type <kbd>?</kbd> at the
+&lsquo;<samp>You&nbsp;want:</samp>&rsquo;<!-- /@w --> prompt.  The program will display a list of named
 units that are conformable with the unit that you entered at the
-&lsquo;<samp><span class="samp">You&nbsp;have:</span></samp>&rsquo;<!-- /@w --> prompt above.  Conformable unit <em>combinations</em>
+&lsquo;<samp>You&nbsp;have:</samp>&rsquo;<!-- /@w --> prompt above.  Conformable unit <em>combinations</em>
 will not appear on this list.
+</p>
+<a name="index-help"></a>
 
-   <p><a name="index-help-11"></a>
-Typing <kbd>help</kbd> at either prompt displays a short help message. 
+<p>Typing <kbd>help</kbd> at either prompt displays a short help message.
 You can also type <kbd>help</kbd> followed by a unit name.  This will
 invoke a pager on the units data base at the point where that unit
 is defined.  You can read the definition and comments that may
 give more details or historical information about the unit.  (You
-can generally quit out of the page by pressing &lsquo;<samp><span class="samp">q</span></samp>&rsquo;.)
+can generally quit out of the page by pressing &lsquo;<samp>q</samp>&rsquo;.)
+</p>
+<p>Typing <kbd>search</kbd> <var>text</var> will display a list of all of the units
+whose names contain <var>text</var> as a substring along with their definitions.
+This may help in the case where you aren&rsquo;t sure of the right unit name.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Command-Line-Use.html#Command-Line-Use" accesskey="n" rel="next">Command Line Use</a>, Previous: <a href="Overview.html#Overview" accesskey="p" rel="prev">Overview</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-   <p>Typing <kbd>search</kbd> <var>text</var> will display a list of all of the units
-whose names contain <var>text</var> as a substring along with their definitions. 
-This may help in the case where you aren't sure of the right unit name.
 
-   </body></html>
 
+</body>
+</html>

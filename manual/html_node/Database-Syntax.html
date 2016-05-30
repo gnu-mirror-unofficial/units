@@ -1,100 +1,164 @@
-<html lang="en">
-<head>
-<title>Database Syntax - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Currency.html#Currency" title="Currency">
-<link rel="next" href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License" title="GNU Free Documentation License">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Database Syntax</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Database Syntax">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Database Syntax">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License" rel="next" title="GNU Free Documentation License">
+<link href="Currency.html#Currency" rel="prev" title="Currency">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Database-Syntax"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License">GNU Free Documentation License</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Currency.html#Currency">Currency</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
+Next: <a href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="Currency.html#Currency" accesskey="p" rel="prev">Currency</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Database-Command-Syntax"></a>
 <h2 class="chapter">18 Database Command Syntax</h2>
+<a name="index-database-syntax-summary"></a>
+<a name="index-syntax-of-units-database"></a>
+<a name="index-commands-in-units-database"></a>
 
-<p><a name="index-database-syntax-summary-251"></a><a name="index-syntax-of-units-database-252"></a><a name="index-commands-in-units-database-253"></a>
-     <dl>
-<dt><var>unit</var> <var>definition</var><dd>Define a regular unit.
-
-     <br><dt><var>prefix</var><tt>- </tt><var>definition</var><dd>Define a prefix.
-
-     <br><dt><var>funcname</var><tt>(</tt><var>var</var><tt>) noerror units=[</tt><var>in-units</var><tt>,</tt><var>out-units</var><tt>] domain=[</tt><var>x1</var><tt>,</tt><var>x2</var><tt>] range=[</tt><var>y1</var><tt>,</tt><var>y2</var><tt>] </tt><var>definition(var)</var><tt> ; </tt><var>inverse(funcname)</var><dd>Define a nonlinear unit or unit function.  The four optional keywords <samp><span class="command">noerror</span></samp>,
-<samp><span class="command">units=</span></samp>, <samp><span class="command">range=</span></samp> and <samp><span class="command">domain=</span></samp> can appear in
+<dl compact="compact">
+<dt><tt><var>unit</var> <var>definition</var></tt></dt>
+<dd><p>Define a regular unit.
+</p>
+</dd>
+<dt><tt><var>prefix</var>- <var>definition</var></tt></dt>
+<dd><p>Define a prefix.
+</p>
+</dd>
+<dt><tt><var>funcname</var>(<var>var</var>) noerror units=[<var>in-units</var>,<var>out-units</var>] domain=[<var>x1</var>,<var>x2</var>] range=[<var>y1</var>,<var>y2</var>] <var>definition(var)</var> ; <var>inverse(funcname)</var></tt></dt>
+<dd><p>Define a nonlinear unit or unit function.  The four optional keywords <code>noerror</code>,
+<code>units=</code>, <code>range=</code> and <code>domain=</code> can appear in
 any order.  The definition of the inverse is optional.
-
-     <br><dt><var>tabname</var><tt>[</tt><var>out-units</var><tt>] noerror </tt><var>pair-list</var><dd>Define a piecewise linear unit.  The pair list gives the points on the
-table listed in ascending order.  The <samp><span class="command">noerror</span></samp> keyword is
-optional.
-
-     <br><dt><tt>!endlocale</tt><dd>End a block of definitions beginning with &lsquo;<samp><span class="samp">!locale</span></samp>&rsquo;
-
-     <br><dt><tt>!endutf8</tt><dd>End a block of definitions begun with &lsquo;<samp><span class="samp">!utf8</span></samp>&rsquo;
-
-     <br><dt><tt>!endvar</tt><dd>End a block of definitions begun with &lsquo;<samp><span class="samp">!var</span></samp>&rsquo; or &lsquo;<samp><span class="samp">!varnot</span></samp>&rsquo;
-
-     <br><dt><tt>!include </tt><var>file</var><dd>Include the specified file.
-
-     <br><dt><tt>!locale </tt><var>value</var><dd>Load the following definitions only of the locale is set to
+</p>
+</dd>
+<dt><tt><var>tabname</var>[<var>out-units</var>] noerror <var>pair-list</var></tt></dt>
+<dd><p>Define a piecewise linear unit.  The pair list gives the points on the
+table listed in ascending order.  The <code>noerror</code> keyword is
+optional.  
+</p>
+</dd>
+<dt><tt>!endlocale</tt></dt>
+<dd><p>End a block of definitions beginning with &lsquo;<samp>!locale</samp>&rsquo;
+</p>
+</dd>
+<dt><tt>!endutf8</tt></dt>
+<dd><p>End a block of definitions begun with &lsquo;<samp>!utf8</samp>&rsquo;
+</p>
+</dd>
+<dt><tt>!endvar</tt></dt>
+<dd><p>End a block of definitions begun with &lsquo;<samp>!var</samp>&rsquo; or &lsquo;<samp>!varnot</samp>&rsquo;
+</p>
+</dd>
+<dt><tt>!include <var>file</var></tt></dt>
+<dd><p>Include the specified file.
+</p>
+</dd>
+<dt><tt>!locale <var>value</var></tt></dt>
+<dd><p>Load the following definitions only of the locale is set to
 <var>value</var>.
-
-     <br><dt><tt>!message </tt><var>text</var><dd>Display <var>text</var> when the database is read unless the quiet
-option (<samp><span class="option">-q</span></samp>) is enabled.
-
-     <br><dt><tt>!set </tt><var>variable</var> <var>value</var><dd>Sets the environment variable, <var>variable</var>, to the specified
+</p>
+</dd>
+<dt><tt>!message <var>text</var></tt></dt>
+<dd><p>Display <var>text</var> when the database is read unless the quiet
+option (<samp>-q</samp>) is enabled.
+</p>
+</dd>
+<dt><tt>!set <var>variable</var> <var>value</var></tt></dt>
+<dd><p>Sets the environment variable, <var>variable</var>, to the specified
 value <em>only if</em> it is not already set.
-
-     <br><dt><tt>!unitlist </tt><var>alias</var> <var>definition</var><dd>Define a unit list alias.
-
-     <br><dt><tt>!utf8</tt><dd>Load the following definitions only if <samp><span class="command">units</span></samp> is running with
+</p>
+</dd>
+<dt><tt>!unitlist <var>alias</var> <var>definition</var></tt></dt>
+<dd><p>Define a unit list alias.
+</p>
+</dd>
+<dt><tt>!utf8</tt></dt>
+<dd><p>Load the following definitions only if <code>units</code> is running with
 UTF-8 enabled.
-
-     <br><dt><tt>!var </tt><var>envar</var> <var>value-list</var><dd>Load the block of definitions that follows only if the environment
+</p>
+</dd>
+<dt><tt>!var <var>envar</var> <var>value-list</var></tt></dt>
+<dd><p>Load the block of definitions that follows only if the environment
 variable <var>envar</var> is set to one of the values listed in the
 space-separated value list.  If <var>envar</var> is not set,
-<samp><span class="command">units</span></samp> prints an error message and ignores the block of
+<code>units</code> prints an error message and ignores the block of
 definitions.
-
-     <br><dt><tt>!varnot </tt><var>envar</var> <var>value-list</var><dd>Load the block of definitions that follows only if the environment
+</p>
+</dd>
+<dt><tt>!varnot <var>envar</var> <var>value-list</var></tt></dt>
+<dd><p>Load the block of definitions that follows only if the environment
 variable <var>envar</var> is set to value that is <em>not</em> listed in the
-space-separated value list.  If <var>envar</var> is not set, <samp><span class="command">units</span></samp>
+space-separated value list.  If <var>envar</var> is not set, <code>units</code>
 prints an error message and ignores the block of definitions.
+</p>
+</dd>
+</dl>
 
-   </dl>
+<hr>
+<div class="header">
+<p>
+Next: <a href="GNU-Free-Documentation-License.html#GNU-Free-Documentation-License" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="Currency.html#Currency" accesskey="p" rel="prev">Currency</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-   </body></html>
 
+
+</body>
+</html>

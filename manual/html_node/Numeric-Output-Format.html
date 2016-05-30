@@ -1,75 +1,106 @@
-<html lang="en">
-<head>
-<title>Numeric Output Format - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" title="Defining Your Own Units">
-<link rel="next" href="Localization.html#Localization" title="Localization">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Numeric Output Format</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Numeric Output Format">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Numeric Output Format">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Format-Specification.html#Format-Specification" rel="next" title="Format Specification">
+<link href="Defining-Unit-List-Aliases.html#Defining-Unit-List-Aliases" rel="prev" title="Defining Unit List Aliases">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Numeric-Output-Format"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Localization.html#Localization">Localization</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Defining-Your-Own-Units.html#Defining-Your-Own-Units">Defining Your Own Units</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
+Next: <a href="Localization.html#Localization" accesskey="n" rel="next">Localization</a>, Previous: <a href="Defining-Your-Own-Units.html#Defining-Your-Own-Units" accesskey="p" rel="prev">Defining Your Own Units</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Numeric-Output-Format-1"></a>
 <h2 class="chapter">11 Numeric Output Format</h2>
+<a name="index-numeric-output-format"></a>
+<a name="index-output-format"></a>
 
-<p><a name="index-numeric-output-format-195"></a><a name="index-output-format-196"></a>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Format-Specification.html#Format-Specification" accesskey="1">Format Specification</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The output format specification
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Flags.html#Flags" accesskey="2">Flags</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Optional format flags
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Field-Width.html#Field-Width" accesskey="3">Field Width</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Specifying output field width
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Precision.html#Precision" accesskey="4">Precision</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Specifying output precision
+</td></tr>
+</table>
 
-<ul class="menu">
-<li><a accesskey="1" href="Format-Specification.html#Format-Specification">Format Specification</a>:            The output format specification
-<li><a accesskey="2" href="Flags.html#Flags">Flags</a>:                           Optional format flags
-<li><a accesskey="3" href="Field-Width.html#Field-Width">Field Width</a>:                     Specifying output field width
-<li><a accesskey="4" href="Precision.html#Precision">Precision</a>:                       Specifying output precision
-</ul>
-
-   <p>By default, <code>units</code> shows results to eight significant
-digits. You can change this with the <samp><span class="option">--exponential</span></samp>,
-<samp><span class="option">--digits</span></samp>, and <samp><span class="option">--output-format</span></samp> options.  The first
+<p>By default, <code>units</code> shows results to eight significant
+digits. You can change this with the <samp>--exponential</samp>,
+<samp>--digits</samp>, and <samp>--output-format</samp> options.  The first
 sets an exponential format (i.e., scientific notation) like that used
-in the original Unix <samp><span class="command">units</span></samp> program, the second allows you to
+in the original Unix <code>units</code> program, the second allows you to
 specify a different number of significant digits, and the last allows
 you to control the output appearance using the format for the
 <code>printf()</code> function in the C programming language.  If you only
 want to change the number of significant digits or specify exponential
-format type, use the <samp><span class="option">--digits</span></samp> and <samp><span class="option">--exponential</span></samp>
-options.  The <samp><span class="option">--output-format</span></samp> option affords the greatest
+format type, use the <samp>--digits</samp> and <samp>--exponential</samp>
+options.  The <samp>--output-format</samp> option affords the greatest
 control of the output appearance, but requires at least rudimentary
 knowledge of the <code>printf()</code> format syntax. See <a href="Invoking-Units.html#Invoking-Units">Invoking Units</a>,
 for descriptions of these options.
+</p>
 
-   </body></html>
 
+
+</body>
+</html>

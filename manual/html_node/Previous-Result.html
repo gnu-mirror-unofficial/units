@@ -1,130 +1,173 @@
-<html lang="en">
-<head>
-<title>Previous Result - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Unit-Expressions.html#Unit-Expressions" title="Unit Expressions">
-<link rel="prev" href="Built_002din-Functions.html#Built_002din-Functions" title="Built-in Functions">
-<link rel="next" href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions" title="Complicated Unit Expressions">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Previous Result</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Previous Result">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Previous Result">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Unit-Expressions.html#Unit-Expressions" rel="up" title="Unit Expressions">
+<link href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions" rel="next" title="Complicated Unit Expressions">
+<link href="Built_002din-Functions.html#Built_002din-Functions" rel="prev" title="Built-in Functions">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Previous-Result"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions">Complicated Unit Expressions</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Built_002din-Functions.html#Built_002din-Functions">Built-in Functions</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Unit-Expressions.html#Unit-Expressions">Unit Expressions</a>
-<hr>
+Next: <a href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions" accesskey="n" rel="next">Complicated Unit Expressions</a>, Previous: <a href="Built_002din-Functions.html#Built_002din-Functions" accesskey="p" rel="prev">Built-in Functions</a>, Up: <a href="Unit-Expressions.html#Unit-Expressions" accesskey="u" rel="up">Unit Expressions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Previous-Result-1"></a>
 <h3 class="section">5.5 Previous Result</h3>
+<a name="index-previous-result"></a>
+<a name="index-_005f-to-use-result-of-previous-conversion"></a>
 
-<p><a name="index-previous-result-86"></a><a name="index-g_t_0040samp_007b_005f_007d-to-use-result-of-previous-conversion-87"></a>
-You can insert the result of the previous conversion using the
-underscore (&lsquo;<samp><span class="samp">_</span></samp>&rsquo;).  It is useful when you want to
+<p>You can insert the result of the previous conversion using the
+underscore (&lsquo;<samp>_</samp>&rsquo;).  It is useful when you want to
 convert the same input to several different units, for example
+</p>
+<div class="example">
+<pre class="example">You have: 2.3 tonrefrigeration
+You want: btu/hr
+        * 27600
+        / 3.6231884e-005
+You have: _
+You want: kW
+        * 8.0887615
+        / 0.12362832
+</pre></div>
 
-<pre class="example">     You have: 2.3 tonrefrigeration
-     You want: btu/hr
-             * 27600
-             / 3.6231884e-005
-     You have: _
-     You want: kW
-             * 8.0887615
-             / 0.12362832
-</pre>
-   <p class="noindent">Suppose you want to do some deep frying that requires an oil depth of
+<p>Suppose you want to do some deep frying that requires an oil depth of
 2&nbsp;inches.  You have 1/2 gallon of oil, and want to know the
 largest-diameter pan that will maintain the required depth.  The
-nonlinear unit &lsquo;<samp><span class="samp">circlearea</span></samp>&rsquo; gives the <em>radius</em> of the circle
+nonlinear unit &lsquo;<samp>circlearea</samp>&rsquo; gives the <em>radius</em> of the circle
 (see <a href="Other-Nonlinear-Units.html#Other-Nonlinear-Units">Other Nonlinear Units</a>, for a more detailed description) in SI
 units; you want the <em>diameter</em> in <em>inches</em>:
+</p>
+<div class="example">
+<pre class="example">You have: 1|2 gallon / 2 in
+You want: circlearea
+        0.10890173 m
+</pre><pre class="example">
 
-<pre class="example">     You have: 1|2 gallon / 2 in
-     You want: circlearea
-             0.10890173 m
-     
-     You have: 2 _
-     You want: in
-             * 8.5749393
-             / 0.1166189
-</pre>
-   <p class="noindent">In most cases, surrounding white space is optional, so the previous
-example could have used &lsquo;<samp><span class="samp">2_</span></samp>&rsquo;.  If &lsquo;<samp><span class="samp">_</span></samp>&rsquo; follows a non-numerical
+</pre><pre class="example">You have: 2 _
+You want: in
+        * 8.5749393
+        / 0.1166189
+</pre></div>
+
+<p>In most cases, surrounding white space is optional, so the previous
+example could have used &lsquo;<samp>2_</samp>&rsquo;.  If &lsquo;<samp>_</samp>&rsquo; follows a non-numerical
 unit symbol, however, the space is required:
+</p>
+<div class="example">
+<pre class="example">You have: m_
+           ^
+Parse error
+</pre></div>
 
-<pre class="example">     You have: m_
-                ^
-     Parse error
-</pre>
-   <p class="noindent">When &lsquo;<samp><span class="samp">_</span></samp>&rsquo; is followed by a digit, the operation is multiplication
-rather than exponentiation, so that &lsquo;<samp><span class="samp">_2</span></samp>&rsquo;, is equivalent to
-&lsquo;<samp><span class="samp">_&nbsp;*&nbsp;2</span></samp>&rsquo;<!-- /@w --> rather than &lsquo;<samp><span class="samp">_^2</span></samp>&rsquo;.
+<p>When &lsquo;<samp>_</samp>&rsquo; is followed by a digit, the operation is multiplication
+rather than exponentiation, so that &lsquo;<samp>_2</samp>&rsquo;, is equivalent to
+&lsquo;<samp><span class="nolinebreak">_</span>&nbsp;*&nbsp;2</samp>&rsquo;<!-- /@w --> rather than &lsquo;<samp>_^2</samp>&rsquo;.
+</p>
+<p>You can use the &lsquo;<samp>_</samp>&rsquo; symbol any number of times; for example,
+</p>
+<div class="example">
+<pre class="example">You have: m
+You want:
+        Definition: 1 m
+You have: _ _
+You want:
+        Definition: 1 m^2
+</pre></div>
 
-   <p>You can use the &lsquo;<samp><span class="samp">_</span></samp>&rsquo; symbol any number of times; for example,
-
-<pre class="example">     You have: m
-     You want:
-             Definition: 1 m
-     You have: _ _
-     You want:
-             Definition: 1 m^2
-</pre>
-   <p class="noindent">Using &lsquo;<samp><span class="samp">_</span></samp>&rsquo; before a conversion has been performed (e.g.,
+<p>Using &lsquo;<samp>_</samp>&rsquo; before a conversion has been performed (e.g.,
 immediately after invocation) generates an error:
+</p>
+<div class="example">
+<pre class="example">You have: _
+          ^
+No previous result; '_' not set
+</pre></div>
 
-<!-- man .if \n(.g .tr '\(aq -->
-<pre class="example">     You have: _
-               ^
-     No previous result; '_' not set
-</pre>
-   <!-- man .if \n(.g .tr '' -->
-<p class="noindent">Accordingly, &lsquo;<samp><span class="samp">_</span></samp>&rsquo; serves no purpose when <samp><span class="command">units</span></samp> is invoked
+<p>Accordingly, &lsquo;<samp>_</samp>&rsquo; serves no purpose when <code>units</code> is invoked
 non-interactively.
+</p>
+<p>If <code>units</code> is invoked with the <samp>--verbose</samp> option
+(see <a href="Invoking-Units.html#Invoking-Units">Invoking Units</a>), the value of &lsquo;<samp>_</samp>&rsquo; is not expanded:
+</p>
+<div class="example">
+<pre class="example">You have: mile
+You want: ft
+        mile = 5280 ft
+        mile = (1 / 0.00018939394) ft
+You have: _
+You want: m
+        _ = 1609.344 m
+        _ = (1 / 0.00062137119) m
+</pre></div>
 
-   <p>If <samp><span class="command">units</span></samp> is invoked with the <samp><span class="option">--verbose</span></samp> option
-(see <a href="Invoking-Units.html#Invoking-Units">Invoking Units</a>), the value of &lsquo;<samp><span class="samp">_</span></samp>&rsquo; is not expanded:
-
-<pre class="example">     You have: mile
-     You want: ft
-             mile = 5280 ft
-             mile = (1 / 0.00018939394) ft
-     You have: _
-     You want: m
-             _ = 1609.344 m
-             _ = (1 / 0.00062137119) m
-</pre>
-   <p class="noindent">You can give &lsquo;<samp><span class="samp">_</span></samp>&rsquo; at the &lsquo;<samp><span class="samp">You&nbsp;want:</span></samp>&rsquo;<!-- /@w --> prompt, but it
+<p>You can give &lsquo;<samp>_</samp>&rsquo; at the &lsquo;<samp>You&nbsp;want:</samp>&rsquo;<!-- /@w --> prompt, but it
 usually is not very useful.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions" accesskey="n" rel="next">Complicated Unit Expressions</a>, Previous: <a href="Built_002din-Functions.html#Built_002din-Functions" accesskey="p" rel="prev">Built-in Functions</a>, Up: <a href="Unit-Expressions.html#Unit-Expressions" accesskey="u" rel="up">Unit Expressions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-   </body></html>
 
+
+</body>
+</html>

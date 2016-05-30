@@ -1,109 +1,153 @@
-<html lang="en">
-<head>
-<title>Temperature Conversions - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Nonlinear-Conversions.html#Nonlinear-Conversions" title="Nonlinear Conversions">
-<link rel="next" href="Other-Nonlinear-Units.html#Other-Nonlinear-Units" title="Other Nonlinear Units">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Temperature Conversions</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Temperature Conversions">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Temperature Conversions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Nonlinear-Conversions.html#Nonlinear-Conversions" rel="up" title="Nonlinear Conversions">
+<link href="Other-Nonlinear-Units.html#Other-Nonlinear-Units" rel="next" title="Other Nonlinear Units">
+<link href="Nonlinear-Conversions.html#Nonlinear-Conversions" rel="prev" title="Nonlinear Conversions">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Temperature-Conversions"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Other-Nonlinear-Units.html#Other-Nonlinear-Units">Other Nonlinear Units</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Nonlinear-Conversions.html#Nonlinear-Conversions">Nonlinear Conversions</a>
-<hr>
+Next: <a href="Other-Nonlinear-Units.html#Other-Nonlinear-Units" accesskey="n" rel="next">Other Nonlinear Units</a>, Up: <a href="Nonlinear-Conversions.html#Nonlinear-Conversions" accesskey="u" rel="up">Nonlinear Conversions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Temperature-Conversions-1"></a>
 <h3 class="section">6.1 Temperature Conversions</h3>
+<a name="index-temperature-conversions"></a>
 
-<p><a name="index-temperature-conversions-100"></a>
-Conversions between temperatures are different from linear conversions
+<p>Conversions between temperatures are different from linear conversions
 between temperature <em>increments</em>&mdash;see the example below.  The
 absolute temperature conversions are handled by units starting with
-&lsquo;<samp><span class="samp">temp</span></samp>&rsquo;, and you must use functional notation. 
+&lsquo;<samp>temp</samp>&rsquo;, and you must use functional notation.
 The temperature-increment conversions are done using units starting
-with &lsquo;<samp><span class="samp">deg</span></samp>&rsquo; and they do not require functional notation.
+with &lsquo;<samp>deg</samp>&rsquo; and they do not require functional notation.
+</p>
+<div class="example">
+<pre class="example">You have: tempF(45)
+You want: tempC
+        7.2222222
 
-<pre class="example">     You have: tempF(45)
-     You want: tempC
-             7.2222222
-     
-     You have: 45 degF
-     You want: degC
-             * 25
-             / 0.04
-</pre>
-   <p class="noindent">Think of &lsquo;<samp><span class="samp">tempF(</span><var>x</var><span class="samp">)</span></samp>&rsquo; not as a function but as a notation that
-indicates that <var>x</var> should have units of &lsquo;<samp><span class="samp">tempF</span></samp>&rsquo; attached to
-it.  See <a href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">Defining Nonlinear Units</a>.  The first conversion shows that if it's 45
-degrees Fahrenheit outside, it's 7.2 degrees Celsius.  The second
+You have: 45 degF
+You want: degC
+        * 25
+        / 0.04
+</pre></div>
+
+<p>Think of &lsquo;<samp>tempF(<var>x</var>)</samp>&rsquo; not as a function but as a notation that
+indicates that <var>x</var> should have units of &lsquo;<samp>tempF</samp>&rsquo; attached to
+it.  See <a href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units">Defining Nonlinear Units</a>.  The first conversion shows that if it&rsquo;s 45
+degrees Fahrenheit outside, it&rsquo;s 7.2 degrees Celsius.  The second
 conversion indicates that a change of 45 degrees Fahrenheit corresponds
 to a change of 25 degrees Celsius.  The conversion from
-&lsquo;<samp><span class="samp">tempF(</span><var>x</var><span class="samp">)</span></samp>&rsquo; is to absolute temperature, so that
+&lsquo;<samp>tempF(<var>x</var>)</samp>&rsquo; is to absolute temperature, so that
+</p>
+<div class="example">
+<pre class="example">You have: tempF(45)
+You want: degR
+        * 504.67
+        / 0.0019814929
+</pre></div>
 
-<pre class="example">     You have: tempF(45)
-     You want: degR
-             * 504.67
-             / 0.0019814929
-</pre>
-   <p class="noindent">gives the same result as
+<p>gives the same result as
+</p>
+<div class="example">
+<pre class="example">You have: tempF(45)
+You want: tempR
+        * 504.67
+        / 0.0019814929
+</pre></div>
 
-<pre class="example">     You have: tempF(45)
-     You want: tempR
-             * 504.67
-             / 0.0019814929
-</pre>
-   <p class="noindent">But if you convert &lsquo;<samp><span class="samp">tempF(</span><var>x</var><span class="samp">)</span></samp>&rsquo; to &lsquo;<samp><span class="samp">degC</span></samp>&rsquo;, the output is
+<p>But if you convert &lsquo;<samp>tempF(<var>x</var>)</samp>&rsquo; to &lsquo;<samp>degC</samp>&rsquo;, the output is
 probably not what you expect:
+</p>
+<div class="example">
+<pre class="example">You have: tempF(45)
+You want: degC
+        * 280.37222
+        / 0.0035666871
+</pre></div>
 
-<pre class="example">     You have: tempF(45)
-     You want: degC
-             * 280.37222
-             / 0.0035666871
-</pre>
-   <p class="noindent">The result is the temperature in K, because &lsquo;<samp><span class="samp">degC</span></samp>&rsquo; is defined as
-&lsquo;<samp><span class="samp">K</span></samp>&rsquo;, the Kelvin. For consistent results, use the &lsquo;<samp><span class="samp">temp</span><var>X</var></samp>&rsquo; units
+<p>The result is the temperature in K, because &lsquo;<samp>degC</samp>&rsquo; is defined as
+&lsquo;<samp>K</samp>&rsquo;, the Kelvin. For consistent results, use the &lsquo;<samp>temp<var>X</var></samp>&rsquo; units
 when converting to a temperature rather than converting a temperature
 increment.
-
-   <p>The &lsquo;<samp><span class="samp">tempC()</span></samp>&rsquo; and &lsquo;<samp><span class="samp">tempF()</span></samp>&rsquo; definitions are limited to
+</p>
+<p>The &lsquo;<samp>tempC()</samp>&rsquo; and &lsquo;<samp>tempF()</samp>&rsquo; definitions are limited to
 positive absolute temperatures, and giving a value that would result in
 a negative absolute temperature generates an error message:
+</p>
+<div class="example">
+<pre class="example">You have: tempC(-275)
+                    ^
+Argument of function outside domain
+                    ^
+</pre></div>
 
-<pre class="example">     You have: tempC(-275)
-                         ^
-     Argument of function outside domain
-                         ^
-</pre>
-   </body></html>
 
+<hr>
+<div class="header">
+<p>
+Next: <a href="Other-Nonlinear-Units.html#Other-Nonlinear-Units" accesskey="n" rel="next">Other Nonlinear Units</a>, Up: <a href="Nonlinear-Conversions.html#Nonlinear-Conversions" accesskey="u" rel="up">Nonlinear Conversions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,93 +1,134 @@
-<html lang="en">
-<head>
-<title>Locale - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Localization.html#Localization" title="Localization">
-<link rel="next" href="Additional-Localization.html#Additional-Localization" title="Additional Localization">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Locale</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Locale">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Locale">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Localization.html#Localization" rel="up" title="Localization">
+<link href="Additional-Localization.html#Additional-Localization" rel="next" title="Additional Localization">
+<link href="Localization.html#Localization" rel="prev" title="Localization">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Locale"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Additional-Localization.html#Additional-Localization">Additional Localization</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Localization.html#Localization">Localization</a>
-<hr>
+Next: <a href="Additional-Localization.html#Additional-Localization" accesskey="n" rel="next">Additional Localization</a>, Up: <a href="Localization.html#Localization" accesskey="u" rel="up">Localization</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Locale-1"></a>
 <h3 class="section">12.1 Locale</h3>
-
-<p><a name="index-locale-215"></a>A locale is a subset of a user's environment that indicates the user's
+<a name="index-locale"></a>
+<p>A locale is a subset of a user&rsquo;s environment that indicates the user&rsquo;s
 language and country, and some attendant preferences, such as the
-formatting of dates.  The <samp><span class="command">units</span></samp> program attempts to determine
+formatting of dates.  The <code>units</code> program attempts to determine
 the locale from the POSIX setlocale function; if this cannot be done,
-<samp><span class="command">units</span></samp> examines the environment
-variables <samp><span class="env">LC_CTYPE</span></samp> and <samp><span class="env">LANG</span></samp>. 
+<code>units</code> examines the environment
+variables <code>LC_CTYPE</code> and <code>LANG</code>.
 On POSIX systems, a locale is of the form
 <var>language</var><code>_</code><var>country</var>, where <var>language</var> is the
 two-character code from ISO 639-1 and <var>country</var> is the two-character
 code from ISO 3166-1; <var>language</var> is lower case and <var>country</var> is
 upper case. For example, the POSIX locale for the United Kingdom is <code>en_GB</code>.
-
-   <p><a name="index-g_t_0040file_007blocale_005fmap_002etxt_007d-216"></a><a name="index-setlocale-function-217"></a>On systems running Microsoft Windows, the value returned by setlocale()
-is different from that on POSIX systems; <samp><span class="command">units</span></samp> attempts to map
+</p>
+<a name="index-locale_005fmap_002etxt"></a>
+<a name="index-setlocale-function"></a>
+<p>On systems running Microsoft Windows, the value returned by setlocale()
+is different from that on POSIX systems; <code>units</code> attempts to map
 the Windows value to a POSIX value by means of a table in the file
-<samp><span class="file">locale_map.txt</span></samp> in the same directory as the other data files.  The
+<samp>locale_map.txt</samp> in the same directory as the other data files.  The
 file includes entries for many combinations of language and country, and
-can be extended to include other combinations.  The <samp><span class="file">locale_map.txt</span></samp>
+can be extended to include other combinations.  The <samp>locale_map.txt</samp>
 file comprises two tab-separated columns; each entry is of the form
+</p>
+<div class="display">
+<pre class="display"><var>Windows-locale</var>&nbsp;&nbsp;&nbsp;<var>POSIX-locale</var>
+</pre></div>
 
-<pre class="display">     <var>Windows-locale</var>   <var>POSIX-locale</var>
-</pre>
-   <p class="noindent">where <var>POSIX-locale</var> is as described above, and <var>Windows-locale</var>
+<p>where <var>POSIX-locale</var> is as described above, and <var>Windows-locale</var>
 typically spells out both the language and country.  For example, the
 entry for the United States is
+</p>
+<div class="example">
+<pre class="example">English_United States   en_US
+</pre></div>
 
-<pre class="example">     English_United States   en_US
-</pre>
-   <p class="noindent">You can force <samp><span class="command">units</span></samp> to run in a desired locale by using the
-<samp><span class="option">-l</span></samp> option.
-
-   <p>In order to create unit definitions for a particular locale you begin
-a block of definitions in a unit datafile with &lsquo;<samp><span class="samp">!locale</span></samp>&rsquo; followed
-by a locale name.  The &lsquo;<samp><span class="samp">!</span></samp>&rsquo; must be the first character on the
-line.  The <samp><span class="command">units</span></samp> program reads the following
+<p>You can force <code>units</code> to run in a desired locale by using the
+<samp>-l</samp> option.
+</p>
+<p>In order to create unit definitions for a particular locale you begin
+a block of definitions in a unit datafile with &lsquo;<samp>!locale</samp>&rsquo; followed
+by a locale name.  The &lsquo;<samp>!</samp>&rsquo; must be the first character on the
+line.  The <code>units</code> program reads the following
 definitions only if the current locale matches.  You end the block of
-localized units with &lsquo;<samp><span class="samp">!endlocale</span></samp>&rsquo;.  Here is an example, which
+localized units with &lsquo;<samp>!endlocale</samp>&rsquo;.  Here is an example, which
 defines the British gallon.
+</p>
+<div class="example">
+<pre class="example">!locale en_GB
+gallon       4.54609 liter
+!endlocale
+</pre></div>
 
-<pre class="example">     !locale en_GB
-     gallon       4.54609 liter
-     !endlocale
-</pre>
-   </body></html>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Additional-Localization.html#Additional-Localization" accesskey="n" rel="next">Additional Localization</a>, Up: <a href="Localization.html#Localization" accesskey="u" rel="up">Localization</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
+
+
+</body>
+</html>

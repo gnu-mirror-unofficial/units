@@ -1,63 +1,96 @@
-<html lang="en">
-<head>
-<title>Unit Expressions - Units: A Unit Conversion Program and Scientific Calculator</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Unit-Definitions.html#Unit-Definitions" title="Unit Definitions">
-<link rel="next" href="Nonlinear-Conversions.html#Nonlinear-Conversions" title="Nonlinear Conversions">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This manual is for GNU Units (version 2.10),
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.12),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011, 2012, 2013, 2014 Free Software Foundation, Inc.
+2011-2015 Free Software Foundation, Inc.
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.3 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with no Front-Cover Texts,
-     and with no Back-Cover Texts.  A copy of the license is included
-     in the section entitled ``GNU Free Documentation License''.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Units: A Unit Conversion Program and Scientific Calculator: Unit Expressions</title>
+
+<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Unit Expressions">
+<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Unit Expressions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Operators.html#Operators" rel="next" title="Operators">
+<link href="Unit-Definitions.html#Unit-Definitions" rel="prev" title="Unit Definitions">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en">
 <a name="Unit-Expressions"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Nonlinear-Conversions.html#Nonlinear-Conversions">Nonlinear Conversions</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Unit-Definitions.html#Unit-Definitions">Unit Definitions</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
+Next: <a href="Nonlinear-Conversions.html#Nonlinear-Conversions" accesskey="n" rel="next">Nonlinear Conversions</a>, Previous: <a href="Unit-Definitions.html#Unit-Definitions" accesskey="p" rel="prev">Unit Definitions</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Unit-Expressions-1"></a>
 <h2 class="chapter">5 Unit Expressions</h2>
+<a name="index-unit-expressions"></a>
 
-<p><a name="index-unit-expressions-35"></a>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Operators.html#Operators" accesskey="1">Operators</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The usual arithmetic operators, with a few extras
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units" accesskey="2">Sums and Differences of Units</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Adding and subtracting units
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Numbers-as-Units.html#Numbers-as-Units" accesskey="3">Numbers as Units</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">A number is a dimensionless unit
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Built_002din-Functions.html#Built_002din-Functions" accesskey="4">Built-in Functions</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Trigonometric functions, logarithms, roots
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Previous-Result.html#Previous-Result" accesskey="5">Previous Result</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Inserting the result of the previous conversion
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions" accesskey="6">Complicated Unit Expressions</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">A complicated example
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Backwards-Compatibility.html#Backwards-Compatibility" accesskey="7">Backwards Compatibility</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Alternate behavior for &lsquo;<samp>*</samp>&rsquo; and &lsquo;<samp>-</samp>&rsquo;
+</td></tr>
+</table>
 
-<ul class="menu">
-<li><a accesskey="1" href="Operators.html#Operators">Operators</a>:            The usual arithmetic operators, with a few extras
-<li><a accesskey="2" href="Sums-and-Differences-of-Units.html#Sums-and-Differences-of-Units">Sums and Differences of Units</a>:   Adding and subtracting units
-<li><a accesskey="3" href="Numbers-as-Units.html#Numbers-as-Units">Numbers as Units</a>:     A number is a dimensionless unit
-<li><a accesskey="4" href="Built_002din-Functions.html#Built_002din-Functions">Built-in Functions</a>:     Trigonometric functions, logarithms, roots
-<li><a accesskey="5" href="Previous-Result.html#Previous-Result">Previous Result</a>: 	Inserting the result of the previous conversion
-<li><a accesskey="6" href="Complicated-Unit-Expressions.html#Complicated-Unit-Expressions">Complicated Unit Expressions</a>:    A complicated example
-<li><a accesskey="7" href="Backwards-Compatibility.html#Backwards-Compatibility">Backwards Compatibility</a>:    Alternate behavior for &lsquo;<samp><span class="samp">*</span></samp>&rsquo; and &lsquo;<samp><span class="samp">-</span></samp>&rsquo;
-</ul>
 
-   </body></html>
 
+
+</body>
+</html>
