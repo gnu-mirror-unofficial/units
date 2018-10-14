@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for GNU Units (version 2.12),
+<!-- This manual is for GNU Units (version 2.18),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011-2015 Free Software Foundation, Inc.
+2011-2017 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -13,16 +13,16 @@ Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
 Texts.
 A copy of the license is included in the section entitled
 "GNU Free Documentation License". -->
-<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Units: A Unit Conversion Program and Scientific Calculator: Defining New Units</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Defining New Units (Units: A Unit Conversion Program and Scientific Calculator)</title>
 
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Defining New Units">
-<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Defining New Units">
+<meta name="description" content="Defining New Units (Units: A Unit Conversion Program and Scientific Calculator)">
+<meta name="keywords" content="Defining New Units (Units: A Unit Conversion Program and Scientific Calculator)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Index.html#Index" rel="index" title="Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
@@ -69,7 +69,7 @@ Next: <a href="Defining-Nonlinear-Units.html#Defining-Nonlinear-Units" accesskey
 </div>
 <hr>
 <a name="Defining-New-Units-and-Prefixes"></a>
-<h3 class="section">10.2 Defining New Units and Prefixes</h3>
+<h3 class="section">11.2 Defining New Units and Prefixes</h3>
 <a name="index-defining-units"></a>
 <a name="index-units_002c-definition-of"></a>
 <a name="index-units-definitions_002c-adding"></a>
@@ -91,7 +91,7 @@ A file can be included by giving the command &lsquo;<samp>!include</samp>&rsquo;
 the file&rsquo;s name.  The &lsquo;<samp>!</samp>&rsquo; must be the first character on the
 line.  The file will be sought in the same directory as the
 parent file unless you give a full path.  The name of the file to be
-included cannot contain the comment character &lsquo;<samp>#</samp>&rsquo;.
+included cannot contain spaces or the comment character &lsquo;<samp>#</samp>&rsquo;.
 <a name="index-include-files"></a>
 </p>
 <p>Unit names must not contain any of the operator characters &lsquo;<samp>+</samp>&rsquo;,
@@ -135,7 +135,8 @@ infinite loop.
 <a name="index-parentheses-5"></a>
 
 <p>If you define any units that contain
-&lsquo;<samp>+</samp>&rsquo; characters, carefully check them because the <samp>-c</samp> option
+&lsquo;<samp>+</samp>&rsquo; characters in their definitions,
+carefully check them because the <samp>-c</samp> option
 will not catch non-conformable sums.  Be careful with the &lsquo;<samp>-</samp>&rsquo;
 operator as well.  When used as a binary operator, the &lsquo;<samp>-</samp>&rsquo;
 character can perform addition or multiplication
@@ -147,6 +148,13 @@ two possible precedence values and may require parentheses to ensure
 consistent behavior.  To compute the difference
 of &lsquo;<samp>foo</samp>&rsquo; and &lsquo;<samp>bar</samp>&rsquo; write &lsquo;<samp>foo+(-bar)</samp>&rsquo; or even &lsquo;<samp>foo+-bar</samp>&rsquo;.
 </p>
+<p>You may wish to intentionally redefine a unit.  When you do this, and
+use the <samp>-c</samp> option, <code>units</code> displays a warning message
+about the redefinition.  You can suppress these warnings by redefining
+a unit using a &lsquo;<samp>+</samp>&rsquo; at the beginning of the unit name.  Do not
+include any white space between the &lsquo;<samp>+</samp>&rsquo; and the redefined unit
+name.
+</p>
 <p>Here is an example of a short data file that defines some basic
 units:
 </p>
@@ -157,9 +165,10 @@ rad     !dimensionless  # A dimensionless primitive unit
 micro-  1e-6            # Define a prefix
 minute  60 sec          # A minute is 60 seconds
 hour    60 min          # An hour is 60 minutes
-inch    0.0254 m        # Inch defined in terms of meters
+inch    72 m            # Inch defined incorrectly terms of meters
 ft      12 inches       # The foot defined in terms of inches
 mile    5280 ft         # And the mile
++inch   0.0254 m        # Correct redefinition, warning suppressed
 </pre></div>
 
 <a name="index-parentheses-6"></a>

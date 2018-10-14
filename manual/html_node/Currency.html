@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for GNU Units (version 2.12),
+<!-- This manual is for GNU Units (version 2.18),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011-2015 Free Software Foundation, Inc.
+2011-2017 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -13,16 +13,16 @@ Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
 Texts.
 A copy of the license is included in the section entitled
 "GNU Free Documentation License". -->
-<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Units: A Unit Conversion Program and Scientific Calculator: Currency</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Currency (Units: A Unit Conversion Program and Scientific Calculator)</title>
 
-<meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator: Currency">
-<meta name="keywords" content="Units: A Unit Conversion Program and Scientific Calculator: Currency">
+<meta name="description" content="Currency (Units: A Unit Conversion Program and Scientific Calculator)">
+<meta name="keywords" content="Currency (Units: A Unit Conversion Program and Scientific Calculator)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Index.html#Index" rel="index" title="Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
@@ -69,28 +69,129 @@ Next: <a href="Database-Syntax.html#Database-Syntax" accesskey="n" rel="next">Da
 </div>
 <hr>
 <a name="Updating-Currency-Exchange-Rates"></a>
-<h2 class="chapter">17 Updating Currency Exchange Rates</h2>
+<h2 class="chapter">18 Updating Currency Exchange Rates</h2>
 <a name="index-currency_002c-updating"></a>
 <a name="index-exchange-rates_002c-updating"></a>
 
-<p>The units program includes currency exchange rates and prices for some
-precious metals in the database.  Of course, these values change over
-time, sometimes very rapidly, and <code>units</code> cannot provide real
-time values.  To update the exchange rates run the
-<code>units_cur</code>, which rewrites the files containing the currency
-rates, typically <samp>/usr/share/units/currency.units</samp>.  This program
-requires <code>python</code> and the <code>unidecode</code> package, and must
-be run with suitable permissions to write the file.  To keep the rates
-updated automatically, run it using a cron job on a Unix-like system, or
-a similar scheduling program on a different system.  Currency exchange
-rates are taken from Time Genie (<a href="http://www.timegenie.com">http://www.timegenie.com</a>) and
-precious metals pricing from Packetizer (<a href="www.packetizer.com">www.packetizer.com</a>).
-These sites update once per day, so there is no benefit in running the
-update script more often than daily.  You can run <code>units_cur</code>
-with a filename specified on the command line and it will write the data
-to that file.  If you give &lsquo;<samp>-</samp>&rsquo; for the file it will write to
-standard output.
+<p>The units program database includes currency exchange rates and prices
+for some precious metals.  Of course, these values change over time,
+sometimes very rapidly, and <code>units</code> cannot provide real-time
+values.  To update the exchange rates, run <code>units_cur</code>, which
+rewrites the file containing the currency rates, typically
+<samp>/var/lib/units/currency.units</samp> or
+<samp>/usr/local/com/units/currency.units</samp>
+on a Unix-like system or
+<samp>C:\Program&nbsp;Files&nbsp;(x86)<!-- /@w -->\GNU\units\definitions.units</samp> on a Windows
+system.
 </p>
+<p>This program requires Python (<a href="https://www.python.org">https://www.python.org</a>); either
+version 2 or 3 will work.  The program must be run with suitable
+permissions to write the file.  To keep the rates updated automatically,
+run it using a cron job on a Unix-like system, or a similar scheduling
+program on a different system.
+</p>
+<p>Reliable free sources of currency exchange rates have been annoyingly
+ephemeral.  The program currently supports several sources:
+</p>
+<ul>
+<li> FloatRates (<a href="https://www/floatrates.com">https://www/floatrates.com</a>).
+The US dollar (&lsquo;<samp>USD</samp>&rsquo;) is the default base currency.  You can
+change the base currency with the
+<samp>-b</samp> option described below.  Allowable base currencies are listed on
+the FloatRates website.  Exchange rates update daily.  
+
+</li><li> The European Central Bank (<a href="https://www.ecb.europa.eu">https://www.ecb.europa.eu</a>).
+The base currency is always the euro (&lsquo;<samp>EUR</samp>&rsquo;).  Exchange rates 
+update daily.  This source offers a more limited list of currenices
+than the others.  
+
+</li><li> Fixer (<a href="https://fixer.io">https://fixer.io</a>).
+Registration for a free API key is required.  With a free API key, base
+currency is the euro; exchange rates are updated hourly, the
+service has a limit of 1,000 API calls per month, and SSL encryption
+(https protocol) is not available.  Most of these restrictions are
+eliminated or reduced with paid plans.
+
+</li><li> open exchange rates (<a href="https://openexchangerates.org">https://openexchangerates.org</a>).
+Registration for a free API key is required.  With a free API key, the
+base currency is the US dollar; exchange rates are updated hourly, and
+there is a limit of 1,000 API calls per month.  Most of these
+restrictions are eliminated or reduced with paid plans.
+
+</li></ul>
+
+<p>The default source is FloatRates; you can select a different one using
+<samp>-s</samp> option described below.
+</p>
+<p>Precious metals pricing is obtained from Packetizer
+(<a href="www.packetizer.com">www.packetizer.com</a>).  This site updates once per day.
+</p>
+<p>You invoke <code>units_cur</code> like this:
+</p>
+<div class="example">
+<pre class="example">units_cur [<var>options</var>] [<var>outfile</var>]
+</pre></div>
+
+<p>By default, the output is written to the default currency file described
+above; this is usually what you want, because this is where
+<code>units</code> looks for the file.  If you wish, you can specify a
+different filename on the command line and <code>units_cur</code> will
+write the data to that file.  If you give &lsquo;<samp>-</samp>&rsquo; for the file it will
+write to standard output.
+</p>
+<p>The following options are available:
+</p>
+<dl compact="compact">
+<dt><code>-h</code></dt>
+<dt><code>--help</code></dt>
+<dd><p>Print a summary of the options for <code>units_cur</code>.
+</p>
+</dd>
+<dt><code>-V</code></dt>
+<dt><code>--version</code></dt>
+<dd><p>Print the <code>units_cur</code> version number.
+</p>
+</dd>
+<dt><code>-v</code></dt>
+<dt><code>--verbose</code></dt>
+<dd><p>Give slightly more verbose output when attempting to update currency
+exchange rates.
+</p>
+</dd>
+<dt><code>-s <var>source</var></code></dt>
+<dt><code>--source <var>source</var></code></dt>
+<dd><p>Specify the source for currency exchange rates; currently supported
+values are &lsquo;<samp>floatrates</samp>&rsquo; (for FloatRates), &lsquo;<samp>eubank</samp>&rsquo; (for the
+European Central Bank), &lsquo;<samp>fixer</samp>&rsquo; (for Fixer), and
+&lsquo;<samp>openexchangerates</samp>&rsquo; (for open exchange rates); the last two require
+an API key to be given with the <samp>-k</samp> option.
+</p>
+</dd>
+<dt><code>-b <var>base</var></code></dt>
+<dt><code>--base <var>base</var></code></dt>
+<dd><p>Set the base currency (when allowed by the site providing the data).
+<var>base</var> should be a 3-letter ISO currency code, e.g., &lsquo;<samp>USD</samp>&rsquo;.
+The specified currency will be the primitive currency unit used by
+<code>units</code>.  You may find it convenient to specify your local
+currency.  Conversions may be more accurate and you will be able to
+convert to your currency by simply hitting <tt class="key">Enter</tt> at the
+&lsquo;<samp>You&nbsp;want:</samp>&rsquo;<!-- /@w --> prompt.  This option is ignored if the source
+does not allow specifying the base currency.  (Currently only
+floatrates supports this option.)
+</p>
+</dd>
+<dt><code>-k <var>key</var></code></dt>
+<dt><code>--key <var>key</var></code></dt>
+<dd><p>Set the API key to <var>key</var> for sources that require it.
+</p>
+</dd>
+</dl>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Database-Syntax.html#Database-Syntax" accesskey="n" rel="next">Database Syntax</a>, Previous: <a href="Readline-Support.html#Readline-Support" accesskey="p" rel="prev">Readline Support</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
 
 
