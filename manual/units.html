@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for GNU Units (version 2.12),
+<!-- This manual is for GNU Units (version 2.18),
 which performs units conversions and units calculations.
 
 Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
-2011-2015 Free Software Foundation, Inc.
+2011-2017 Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -13,8 +13,9 @@ Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
 Texts.
 A copy of the license is included in the section entitled
 "GNU Free Documentation License". -->
-<!-- Created by GNU Texinfo 6.1, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Units: A Unit Conversion Program and Scientific Calculator</title>
 
 <meta name="description" content="Units: A Unit Conversion Program and Scientific Calculator">
@@ -22,7 +23,6 @@ A copy of the license is included in the section entitled
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="#Top" rel="start" title="Top">
 <link href="#Index" rel="index" title="Index">
 <link href="#SEC_Contents" rel="contents" title="Table of Contents">
@@ -94,35 +94,44 @@ ul.no-bullet {list-style: none}
     <li><a name="toc-Other-Nonlinear-Units-1" href="#Other-Nonlinear-Units">6.2 Other Nonlinear Units</a></li>
   </ul></li>
   <li><a name="toc-Unit-Lists_003a-Conversion-to-Sums-of-Units" href="#Unit-Lists">7 Unit Lists: Conversion to Sums of Units</a></li>
-  <li><a name="toc-Logging-Calculations-1" href="#Logging-Calculations">8 Logging Calculations</a></li>
-  <li><a name="toc-Invoking-units" href="#Invoking-Units">9 Invoking <code>units</code></a></li>
-  <li><a name="toc-Adding-Your-Own-Definitions" href="#Defining-Your-Own-Units">10 Adding Your Own Definitions</a>
+  <li><a name="toc-Using-CGS-Units-1" href="#Using-CGS-Units">8 Using CGS Units</a>
   <ul class="no-bullet">
-    <li><a name="toc-Units-Data-Files-1" href="#Units-Data-Files">10.1 Units Data Files</a></li>
-    <li><a name="toc-Defining-New-Units-and-Prefixes" href="#Defining-New-Units">10.2 Defining New Units and Prefixes</a></li>
-    <li><a name="toc-Defining-Nonlinear-Units-1" href="#Defining-Nonlinear-Units">10.3 Defining Nonlinear Units</a></li>
-    <li><a name="toc-Defining-Piecewise-Linear-Units" href="#Piecewise-Linear-Units">10.4 Defining Piecewise Linear Units</a></li>
-    <li><a name="toc-Defining-Unit-List-Aliases-1" href="#Defining-Unit-List-Aliases">10.5 Defining Unit List Aliases</a></li>
+    <li><a name="toc-Specifying-CGS-Units-1" href="#Specifying-CGS-Units">8.1 Specifying CGS Units</a></li>
+    <li><a name="toc-The-ESU-System-1" href="#The-ESU-System">8.2 The ESU System</a></li>
+    <li><a name="toc-The-EMU-System-1" href="#The-EMU-System">8.3 The EMU System</a></li>
+    <li><a name="toc-The-Gaussian-Units-System-1" href="#The-Gaussian-Units-System">8.4 The Gaussian Units System</a></li>
+    <li><a name="toc-Conversions-Between-Different-Systems" href="#Conversions-Between-Systems">8.5 Conversions Between Different Systems</a></li>
+    <li><a name="toc-Prompt-Prefix-1" href="#Prompt-Prefix">8.6 Prompt Prefix</a></li>
   </ul></li>
-  <li><a name="toc-Numeric-Output-Format-1" href="#Numeric-Output-Format">11 Numeric Output Format</a>
+  <li><a name="toc-Logging-Calculations-1" href="#Logging-Calculations">9 Logging Calculations</a></li>
+  <li><a name="toc-Invoking-units" href="#Invoking-Units">10 Invoking <code>units</code></a></li>
+  <li><a name="toc-Adding-Your-Own-Definitions" href="#Defining-Your-Own-Units">11 Adding Your Own Definitions</a>
   <ul class="no-bullet">
-    <li><a name="toc-Format-Specification-1" href="#Format-Specification">11.1 Format Specification</a></li>
-    <li><a name="toc-Flags-1" href="#Flags">11.2 Flags</a></li>
-    <li><a name="toc-Field-Width-1" href="#Field-Width">11.3 Field Width</a></li>
-    <li><a name="toc-Precision-1" href="#Precision">11.4 Precision</a></li>
+    <li><a name="toc-Units-Data-Files-1" href="#Units-Data-Files">11.1 Units Data Files</a></li>
+    <li><a name="toc-Defining-New-Units-and-Prefixes" href="#Defining-New-Units">11.2 Defining New Units and Prefixes</a></li>
+    <li><a name="toc-Defining-Nonlinear-Units-1" href="#Defining-Nonlinear-Units">11.3 Defining Nonlinear Units</a></li>
+    <li><a name="toc-Defining-Piecewise-Linear-Units" href="#Piecewise-Linear-Units">11.4 Defining Piecewise Linear Units</a></li>
+    <li><a name="toc-Defining-Unit-List-Aliases-1" href="#Defining-Unit-List-Aliases">11.5 Defining Unit List Aliases</a></li>
   </ul></li>
-  <li><a name="toc-Localization-1" href="#Localization">12 Localization</a>
+  <li><a name="toc-Numeric-Output-Format-1" href="#Numeric-Output-Format">12 Numeric Output Format</a>
   <ul class="no-bullet">
-    <li><a name="toc-Locale-1" href="#Locale">12.1 Locale</a></li>
-    <li><a name="toc-Additional-Localization-1" href="#Additional-Localization">12.2 Additional Localization</a></li>
+    <li><a name="toc-Format-Specification-1" href="#Format-Specification">12.1 Format Specification</a></li>
+    <li><a name="toc-Flags-1" href="#Flags">12.2 Flags</a></li>
+    <li><a name="toc-Field-Width-1" href="#Field-Width">12.3 Field Width</a></li>
+    <li><a name="toc-Precision-1" href="#Precision">12.4 Precision</a></li>
   </ul></li>
-  <li><a name="toc-Environment-Variables" href="#Environment-Vars">13 Environment Variables</a></li>
-  <li><a name="toc-Data-Files-1" href="#Data-Files">14 Data Files</a></li>
-  <li><a name="toc-Unicode-Support-1" href="#Unicode-Support">15 Unicode Support</a></li>
-  <li><a name="toc-Readline-Support-1" href="#Readline-Support">16 Readline Support</a></li>
-  <li><a name="toc-Updating-Currency-Exchange-Rates" href="#Currency">17 Updating Currency Exchange Rates</a></li>
-  <li><a name="toc-Database-Command-Syntax" href="#Database-Syntax">18 Database Command Syntax</a></li>
-  <li><a name="toc-GNU-Free-Documentation-License-1" href="#GNU-Free-Documentation-License">19 GNU Free Documentation License</a></li>
+  <li><a name="toc-Localization-1" href="#Localization">13 Localization</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Locale-1" href="#Locale">13.1 Locale</a></li>
+    <li><a name="toc-Additional-Localization-1" href="#Additional-Localization">13.2 Additional Localization</a></li>
+  </ul></li>
+  <li><a name="toc-Environment-Variables" href="#Environment-Vars">14 Environment Variables</a></li>
+  <li><a name="toc-Data-Files-1" href="#Data-Files">15 Data Files</a></li>
+  <li><a name="toc-Unicode-Support-1" href="#Unicode-Support">16 Unicode Support</a></li>
+  <li><a name="toc-Readline-Support-1" href="#Readline-Support">17 Readline Support</a></li>
+  <li><a name="toc-Updating-Currency-Exchange-Rates" href="#Currency">18 Updating Currency Exchange Rates</a></li>
+  <li><a name="toc-Database-Command-Syntax" href="#Database-Syntax">19 Database Command Syntax</a></li>
+  <li><a name="toc-GNU-Free-Documentation-License-1" href="#GNU-Free-Documentation-License">20 GNU Free Documentation License</a></li>
   <li><a name="toc-Index-1" href="#Index">Index</a></li>
 </ul>
 </div>
@@ -140,8 +149,8 @@ Next: <a href="#Overview" accesskey="n" rel="next">Overview</a>, Up: <a href="/m
 <p>This manual describes the <code>units</code> command for units conversion and
 how you can use it as a powerful scientific calculator that keeps
 track of units.
-This is Edition 2.11 of <cite>The Units Conversion Manual</cite>
-for <code>units</code> Version 2.12.
+This is Edition 2.15 of <cite>The Units Conversion Manual</cite>
+for <code>units</code> Version 2.18.
 </p>
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Overview" accesskey="1">Overview</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">What does <code>units</code> do?
@@ -158,9 +167,11 @@ for <code>units</code> Version 2.12.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Unit-Lists" accesskey="7">Unit Lists</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Conversion to sums of units (e.g., feet and inches).
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Logging-Calculations" accesskey="8">Logging Calculations</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Logging conversions and calculations in a file.
+<tr><td align="left" valign="top">&bull; <a href="#Using-CGS-Units" accesskey="8">Using CGS Units</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Using CGS units: Gaussian, ESU, or EMU
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Invoking-Units" accesskey="9">Invoking Units</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Command line options.
+<tr><td align="left" valign="top">&bull; <a href="#Logging-Calculations" accesskey="9">Logging Calculations</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Logging conversions and calculations in a file.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Invoking-Units">Invoking Units</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Command line options.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Defining-Your-Own-Units">Defining Your Own Units</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Adding your own unit definitions
 </td></tr>
@@ -238,8 +249,8 @@ Next: <a href="#Command-Line-Use" accesskey="n" rel="next">Command Line Use</a>,
 <h2 class="chapter">2 Interacting with <code>units</code></h2>
 <a name="index-interactive-use"></a>
 
-<p>To invoke units for interactive use, type <kbd>units</kbd> at your shell
-prompt.  The program will print something like this:
+<p>To invoke <code>units</code> for interactive use, type <kbd>units</kbd> at your
+shell prompt.  The program will print something like this:
 </p>
 <div class="example">
 <pre class="example">Currency exchange rates from www.timegenie.com on 2014-03-05 
@@ -255,9 +266,8 @@ meters to feet, type <kbd>10 meters</kbd>.  Next, <code>units</code> will print
 <em>to</em>.  To convert to feet, you would type <kbd>feet</kbd>.  If the
 <code>readline</code> library was compiled in then <tt class="key">tab</tt> will
 complete unit names. See <a href="#Readline-Support">Readline Support</a>, for more information
-about <code>readline</code>.  To quit the program under Unix, press
-<tt class="key">Ctrl-C</tt> or <tt class="key">Ctrl-D</tt>. Under Windows, press <tt class="key">Ctrl-C</tt> or
-<tt class="key">Ctrl-Z</tt>; with the latter, you may also need to press <tt class="key">Enter</tt>.
+about <code>readline</code>.  To quit the program type <kbd>quit</kbd> or
+<kbd>exit</kbd> at either prompt.  
 </p>
 <p>The result will be displayed in two ways.  The first line of output,
 which is marked with a &lsquo;<samp>*</samp>&rsquo; to indicate multiplication, gives the
@@ -479,6 +489,7 @@ the location of this file.
 The default
 file includes definitions for all familiar units, abbreviations and
 metric prefixes.  It also includes many obscure or archaic units.
+Many common spelled-out numbers (e.g., &lsquo;<samp>seventeen</samp>&rsquo;) are recognized.
 </p>
 <p>Many constants of nature are defined, including these:
 </p>
@@ -712,7 +723,13 @@ You want: league
 
 <a name="index-operator-precedence"></a>
 <a name="index-parentheses-1"></a>
+<a name="index-white-space"></a>
 
+<p>White space surrounding operators is optional, so the previous example
+could have used &lsquo;<samp>(1/2)kg/(kg/meter)</samp>&rsquo;.  As a consequence, however,
+hyphenated spelled-out numbers (e.g., &lsquo;<samp>forty-two</samp>&rsquo;) cannot be used;
+&lsquo;<samp>forty-two</samp>&rsquo; is interpreted as &lsquo;<samp>40 - 2</samp>&rsquo;.
+</p>
 <p>Multiplication using a space has a higher precedence
 than division using a slash and is evaluated left to right;
 in effect, the first &lsquo;<samp>/</samp>&rsquo; character marks the beginning of the
@@ -859,15 +876,17 @@ the &lsquo;<samp>+</samp>&rsquo; character, and differences with the &lsquo;<sam
 You want: seconds
         * 8612
         / 0.00011611705
-</pre><pre class="example">
+</pre></div>
 
-</pre><pre class="example">You have: 12 ft + 3 in
+<div class="example">
+<pre class="example">You have: 12 ft + 3 in
 You want: cm
         * 373.38
         / 0.0026782366
-</pre><pre class="example">
+</pre></div>
 
-</pre><pre class="example">You have: 2 btu + 450 ft lbf
+<div class="example">
+<pre class="example">You have: 2 btu + 450 ft lbf
 You want: btu
         * 2.5782804
         / 0.38785542
@@ -949,10 +968,12 @@ Next: <a href="#Previous-Result" accesskey="n" rel="next">Previous Result</a>, P
 <a name="index-functions_002c-built-in"></a>
 
 <p>Several built-in functions are provided: &lsquo;<samp>sin</samp>&rsquo;, &lsquo;<samp>cos</samp>&rsquo;,
-&lsquo;<samp>tan</samp>&rsquo;, &lsquo;<samp>ln</samp>&rsquo;, &lsquo;<samp>log</samp>&rsquo;, &lsquo;<samp>log2</samp>&rsquo;, &lsquo;<samp>exp</samp>&rsquo;, &lsquo;<samp>acos</samp>&rsquo;,
-&lsquo;<samp>atan</samp>&rsquo; and &lsquo;<samp>asin</samp>&rsquo;.  The &lsquo;<samp>sin</samp>&rsquo;, &lsquo;<samp>cos</samp>&rsquo;, and &lsquo;<samp>tan</samp>&rsquo;
+&lsquo;<samp>tan</samp>&rsquo;, &lsquo;<samp>ln</samp>&rsquo;, &lsquo;<samp>log</samp>&rsquo;, &lsquo;<samp>exp</samp>&rsquo;, &lsquo;<samp>acos</samp>&rsquo;,
+&lsquo;<samp>atan</samp>&rsquo;, &lsquo;<samp>asin</samp>&rsquo;, &lsquo;<samp>cosh</samp>&rsquo;, &lsquo;<samp>sinh</samp>&rsquo;, &lsquo;<samp>tanh</samp>&rsquo;,
+&lsquo;<samp>acosh</samp>&rsquo;, &lsquo;<samp>asinh</samp>&rsquo;, and &lsquo;<samp>atanh</samp>&rsquo;.
+The &lsquo;<samp>sin</samp>&rsquo;, &lsquo;<samp>cos</samp>&rsquo;, and &lsquo;<samp>tan</samp>&rsquo;
 functions require either a dimensionless argument or an argument with
-dimensions of angle.
+dimensions of angle.  
 </p>
 <div class="example">
 <pre class="example">You have: sin(30 degrees)
@@ -972,6 +993,34 @@ Unit not dimensionless
 inverse trigonometric functions return arguments with dimensions of
 angle.
 </p>
+<a name="index-logs"></a>
+<p>The &lsquo;<samp>ln</samp>&rsquo; and &lsquo;<samp>log</samp>&rsquo; functions give natural log and log base
+10 respectively.  To obtain logs for any integer base, enter the
+desired base immediately after &lsquo;<samp>log</samp>&rsquo;.  For example, to get log
+base 2 you would write &lsquo;<samp>log2</samp>&rsquo; and to get log base 47 you could
+write &lsquo;<samp>log47</samp>&rsquo;.  
+</p>
+<div class="example">
+<pre class="example">You have: log2(32)
+You want: 
+        Definition: 5
+You have: log3(32)
+You want: 
+        Definition: 3.1546488
+You have: log4(32)
+You want: 
+        Definition: 2.5
+You have: log32(32)
+You want: 
+        Definition: 1
+You have: log(32)
+You want: 
+        Definition: 1.50515
+You have: log10(32)
+You want: 
+        Definition: 1.50515
+</pre></div>
+
 <a name="index-roots"></a>
 <a name="index-square-roots"></a>
 <p>If you wish to take roots of units, you may use the &lsquo;<samp>sqrt</samp>&rsquo; or
@@ -1036,6 +1085,8 @@ You want: in
         * 8.5749393
         / 0.1166189
 </pre></div>
+
+<a name="index-white-space-1"></a>
 
 <p>In most cases, surrounding white space is optional, so the previous
 example could have used &lsquo;<samp>2_</samp>&rsquo;.  If &lsquo;<samp>_</samp>&rsquo; follows a non-numerical
@@ -1421,7 +1472,7 @@ Nonlinear unit conversions are described in more detail in
 <a name="Unit-Lists"></a>
 <div class="header">
 <p>
-Next: <a href="#Logging-Calculations" accesskey="n" rel="next">Logging Calculations</a>, Previous: <a href="#Nonlinear-Conversions" accesskey="p" rel="prev">Nonlinear Conversions</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Using-CGS-Units" accesskey="n" rel="next">Using CGS Units</a>, Previous: <a href="#Nonlinear-Conversions" accesskey="p" rel="prev">Nonlinear Conversions</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Unit-Lists_003a-Conversion-to-Sums-of-Units"></a>
 <h2 class="chapter">7 Unit Lists: Conversion to Sums of Units</h2>
@@ -1561,9 +1612,8 @@ You want: ft;kg
 conformability error
         ft = 0.3048 m
         kg = 1 kg
-</pre><pre class="example">
 
-</pre><pre class="example">You have: meter
+You have: meter
 You want: lb;oz
 conformability error
         1 m
@@ -1583,9 +1633,8 @@ angles and time:
 <pre class="example">You have: 23.437754 deg
 You want; deg;arcmin;arcsec
     23 deg + 26 arcmin + 15.9144 arcsec
-</pre><pre class="example">
 
-</pre><pre class="example">You have: 7.2319 hr
+You have: 7.2319 hr
 You want: hr;min;sec
     7 hr + 13 min + 54.84 sec
 </pre></div>
@@ -1728,13 +1777,298 @@ You want: cup;1|2 cup;1|4 cup;tbsp
 </pre></div>
 
 <hr>
+<a name="Using-CGS-Units"></a>
+<div class="header">
+<p>
+Next: <a href="#Logging-Calculations" accesskey="n" rel="next">Logging Calculations</a>, Previous: <a href="#Unit-Lists" accesskey="p" rel="prev">Unit Lists</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<a name="Using-CGS-Units-1"></a>
+<h2 class="chapter">8 Using CGS Units</h2>
+<a name="index-CGS-units_002c-using"></a>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#Specifying-CGS-Units" accesskey="1">Specifying CGS Units</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How to specify the desired CGS units
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#The-ESU-System" accesskey="2">The ESU System</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The electrostatic units system
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#The-EMU-System" accesskey="3">The EMU System</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The electromagnetic units system
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#The-Gaussian-Units-System" accesskey="4">The Gaussian Units System</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The Gaussian units system
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Conversions-Between-Systems" accesskey="5">Conversions Between Systems</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Conversions between units in different systems
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Prompt-Prefix" accesskey="6">Prompt Prefix</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The prompt prefix shows specified CGS units
+</td></tr>
+</table>
+
+<p>The SI&mdash;an extension of the MKS (meter&ndash;kilogram&ndash;second) system&mdash;has
+largely supplanted the older CGS (centimeter&ndash;gram&ndash;second) system, but
+CGS units are still used in a few specialized fields, especially in physics.
+Conversions between SI and CGS involving mechanical units are
+straightforward, involving powers of 10 (e.g., 1&nbsp;m&nbsp;=&nbsp;100&nbsp;cm<!-- /@w -->).
+Conversions involving electromagnetic units are more complicated, and there
+are several different systems of CGS units.
+The differences arise from different choices made for proportionality
+constants in Coulomb&rsquo;s law for the electrostatic force between two
+charges and Ampere&rsquo;s law for the electromagnetic force between two
+current-carrying conductors.  The two constants,
+<em>k<sub><span class="roman">C</span></sub></em> and <em>k<sub><span class="roman">A</span></sub></em>,
+are related by the square of the speed of light:
+<em>k<sub><span class="roman">A</span></sub> = k<sub><span class="roman">C</span></sub> / c<sup>2</sup></em>.
+</p>
+<p>In the SI, the constants have dimensions,
+and an additional base unit, the ampere, is introduced as a measure of
+electric current.  The CGS systems do not define new base units, but
+simply express the derived units for charge and current in terms of
+mass, length, and time.
+In the ESU system, the constant for Coulomb&rsquo;s law is chosen to be unity
+and dimensionless.
+In the EMU system, the constant for Ampere&rsquo;s law is chosen to be unity and
+dimensionless.
+The Gaussian system usually uses the ESU
+units for charge and current; it chooses another constant so that the
+units for the electric and magnetic fields are the same.
+</p>
+<p>The dimensions of electrical quantities in the various CGS systems are
+different from the SI dimensions for the same units;
+strictly, conversions between these systems and SI are not possible.
+The <code>units</code> program defines the units so that you can convert
+between the various systems.  
+</p>
+<hr>
+<a name="Specifying-CGS-Units"></a>
+<div class="header">
+<p>
+Next: <a href="#The-ESU-System" accesskey="n" rel="next">The ESU System</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<a name="Specifying-CGS-Units-1"></a>
+<h3 class="section">8.1 Specifying CGS Units</h3>
+<a name="index-units_002c-specifying"></a>
+
+<p>The CGS definitions involve
+cm<sup>1/2</sup> and g<sup>1/2</sup>,
+which is problematic because
+<code>units</code> does not support fractional roots of base units.  The
+<samp>--units</samp>
+(<samp>-u</samp>) option allows selection of a CGS unit system and works
+around this restriction by redefining the base units
+for length and mass as their square roots:
+&lsquo;<samp>sqrt_cm</samp>&rsquo; and &lsquo;<samp>sqrt_g</samp>&rsquo;.  This allows
+working from equations using the units normally employed in the
+CGS system, and enforcing dimensional conformity within that
+system.  Recognized arguments to the <samp>--units</samp> option are
+&lsquo;<samp>gauss[ian]</samp>&rsquo;, &lsquo;<samp>esu</samp>&rsquo;, &lsquo;<samp>emu</samp>&rsquo;, and &lsquo;<samp>si</samp>&rsquo;; the argument
+is case insensitive.  The default mode for <code>units</code> is SI
+units; the only effect of giving &lsquo;<samp>si</samp>&rsquo; with the <samp>--units</samp>
+option is to prepend &lsquo;<samp>(SI) </samp>&rsquo; to the &lsquo;<samp>You&nbsp;have:</samp>&rsquo;<!-- /@w --> prompt.
+Giving an unrecognized system generates a warning, and <code>units</code>
+uses SI units.
+</p>
+
+
+<hr>
+<a name="The-ESU-System"></a>
+<div class="header">
+<p>
+Next: <a href="#The-EMU-System" accesskey="n" rel="next">The EMU System</a>, Previous: <a href="#Specifying-CGS-Units" accesskey="p" rel="prev">Specifying CGS Units</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<a name="The-ESU-System-1"></a>
+<h3 class="section">8.2 The ESU System</h3>
+<a name="index-ESU-units"></a>
+
+<p>The ESU system defines the unit of charge, the statcoulomb, in terms of
+Coulomb&rsquo;s law; it has dimensions of
+dyne<sup>1/2</sup>&nbsp;cm<!-- /@w -->, or cm<sup>3/2</sup>&nbsp;g<sup>1/2</sup>&nbsp;s<sup>-1</sup><!-- /@w -->.
+The unit of current, the statampere, is statcoulomb&nbsp;sec<!-- /@w -->, analogous to
+the relationship in SI.  Other electrical units are then derived in a
+manner similar to that for SI units; the units use the SI names prefixed
+by &lsquo;<samp>stat-</samp>&rsquo;, e.g., &lsquo;<samp>statvolt</samp>&rsquo; or &lsquo;<samp>statV</samp>&rsquo;.  The prefix
+&lsquo;<samp>st-</samp>&rsquo; is also recognized (e.g., &lsquo;<samp>stV</samp>&rsquo;).
+</p>
+<hr>
+<a name="The-EMU-System"></a>
+<div class="header">
+<p>
+Next: <a href="#The-Gaussian-Units-System" accesskey="n" rel="next">The Gaussian Units System</a>, Previous: <a href="#The-ESU-System" accesskey="p" rel="prev">The ESU System</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<a name="The-EMU-System-1"></a>
+<h3 class="section">8.3 The EMU System</h3>
+<a name="index-EMU-units"></a>
+
+<p>The EMU system defines the unit of current,
+the abampere, in terms of Ampere&rsquo;s law; it has dimensions of
+dyne<sup>1/2</sup>, or cm<sup>1/2</sup>&nbsp;g<sup>1/2</sup>&nbsp;s<sup>-1</sup><!-- /@w -->.
+The unit of charge, the abcoulomb, is
+abampere&nbsp;sec<!-- /@w -->, again analogous to the SI relationship.
+Other electrical units are then derived in a
+manner similar to that for SI units; the units use the SI names prefixed
+by &lsquo;<samp>ab-</samp>&rsquo;, e.g., &lsquo;<samp>abvolt</samp>&rsquo; or &lsquo;<samp>abV</samp>&rsquo;.  The magnetic field
+units include the gauss, oersted and maxwell. 
+</p>
+<hr>
+<a name="The-Gaussian-Units-System"></a>
+<div class="header">
+<p>
+Next: <a href="#Conversions-Between-Systems" accesskey="n" rel="next">Conversions Between Systems</a>, Previous: <a href="#The-EMU-System" accesskey="p" rel="prev">The EMU System</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<a name="The-Gaussian-Units-System-1"></a>
+<h3 class="section">8.4 The Gaussian Units System</h3>
+<a name="index-Gaussian-units"></a>
+
+<p>The Gaussian units system, which was also known as the Symmetric
+System,
+uses the same charge and current units as the ESU system (e.g.,
+&lsquo;<samp>statC</samp>&rsquo;, &lsquo;<samp>statA</samp>&rsquo;); it differs by defining the magnetic field
+so that it has the same units as the electric field.  The resulting
+magnetic field units are the
+same ones used in the EMU system: the gauss, oersted and maxwell. 
+</p>
+<hr>
+<a name="Conversions-Between-Systems"></a>
+<div class="header">
+<p>
+Next: <a href="#Prompt-Prefix" accesskey="n" rel="next">Prompt Prefix</a>, Previous: <a href="#The-Gaussian-Units-System" accesskey="p" rel="prev">The Gaussian Units System</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<a name="Conversions-Between-Different-Systems"></a>
+<h3 class="section">8.5 Conversions Between Different Systems</h3>
+
+<p>The CGS systems define units that measure the same thing but may have
+conflicting dimensions.  Furthermore, the dimensions of the
+electromagnetic CGS units are never compatible with SI.  Some authors
+claim that this means the various units are fundamentally different
+and cannot be converted.  But if you measure charge in two different
+systems you have measured the same physical thing, so conversion
+<em>must</em> be possible.  When running with SI, <code>units</code>
+defines all of the CGS units in terms of SI.  When you select a CGS
+system, <code>units</code> defines the SI units and the other CGS system
+units in terms of the system you have selected.
+</p>
+<div class="example">
+<pre class="example">(Gaussian) You have: statA
+           You want: abA
+        * 3.335641e-11
+        / 2.9979246e+10
+(Gaussian) You have: abA
+           You want: sqrt(dyne)
+conformability error
+        2.9979246e+10 sqrt_cm^3 sqrt_g / s^2
+        1 sqrt_cm sqrt_g / s
+</pre></div>
+
+<p>In the above example, <code>units</code> converts between the current
+units statA and abA even though the abA, from the EMU system, has
+incompatible dimensions.  This works because in Gaussian mode, the abA
+is defined in terms of the statA, so it does not have the correct
+definition for EMU; consequently, you cannot convert the abA to its EMU
+definition.
+</p>
+<p>One challenge of conversion is that because
+the CGS system has fewer base units, quantities that have different
+dimensions in SI may have the same dimension in a CGS system.  And
+yet, they may not have the same conversion factor.  For example, the
+unit for the <em>E</em> field and <em>B</em> fields are the same in the
+Gaussian system, but the conversion factors to SI are quite
+different.  This means that correct conversion is only possible if you
+keep track of what quantity is being measured.  You cannot convert
+statV/cm to SI without indicating which type of field the unit
+measures.  To aid in dimensional analysis, <code>units</code> defines
+various dimension units such as LENGTH, TIME, and CHARGE to be the
+appropriate dimension in SI.  The
+electromagnetic dimensions such as B_FIELD or E_FIELD may be useful
+aids both for conversion and dimensional analysis in CGS.  You
+can convert them to or from CGS in order to perform SI conversions
+that in some cases will not work due to dimensional incompatibilities.
+This example shows how the Gaussian system uses the same units for all
+of the fields, but they all have different conversion factors with
+SI. 
+</p>
+<div class="example">
+<pre class="example">(Gaussian) You have: statV/cm
+           You want: E_FIELD
+        * 29979.246
+        / 3.335641e-05
+(Gaussian) You have: statV/cm
+           You want: B_FIELD
+        * 0.0001
+        / 10000
+(Gaussian) You have: statV/cm
+           You want: H_FIELD
+        * 79.577472
+        / 0.012566371
+(Gaussian) You have: statV/cm
+           You want: D_FIELD
+        * 2.6544187e-07
+        / 3767303.1
+</pre></div>
+
+<p>The next example shows that the oersted cannot be converted directly
+to the SI unit of magnetic field, A/m, because the dimensions
+conflict.  We cannot redefine the ampere to make this work because
+then it would not convert with the statampere.  But you can still do
+this conversion as shown below.
+</p>
+<div class="example">
+<pre class="example">(Gaussian) You have: oersted
+           You want: A/m
+conformability error
+        1 sqrt_g / s sqrt_cm
+        29979246 sqrt_cm sqrt_g / s^2
+(Gaussian) You have: oersted
+           You want: H_FIELD
+        * 79.577472
+        / 0.012566371
+</pre></div>
+
+
+<hr>
+<a name="Prompt-Prefix"></a>
+<div class="header">
+<p>
+Previous: <a href="#Conversions-Between-Systems" accesskey="p" rel="prev">Conversions Between Systems</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<a name="Prompt-Prefix-1"></a>
+<h3 class="section">8.6 Prompt Prefix</h3>
+<a name="index-prompt-prefix-with-CGS-units"></a>
+<a name="index-CGS-units_002c-prompt-prefix"></a>
+
+<p>If a unit system is specified with the <samp>--units</samp> option, the
+selected system&rsquo;s name is prepended to the &lsquo;<samp>You&nbsp;have:</samp>&rsquo;<!-- /@w --> prompt
+as a reminder, e.g.,
+</p>
+<div class="example">
+<pre class="example">(Gaussian) You have: stC
+           You want:
+        Definition: statcoulomb = sqrt(dyne) cm = 1 sqrt_cm^3 sqrt_g / s
+</pre></div>
+
+<p>You can suppressed the prefix by including a line
+</p>
+<div class="example">
+<pre class="example">!prompt
+</pre></div>
+
+<p>with no argument in a site or personal units data file.  The prompt can
+be conditionally suppressed by including such a line within
+&lsquo;<samp>!var</samp>&rsquo; ... &lsquo;<samp>!endvar</samp>&rsquo; constructs, e.g.,
+</p>
+<div class="example">
+<pre class="example">!var UNITS_SYSTEM gaussian gauss
+!prompt
+!endvar
+</pre></div>
+
+<p>This might be appropriate if you normally use Gaussian units and find
+the prefix distracting but want to be reminded when you have selected a
+different CGS system.
+</p>
+<hr>
 <a name="Logging-Calculations"></a>
 <div class="header">
 <p>
-Next: <a href="#Invoking-Units" accesskey="n" rel="next">Invoking Units</a>, Previous: <a href="#Unit-Lists" accesskey="p" rel="prev">Unit Lists</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Invoking-Units" accesskey="n" rel="next">Invoking Units</a>, Previous: <a href="#Using-CGS-Units" accesskey="p" rel="prev">Using CGS Units</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Logging-Calculations-1"></a>
-<h2 class="chapter">8 Logging Calculations</h2>
+<h2 class="chapter">9 Logging Calculations</h2>
 <a name="index-logging-calculations"></a>
 <a name="index-log-file"></a>
 
@@ -1822,7 +2156,7 @@ non-interactively.
 Next: <a href="#Defining-Your-Own-Units" accesskey="n" rel="next">Defining Your Own Units</a>, Previous: <a href="#Logging-Calculations" accesskey="p" rel="prev">Logging Calculations</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Invoking-units"></a>
-<h2 class="chapter">9 Invoking <code>units</code></h2>
+<h2 class="chapter">10 Invoking <code>units</code></h2>
 <a name="index-invoking-units"></a>
 <a name="index-command_002dline-options"></a>
 
@@ -2172,6 +2506,13 @@ same effect as giving <samp>--info</samp>.
 cannot be found, print &ldquo;Units data file not found&rdquo;.
 </p>
 </dd>
+<dt><code>-u (gauss[ian]|esu|emu)</code></dt>
+<dt><code>--units (gauss[ian]|esu|emu)</code></dt>
+<dd><a name="index-_002du-_0028option-for-units_0029"></a>
+<a name="index-_002d_002dunits-_0028option-for-units_0029"></a>
+<p>Specify a CGS units system: Gaussian, ESU, or EMU.
+</p>
+</dd>
 <dt><code>-l <var>locale</var></code></dt>
 <dt><code>--locale <var>locale</var></code></dt>
 <dd><p>Print the information given with the <samp>--version</samp> option, show the
@@ -2192,7 +2533,7 @@ See <a href="#Locale">Locale</a>, for a description of locale format.
 Next: <a href="#Numeric-Output-Format" accesskey="n" rel="next">Numeric Output Format</a>, Previous: <a href="#Invoking-Units" accesskey="p" rel="prev">Invoking Units</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Adding-Your-Own-Definitions"></a>
-<h2 class="chapter">10 Adding Your Own Definitions</h2>
+<h2 class="chapter">11 Adding Your Own Definitions</h2>
 
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Units-Data-Files" accesskey="1">Units Data Files</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Where are units defined?
@@ -2214,7 +2555,7 @@ Next: <a href="#Numeric-Output-Format" accesskey="n" rel="next">Numeric Output F
 Next: <a href="#Defining-New-Units" accesskey="n" rel="next">Defining New Units</a>, Up: <a href="#Defining-Your-Own-Units" accesskey="u" rel="up">Defining Your Own Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Units-Data-Files-1"></a>
-<h3 class="section">10.1 Units Data Files</h3>
+<h3 class="section">11.1 Units Data Files</h3>
 <a name="index-additional-units-data-files"></a>
 <a name="index-data-files_002c-additional"></a>
 <a name="index-units-data-files_002c-additional"></a>
@@ -2282,7 +2623,7 @@ The default units data files are described in more detail in
 Next: <a href="#Defining-Nonlinear-Units" accesskey="n" rel="next">Defining Nonlinear Units</a>, Previous: <a href="#Units-Data-Files" accesskey="p" rel="prev">Units Data Files</a>, Up: <a href="#Defining-Your-Own-Units" accesskey="u" rel="up">Defining Your Own Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Defining-New-Units-and-Prefixes"></a>
-<h3 class="section">10.2 Defining New Units and Prefixes</h3>
+<h3 class="section">11.2 Defining New Units and Prefixes</h3>
 <a name="index-defining-units"></a>
 <a name="index-units_002c-definition-of"></a>
 <a name="index-units-definitions_002c-adding"></a>
@@ -2304,7 +2645,7 @@ A file can be included by giving the command &lsquo;<samp>!include</samp>&rsquo;
 the file&rsquo;s name.  The &lsquo;<samp>!</samp>&rsquo; must be the first character on the
 line.  The file will be sought in the same directory as the
 parent file unless you give a full path.  The name of the file to be
-included cannot contain the comment character &lsquo;<samp>#</samp>&rsquo;.
+included cannot contain spaces or the comment character &lsquo;<samp>#</samp>&rsquo;.
 <a name="index-include-files"></a>
 </p>
 <p>Unit names must not contain any of the operator characters &lsquo;<samp>+</samp>&rsquo;,
@@ -2348,7 +2689,8 @@ infinite loop.
 <a name="index-parentheses-5"></a>
 
 <p>If you define any units that contain
-&lsquo;<samp>+</samp>&rsquo; characters, carefully check them because the <samp>-c</samp> option
+&lsquo;<samp>+</samp>&rsquo; characters in their definitions,
+carefully check them because the <samp>-c</samp> option
 will not catch non-conformable sums.  Be careful with the &lsquo;<samp>-</samp>&rsquo;
 operator as well.  When used as a binary operator, the &lsquo;<samp>-</samp>&rsquo;
 character can perform addition or multiplication
@@ -2360,6 +2702,13 @@ two possible precedence values and may require parentheses to ensure
 consistent behavior.  To compute the difference
 of &lsquo;<samp>foo</samp>&rsquo; and &lsquo;<samp>bar</samp>&rsquo; write &lsquo;<samp>foo+(-bar)</samp>&rsquo; or even &lsquo;<samp>foo+-bar</samp>&rsquo;.
 </p>
+<p>You may wish to intentionally redefine a unit.  When you do this, and
+use the <samp>-c</samp> option, <code>units</code> displays a warning message
+about the redefinition.  You can suppress these warnings by redefining
+a unit using a &lsquo;<samp>+</samp>&rsquo; at the beginning of the unit name.  Do not
+include any white space between the &lsquo;<samp>+</samp>&rsquo; and the redefined unit
+name.
+</p>
 <p>Here is an example of a short data file that defines some basic
 units:
 </p>
@@ -2370,9 +2719,10 @@ rad     !dimensionless  # A dimensionless primitive unit
 micro-  1e-6            # Define a prefix
 minute  60 sec          # A minute is 60 seconds
 hour    60 min          # An hour is 60 minutes
-inch    0.0254 m        # Inch defined in terms of meters
+inch    72 m            # Inch defined incorrectly terms of meters
 ft      12 inches       # The foot defined in terms of inches
 mile    5280 ft         # And the mile
++inch   0.0254 m        # Correct redefinition, warning suppressed
 </pre></div>
 
 <a name="index-parentheses-6"></a>
@@ -2388,7 +2738,7 @@ would be equivalent to &lsquo;<samp>1 / (2&nbsp;meter)</samp>&rsquo;.
 Next: <a href="#Piecewise-Linear-Units" accesskey="n" rel="next">Piecewise Linear Units</a>, Previous: <a href="#Defining-New-Units" accesskey="p" rel="prev">Defining New Units</a>, Up: <a href="#Defining-Your-Own-Units" accesskey="u" rel="up">Defining Your Own Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Defining-Nonlinear-Units-1"></a>
-<h3 class="section">10.3 Defining Nonlinear Units</h3>
+<h3 class="section">11.3 Defining Nonlinear Units</h3>
 <a name="index-defining-nonlinear-units"></a>
 <a name="index-nonlinear-units_002c-defining"></a>
 <a name="index-nonlinear-unit-conversions-1"></a>
@@ -2600,7 +2950,7 @@ error messages.
 Next: <a href="#Defining-Unit-List-Aliases" accesskey="n" rel="next">Defining Unit List Aliases</a>, Previous: <a href="#Defining-Nonlinear-Units" accesskey="p" rel="prev">Defining Nonlinear Units</a>, Up: <a href="#Defining-Your-Own-Units" accesskey="u" rel="up">Defining Your Own Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Defining-Piecewise-Linear-Units"></a>
-<h3 class="section">10.4 Defining Piecewise Linear Units</h3>
+<h3 class="section">11.4 Defining Piecewise Linear Units</h3>
 <a name="index-defining-piecewise-linear-units"></a>
 <a name="index-linear-interpolation"></a>
 <a name="index-units_002c-piecewise-linear"></a>
@@ -2716,7 +3066,7 @@ and confirm that there are no actual errors before adding the
 Previous: <a href="#Piecewise-Linear-Units" accesskey="p" rel="prev">Piecewise Linear Units</a>, Up: <a href="#Defining-Your-Own-Units" accesskey="u" rel="up">Defining Your Own Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Defining-Unit-List-Aliases-1"></a>
-<h3 class="section">10.5 Defining Unit List Aliases</h3>
+<h3 class="section">11.5 Defining Unit List Aliases</h3>
 <a name="index-defining-unit-list-aliases"></a>
 <a name="index-unit-list-aliases_002c-defining"></a>
 <a name="index-_0021unitlist"></a>
@@ -2754,7 +3104,7 @@ units listed in unit list aliases are conformable.
 Next: <a href="#Localization" accesskey="n" rel="next">Localization</a>, Previous: <a href="#Defining-Your-Own-Units" accesskey="p" rel="prev">Defining Your Own Units</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Numeric-Output-Format-1"></a>
-<h2 class="chapter">11 Numeric Output Format</h2>
+<h2 class="chapter">12 Numeric Output Format</h2>
 <a name="index-numeric-output-format"></a>
 <a name="index-output-format"></a>
 
@@ -2791,7 +3141,7 @@ for descriptions of these options.
 Next: <a href="#Flags" accesskey="n" rel="next">Flags</a>, Up: <a href="#Numeric-Output-Format" accesskey="u" rel="up">Numeric Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Format-Specification-1"></a>
-<h3 class="section">11.1 Format Specification</h3>
+<h3 class="section">12.1 Format Specification</h3>
 <a name="index-output-format-specification"></a>
 <a name="index-format-specification_002c-output"></a>
 
@@ -2843,7 +3193,7 @@ are shown.
 Next: <a href="#Field-Width" accesskey="n" rel="next">Field Width</a>, Previous: <a href="#Format-Specification" accesskey="p" rel="prev">Format Specification</a>, Up: <a href="#Numeric-Output-Format" accesskey="u" rel="up">Numeric Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Flags-1"></a>
-<h3 class="section">11.2 Flags</h3>
+<h3 class="section">12.2 Flags</h3>
 <a name="index-output-format-flags"></a>
 <a name="index-flags_002c-output-format"></a>
 
@@ -2911,7 +3261,7 @@ given.
 Next: <a href="#Precision" accesskey="n" rel="next">Precision</a>, Previous: <a href="#Flags" accesskey="p" rel="prev">Flags</a>, Up: <a href="#Numeric-Output-Format" accesskey="u" rel="up">Numeric Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Field-Width-1"></a>
-<h3 class="section">11.3 Field Width</h3>
+<h3 class="section">12.3 Field Width</h3>
 <a name="index-output-field-width"></a>
 
 <p>By default, the output value is left aligned and shown with the minimum
@@ -2946,7 +3296,7 @@ You want: furlong
 Previous: <a href="#Field-Width" accesskey="p" rel="prev">Field Width</a>, Up: <a href="#Numeric-Output-Format" accesskey="u" rel="up">Numeric Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Precision-1"></a>
-<h3 class="section">11.4 Precision</h3>
+<h3 class="section">12.4 Precision</h3>
 <a name="index-output-precision"></a>
 <a name="index-precision_002c-output"></a>
 
@@ -3016,7 +3366,7 @@ by the last option given.
 Next: <a href="#Environment-Vars" accesskey="n" rel="next">Environment Vars</a>, Previous: <a href="#Numeric-Output-Format" accesskey="p" rel="prev">Numeric Output Format</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Localization-1"></a>
-<h2 class="chapter">12 Localization</h2>
+<h2 class="chapter">13 Localization</h2>
 <a name="index-environment-dependent-definitions"></a>
 <a name="index-localization"></a>
 <a name="index-_0021locale"></a>
@@ -3047,7 +3397,7 @@ specify definitions that depend on the user&rsquo;s locale.
 Next: <a href="#Additional-Localization" accesskey="n" rel="next">Additional Localization</a>, Up: <a href="#Localization" accesskey="u" rel="up">Localization</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Locale-1"></a>
-<h3 class="section">12.1 Locale</h3>
+<h3 class="section">13.1 Locale</h3>
 <a name="index-locale"></a>
 <p>A locale is a subset of a user&rsquo;s environment that indicates the user&rsquo;s
 language and country, and some attendant preferences, such as the
@@ -3107,7 +3457,7 @@ gallon       4.54609 liter
 Previous: <a href="#Locale" accesskey="p" rel="prev">Locale</a>, Up: <a href="#Localization" accesskey="u" rel="up">Localization</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Additional-Localization-1"></a>
-<h3 class="section">12.2 Additional Localization</h3>
+<h3 class="section">13.2 Additional Localization</h3>
 
 <p>Sometimes the locale isn&rsquo;t sufficient to determine unit preferences.
 There could be regional preferences, or a company could have specific
@@ -3221,7 +3571,7 @@ check that all cases give rise to a well defined set of definitions.
 Next: <a href="#Data-Files" accesskey="n" rel="next">Data Files</a>, Previous: <a href="#Localization" accesskey="p" rel="prev">Localization</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Environment-Variables"></a>
-<h2 class="chapter">13 Environment Variables</h2>
+<h2 class="chapter">14 Environment Variables</h2>
 <a name="index-environment-variables"></a>
 
 <p>The <code>units</code> program uses the following environment variables:
@@ -3312,7 +3662,7 @@ contain the locale map file.
 Next: <a href="#Unicode-Support" accesskey="n" rel="next">Unicode Support</a>, Previous: <a href="#Environment-Vars" accesskey="p" rel="prev">Environment Vars</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Data-Files-1"></a>
-<h2 class="chapter">14 Data Files</h2>
+<h2 class="chapter">15 Data Files</h2>
 <a name="index-files_002c-data"></a>
 <a name="index-data-files"></a>
 
@@ -3326,7 +3676,8 @@ directory.  The personal units data file is described in more detail in
 <p>On Unix-like systems, the data files are typically located in
 <samp>/usr/share/units</samp> if <code>units</code> is provided with the
 operating system, or in <samp>/usr/local/share/units</samp> if <code>units</code>
-is compiled from the source distribution.
+is compiled from the source distribution.  Note that the currency file
+<samp>currency.units</samp> is a symbolic link to another location.  
 </p>
 <p>On systems running Microsoft Windows, the files may be in the same
 locations if Unix-like commands are available, a Unix-like file
@@ -3361,7 +3712,7 @@ related environment variables.
 Next: <a href="#Readline-Support" accesskey="n" rel="next">Readline Support</a>, Previous: <a href="#Data-Files" accesskey="p" rel="prev">Data Files</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Unicode-Support-1"></a>
-<h2 class="chapter">15 Unicode Support</h2>
+<h2 class="chapter">16 Unicode Support</h2>
 <a name="index-Unicode-support"></a>
 <a name="index-UTF_002d8"></a>
 <a name="index-_0021utf8"></a>
@@ -3428,7 +3779,7 @@ of these characters can appear in unit names.
 Next: <a href="#Currency" accesskey="n" rel="next">Currency</a>, Previous: <a href="#Unicode-Support" accesskey="p" rel="prev">Unicode Support</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Readline-Support-1"></a>
-<h2 class="chapter">16 Readline Support</h2>
+<h2 class="chapter">17 Readline Support</h2>
 <a name="index-readline_002c-use-with-units"></a>
 
 <p>If the <code>readline</code> package has been compiled in, then when
@@ -3485,28 +3836,124 @@ its new history to the history file upon exit.
 Next: <a href="#Database-Syntax" accesskey="n" rel="next">Database Syntax</a>, Previous: <a href="#Readline-Support" accesskey="p" rel="prev">Readline Support</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Updating-Currency-Exchange-Rates"></a>
-<h2 class="chapter">17 Updating Currency Exchange Rates</h2>
+<h2 class="chapter">18 Updating Currency Exchange Rates</h2>
 <a name="index-currency_002c-updating"></a>
 <a name="index-exchange-rates_002c-updating"></a>
 
-<p>The units program includes currency exchange rates and prices for some
-precious metals in the database.  Of course, these values change over
-time, sometimes very rapidly, and <code>units</code> cannot provide real
-time values.  To update the exchange rates run the
-<code>units_cur</code>, which rewrites the files containing the currency
-rates, typically <samp>/usr/share/units/currency.units</samp>.  This program
-requires <code>python</code> and the <code>unidecode</code> package, and must
-be run with suitable permissions to write the file.  To keep the rates
-updated automatically, run it using a cron job on a Unix-like system, or
-a similar scheduling program on a different system.  Currency exchange
-rates are taken from Time Genie (<a href="http://www.timegenie.com">http://www.timegenie.com</a>) and
-precious metals pricing from Packetizer (<a href="www.packetizer.com">www.packetizer.com</a>).
-These sites update once per day, so there is no benefit in running the
-update script more often than daily.  You can run <code>units_cur</code>
-with a filename specified on the command line and it will write the data
-to that file.  If you give &lsquo;<samp>-</samp>&rsquo; for the file it will write to
-standard output.
+<p>The units program database includes currency exchange rates and prices
+for some precious metals.  Of course, these values change over time,
+sometimes very rapidly, and <code>units</code> cannot provide real-time
+values.  To update the exchange rates, run <code>units_cur</code>, which
+rewrites the file containing the currency rates, typically
+<samp>/var/lib/units/currency.units</samp> or
+<samp>/usr/local/com/units/currency.units</samp>
+on a Unix-like system or
+<samp>C:\Program&nbsp;Files&nbsp;(x86)<!-- /@w -->\GNU\units\definitions.units</samp> on a Windows
+system.
 </p>
+<p>This program requires Python (<a href="https://www.python.org">https://www.python.org</a>); either
+version 2 or 3 will work.  The program must be run with suitable
+permissions to write the file.  To keep the rates updated automatically,
+run it using a cron job on a Unix-like system, or a similar scheduling
+program on a different system.
+</p>
+<p>Reliable free sources of currency exchange rates have been annoyingly
+ephemeral.  The program currently supports several sources:
+</p>
+<ul>
+<li> FloatRates (<a href="https://www/floatrates.com">https://www/floatrates.com</a>).
+The US dollar (&lsquo;<samp>USD</samp>&rsquo;) is the default base currency.  You can
+change the base currency with the
+<samp>-b</samp> option described below.  Allowable base currencies are listed on
+the FloatRates website.  Exchange rates update daily.  
+
+</li><li> The European Central Bank (<a href="https://www.ecb.europa.eu">https://www.ecb.europa.eu</a>).
+The base currency is always the euro (&lsquo;<samp>EUR</samp>&rsquo;).  Exchange rates 
+update daily.  This source offers a more limited list of currenices
+than the others.  
+
+</li><li> Fixer (<a href="https://fixer.io">https://fixer.io</a>).
+Registration for a free API key is required.  With a free API key, base
+currency is the euro; exchange rates are updated hourly, the
+service has a limit of 1,000 API calls per month, and SSL encryption
+(https protocol) is not available.  Most of these restrictions are
+eliminated or reduced with paid plans.
+
+</li><li> open exchange rates (<a href="https://openexchangerates.org">https://openexchangerates.org</a>).
+Registration for a free API key is required.  With a free API key, the
+base currency is the US dollar; exchange rates are updated hourly, and
+there is a limit of 1,000 API calls per month.  Most of these
+restrictions are eliminated or reduced with paid plans.
+
+</li></ul>
+
+<p>The default source is FloatRates; you can select a different one using
+<samp>-s</samp> option described below.
+</p>
+<p>Precious metals pricing is obtained from Packetizer
+(<a href="www.packetizer.com">www.packetizer.com</a>).  This site updates once per day.
+</p>
+<p>You invoke <code>units_cur</code> like this:
+</p>
+<div class="example">
+<pre class="example">units_cur [<var>options</var>] [<var>outfile</var>]
+</pre></div>
+
+<p>By default, the output is written to the default currency file described
+above; this is usually what you want, because this is where
+<code>units</code> looks for the file.  If you wish, you can specify a
+different filename on the command line and <code>units_cur</code> will
+write the data to that file.  If you give &lsquo;<samp>-</samp>&rsquo; for the file it will
+write to standard output.
+</p>
+<p>The following options are available:
+</p>
+<dl compact="compact">
+<dt><code>-h</code></dt>
+<dt><code>--help</code></dt>
+<dd><p>Print a summary of the options for <code>units_cur</code>.
+</p>
+</dd>
+<dt><code>-V</code></dt>
+<dt><code>--version</code></dt>
+<dd><p>Print the <code>units_cur</code> version number.
+</p>
+</dd>
+<dt><code>-v</code></dt>
+<dt><code>--verbose</code></dt>
+<dd><p>Give slightly more verbose output when attempting to update currency
+exchange rates.
+</p>
+</dd>
+<dt><code>-s <var>source</var></code></dt>
+<dt><code>--source <var>source</var></code></dt>
+<dd><p>Specify the source for currency exchange rates; currently supported
+values are &lsquo;<samp>floatrates</samp>&rsquo; (for FloatRates), &lsquo;<samp>eubank</samp>&rsquo; (for the
+European Central Bank), &lsquo;<samp>fixer</samp>&rsquo; (for Fixer), and
+&lsquo;<samp>openexchangerates</samp>&rsquo; (for open exchange rates); the last two require
+an API key to be given with the <samp>-k</samp> option.
+</p>
+</dd>
+<dt><code>-b <var>base</var></code></dt>
+<dt><code>--base <var>base</var></code></dt>
+<dd><p>Set the base currency (when allowed by the site providing the data).
+<var>base</var> should be a 3-letter ISO currency code, e.g., &lsquo;<samp>USD</samp>&rsquo;.
+The specified currency will be the primitive currency unit used by
+<code>units</code>.  You may find it convenient to specify your local
+currency.  Conversions may be more accurate and you will be able to
+convert to your currency by simply hitting <tt class="key">Enter</tt> at the
+&lsquo;<samp>You&nbsp;want:</samp>&rsquo;<!-- /@w --> prompt.  This option is ignored if the source
+does not allow specifying the base currency.  (Currently only
+floatrates supports this option.)
+</p>
+</dd>
+<dt><code>-k <var>key</var></code></dt>
+<dt><code>--key <var>key</var></code></dt>
+<dd><p>Set the API key to <var>key</var> for sources that require it.
+</p>
+</dd>
+</dl>
+
 <hr>
 <a name="Database-Syntax"></a>
 <div class="header">
@@ -3514,7 +3961,7 @@ standard output.
 Next: <a href="#GNU-Free-Documentation-License" accesskey="n" rel="next">GNU Free Documentation License</a>, Previous: <a href="#Currency" accesskey="p" rel="prev">Currency</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Database-Command-Syntax"></a>
-<h2 class="chapter">18 Database Command Syntax</h2>
+<h2 class="chapter">19 Database Command Syntax</h2>
 <a name="index-database-syntax-summary"></a>
 <a name="index-syntax-of-units-database"></a>
 <a name="index-commands-in-units-database"></a>
@@ -3563,7 +4010,14 @@ optional.
 </dd>
 <dt><tt>!message <var>text</var></tt></dt>
 <dd><p>Display <var>text</var> when the database is read unless the quiet
-option (<samp>-q</samp>) is enabled.
+option (<samp>-q</samp>) is enabled.  If you omit <var>text</var> then units
+will display a blank line.  Messages will also appear in the log
+file.  
+</p>
+</dd>
+<dt><tt>!prompt <var>text</var></tt></dt>
+<dd><p>Prefix the &lsquo;<samp>You&nbsp;have:</samp>&rsquo;<!-- /@w --> prompt with the specified text.  If
+you omit <var>text</var> then any existing prefix is canceled.  
 </p>
 </dd>
 <dt><tt>!set <var>variable</var> <var>value</var></tt></dt>
@@ -3604,7 +4058,7 @@ prints an error message and ignores the block of definitions.
 Next: <a href="#Index" accesskey="n" rel="next">Index</a>, Previous: <a href="#Database-Syntax" accesskey="p" rel="prev">Database Syntax</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="GNU-Free-Documentation-License-1"></a>
-<h2 class="chapter">19 GNU Free Documentation License</h2>
+<h2 class="chapter">20 GNU Free Documentation License</h2>
 <div align="center">Version 1.3, 3 November 2008
 </div>
 
@@ -3616,7 +4070,7 @@ Everyone is permitted to copy and distribute verbatim copies
 of this license document, but changing it is not allowed.
 </pre></div>
 
-<ol>
+<ol start="0">
 <li> PREAMBLE
 
 <p>The purpose of this License is to make a manual, textbook, or other
@@ -3792,7 +4246,7 @@ Version filling the role of the Document, thus licensing distribution
 and modification of the Modified Version to whoever possesses a copy
 of it.  In addition, you must do these things in the Modified Version:
 </p>
-<ol>
+<ol type="A" start="1">
 <li> Use in the Title Page (and on the covers, if any) a title distinct
 from that of the Document, and from those of previous versions
 (which should, if there were any, be listed in the History section
@@ -4110,6 +4564,8 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
  &nbsp; 
 <a class="summary-letter" href="#Index_cp_letter-F"><b>F</b></a>
  &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-G"><b>G</b></a>
+ &nbsp; 
 <a class="summary-letter" href="#Index_cp_letter-H"><b>H</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Index_cp_letter-I"><b>I</b></a>
@@ -4184,6 +4640,7 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-_002d_002dsilent-_0028option-for-units_0029"><code>--silent <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002d_002dstrict-_0028option-for-units_0029"><code>--strict <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002d_002dterse-_0028option-for-units_0029"><code>--terse <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_002d_002dunits-_0028option-for-units_0029"><code>--units <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002d_002dunitsfile-_0028option-for-units_0029"><code>--unitsfile <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002d_002dverbose-_0028option-for-units_0029"><code>--verbose <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002d_002dverbose_002dcheck-_0028option-for-units_0029"><code>--verbose-check <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
@@ -4205,6 +4662,7 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-_002ds-_0028option-for-units_0029"><code>-s <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002dt-_0028option-for-units_0029"><code>-t <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002dU-_0028option-for-units_0029"><code>-U <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_002du-_0028option-for-units_0029"><code>-u <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002dv-_0028option-for-units_0029"><code>-v <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_002dV-_0028option-for-units_0029"><code>-V <span class="roman">(option for</span> <code>units</code><span class="roman">)</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Units">Invoking Units</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
@@ -4228,6 +4686,8 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-British-Imperial-measure">British Imperial measure</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Unit-Definitions">Unit Definitions</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-C">C</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-CGS-units_002c-prompt-prefix">CGS units, prompt prefix</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Prompt-Prefix">Prompt Prefix</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-CGS-units_002c-using">CGS units, using</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Using-CGS-Units">Using CGS Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-circle_002c-area-of">circle, area of</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Other-Nonlinear-Units">Other Nonlinear Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-command_002c-_0021-to-indicate-primitive-units">command, &lsquo;<samp>!</samp>&rsquo; to indicate primitive units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-New-Units">Defining New Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-command_002c-_0021endlocale">command, &lsquo;<samp>!endlocale</samp>&rsquo;</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Localization">Localization</a></td></tr>
@@ -4269,6 +4729,7 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-domain_002c-nonlinear-unit-definitions">domain, nonlinear unit definitions</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-Nonlinear-Units">Defining Nonlinear Units</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-E">E</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-EMU-units">EMU units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-EMU-System">The EMU System</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-environment-dependent-definitions">environment dependent definitions</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Localization">Localization</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-environment-variable_002c-HOME">environment variable, HOME</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-environment-variable_002c-LANG">environment variable, LANG</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
@@ -4280,6 +4741,7 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-environment-variable_002c-UNITSLOCALEMAP">environment variable, UNITSLOCALEMAP</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-environment-variable_002c-UNITS_005fENGLISH">environment variable, UNITS_ENGLISH</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-environment-variables">environment variables</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ESU-units">ESU units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-ESU-System">The ESU System</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-exchange-rates_002c-updating">exchange rates, updating</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Currency">Currency</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-exponent-operator">exponent operator</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Operators">Operators</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
@@ -4290,6 +4752,9 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-fractions_002c-numerical">fractions, numerical</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Operators">Operators</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-functions-of-units">functions of units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-Nonlinear-Units">Defining Nonlinear Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-functions_002c-built-in">functions, built in</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Built_002din-Functions">Built-in Functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th><a name="Index_cp_letter-G">G</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Gaussian-units">Gaussian units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Gaussian-Units-System">The Gaussian Units System</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-H">H</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-help">help</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Interactive-Use">Interactive Use</a></td></tr>
@@ -4318,6 +4783,7 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-localization">localization</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Localization">Localization</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-log-file">log file</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Logging-Calculations">Logging Calculations</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-logging-calculations">logging calculations</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Logging-Calculations">Logging Calculations</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-logs">logs</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Built_002din-Functions">Built-in Functions</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-M">M</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-measure_002c-Imperial">measure, Imperial</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Unit-Definitions">Unit Definitions</a></td></tr>
@@ -4382,6 +4848,7 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-previous-result">previous result</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Previous-Result">Previous Result</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-primitive-units">primitive units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-New-Units">Defining New Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-products-of-units">products of units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Operators">Operators</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-prompt-prefix-with-CGS-units">prompt prefix with CGS units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Prompt-Prefix">Prompt Prefix</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-Q">Q</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-quotients-of-units">quotients of units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Operators">Operators</a></td></tr>
@@ -4432,6 +4899,7 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-units_002c-lookup-method">units, lookup method</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Unit-Definitions">Unit Definitions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units_002c-piecewise-linear">units, piecewise linear</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Piecewise-Linear-Units">Piecewise Linear Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units_002c-primitive">units, primitive</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-New-Units">Defining New Units</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-units_002c-specifying">units, specifying</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Specifying-CGS-Units">Specifying CGS Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units_002c-sums-and-differences">units, sums and differences</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Sums-and-Differences-of-Units">Sums and Differences of Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units_002c-sums-of">units, sums of</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Unit-Lists">Unit Lists</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-UNITSFILE-environment-variable">UNITSFILE environment variable</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
@@ -4450,6 +4918,8 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-volume-measure_002c-English-customary">volume measure, English customary</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Unit-Definitions">Unit Definitions</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-W">W</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-white-space">white space</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Operators">Operators</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-white-space-1">white space</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Previous-Result">Previous Result</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-wire-gauge">wire gauge</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Other-Nonlinear-Units">Other Nonlinear Units</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-Y">Y</a></th><td></td><td></td></tr>
@@ -4482,6 +4952,8 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <a class="summary-letter" href="#Index_cp_letter-E"><b>E</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Index_cp_letter-F"><b>F</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-G"><b>G</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Index_cp_letter-H"><b>H</b></a>
  &nbsp; 

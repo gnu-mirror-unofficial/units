@@ -16,37 +16,44 @@ Units Conversion
   6.1 Temperature Conversions
   6.2 Other Nonlinear Units
 7 Unit Lists: Conversion to Sums of Units
-8 Logging Calculations
-9 Invoking 'units'
-10 Adding Your Own Definitions
-  10.1 Units Data Files
-  10.2 Defining New Units and Prefixes
-  10.3 Defining Nonlinear Units
-  10.4 Defining Piecewise Linear Units
-  10.5 Defining Unit List Aliases
-11 Numeric Output Format
-  11.1 Format Specification
-  11.2 Flags
-  11.3 Field Width
-  11.4 Precision
-12 Localization
-  12.1 Locale
-  12.2 Additional Localization
-13 Environment Variables
-14 Data Files
-15 Unicode Support
-16 Readline Support
-17 Updating Currency Exchange Rates
-18 Database Command Syntax
-19 GNU Free Documentation License
+8 Using CGS Units
+  8.1 Specifying CGS Units
+  8.2 The ESU System
+  8.3 The EMU System
+  8.4 The Gaussian Units System
+  8.5 Conversions Between Different Systems
+  8.6 Prompt Prefix
+9 Logging Calculations
+10 Invoking 'units'
+11 Adding Your Own Definitions
+  11.1 Units Data Files
+  11.2 Defining New Units and Prefixes
+  11.3 Defining Nonlinear Units
+  11.4 Defining Piecewise Linear Units
+  11.5 Defining Unit List Aliases
+12 Numeric Output Format
+  12.1 Format Specification
+  12.2 Flags
+  12.3 Field Width
+  12.4 Precision
+13 Localization
+  13.1 Locale
+  13.2 Additional Localization
+14 Environment Variables
+15 Data Files
+16 Unicode Support
+17 Readline Support
+18 Updating Currency Exchange Rates
+19 Database Command Syntax
+20 GNU Free Documentation License
 Index
 Units Conversion
 ****************
 
 This manual describes the 'units' command for units conversion and how
 you can use it as a powerful scientific calculator that keeps track of
-units.  This is Edition 2.11 of 'The Units Conversion Manual' for
-'units' Version 2.12.
+units.  This is Edition 2.15 of 'The Units Conversion Manual' for
+'units' Version 2.18.
 
 1 Overview of 'units'
 *********************
@@ -91,8 +98,8 @@ T(x)=ax+b.  This transformation is affine, but not linear.
 2 Interacting with 'units'
 **************************
 
-To invoke units for interactive use, type 'units' at your shell prompt.
-The program will print something like this:
+To invoke 'units' for interactive use, type 'units' at your shell
+prompt.  The program will print something like this:
 
      Currency exchange rates from www.timegenie.com on 2014-03-05
      2860 units, 109 prefixes, 85 nonlinear units
@@ -105,9 +112,8 @@ feet, type '10 meters'.  Next, 'units' will print 'You want:'.  You
 should type the units you want to convert _to_.  To convert to feet, you
 would type 'feet'.  If the 'readline' library was compiled in then <tab>
 will complete unit names.  *Note Readline Support::, for more
-information about 'readline'.  To quit the program under Unix, press
-<Ctrl-C> or <Ctrl-D>.  Under Windows, press <Ctrl-C> or <Ctrl-Z>; with
-the latter, you may also need to press <Enter>.
+information about 'readline'.  To quit the program type 'quit' or 'exit'
+at either prompt.
 
    The result will be displayed in two ways.  The first line of output,
 which is marked with a '*' to indicate multiplication, gives the result
@@ -270,7 +276,8 @@ The conversion information is read from a units data file that is called
 directory.  If you invoke 'units' with the '-V' option, it will print
 the location of this file.  The default file includes definitions for
 all familiar units, abbreviations and metric prefixes.  It also includes
-many obscure or archaic units.
+many obscure or archaic units.  Many common spelled-out numbers (e.g.,
+'seventeen') are recognized.
 
    Many constants of nature are defined, including these:
 
@@ -416,8 +423,13 @@ You can use parentheses for grouping:
              * 0.00010356166
              / 9656.0833
 
-Multiplication using a space has a higher precedence than division using
-a slash and is evaluated left to right; in effect, the first '/'
+White space surrounding operators is optional, so the previous example
+could have used '(1/2)kg/(kg/meter)'.  As a consequence, however,
+hyphenated spelled-out numbers (e.g., 'forty-two') cannot be used;
+'forty-two' is interpreted as '40 - 2'.
+
+   Multiplication using a space has a higher precedence than division
+using a slash and is evaluated left to right; in effect, the first '/'
 character marks the beginning of the denominator of a unit expression.
 This makes it simple to enter a quotient with several terms in the
 denominator: 'J / mol K'.  The '*' and '/' operators have the same
@@ -572,9 +584,9 @@ space as equivalent to 'dollar^5'.
 ======================
 
 Several built-in functions are provided: 'sin', 'cos', 'tan', 'ln',
-'log', 'log2', 'exp', 'acos', 'atan' and 'asin'.  The 'sin', 'cos', and
-'tan' functions require either a dimensionless argument or an argument
-with dimensions of angle.
+'log', 'exp', 'acos', 'atan', 'asin', 'cosh', 'sinh', 'tanh', 'acosh',
+'asinh', and 'atanh'.  The 'sin', 'cos', and 'tan' functions require
+either a dimensionless argument or an argument with dimensions of angle.
 
      You have: sin(30 degrees)
      You want:
@@ -591,6 +603,30 @@ with dimensions of angle.
 The other functions on the list require dimensionless arguments.  The
 inverse trigonometric functions return arguments with dimensions of
 angle.
+
+   The 'ln' and 'log' functions give natural log and log base 10
+respectively.  To obtain logs for any integer base, enter the desired
+base immediately after 'log'.  For example, to get log base 2 you would
+write 'log2' and to get log base 47 you could write 'log47'.
+
+     You have: log2(32)
+     You want:
+             Definition: 5
+     You have: log3(32)
+     You want:
+             Definition: 3.1546488
+     You have: log4(32)
+     You want:
+             Definition: 2.5
+     You have: log32(32)
+     You want:
+             Definition: 1
+     You have: log(32)
+     You want:
+             Definition: 1.50515
+     You have: log10(32)
+     You want:
+             Definition: 1.50515
 
    If you wish to take roots of units, you may use the 'sqrt' or
 'cuberoot' functions.  These functions require that the argument have
@@ -1155,7 +1191,194 @@ list:
      You want: cup;1|2 cup;1|4 cup;tbsp
      4;0;0;3.6280454
 
-8 Logging Calculations
+8 Using CGS Units
+*****************
+
+The SI--an extension of the MKS (meter-kilogram-second) system--has
+largely supplanted the older CGS (centimeter-gram-second) system, but
+CGS units are still used in a few specialized fields, especially in
+physics.  Conversions between SI and CGS involving mechanical units are
+straightforward, involving powers of 10 (e.g., 1 m = 100 cm).
+Conversions involving electromagnetic units are more complicated, and
+there are several different systems of CGS units.  The differences arise
+from different choices made for proportionality constants in Coulomb's
+law for the electrostatic force between two charges and Ampere's law for
+the electromagnetic force between two current-carrying conductors.  The
+two constants, k_{C} and k_{A}, are related by the square of the speed
+of light: k_{A} = k_{C} / c^{2}.
+
+   In the SI, the constants have dimensions, and an additional base
+unit, the ampere, is introduced as a measure of electric current.  The
+CGS systems do not define new base units, but simply express the derived
+units for charge and current in terms of mass, length, and time.  In the
+ESU system, the constant for Coulomb's law is chosen to be unity and
+dimensionless.  In the EMU system, the constant for Ampere's law is
+chosen to be unity and dimensionless.  The Gaussian system usually uses
+the ESU units for charge and current; it chooses another constant so
+that the units for the electric and magnetic fields are the same.
+
+   The dimensions of electrical quantities in the various CGS systems
+are different from the SI dimensions for the same units; strictly,
+conversions between these systems and SI are not possible.  The 'units'
+program defines the units so that you can convert between the various
+systems.
+
+8.1 Specifying CGS Units
+========================
+
+The CGS definitions involve cm^{1/2} and g^{1/2}, which is problematic
+because 'units' does not support fractional roots of base units.  The
+'--units' ('-u') option allows selection of a CGS unit system and works
+around this restriction by redefining the base units for length and mass
+as their square roots: 'sqrt_cm' and 'sqrt_g'.  This allows working from
+equations using the units normally employed in the CGS system, and
+enforcing dimensional conformity within that system.  Recognized
+arguments to the '--units' option are 'gauss[ian]', 'esu', 'emu', and
+'si'; the argument is case insensitive.  The default mode for 'units' is
+SI units; the only effect of giving 'si' with the '--units' option is to
+prepend '(SI) ' to the 'You have:' prompt.  Giving an unrecognized
+system generates a warning, and 'units' uses SI units.
+
+8.2 The ESU System
+==================
+
+The ESU system defines the unit of charge, the statcoulomb, in terms of
+Coulomb's law; it has dimensions of dyne^{1/2} cm, or
+cm^{3/2} g^{1/2} s^{-1}.  The unit of current, the statampere, is
+statcoulomb sec, analogous to the relationship in SI. Other electrical
+units are then derived in a manner similar to that for SI units; the
+units use the SI names prefixed by 'stat-', e.g., 'statvolt' or 'statV'.
+The prefix 'st-' is also recognized (e.g., 'stV').
+
+8.3 The EMU System
+==================
+
+The EMU system defines the unit of current, the abampere, in terms of
+Ampere's law; it has dimensions of dyne^{1/2}, or
+cm^{1/2} g^{1/2} s^{-1}.  The unit of charge, the abcoulomb, is
+abampere sec, again analogous to the SI relationship.  Other electrical
+units are then derived in a manner similar to that for SI units; the
+units use the SI names prefixed by 'ab-', e.g., 'abvolt' or 'abV'.  The
+magnetic field units include the gauss, oersted and maxwell.
+
+8.4 The Gaussian Units System
+=============================
+
+The Gaussian units system, which was also known as the Symmetric System,
+uses the same charge and current units as the ESU system (e.g., 'statC',
+'statA'); it differs by defining the magnetic field so that it has the
+same units as the electric field.  The resulting magnetic field units
+are the same ones used in the EMU system: the gauss, oersted and
+maxwell.
+
+8.5 Conversions Between Different Systems
+=========================================
+
+The CGS systems define units that measure the same thing but may have
+conflicting dimensions.  Furthermore, the dimensions of the
+electromagnetic CGS units are never compatible with SI. Some authors
+claim that this means the various units are fundamentally different and
+cannot be converted.  But if you measure charge in two different systems
+you have measured the same physical thing, so conversion _must_ be
+possible.  When running with SI, 'units' defines all of the CGS units in
+terms of SI. When you select a CGS system, 'units' defines the SI units
+and the other CGS system units in terms of the system you have selected.
+
+     (Gaussian) You have: statA
+                You want: abA
+             * 3.335641e-11
+             / 2.9979246e+10
+     (Gaussian) You have: abA
+                You want: sqrt(dyne)
+     conformability error
+             2.9979246e+10 sqrt_cm^3 sqrt_g / s^2
+             1 sqrt_cm sqrt_g / s
+
+In the above example, 'units' converts between the current units statA
+and abA even though the abA, from the EMU system, has incompatible
+dimensions.  This works because in Gaussian mode, the abA is defined in
+terms of the statA, so it does not have the correct definition for EMU;
+consequently, you cannot convert the abA to its EMU definition.
+
+   One challenge of conversion is that because the CGS system has fewer
+base units, quantities that have different dimensions in SI may have the
+same dimension in a CGS system.  And yet, they may not have the same
+conversion factor.  For example, the unit for the E field and B fields
+are the same in the Gaussian system, but the conversion factors to SI
+are quite different.  This means that correct conversion is only
+possible if you keep track of what quantity is being measured.  You
+cannot convert statV/cm to SI without indicating which type of field the
+unit measures.  To aid in dimensional analysis, 'units' defines various
+dimension units such as LENGTH, TIME, and CHARGE to be the appropriate
+dimension in SI. The electromagnetic dimensions such as B_FIELD or
+E_FIELD may be useful aids both for conversion and dimensional analysis
+in CGS. You can convert them to or from CGS in order to perform SI
+conversions that in some cases will not work due to dimensional
+incompatibilities.  This example shows how the Gaussian system uses the
+same units for all of the fields, but they all have different conversion
+factors with SI.
+
+     (Gaussian) You have: statV/cm
+                You want: E_FIELD
+             * 29979.246
+             / 3.335641e-05
+     (Gaussian) You have: statV/cm
+                You want: B_FIELD
+             * 0.0001
+             / 10000
+     (Gaussian) You have: statV/cm
+                You want: H_FIELD
+             * 79.577472
+             / 0.012566371
+     (Gaussian) You have: statV/cm
+                You want: D_FIELD
+             * 2.6544187e-07
+             / 3767303.1
+
+The next example shows that the oersted cannot be converted directly to
+the SI unit of magnetic field, A/m, because the dimensions conflict.  We
+cannot redefine the ampere to make this work because then it would not
+convert with the statampere.  But you can still do this conversion as
+shown below.
+
+     (Gaussian) You have: oersted
+                You want: A/m
+     conformability error
+             1 sqrt_g / s sqrt_cm
+             29979246 sqrt_cm sqrt_g / s^2
+     (Gaussian) You have: oersted
+                You want: H_FIELD
+             * 79.577472
+             / 0.012566371
+
+8.6 Prompt Prefix
+=================
+
+If a unit system is specified with the '--units' option, the selected
+system's name is prepended to the 'You have:' prompt as a reminder,
+e.g.,
+
+     (Gaussian) You have: stC
+                You want:
+             Definition: statcoulomb = sqrt(dyne) cm = 1 sqrt_cm^3 sqrt_g / s
+
+You can suppressed the prefix by including a line
+
+     !prompt
+
+with no argument in a site or personal units data file.  The prompt can
+be conditionally suppressed by including such a line within '!var' ...
+'!endvar' constructs, e.g.,
+
+     !var UNITS_SYSTEM gaussian gauss
+     !prompt
+     !endvar
+
+This might be appropriate if you normally use Gaussian units and find
+the prefix distracting but want to be reminded when you have selected a
+different CGS system.
+
+9 Logging Calculations
 **********************
 
 The '--log' option allows you to save the results of calculations in a
@@ -1225,8 +1448,8 @@ invoked, the new results are appended to the log file.  The time is
 written to the log file each time the file is opened.  The '--log'
 option is ignored when 'units' is used non-interactively.
 
-9 Invoking 'units'
-******************
+10 Invoking 'units'
+*******************
 
 You invoke 'units' like this:
 
@@ -1491,6 +1714,10 @@ default eight significant digits).
      Print the location of the default units data file and exit; if the
      file cannot be found, print "Units data file not found".
 
+'-u (gauss[ian]|esu|emu)'
+'--units (gauss[ian]|esu|emu)'
+     Specify a CGS units system: Gaussian, ESU, or EMU.
+
 '-l LOCALE'
 '--locale LOCALE'
      Print the information given with the '--version' option, show the
@@ -1506,10 +1733,10 @@ default eight significant digits).
 number; in English-speaking countries, the radix is a point ('.'), but
 in most other countries it is a comma (',').
 
-10 Adding Your Own Definitions
+11 Adding Your Own Definitions
 ******************************
 
-10.1 Units Data Files
+11.1 Units Data Files
 =====================
 
 The units and prefixes that 'units' can convert are defined in the units
@@ -1554,7 +1781,7 @@ environment variable; if this variable exists, its value is used without
 searching your home directory.  The default units data files are
 described in more detail in *note Data Files::.
 
-10.2 Defining New Units and Prefixes
+11.2 Defining New Units and Prefixes
 ====================================
 
 A unit is specified on a single line by giving its name and an
@@ -1566,7 +1793,7 @@ desired.  A file can be included by giving the command '!include'
 followed by the file's name.  The '!' must be the first character on the
 line.  The file will be sought in the same directory as the parent file
 unless you give a full path.  The name of the file to be included cannot
-contain the comment character '#'.
+contain spaces or the comment character '#'.
 
    Unit names must not contain any of the operator characters '+', '-',
 '*', '/', '|', '^', ';', '~', the comment character '#', or parentheses.
@@ -1598,16 +1825,23 @@ You will need to use the '--check-verbose' option, which prints out each
 unit as it is checked.  The program will still hang, but the last unit
 printed will be the unit that caused the infinite loop.
 
-   If you define any units that contain '+' characters, carefully check
-them because the '-c' option will not catch non-conformable sums.  Be
-careful with the '-' operator as well.  When used as a binary operator,
-the '-' character can perform addition or multiplication depending on
-the options used to invoke 'units'.  To ensure consistent behavior use
-'-' only as a unary negation operator when writing units definitions.
-To multiply two units leave a space or use the '*' operator with care,
-recalling that it has two possible precedence values and may require
-parentheses to ensure consistent behavior.  To compute the difference of
-'foo' and 'bar' write 'foo+(-bar)' or even 'foo+-bar'.
+   If you define any units that contain '+' characters in their
+definitions, carefully check them because the '-c' option will not catch
+non-conformable sums.  Be careful with the '-' operator as well.  When
+used as a binary operator, the '-' character can perform addition or
+multiplication depending on the options used to invoke 'units'.  To
+ensure consistent behavior use '-' only as a unary negation operator
+when writing units definitions.  To multiply two units leave a space or
+use the '*' operator with care, recalling that it has two possible
+precedence values and may require parentheses to ensure consistent
+behavior.  To compute the difference of 'foo' and 'bar' write
+'foo+(-bar)' or even 'foo+-bar'.
+
+   You may wish to intentionally redefine a unit.  When you do this, and
+use the '-c' option, 'units' displays a warning message about the
+redefinition.  You can suppress these warnings by redefining a unit
+using a '+' at the beginning of the unit name.  Do not include any white
+space between the '+' and the redefined unit name.
 
    Here is an example of a short data file that defines some basic
 units:
@@ -1618,16 +1852,17 @@ units:
      micro-  1e-6            # Define a prefix
      minute  60 sec          # A minute is 60 seconds
      hour    60 min          # An hour is 60 minutes
-     inch    0.0254 m        # Inch defined in terms of meters
+     inch    72 m            # Inch defined incorrectly terms of meters
      ft      12 inches       # The foot defined in terms of inches
      mile    5280 ft         # And the mile
+     +inch   0.0254 m        # Correct redefinition, warning suppressed
 
 A unit that ends with a '-' character is a prefix.  If a prefix
 definition contains any '/' characters, be sure they are protected by
 parentheses.  If you define 'half- 1/2' then 'halfmeter' would be
 equivalent to '1 / (2 meter)'.
 
-10.3 Defining Nonlinear Units
+11.3 Defining Nonlinear Units
 =============================
 
 Some unit conversions of interest are nonlinear; for example,
@@ -1796,7 +2031,7 @@ error messages.
 
      circlearea(r) units=[m;m^2] range=[0,)   pi r^2 ; sqrt(circlearea/pi)
 
-10.4 Defining Piecewise Linear Units
+11.4 Defining Piecewise Linear Units
 ====================================
 
 Sometimes you may be interested in a piecewise linear unit such as many
@@ -1884,7 +2119,7 @@ Use the 'noerror' keyword with caution.  The safest approach after
 adding a nonlinear unit definition is to run 'units --check' and confirm
 that there are no actual errors before adding the 'noerror' keyword.
 
-10.5 Defining Unit List Aliases
+11.5 Defining Unit List Aliases
 ===============================
 
 Unit list aliases are treated differently from unit definitions, because
@@ -1908,7 +2143,7 @@ _not_ have been shortened to 'year;day;hms'.
    As usual, be sure to run 'units --check' to ensure that the units
 listed in unit list aliases are conformable.
 
-11 Numeric Output Format
+12 Numeric Output Format
 ************************
 
 By default, 'units' shows results to eight significant digits.  You can
@@ -1925,7 +2160,7 @@ appearance, but requires at least rudimentary knowledge of the
 'printf()' format syntax.  *Note Invoking Units::, for descriptions of
 these options.
 
-11.1 Format Specification
+12.1 Format Specification
 =========================
 
 The format specification recognized with the '--output-format' option is
@@ -1959,7 +2194,7 @@ The field width includes the digits, decimal point, the exponent,
 thousands separators (with the digit-grouping flag), and the sign if any
 of these are shown.
 
-11.2 Flags
+12.2 Flags
 ==========
 
 The '+' flag causes the output to have a sign ('+' or '-').  The space
@@ -2007,7 +2242,7 @@ for example, with the format '%011.6f',
 
 The '0' flag has no effect if the '-' (left align) flag is given.
 
-11.3 Field Width
+12.3 Field Width
 ================
 
 By default, the output value is left aligned and shown with the minimum
@@ -2033,7 +2268,7 @@ results.  For example, with the format '%12.6f',
              *     4.970970
              /     0.201168
 
-11.4 Precision
+12.4 Precision
 ==============
 
 The meaning of "precision" depends on the format type.  With 'g' or 'G',
@@ -2086,14 +2321,14 @@ of the format specification.
 or '--digits' options; if the former is given in combination with either
 of the latter, the format is controlled by the last option given.
 
-12 Localization
+13 Localization
 ***************
 
 Some units have different values in different locations.  The
 localization feature accommodates this by allowing a units data file to
 specify definitions that depend on the user's locale.
 
-12.1 Locale
+13.1 Locale
 ===========
 
 A locale is a subset of a user's environment that indicates the user's
@@ -2137,7 +2372,7 @@ Here is an example, which defines the British gallon.
      gallon       4.54609 liter
      !endlocale
 
-12.2 Additional Localization
+13.2 Additional Localization
 ============================
 
 Sometimes the locale isn't sufficient to determine unit preferences.
@@ -2237,7 +2472,7 @@ The '-c' option only checks the definitions that are active for the
 current environment and locale, so when adding new definitions take care
 to check that all cases give rise to a well defined set of definitions.
 
-13 Environment Variables
+14 Environment Variables
 ************************
 
 The 'units' program uses the following environment variables:
@@ -2290,7 +2525,7 @@ The 'units' program uses the following environment variables:
      the 'UNITSFILE' environment variable, and that location does not
      also contain the locale map file.
 
-14 Data Files
+15 Data Files
 *************
 
 The 'units' program uses two default data files: 'definitions.units' and
@@ -2302,7 +2537,8 @@ detail in *note Units Data Files::.
    On Unix-like systems, the data files are typically located in
 '/usr/share/units' if 'units' is provided with the operating system, or
 in '/usr/local/share/units' if 'units' is compiled from the source
-distribution.
+distribution.  Note that the currency file 'currency.units' is a
+symbolic link to another location.
 
    On systems running Microsoft Windows, the files may be in the same
 locations if Unix-like commands are available, a Unix-like file
@@ -2327,7 +2563,7 @@ program.
 information about the files, how 'units' will attempt to find them, and
 the status of the related environment variables.
 
-15 Unicode Support
+16 Unicode Support
 ******************
 
 The standard units data file is in Unicode, using UTF-8 encoding.  Most
@@ -2378,7 +2614,7 @@ interactive use or in units data files, 'units' converts these
 characters to U+002D before further processing.  Because of this, none
 of these characters can appear in unit names.
 
-16 Readline Support
+17 Readline Support
 *******************
 
 If the 'readline' package has been compiled in, then when 'units' is
@@ -2419,27 +2655,106 @@ each history file is limited to 5000 lines.  Note also that if you run
 several concurrent copies of 'units' each one will save its new history
 to the history file upon exit.
 
-17 Updating Currency Exchange Rates
+18 Updating Currency Exchange Rates
 ***********************************
 
-The units program includes currency exchange rates and prices for some
-precious metals in the database.  Of course, these values change over
-time, sometimes very rapidly, and 'units' cannot provide real time
-values.  To update the exchange rates run the 'units_cur', which
-rewrites the files containing the currency rates, typically
-'/usr/share/units/currency.units'.  This program requires 'python' and
-the 'unidecode' package, and must be run with suitable permissions to
-write the file.  To keep the rates updated automatically, run it using a
-cron job on a Unix-like system, or a similar scheduling program on a
-different system.  Currency exchange rates are taken from Time Genie
-(<http://www.timegenie.com>) and precious metals pricing from Packetizer
-(<www.packetizer.com>).  These sites update once per day, so there is no
-benefit in running the update script more often than daily.  You can run
-'units_cur' with a filename specified on the command line and it will
-write the data to that file.  If you give '-' for the file it will write
-to standard output.
+The units program database includes currency exchange rates and prices
+for some precious metals.  Of course, these values change over time,
+sometimes very rapidly, and 'units' cannot provide real-time values.  To
+update the exchange rates, run 'units_cur', which rewrites the file
+containing the currency rates, typically '/var/lib/units/currency.units'
+or '/usr/local/com/units/currency.units' on a Unix-like system or
+'C:\Program Files (x86)\GNU\units\definitions.units' on a Windows
+system.
 
-18 Database Command Syntax
+   This program requires Python (<https://www.python.org>); either
+version 2 or 3 will work.  The program must be run with suitable
+permissions to write the file.  To keep the rates updated automatically,
+run it using a cron job on a Unix-like system, or a similar scheduling
+program on a different system.
+
+   Reliable free sources of currency exchange rates have been annoyingly
+ephemeral.  The program currently supports several sources:
+
+   * FloatRates (<https://www/floatrates.com>).  The US dollar ('USD')
+     is the default base currency.  You can change the base currency
+     with the '-b' option described below.  Allowable base currencies
+     are listed on the FloatRates website.  Exchange rates update daily.
+
+   * The European Central Bank (<https://www.ecb.europa.eu>).  The base
+     currency is always the euro ('EUR').  Exchange rates update daily.
+     This source offers a more limited list of currenices than the
+     others.
+
+   * Fixer (<https://fixer.io>).  Registration for a free API key is
+     required.  With a free API key, base currency is the euro; exchange
+     rates are updated hourly, the service has a limit of 1,000 API
+     calls per month, and SSL encryption (https protocol) is not
+     available.  Most of these restrictions are eliminated or reduced
+     with paid plans.
+
+   * open exchange rates (<https://openexchangerates.org>).
+     Registration for a free API key is required.  With a free API key,
+     the base currency is the US dollar; exchange rates are updated
+     hourly, and there is a limit of 1,000 API calls per month.  Most of
+     these restrictions are eliminated or reduced with paid plans.
+
+The default source is FloatRates; you can select a different one using
+'-s' option described below.
+
+   Precious metals pricing is obtained from Packetizer
+(<www.packetizer.com>).  This site updates once per day.
+
+   You invoke 'units_cur' like this:
+
+     units_cur [OPTIONS] [OUTFILE]
+
+By default, the output is written to the default currency file described
+above; this is usually what you want, because this is where 'units'
+looks for the file.  If you wish, you can specify a different filename
+on the command line and 'units_cur' will write the data to that file.
+If you give '-' for the file it will write to standard output.
+
+The following options are available:
+
+'-h'
+'--help'
+     Print a summary of the options for 'units_cur'.
+
+'-V'
+'--version'
+     Print the 'units_cur' version number.
+
+'-v'
+'--verbose'
+     Give slightly more verbose output when attempting to update
+     currency exchange rates.
+
+'-s SOURCE'
+'--source SOURCE'
+     Specify the source for currency exchange rates; currently supported
+     values are 'floatrates' (for FloatRates), 'eubank' (for the
+     European Central Bank), 'fixer' (for Fixer), and
+     'openexchangerates' (for open exchange rates); the last two require
+     an API key to be given with the '-k' option.
+
+'-b BASE'
+'--base BASE'
+     Set the base currency (when allowed by the site providing the
+     data).  BASE should be a 3-letter ISO currency code, e.g., 'USD'.
+     The specified currency will be the primitive currency unit used by
+     'units'.  You may find it convenient to specify your local
+     currency.  Conversions may be more accurate and you will be able to
+     convert to your currency by simply hitting <Enter> at the
+     'You want:' prompt.  This option is ignored if the source does not
+     allow specifying the base currency.  (Currently only floatrates
+     supports this option.)
+
+'-k KEY'
+'--key KEY'
+     Set the API key to KEY for sources that require it.
+
+19 Database Command Syntax
 **************************
 
 UNIT DEFINITION
@@ -2475,7 +2790,12 @@ TABNAME[OUT-UNITS] noerror PAIR-LIST
 
 !message TEXT
      Display TEXT when the database is read unless the quiet option
-     ('-q') is enabled.
+     ('-q') is enabled.  If you omit TEXT then units will display a
+     blank line.  Messages will also appear in the log file.
+
+!prompt TEXT
+     Prefix the 'You have:' prompt with the specified text.  If you omit
+     TEXT then any existing prefix is canceled.
 
 !set VARIABLE VALUE
      Sets the environment variable, VARIABLE, to the specified value
@@ -2500,7 +2820,7 @@ TABNAME[OUT-UNITS] noerror PAIR-LIST
      space-separated value list.  If ENVAR is not set, 'units' prints an
      error message and ignores the block of definitions.
 
-19 GNU Free Documentation License
+20 GNU Free Documentation License
 *********************************
 
                      Version 1.3, 3 November 2008
@@ -2984,315 +3304,329 @@ Index
 
 * Menu:
 
-* ! to indicate primitive units:         Defining New Units. (line 1580)
-* !endlocale:                            Localization.       (line 2113)
-* !endutf8:                              Unicode Support.    (line 2356)
-* !include:                              Units Data Files.   (line 1534)
-* !locale:                               Localization.       (line 2113)
+* ! to indicate primitive units:         Defining New Units. (line 1813)
+* !endlocale:                            Localization.       (line 2354)
+* !endutf8:                              Unicode Support.    (line 2598)
+* !include:                              Units Data Files.   (line 1767)
+* !locale:                               Localization.       (line 2354)
 * !unitlist:                             Defining Unit List Aliases.
-                                                             (line 1911)
-* !utf8:                                 Unicode Support.    (line 2356)
-* * operator:                            Operators.          (line  399)
-* ** operator:                           Operators.          (line  450)
+                                                             (line 2152)
+* !utf8:                                 Unicode Support.    (line 2598)
+* * operator:                            Operators.          (line  406)
+* ** operator:                           Operators.          (line  462)
 * + operator:                            Sums and Differences of Units.
-                                                             (line  512)
+                                                             (line  524)
 * - as multiplication operator:          Backwards Compatibility.
-                                                             (line  755)
+                                                             (line  791)
 * - as subtraction operator:             Sums and Differences of Units.
-                                                             (line  512)
-* --check (option for units):            Invoking Units.     (line 1290)
-* --check-verbose (option for units):    Invoking Units.     (line 1299)
-* --compact (option for units):          Invoking Units.     (line 1410)
-* --digits (option for units):           Invoking Units.     (line 1307)
-* --exponential (option for units):      Invoking Units.     (line 1324)
-* --file (option for units):             Invoking Units.     (line 1355)
-* --file (option for units) <1>:         Invoking Units.     (line 1377)
-* --help (option for units):             Invoking Units.     (line 1386)
-* --info (option for units):             Invoking Units.     (line 1496)
-* --locale (option for units):           Invoking Units.     (line 1515)
-* --log (option for units):              Invoking Units.     (line 1367)
-* --minus (option for units):            Invoking Units.     (line 1390)
-* --newstar (option for units):          Invoking Units.     (line 1405)
-* --oldstar (option for units):          Invoking Units.     (line 1401)
-* --one-line (option for units):         Invoking Units.     (line 1458)
-* --output-format (option for units):    Invoking Units.     (line 1333)
-* --product (option for units):          Invoking Units.     (line 1395)
-* --quiet (option for units):            Invoking Units.     (line 1416)
-* --silent (option for units):           Invoking Units.     (line 1416)
-* --strict (option for units):           Invoking Units.     (line 1449)
-* --terse (option for units):            Invoking Units.     (line 1465)
-* --unitsfile (option for units):        Invoking Units.     (line 1510)
-* --verbose (option for units):          Invoking Units.     (line 1474)
-* --verbose-check (option for units):    Invoking Units.     (line 1299)
-* --version (option for units):          Invoking Units.     (line 1481)
-* -1 (option for units):                 Invoking Units.     (line 1458)
-* -c (option for units):                 Invoking Units.     (line 1290)
-* -d (option for units):                 Invoking Units.     (line 1307)
-* -e (option for units):                 Invoking Units.     (line 1324)
-* -f (option for units):                 Invoking Units.     (line 1355)
-* -f (option for units) <1>:             Invoking Units.     (line 1377)
-* -h (option for units):                 Invoking Units.     (line 1386)
-* -I (option for units):                 Invoking Units.     (line 1496)
-* -L (option for units):                 Invoking Units.     (line 1367)
-* -l (option for units):                 Invoking Units.     (line 1515)
-* -m (option for units):                 Invoking Units.     (line 1390)
-* -o (option for units):                 Invoking Units.     (line 1333)
-* -p (option for units):                 Invoking Units.     (line 1395)
-* -q (option for units):                 Invoking Units.     (line 1416)
-* -s (option for units):                 Invoking Units.     (line 1449)
-* -t (option for units):                 Invoking Units.     (line 1465)
-* -U (option for units):                 Invoking Units.     (line 1510)
-* -v (option for units):                 Invoking Units.     (line 1474)
-* -V (option for units):                 Invoking Units.     (line 1481)
-* ? for unit completion with readline:   Readline Support.   (line 2417)
-* ? to show conformable units:           Interactive Use.    (line  218)
-* _ to use result of previous conversion: Previous Result.   (line  625)
-* | operator:                            Operators.          (line  431)
+                                                             (line  524)
+* --check (option for units):            Invoking Units.     (line 1519)
+* --check-verbose (option for units):    Invoking Units.     (line 1528)
+* --compact (option for units):          Invoking Units.     (line 1639)
+* --digits (option for units):           Invoking Units.     (line 1536)
+* --exponential (option for units):      Invoking Units.     (line 1553)
+* --file (option for units):             Invoking Units.     (line 1584)
+* --file (option for units) <1>:         Invoking Units.     (line 1606)
+* --help (option for units):             Invoking Units.     (line 1615)
+* --info (option for units):             Invoking Units.     (line 1725)
+* --locale (option for units):           Invoking Units.     (line 1748)
+* --log (option for units):              Invoking Units.     (line 1596)
+* --minus (option for units):            Invoking Units.     (line 1619)
+* --newstar (option for units):          Invoking Units.     (line 1634)
+* --oldstar (option for units):          Invoking Units.     (line 1630)
+* --one-line (option for units):         Invoking Units.     (line 1687)
+* --output-format (option for units):    Invoking Units.     (line 1562)
+* --product (option for units):          Invoking Units.     (line 1624)
+* --quiet (option for units):            Invoking Units.     (line 1645)
+* --silent (option for units):           Invoking Units.     (line 1645)
+* --strict (option for units):           Invoking Units.     (line 1678)
+* --terse (option for units):            Invoking Units.     (line 1694)
+* --units (option for units):            Invoking Units.     (line 1744)
+* --unitsfile (option for units):        Invoking Units.     (line 1739)
+* --verbose (option for units):          Invoking Units.     (line 1703)
+* --verbose-check (option for units):    Invoking Units.     (line 1528)
+* --version (option for units):          Invoking Units.     (line 1710)
+* -1 (option for units):                 Invoking Units.     (line 1687)
+* -c (option for units):                 Invoking Units.     (line 1519)
+* -d (option for units):                 Invoking Units.     (line 1536)
+* -e (option for units):                 Invoking Units.     (line 1553)
+* -f (option for units):                 Invoking Units.     (line 1584)
+* -f (option for units) <1>:             Invoking Units.     (line 1606)
+* -h (option for units):                 Invoking Units.     (line 1615)
+* -I (option for units):                 Invoking Units.     (line 1725)
+* -L (option for units):                 Invoking Units.     (line 1596)
+* -l (option for units):                 Invoking Units.     (line 1748)
+* -m (option for units):                 Invoking Units.     (line 1619)
+* -o (option for units):                 Invoking Units.     (line 1562)
+* -p (option for units):                 Invoking Units.     (line 1624)
+* -q (option for units):                 Invoking Units.     (line 1645)
+* -s (option for units):                 Invoking Units.     (line 1678)
+* -t (option for units):                 Invoking Units.     (line 1694)
+* -U (option for units):                 Invoking Units.     (line 1739)
+* -u (option for units):                 Invoking Units.     (line 1744)
+* -v (option for units):                 Invoking Units.     (line 1703)
+* -V (option for units):                 Invoking Units.     (line 1710)
+* ? for unit completion with readline:   Readline Support.   (line 2659)
+* ? to show conformable units:           Interactive Use.    (line  224)
+* _ to use result of previous conversion: Previous Result.   (line  661)
+* | operator:                            Operators.          (line  443)
 * abrasive grit size:                    Other Nonlinear Units.
-                                                             (line  873)
+                                                             (line  909)
 * addition of units:                     Sums and Differences of Units.
-                                                             (line  515)
-* additional units data files:           Units Data Files.   (line 1534)
+                                                             (line  527)
+* additional units data files:           Units Data Files.   (line 1767)
 * backwards compatibility:               Backwards Compatibility.
-                                                             (line  744)
-* British Imperial measure:              Unit Definitions.   (line  298)
+                                                             (line  780)
+* British Imperial measure:              Unit Definitions.   (line  305)
+* CGS units, prompt prefix:              Prompt Prefix.      (line 1376)
+* CGS units, using:                      Using CGS Units.    (line 1211)
 * circle, area of:                       Other Nonlinear Units.
-                                                             (line  879)
+                                                             (line  915)
 * command, ! to indicate primitive units: Defining New Units.
-                                                             (line 1580)
-* command, !endlocale:                   Localization.       (line 2113)
-* command, !endutf8:                     Unicode Support.    (line 2356)
-* command, !endvar:                      Localization.       (line 2113)
-* command, !include:                     Units Data Files.   (line 1534)
-* command, !locale:                      Localization.       (line 2113)
-* command, !message:                     Localization.       (line 2113)
-* command, !set:                         Localization.       (line 2113)
+                                                             (line 1813)
+* command, !endlocale:                   Localization.       (line 2354)
+* command, !endutf8:                     Unicode Support.    (line 2598)
+* command, !endvar:                      Localization.       (line 2354)
+* command, !include:                     Units Data Files.   (line 1767)
+* command, !locale:                      Localization.       (line 2354)
+* command, !message:                     Localization.       (line 2354)
+* command, !set:                         Localization.       (line 2354)
 * command, !unitlist:                    Defining Unit List Aliases.
-                                                             (line 1911)
-* command, !utf8:                        Unicode Support.    (line 2356)
-* command, !var:                         Localization.       (line 2113)
-* command, !varnot:                      Localization.       (line 2113)
-* command-line options:                  Invoking Units.     (line 1246)
-* command-line unit conversion:          Command Line Use.   (line  238)
-* commands in units database:            Database Syntax.    (line 2468)
+                                                             (line 2152)
+* command, !utf8:                        Unicode Support.    (line 2598)
+* command, !var:                         Localization.       (line 2354)
+* command, !varnot:                      Localization.       (line 2354)
+* command-line options:                  Invoking Units.     (line 1475)
+* command-line unit conversion:          Command Line Use.   (line  244)
+* commands in units database:            Database Syntax.    (line 2790)
 * compatibility:                         Backwards Compatibility.
-                                                             (line  744)
+                                                             (line  780)
 * compatibility with earlier versions:   Backwards Compatibility.
-                                                             (line  744)
+                                                             (line  780)
 * completion, unit, using ? (readline only): Readline Support.
-                                                             (line 2417)
-* conformable units, ? to show:          Interactive Use.    (line  218)
-* currency, updating:                    Currency.           (line 2448)
+                                                             (line 2659)
+* conformable units, ? to show:          Interactive Use.    (line  224)
+* currency, updating:                    Currency.           (line 2690)
 * Darcy-Weisbach equation:               Complicated Unit Expressions.
-                                                             (line  703)
-* data files:                            Data Files.         (line 2318)
-* data files, additional:                Units Data Files.   (line 1534)
-* database syntax summary:               Database Syntax.    (line 2468)
+                                                             (line  739)
+* data files:                            Data Files.         (line 2559)
+* data files, additional:                Units Data Files.   (line 1767)
+* database syntax summary:               Database Syntax.    (line 2790)
 * defining nonlinear units:              Defining Nonlinear Units.
-                                                             (line 1653)
+                                                             (line 1894)
 * defining piecewise linear units:       Piecewise Linear Units.
-                                                             (line 1822)
-* defining prefixes:                     Defining New Units. (line 1580)
+                                                             (line 2063)
+* defining prefixes:                     Defining New Units. (line 1813)
 * defining unit list aliases:            Defining Unit List Aliases.
-                                                             (line 1911)
-* defining units:                        Defining New Units. (line 1580)
+                                                             (line 2152)
+* defining units:                        Defining New Units. (line 1813)
 * defining units with '-':               Backwards Compatibility.
-                                                             (line  771)
+                                                             (line  807)
 * differences of units:                  Sums and Differences of Units.
-                                                             (line  515)
-* dimensionless units:                   Interactive Use.    (line  216)
-* dimensionless units, defining:         Defining New Units. (line 1612)
-* division of numbers:                   Operators.          (line  431)
-* division of units:                     Operators.          (line  399)
+                                                             (line  527)
+* dimensionless units:                   Interactive Use.    (line  222)
+* dimensionless units, defining:         Defining New Units. (line 1845)
+* division of numbers:                   Operators.          (line  443)
+* division of units:                     Operators.          (line  406)
 * domain, nonlinear unit definitions:    Defining Nonlinear Units.
-                                                             (line 1737)
-* environment dependent definitions:     Localization.       (line 2113)
-* environment variable, HOME:            Environment Vars.   (line 2267)
-* environment variable, LANG:            Environment Vars.   (line 2278)
-* environment variable, LC_CTYPE:        Environment Vars.   (line 2278)
-* environment variable, MYUNITSFILE:     Units Data Files.   (line 1571)
-* environment variable, MYUNITSFILE <1>: Environment Vars.   (line 2283)
-* environment variable, PAGER:           Environment Vars.   (line 2289)
-* environment variable, UNITSFILE:       Environment Vars.   (line 2300)
-* environment variable, UNITSLOCALEMAP:  Environment Vars.   (line 2307)
-* environment variable, UNITS_ENGLISH:   Environment Vars.   (line 2296)
-* environment variables:                 Environment Vars.   (line 2264)
-* exchange rates, updating:              Currency.           (line 2448)
-* exponent operator:                     Operators.          (line  450)
-* files, data:                           Data Files.         (line 2318)
-* flags, output format:                  Flags.              (line 1986)
+                                                             (line 1978)
+* EMU units:                             The EMU System.     (line 1273)
+* environment dependent definitions:     Localization.       (line 2354)
+* environment variable, HOME:            Environment Vars.   (line 2508)
+* environment variable, LANG:            Environment Vars.   (line 2519)
+* environment variable, LC_CTYPE:        Environment Vars.   (line 2519)
+* environment variable, MYUNITSFILE:     Units Data Files.   (line 1804)
+* environment variable, MYUNITSFILE <1>: Environment Vars.   (line 2524)
+* environment variable, PAGER:           Environment Vars.   (line 2530)
+* environment variable, UNITSFILE:       Environment Vars.   (line 2541)
+* environment variable, UNITSLOCALEMAP:  Environment Vars.   (line 2548)
+* environment variable, UNITS_ENGLISH:   Environment Vars.   (line 2537)
+* environment variables:                 Environment Vars.   (line 2505)
+* ESU units:                             The ESU System.     (line 1260)
+* exchange rates, updating:              Currency.           (line 2690)
+* exponent operator:                     Operators.          (line  462)
+* files, data:                           Data Files.         (line 2559)
+* flags, output format:                  Flags.              (line 2227)
 * format specification, output:          Format Specification.
-                                                             (line 1952)
-* fractions, numerical:                  Operators.          (line  431)
+                                                             (line 2193)
+* fractions, numerical:                  Operators.          (line  443)
 * functions of units:                    Defining Nonlinear Units.
-                                                             (line 1809)
-* functions, built in:                   Built-in Functions. (line  583)
-* help:                                  Interactive Use.    (line  224)
-* help <1>:                              Environment Vars.   (line 2289)
-* HOME environment variable:             Environment Vars.   (line 2267)
+                                                             (line 2050)
+* functions, built in:                   Built-in Functions. (line  595)
+* Gaussian units:                        The Gaussian Units System.
+                                                             (line 1286)
+* help:                                  Interactive Use.    (line  230)
+* help <1>:                              Environment Vars.   (line 2530)
+* HOME environment variable:             Environment Vars.   (line 2508)
 * hyphen as multiplication operator:     Backwards Compatibility.
-                                                             (line  755)
-* Imperial measure:                      Unit Definitions.   (line  298)
-* include files:                         Defining New Units. (line 1589)
-* including additional units data files: Units Data Files.   (line 1534)
-* incompatible units:                    Interactive Use.    (line  174)
-* interactive use:                       Interactive Use.    (line   93)
-* international mile:                    Unit Definitions.   (line  338)
-* international yard:                    Unit Definitions.   (line  338)
-* invoking units:                        Invoking Units.     (line 1246)
-* LANG environment variable:             Environment Vars.   (line 2278)
-* LC_CTYPE environment variable:         Environment Vars.   (line 2278)
-* length measure, English customary:     Unit Definitions.   (line  338)
-* length measure, UK:                    Unit Definitions.   (line  338)
+                                                             (line  791)
+* Imperial measure:                      Unit Definitions.   (line  305)
+* include files:                         Defining New Units. (line 1822)
+* including additional units data files: Units Data Files.   (line 1767)
+* incompatible units:                    Interactive Use.    (line  180)
+* interactive use:                       Interactive Use.    (line  100)
+* international mile:                    Unit Definitions.   (line  345)
+* international yard:                    Unit Definitions.   (line  345)
+* invoking units:                        Invoking Units.     (line 1475)
+* LANG environment variable:             Environment Vars.   (line 2519)
+* LC_CTYPE environment variable:         Environment Vars.   (line 2519)
+* length measure, English customary:     Unit Definitions.   (line  345)
+* length measure, UK:                    Unit Definitions.   (line  345)
 * linear interpolation:                  Piecewise Linear Units.
-                                                             (line 1822)
-* locale:                                Locale.             (line 2120)
-* locale_map.txt:                        Locale.             (line 2131)
-* localization:                          Localization.       (line 2113)
+                                                             (line 2063)
+* locale:                                Locale.             (line 2361)
+* locale_map.txt:                        Locale.             (line 2372)
+* localization:                          Localization.       (line 2354)
 * log file:                              Logging Calculations.
-                                                             (line 1175)
+                                                             (line 1404)
 * logging calculations:                  Logging Calculations.
-                                                             (line 1175)
-* measure, Imperial:                     Unit Definitions.   (line  298)
-* mile, international:                   Unit Definitions.   (line  338)
+                                                             (line 1404)
+* logs:                                  Built-in Functions. (line  616)
+* measure, Imperial:                     Unit Definitions.   (line  305)
+* mile, international:                   Unit Definitions.   (line  345)
 * minus (-) operator, subtraction:       Sums and Differences of Units.
-                                                             (line  512)
-* multiplication of units:               Operators.          (line  399)
+                                                             (line  524)
+* multiplication of units:               Operators.          (line  406)
 * multiplication, hyphen:                Backwards Compatibility.
-                                                             (line  755)
-* MYUNITSFILE environment variable:      Units Data Files.   (line 1571)
-* MYUNITSFILE environment variable <1>:  Environment Vars.   (line 2283)
-* non-conformable units:                 Interactive Use.    (line  174)
-* non-interactive unit conversion:       Command Line Use.   (line  238)
+                                                             (line  791)
+* MYUNITSFILE environment variable:      Units Data Files.   (line 1804)
+* MYUNITSFILE environment variable <1>:  Environment Vars.   (line 2524)
+* non-conformable units:                 Interactive Use.    (line  180)
+* non-interactive unit conversion:       Command Line Use.   (line  244)
 * nonlinear unit conversions:            Nonlinear Conversions.
-                                                             (line  776)
+                                                             (line  812)
 * nonlinear unit conversions <1>:        Defining Nonlinear Units.
-                                                             (line 1653)
+                                                             (line 1894)
 * nonlinear units, defining:             Defining Nonlinear Units.
-                                                             (line 1653)
+                                                             (line 1894)
 * nonlinear units, other:                Other Nonlinear Units.
-                                                             (line  843)
-* numbers as units:                      Numbers as Units.   (line  562)
-* numeric output format:                 Numeric Output Format.
-                                                             (line 1935)
-* numerical fractions:                   Operators.          (line  431)
-* operator precedence:                   Operators.          (line  421)
-* operator, (**):                        Operators.          (line  450)
-* operator, caret (^):                   Operators.          (line  450)
-* operator, hyphen (-) as multiplication: Backwards Compatibility.
-                                                             (line  755)
-* operator, hyphen (-) as subtraction:   Sums and Differences of Units.
-                                                             (line  512)
-* operator, minus (-):                   Sums and Differences of Units.
-                                                             (line  512)
-* operator, per:                         Operators.          (line  399)
-* operator, plus (+):                    Sums and Differences of Units.
-                                                             (line  512)
-* operator, slash (/):                   Operators.          (line  399)
-* operator, solidus (/):                 Operators.          (line  399)
-* operator, space:                       Operators.          (line  399)
-* operator, star (*):                    Operators.          (line  399)
-* operator, vertical bar (|):            Operators.          (line  431)
-* operators:                             Operators.          (line  391)
-* output field width:                    Field Width.        (line 2034)
-* output format:                         Numeric Output Format.
-                                                             (line 1935)
-* output format flags:                   Flags.              (line 1986)
-* output format specification:           Format Specification.
-                                                             (line 1952)
-* output precision:                      Precision.          (line 2060)
-* PAGER environment variable:            Environment Vars.   (line 2289)
-* parentheses:                           Operators.          (line  414)
-* parentheses <1>:                       Operators.          (line  421)
-* parentheses <2>:                       Operators.          (line  450)
-* parentheses <3>:                       Sums and Differences of Units.
-                                                             (line  539)
-* parentheses <4>:                       Complicated Unit Expressions.
-                                                             (line  723)
-* parentheses <5>:                       Defining New Units. (line 1621)
-* parentheses <6>:                       Defining New Units. (line 1645)
-* parentheses <7>:                       Defining Nonlinear Units.
-                                                             (line 1683)
-* per operator:                          Operators.          (line  399)
-* personal units data file:              Units Data Files.   (line 1556)
-* piecewise linear units:                Piecewise Linear Units.
-                                                             (line 1822)
-* plus (+) operator:                     Sums and Differences of Units.
-                                                             (line  512)
-* powers:                                Operators.          (line  450)
-* precision, output:                     Precision.          (line 2060)
-* prefixes:                              Unit Definitions.   (line  317)
-* prefixes and exponents:                Operators.          (line  462)
-* prefixes, definition of:               Defining New Units. (line 1580)
-* previous result:                       Previous Result.    (line  625)
-* primitive units:                       Defining New Units. (line 1580)
-* products of units:                     Operators.          (line  399)
-* quotients of units:                    Operators.          (line  399)
-* range, nonlinear unit definitions:     Defining Nonlinear Units.
-                                                             (line 1737)
-* readline, use with units:              Readline Support.   (line 2407)
-* reciprocal conversion:                 Interactive Use.    (line  149)
-* roots:                                 Built-in Functions. (line  604)
-* setlocale function:                    Locale.             (line 2131)
-* slash (/) operator:                    Operators.          (line  399)
-* solidus (/) operator:                  Operators.          (line  399)
-* sphere, volume of:                     Other Nonlinear Units.
                                                              (line  879)
-* square roots:                          Built-in Functions. (line  604)
-* star (*) operator:                     Operators.          (line  399)
-* State Plane Coordinate System, US:     Unit Definitions.   (line  338)
-* strict conversion:                     Interactive Use.    (line  158)
+* numbers as units:                      Numbers as Units.   (line  574)
+* numeric output format:                 Numeric Output Format.
+                                                             (line 2176)
+* numerical fractions:                   Operators.          (line  443)
+* operator precedence:                   Operators.          (line  428)
+* operator, (**):                        Operators.          (line  462)
+* operator, caret (^):                   Operators.          (line  462)
+* operator, hyphen (-) as multiplication: Backwards Compatibility.
+                                                             (line  791)
+* operator, hyphen (-) as subtraction:   Sums and Differences of Units.
+                                                             (line  524)
+* operator, minus (-):                   Sums and Differences of Units.
+                                                             (line  524)
+* operator, per:                         Operators.          (line  406)
+* operator, plus (+):                    Sums and Differences of Units.
+                                                             (line  524)
+* operator, slash (/):                   Operators.          (line  406)
+* operator, solidus (/):                 Operators.          (line  406)
+* operator, space:                       Operators.          (line  406)
+* operator, star (*):                    Operators.          (line  406)
+* operator, vertical bar (|):            Operators.          (line  443)
+* operators:                             Operators.          (line  398)
+* output field width:                    Field Width.        (line 2275)
+* output format:                         Numeric Output Format.
+                                                             (line 2176)
+* output format flags:                   Flags.              (line 2227)
+* output format specification:           Format Specification.
+                                                             (line 2193)
+* output precision:                      Precision.          (line 2301)
+* PAGER environment variable:            Environment Vars.   (line 2530)
+* parentheses:                           Operators.          (line  421)
+* parentheses <1>:                       Operators.          (line  428)
+* parentheses <2>:                       Operators.          (line  462)
+* parentheses <3>:                       Sums and Differences of Units.
+                                                             (line  551)
+* parentheses <4>:                       Complicated Unit Expressions.
+                                                             (line  759)
+* parentheses <5>:                       Defining New Units. (line 1854)
+* parentheses <6>:                       Defining New Units. (line 1886)
+* parentheses <7>:                       Defining Nonlinear Units.
+                                                             (line 1924)
+* per operator:                          Operators.          (line  406)
+* personal units data file:              Units Data Files.   (line 1789)
+* piecewise linear units:                Piecewise Linear Units.
+                                                             (line 2063)
+* plus (+) operator:                     Sums and Differences of Units.
+                                                             (line  524)
+* powers:                                Operators.          (line  462)
+* precision, output:                     Precision.          (line 2301)
+* prefixes:                              Unit Definitions.   (line  324)
+* prefixes and exponents:                Operators.          (line  474)
+* prefixes, definition of:               Defining New Units. (line 1813)
+* previous result:                       Previous Result.    (line  661)
+* primitive units:                       Defining New Units. (line 1813)
+* products of units:                     Operators.          (line  406)
+* prompt prefix with CGS units:          Prompt Prefix.      (line 1376)
+* quotients of units:                    Operators.          (line  406)
+* range, nonlinear unit definitions:     Defining Nonlinear Units.
+                                                             (line 1978)
+* readline, use with units:              Readline Support.   (line 2649)
+* reciprocal conversion:                 Interactive Use.    (line  155)
+* roots:                                 Built-in Functions. (line  640)
+* setlocale function:                    Locale.             (line 2372)
+* slash (/) operator:                    Operators.          (line  406)
+* solidus (/) operator:                  Operators.          (line  406)
+* sphere, volume of:                     Other Nonlinear Units.
+                                                             (line  915)
+* square roots:                          Built-in Functions. (line  640)
+* star (*) operator:                     Operators.          (line  406)
+* State Plane Coordinate System, US:     Unit Definitions.   (line  345)
+* strict conversion:                     Interactive Use.    (line  164)
 * subtraction of units:                  Sums and Differences of Units.
-                                                             (line  515)
+                                                             (line  527)
 * sums and differences of units:         Sums and Differences of Units.
-                                                             (line  512)
+                                                             (line  524)
 * sums of units:                         Sums and Differences of Units.
-                                                             (line  515)
-* sums of units <1>:                     Unit Lists.         (line  929)
-* survey foot, US:                       Unit Definitions.   (line  338)
-* survey measure, US:                    Unit Definitions.   (line  338)
-* survey mile, US:                       Unit Definitions.   (line  338)
-* syntax of units database:              Database Syntax.    (line 2468)
+                                                             (line  527)
+* sums of units <1>:                     Unit Lists.         (line  965)
+* survey foot, US:                       Unit Definitions.   (line  345)
+* survey measure, US:                    Unit Definitions.   (line  345)
+* survey mile, US:                       Unit Definitions.   (line  345)
+* syntax of units database:              Database Syntax.    (line 2790)
 * temperature conversions:               Temperature Conversions.
-                                                             (line  782)
-* Unicode support:                       Unicode Support.    (line 2356)
-* unit completion using ? (readline only): Readline Support. (line 2417)
-* unit definitions:                      Unit Definitions.   (line  268)
-* unit expressions:                      Unit Expressions.   (line  388)
+                                                             (line  818)
+* Unicode support:                       Unicode Support.    (line 2598)
+* unit completion using ? (readline only): Readline Support. (line 2659)
+* unit definitions:                      Unit Definitions.   (line  274)
+* unit expressions:                      Unit Expressions.   (line  395)
 * unit expressions, complicated:         Complicated Unit Expressions.
-                                                             (line  702)
+                                                             (line  738)
 * unit list aliases, defining:           Defining Unit List Aliases.
-                                                             (line 1911)
-* unit lists:                            Unit Lists.         (line  929)
-* unit name completion:                  Readline Support.   (line 2420)
-* units data file, personal:             Units Data Files.   (line 1556)
-* units data files, additional:          Units Data Files.   (line 1534)
-* units definitions, adding:             Defining New Units. (line 1580)
-* units definitions, changing:           Defining New Units. (line 1580)
+                                                             (line 2152)
+* unit lists:                            Unit Lists.         (line  965)
+* unit name completion:                  Readline Support.   (line 2662)
+* units data file, personal:             Units Data Files.   (line 1789)
+* units data files, additional:          Units Data Files.   (line 1767)
+* units definitions, adding:             Defining New Units. (line 1813)
+* units definitions, changing:           Defining New Units. (line 1813)
 * units functions:                       Defining Nonlinear Units.
-                                                             (line 1809)
-* units quotients:                       Operators.          (line  399)
-* units, definition of:                  Defining New Units. (line 1580)
-* units, lookup method:                  Unit Definitions.   (line  308)
+                                                             (line 2050)
+* units quotients:                       Operators.          (line  406)
+* units, definition of:                  Defining New Units. (line 1813)
+* units, lookup method:                  Unit Definitions.   (line  315)
 * units, piecewise linear:               Piecewise Linear Units.
-                                                             (line 1822)
-* units, primitive:                      Defining New Units. (line 1580)
+                                                             (line 2063)
+* units, primitive:                      Defining New Units. (line 1813)
+* units, specifying:                     Specifying CGS Units.
+                                                             (line 1244)
 * units, sums and differences:           Sums and Differences of Units.
-                                                             (line  512)
-* units, sums of:                        Unit Lists.         (line  929)
-* UNITSFILE environment variable:        Environment Vars.   (line 2300)
-* UNITSLOCALEMAP environment variable:   Environment Vars.   (line 2307)
-* UNITS_ENGLISH environment variable:    Environment Vars.   (line 2296)
-* US State Plane Coordinate System:      Unit Definitions.   (line  338)
-* US survey foot:                        Unit Definitions.   (line  338)
-* US survey measure:                     Unit Definitions.   (line  338)
-* US survey mile:                        Unit Definitions.   (line  338)
-* UTF-8:                                 Unicode Support.    (line 2356)
-* verbose output:                        Interactive Use.    (line  140)
-* verbose output <1>:                    Interactive Use.    (line  158)
-* vertical bar (|) operator:             Operators.          (line  431)
-* volume measure, English customary:     Unit Definitions.   (line  323)
+                                                             (line  524)
+* units, sums of:                        Unit Lists.         (line  965)
+* UNITSFILE environment variable:        Environment Vars.   (line 2541)
+* UNITSLOCALEMAP environment variable:   Environment Vars.   (line 2548)
+* UNITS_ENGLISH environment variable:    Environment Vars.   (line 2537)
+* US State Plane Coordinate System:      Unit Definitions.   (line  345)
+* US survey foot:                        Unit Definitions.   (line  345)
+* US survey measure:                     Unit Definitions.   (line  345)
+* US survey mile:                        Unit Definitions.   (line  345)
+* UTF-8:                                 Unicode Support.    (line 2598)
+* verbose output:                        Interactive Use.    (line  146)
+* verbose output <1>:                    Interactive Use.    (line  164)
+* vertical bar (|) operator:             Operators.          (line  443)
+* volume measure, English customary:     Unit Definitions.   (line  330)
+* white space:                           Operators.          (line  428)
+* white space <1>:                       Previous Result.    (line  689)
 * wire gauge:                            Other Nonlinear Units.
-                                                             (line  851)
-* yard, international:                   Unit Definitions.   (line  338)
+                                                             (line  887)
+* yard, international:                   Unit Definitions.   (line  345)
 
