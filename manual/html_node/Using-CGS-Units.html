@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.18),
+which performs units conversions and units calculations.
+
+Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
+2011-2017 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Using CGS Units (Units: A Unit Conversion Program and Scientific Calculator)</title>
+
+<meta name="description" content="Using CGS Units (Units: A Unit Conversion Program and Scientific Calculator)">
+<meta name="keywords" content="Using CGS Units (Units: A Unit Conversion Program and Scientific Calculator)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Specifying-CGS-Units.html#Specifying-CGS-Units" rel="next" title="Specifying CGS Units">
+<link href="Unit-Lists.html#Unit-Lists" rel="prev" title="Unit Lists">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
+</head>
+
+<body lang="en">
+<a name="Using-CGS-Units"></a>
+<div class="header">
+<p>
+Next: <a href="Logging-Calculations.html#Logging-Calculations" accesskey="n" rel="next">Logging Calculations</a>, Previous: <a href="Unit-Lists.html#Unit-Lists" accesskey="p" rel="prev">Unit Lists</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Using-CGS-Units-1"></a>
+<h2 class="chapter">8 Using CGS Units</h2>
+<a name="index-CGS-units_002c-using"></a>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML' async></script>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Specifying-CGS-Units.html#Specifying-CGS-Units" accesskey="1">Specifying CGS Units</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How to specify the desired CGS units
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="CGS-Units-Systems.html#CGS-Units-Systems" accesskey="2">CGS Units Systems</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The various CGS units systems
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Conversions-Between-Systems.html#Conversions-Between-Systems" accesskey="3">Conversions Between Systems</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Conversions between units in different systems
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Prompt-Prefix.html#Prompt-Prefix" accesskey="4">Prompt Prefix</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The prompt prefix shows specified CGS units
+</td></tr>
+</table>
+
+<p>The SI&mdash;an extension of the MKS (meter&ndash;kilogram&ndash;second) system&mdash;has
+largely supplanted the older CGS (centimeter&ndash;gram&ndash;second) system, but
+CGS units are still used in a few specialized fields, especially in
+physics where they lead to a more elegant formulation of Maxwell&rsquo;s equations.
+Conversions between SI and CGS involving mechanical units are
+straightforward, involving powers of 10 (e.g., 1&nbsp;m&nbsp;=&nbsp;100&nbsp;cm<!-- /@w -->).
+Conversions involving electromagnetic units are more complicated, and
+<code>units</code> supports three different systems of CGS units: 
+electrostatic units (ESU), electromagnetic units (EMU), and the
+Gaussian system.  
+The differences between these systems
+arise from different choices made for proportionality
+constants in electromagnetic equations.
+Coulomb&rsquo;s law gives electrostatic force between two
+charges separated by a distance
+<em>r</em>:
+\[ F = k_{\text{C}} \frac{q_1q^2}{r^2} \]
+</p>
+<p>Ampere&rsquo;s law gives the electromagnetic force per unit length
+between two current-carrying conductors separated by a distance
+<em>r</em>:
+\[ \frac{F}{l} = 2 k_{\text{A}} \frac{I_1I_2}{r}\]
+</p>
+<p>The two constants,
+\(k_{\text{C}}\) and \(k_{\text{A}}\),
+are related by the square of the speed of light:
+\(k_{\text{A}} = k_{\text{C}}/c^2\).
+</p>
+<p>In the SI, the constants have dimensions, and an additional base unit,
+the ampere, measures electric current.  The CGS systems do not define
+new base units, but express charge and current as derived units in
+terms of mass, length, and time.  In the ESU system, the constant for
+Coulomb&rsquo;s law is chosen to be unity and dimensionless, which defines
+the unit of charge.  In the EMU system, the constant for Ampere&rsquo;s law
+is chosen to be unity and dimensionless, which defines a unit of
+current.  The Gaussian system usually uses the ESU units for charge
+and current; it chooses another constant so that the units for the
+electric and magnetic fields are the same.
+</p>
+<p>The dimensions of electrical quantities in the various CGS systems are
+different from the SI dimensions for the same units;
+strictly, conversions between these systems and SI are not possible.
+But units in different systems relate to the same physical quantities,
+so there is a <em>correspondence</em> between these units.
+The <code>units</code> program defines the units so that you can convert
+between corresponding units in the various systems.  
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Logging-Calculations.html#Logging-Calculations" accesskey="n" rel="next">Logging Calculations</a>, Previous: <a href="Unit-Lists.html#Unit-Lists" accesskey="p" rel="prev">Unit Lists</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

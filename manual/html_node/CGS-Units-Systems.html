@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.18),
+which performs units conversions and units calculations.
+
+Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
+2011-2017 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>CGS Units Systems (Units: A Unit Conversion Program and Scientific Calculator)</title>
+
+<meta name="description" content="CGS Units Systems (Units: A Unit Conversion Program and Scientific Calculator)">
+<meta name="keywords" content="CGS Units Systems (Units: A Unit Conversion Program and Scientific Calculator)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Using-CGS-Units.html#Using-CGS-Units" rel="up" title="Using CGS Units">
+<link href="Conversions-Between-Systems.html#Conversions-Between-Systems" rel="next" title="Conversions Between Systems">
+<link href="Specifying-CGS-Units.html#Specifying-CGS-Units" rel="prev" title="Specifying CGS Units">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
+</head>
+
+<body lang="en">
+<a name="CGS-Units-Systems"></a>
+<div class="header">
+<p>
+Next: <a href="Conversions-Between-Systems.html#Conversions-Between-Systems" accesskey="n" rel="next">Conversions Between Systems</a>, Previous: <a href="Specifying-CGS-Units.html#Specifying-CGS-Units" accesskey="p" rel="prev">Specifying CGS Units</a>, Up: <a href="Using-CGS-Units.html#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="CGS-Units-Systems-1"></a>
+<h3 class="section">8.2 CGS Units Systems</h3>
+<a name="index-CGS-Units-Systems"></a>
+<a name="index-units-systems_002c-CGS"></a>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML' async></script>
+
+<p>The ESU system derives the electrogmagnetic units from its unit of
+charge, the statcoulomb,
+which is defined from 
+Coulomb&rsquo;s law.  The statcoulomb equals
+\(\text{dyne}^{1/2}\text{cm}\) or
+\(\text{cm}^{3/2}\text{g}^{1/2}\text{s}^{-1}\).
+The unit of current, the statampere, is statcoulomb&nbsp;sec<!-- /@w -->, analogous to
+the relationship in SI.  Other electrical units are then derived in a
+manner similar to that for SI units; the units use the SI names prefixed
+by &lsquo;<samp>stat-</samp>&rsquo;, e.g., &lsquo;<samp>statvolt</samp>&rsquo; or &lsquo;<samp>statV</samp>&rsquo;.  The prefix
+&lsquo;<samp>st-</samp>&rsquo; is also recognized (e.g., &lsquo;<samp>stV</samp>&rsquo;).
+</p>
+<p>The EMU system derives the electrogmagnetic units from its unit of current,
+the abampere, which is defined in terms of Ampere&rsquo;s law.  The abampere
+is equal to 
+\(\text{dyne}^{1/2}\) or \(\text{cm}^{1/2}\text{g}^{1/2}\text{s}^{-1}\).
+The unit of charge, the abcoulomb, is
+abampere&nbsp;sec<!-- /@w -->, again analogous to the SI relationship.
+Other electrical units are then derived in a
+manner similar to that for SI units; the units use the SI names prefixed
+by &lsquo;<samp>ab-</samp>&rsquo;, e.g., &lsquo;<samp>abvolt</samp>&rsquo; or &lsquo;<samp>abV</samp>&rsquo;.  The magnetic field
+units include the gauss, the oersted and the maxwell. 
+</p>
+<p>The Gaussian units system, which was also known as the Symmetric
+System,
+uses the same charge and current units as the ESU system (e.g.,
+&lsquo;<samp>statC</samp>&rsquo;, &lsquo;<samp>statA</samp>&rsquo;); it differs by defining the magnetic field
+so that it has the same units as the electric field.  The resulting
+magnetic field units are the same ones used in the EMU system: the
+gauss, the oersted and the maxwell.
+</p>
+
+
+
+</body>
+</html>

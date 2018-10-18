@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.18),
+which performs units conversions and units calculations.
+
+Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
+2011-2017 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Specifying CGS Units (Units: A Unit Conversion Program and Scientific Calculator)</title>
+
+<meta name="description" content="Specifying CGS Units (Units: A Unit Conversion Program and Scientific Calculator)">
+<meta name="keywords" content="Specifying CGS Units (Units: A Unit Conversion Program and Scientific Calculator)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Using-CGS-Units.html#Using-CGS-Units" rel="up" title="Using CGS Units">
+<link href="CGS-Units-Systems.html#CGS-Units-Systems" rel="next" title="CGS Units Systems">
+<link href="Using-CGS-Units.html#Using-CGS-Units" rel="prev" title="Using CGS Units">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
+</head>
+
+<body lang="en">
+<a name="Specifying-CGS-Units"></a>
+<div class="header">
+<p>
+Next: <a href="CGS-Units-Systems.html#CGS-Units-Systems" accesskey="n" rel="next">CGS Units Systems</a>, Up: <a href="Using-CGS-Units.html#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Specifying-CGS-Units-1"></a>
+<h3 class="section">8.1 Specifying CGS Units</h3>
+<a name="index-CGS-units_002c-specifying"></a>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML' async></script>
+
+<p>The CGS definitions involve
+\(\text{cm}^{1/2}\) and \(\text{g}^{1/2}\)
+which is problematic because <code>units</code> does not normally support
+fractional roots of base units.  The <samp>--units</samp> (<samp>-u</samp>)
+option allows selection of a CGS unit system and works around this
+restriction by introducing base units for the square roots of
+length and mass: &lsquo;<samp>sqrt_cm</samp>&rsquo; and &lsquo;<samp>sqrt_g</samp>&rsquo;.  The centimeter
+then becomes &lsquo;<samp>sqrt_cm^2</samp>&rsquo; and the gram, &lsquo;<samp>sqrt_g^2</samp>&rsquo;.  
+This allows working from
+equations using the units in the CGS system, and
+enforcing dimensional conformity within that system.  Recognized
+arguments to the <samp>--units</samp> option are &lsquo;<samp>gauss[ian]</samp>&rsquo;,
+&lsquo;<samp>esu</samp>&rsquo;, &lsquo;<samp>emu</samp>&rsquo;, and &lsquo;<samp>si</samp>&rsquo;; the argument is case insensitive.
+The default mode for <code>units</code> is SI units; the only effect of
+giving &lsquo;<samp>si</samp>&rsquo; with the <samp>--units</samp> option is to prepend
+&lsquo;<samp>(SI) </samp>&rsquo; to the &lsquo;<samp>You&nbsp;have:</samp>&rsquo;<!-- /@w --> prompt.  Giving an unrecognized
+system generates a warning, and <code>units</code> uses SI units.
+</p>
+<p>The changes resulting from the <samp>--units</samp> option are actually
+controlled by the <code>UNITS_SYSTEM</code> environment variable.  If you
+frequently work with one of the supported CGS units systems, you may set
+this environment variable rather than giving the <samp>--units</samp> option
+at each invocation.  As usual, an option given on the command line
+overrides the setting of the environment variable. For example, if you would
+normally work with Gaussian units but might occasionally work with
+SI, you could set <code>UNITS_SYSTEM</code> to &lsquo;<samp>gaussian</samp>&rsquo; and specify
+SI with the <samp>--units</samp> option.
+Unlike the argument to the <samp>--units</samp> option, the value of
+<code>UNITS_SYSTEM</code> <em>is</em> case sensitive, so setting a value of
+&lsquo;<samp>EMU</samp>&rsquo; will have no effect other than to give an error message and
+set SI units.
+</p>
+<p>The CGS definitions appear as conditional settings in the standard
+units data file, which you can consult for more information on how
+these units are defined, or on how to define an alternate units system.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="CGS-Units-Systems.html#CGS-Units-Systems" accesskey="n" rel="next">CGS Units Systems</a>, Up: <a href="Using-CGS-Units.html#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Units (version 2.18),
+which performs units conversions and units calculations.
+
+Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2004, 2005, 2007,
+2011-2017 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Conversions Between Systems (Units: A Unit Conversion Program and Scientific Calculator)</title>
+
+<meta name="description" content="Conversions Between Systems (Units: A Unit Conversion Program and Scientific Calculator)">
+<meta name="keywords" content="Conversions Between Systems (Units: A Unit Conversion Program and Scientific Calculator)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Using-CGS-Units.html#Using-CGS-Units" rel="up" title="Using CGS Units">
+<link href="Prompt-Prefix.html#Prompt-Prefix" rel="next" title="Prompt Prefix">
+<link href="CGS-Units-Systems.html#CGS-Units-Systems" rel="prev" title="CGS Units Systems">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
+</head>
+
+<body lang="en">
+<a name="Conversions-Between-Systems"></a>
+<div class="header">
+<p>
+Next: <a href="Prompt-Prefix.html#Prompt-Prefix" accesskey="n" rel="next">Prompt Prefix</a>, Previous: <a href="CGS-Units-Systems.html#CGS-Units-Systems" accesskey="p" rel="prev">CGS Units Systems</a>, Up: <a href="Using-CGS-Units.html#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Conversions-Between-Different-Systems"></a>
+<h3 class="section">8.3 Conversions Between Different Systems</h3>
+
+<p>The CGS systems define units that measure the same thing but may have
+conflicting dimensions.  Furthermore, the dimensions of the
+electromagnetic CGS units are never compatible with SI.
+But if you measure charge in two different systems you have measured the
+same physical thing, so there is a <em>correspondence</em> between the
+units in the different systems, and <code>units</code> supports conversions
+between corresponding units.  When running with SI, <code>units</code>
+defines all of the CGS units in terms of SI.  When you select a CGS
+system, <code>units</code> defines the SI units and the other CGS system
+units in terms of the system you have selected.
+</p>
+<div class="example">
+<pre class="example">(Gaussian) You have: statA
+           You want: abA
+        * 3.335641e-11
+        / 2.9979246e+10
+(Gaussian) You have: abA
+           You want: sqrt(dyne)
+conformability error
+        2.9979246e+10 sqrt_cm^3 sqrt_g / s^2
+        1 sqrt_cm sqrt_g / s
+</pre></div>
+
+<p>In the above example, <code>units</code> converts between the current
+units statA and abA even though the abA, from the EMU system, has
+incompatible dimensions.  This works because in Gaussian mode, the abA
+is defined in terms of the statA, so it does not have the correct
+definition for EMU; consequently, you cannot convert the abA to its EMU
+definition.
+</p>
+<p>One challenge of conversion is that because
+the CGS system has fewer base units, quantities that have different
+dimensions in SI may have the same dimension in a CGS system.  And
+yet, they may not have the same conversion factor.  For example, the
+unit for the <em>E</em> field and <em>B</em> fields are the same in the
+Gaussian system, but the conversion factors to SI are quite
+different.  This means that correct conversion is only possible if you
+keep track of what quantity is being measured.  You cannot convert
+statV/cm to SI without indicating which type of field the unit
+measures.  To aid in dimensional analysis, <code>units</code> defines
+various dimension units such as LENGTH, TIME, and CHARGE to be the
+appropriate dimension in SI.  The
+electromagnetic dimensions such as B_FIELD or E_FIELD may be useful
+aids both for conversion and dimensional analysis in CGS.  You
+can convert them to or from CGS in order to perform SI conversions
+that in some cases will not work directly due to dimensional incompatibilities.
+This example shows how the Gaussian system uses the same units for all
+of the fields, but they all have different conversion factors with
+SI. 
+</p>
+<div class="example">
+<pre class="example">(Gaussian) You have: statV/cm
+           You want: E_FIELD
+        * 29979.246
+        / 3.335641e-05
+</pre><pre class="example">(Gaussian) You have: statV/cm
+           You want: B_FIELD
+        * 0.0001
+        / 10000
+</pre><pre class="example">(Gaussian) You have: statV/cm
+           You want: H_FIELD
+        * 79.577472
+        / 0.012566371
+</pre><pre class="example">(Gaussian) You have: statV/cm
+           You want: D_FIELD
+        * 2.6544187e-07
+        / 3767303.1
+</pre></div>
+
+<p>The next example shows that the oersted cannot be converted directly
+to the SI unit of magnetic field, A/m, because the dimensions
+conflict.  We cannot redefine the ampere to make this work because
+then it would not convert with the statampere.  But you can still do
+this conversion as shown below.
+</p>
+<div class="example">
+<pre class="example">(Gaussian) You have: oersted
+           You want: A/m
+conformability error
+        1 sqrt_g / s sqrt_cm
+        29979246 sqrt_cm sqrt_g / s^2
+(Gaussian) You have: oersted
+           You want: H_FIELD
+        * 79.577472
+        / 0.012566371
+</pre></div>
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Prompt-Prefix.html#Prompt-Prefix" accesskey="n" rel="next">Prompt Prefix</a>, Previous: <a href="CGS-Units-Systems.html#CGS-Units-Systems" accesskey="p" rel="prev">CGS Units Systems</a>, Up: <a href="Using-CGS-Units.html#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>
