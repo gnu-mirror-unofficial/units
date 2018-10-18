@@ -1250,8 +1250,8 @@ enforcing dimensional conformity within that system.  Recognized
 arguments to the '--units' option are 'gauss[ian]', 'esu', 'emu', and
 'si'; the argument is case insensitive.  The default mode for 'units' is
 SI units; the only effect of giving 'si' with the '--units' option is to
-prepend '(SI) ' to the 'You have:' prompt.  Giving an unrecognized
-system generates a warning, and 'units' uses SI units.
+prepend '(SI)' to the 'You have:' prompt.  Giving an unrecognized system
+generates a warning, and 'units' uses SI units.
 
    The changes resulting from the '--units' option are actually
 controlled by the 'UNITS_SYSTEM' environment variable.  If you
@@ -1273,7 +1273,7 @@ units are defined, or on how to define an alternate units system.
 8.2 CGS Units Systems
 =====================
 
-The ESU system derives the electrogmagnetic units from its unit of
+The ESU system derives the electromagnetic units from its unit of
 charge, the statcoulomb, which is defined from Coulomb's law.  The
 statcoulomb equals dyne^(1/2) cm or cm^(3/2) g^(1/2) s^(-1).  The unit
 of current, the statampere, is statcoulomb sec, analogous to the
@@ -1282,7 +1282,7 @@ similar to that for SI units; the units use the SI names prefixed by
 'stat-', e.g., 'statvolt' or 'statV'.  The prefix 'st-' is also
 recognized (e.g., 'stV').
 
-   The EMU system derives the electrogmagnetic units from its unit of
+   The EMU system derives the electromagnetic units from its unit of
 current, the abampere, which is defined in terms of Ampere's law.  The
 abampere is equal to dyne^(1/2) or cm^(1/2) g^(1/2) s^(-1).  The unit of
 charge, the abcoulomb, is abampere sec, again analogous to the SI
@@ -2423,7 +2423,7 @@ executed only if the environment variable does _not_ equal any of the
 list values.
 
    The inch has long been a customary measure of length in many places.
-The word comes from the latin _uncia_ meaning "one twelfth," referring
+The word comes from the Latin _uncia_ meaning "one twelfth," referring
 to its relationship with the foot.  By the 20th century, the inch was
 officially defined in English-speaking countries relative to the yard,
 but until 1959, the yard differed slightly among those countries.  In
@@ -2671,7 +2671,7 @@ completion, you will see something like this:
      metriccarat       metricgrain       metricquart       metricyarncount
      You have: metr
 
-If there is a unique way to complete a unitname, you can hit the <TAB>
+If there is a unique way to complete a unit name, you can hit the <TAB>
 key and 'units' will provide the rest of the unit name.  If 'units'
 beeps, it means that there is no unique completion.  Pressing the <TAB>
 key a second time will print the list of all completions.
@@ -2716,7 +2716,7 @@ ephemeral.  The program currently supports several sources:
 
    * The European Central Bank (<https://www.ecb.europa.eu>).  The base
      currency is always the euro ('EUR').  Exchange rates update daily.
-     This source offers a more limited list of currenices than the
+     This source offers a more limited list of currencies than the
      others.
 
    * Fixer (<https://fixer.io>).  Registration for a free API key is

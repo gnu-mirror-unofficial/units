@@ -54,6 +54,11 @@ span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
+body {margin-left: 2em; max-width: 40em}
+span.solidus {font-size:150%;vertical-align:-18%}
+.nowrap {white-space: nowrap}
+sub {font-size: 70%}
+
 -->
 </style>
 <link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
@@ -88,7 +93,7 @@ arguments to the <samp>--units</samp> option are &lsquo;<samp>gauss[ian]</samp>&
 &lsquo;<samp>esu</samp>&rsquo;, &lsquo;<samp>emu</samp>&rsquo;, and &lsquo;<samp>si</samp>&rsquo;; the argument is case insensitive.
 The default mode for <code>units</code> is SI units; the only effect of
 giving &lsquo;<samp>si</samp>&rsquo; with the <samp>--units</samp> option is to prepend
-&lsquo;<samp>(SI) </samp>&rsquo; to the &lsquo;<samp>You&nbsp;have:</samp>&rsquo;<!-- /@w --> prompt.  Giving an unrecognized
+&lsquo;<samp>(SI)</samp>&rsquo; to the &lsquo;<samp>You&nbsp;have:</samp>&rsquo;<!-- /@w --> prompt.  Giving an unrecognized
 system generates a warning, and <code>units</code> uses SI units.
 </p>
 <p>The changes resulting from the <samp>--units</samp> option are actually
