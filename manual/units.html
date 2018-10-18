@@ -97,11 +97,9 @@ ul.no-bullet {list-style: none}
   <li><a name="toc-Using-CGS-Units-1" href="#Using-CGS-Units">8 Using CGS Units</a>
   <ul class="no-bullet">
     <li><a name="toc-Specifying-CGS-Units-1" href="#Specifying-CGS-Units">8.1 Specifying CGS Units</a></li>
-    <li><a name="toc-The-ESU-System-1" href="#The-ESU-System">8.2 The ESU System</a></li>
-    <li><a name="toc-The-EMU-System-1" href="#The-EMU-System">8.3 The EMU System</a></li>
-    <li><a name="toc-The-Gaussian-Units-System-1" href="#The-Gaussian-Units-System">8.4 The Gaussian Units System</a></li>
-    <li><a name="toc-Conversions-Between-Different-Systems" href="#Conversions-Between-Systems">8.5 Conversions Between Different Systems</a></li>
-    <li><a name="toc-Prompt-Prefix-1" href="#Prompt-Prefix">8.6 Prompt Prefix</a></li>
+    <li><a name="toc-CGS-Units-Systems-1" href="#CGS-Units-Systems">8.2 CGS Units Systems</a></li>
+    <li><a name="toc-Conversions-Between-Different-Systems" href="#Conversions-Between-Systems">8.3 Conversions Between Different Systems</a></li>
+    <li><a name="toc-Prompt-Prefix-1" href="#Prompt-Prefix">8.4 Prompt Prefix</a></li>
   </ul></li>
   <li><a name="toc-Logging-Calculations-1" href="#Logging-Calculations">9 Logging Calculations</a></li>
   <li><a name="toc-Invoking-units" href="#Invoking-Units">10 Invoking <code>units</code></a></li>
@@ -149,7 +147,7 @@ Next: <a href="#Overview" accesskey="n" rel="next">Overview</a>, Up: <a href="/m
 <p>This manual describes the <code>units</code> command for units conversion and
 how you can use it as a powerful scientific calculator that keeps
 track of units.
-This is Edition 2.15 of <cite>The Units Conversion Manual</cite>
+This is Edition 2.16 of <cite>The Units Conversion Manual</cite>
 for <code>units</code> Version 2.18.
 </p>
 <table class="menu" border="0" cellspacing="0">
@@ -1152,26 +1150,21 @@ Next: <a href="#Backwards-Compatibility" accesskey="n" rel="next">Backwards Comp
 <h3 class="section">5.6 Complicated Unit Expressions</h3>
 <a name="index-unit-expressions_002c-complicated"></a>
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML' async></script>
+
 <p>The <code>units</code> program is especially helpful in ensuring accuracy
 and dimensional consistency when converting lengthy unit expressions.
 <a name="index-Darcy_002d_002dWeisbach-equation"></a>
 For example, one form of the Darcy&ndash;Weisbach fluid-flow equation is
-</p>
-<div class="example">
-<pre class="example"> Delta P = (8/pi^2) rho f L (Q^2 / d^5)
-</pre></div>
-
-<p>where <em>\Delta P</em> is the pressure drop, <em>\rho</em> is the mass density,
+\[ \Delta P = \frac{8}{\pi^2} \rho fL \frac{Q^2}{d^5}  \]
+where \(\Delta P\) is the
+pressure drop, \(\rho\) is the mass density,
 <em>f</em> is the (dimensionless) friction factor, <em>L</em> is the length
 of the pipe, <em>Q</em> is the volumetric flow rate, and <em>d</em>
 is the pipe diameter.
 It might be desired to have the equation in the form
-</p>
-<div class="example">
-<pre class="example">   Delta P = A1 rho f L (Q^2 / d^5)
-</pre></div>
-
-<p>that accepted the user&rsquo;s normal units; for typical units used in the US,
+\[  \Delta P = A_1 \rho fL \frac{Q^2}{d^5} \]
+that accepted the user&rsquo;s normal units; for typical units used in the US,
 the required conversion could be something like
 </p>
 <div class="example">
@@ -1786,159 +1779,173 @@ Next: <a href="#Logging-Calculations" accesskey="n" rel="next">Logging Calculati
 <h2 class="chapter">8 Using CGS Units</h2>
 <a name="index-CGS-units_002c-using"></a>
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML' async></script>
+
+
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Specifying-CGS-Units" accesskey="1">Specifying CGS Units</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How to specify the desired CGS units
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#The-ESU-System" accesskey="2">The ESU System</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The electrostatic units system
+<tr><td align="left" valign="top">&bull; <a href="#CGS-Units-Systems" accesskey="2">CGS Units Systems</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The various CGS units systems
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#The-EMU-System" accesskey="3">The EMU System</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The electromagnetic units system
+<tr><td align="left" valign="top">&bull; <a href="#Conversions-Between-Systems" accesskey="3">Conversions Between Systems</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Conversions between units in different systems
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#The-Gaussian-Units-System" accesskey="4">The Gaussian Units System</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The Gaussian units system
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Conversions-Between-Systems" accesskey="5">Conversions Between Systems</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Conversions between units in different systems
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Prompt-Prefix" accesskey="6">Prompt Prefix</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The prompt prefix shows specified CGS units
+<tr><td align="left" valign="top">&bull; <a href="#Prompt-Prefix" accesskey="4">Prompt Prefix</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The prompt prefix shows specified CGS units
 </td></tr>
 </table>
 
 <p>The SI&mdash;an extension of the MKS (meter&ndash;kilogram&ndash;second) system&mdash;has
 largely supplanted the older CGS (centimeter&ndash;gram&ndash;second) system, but
-CGS units are still used in a few specialized fields, especially in physics.
+CGS units are still used in a few specialized fields, especially in
+physics where they lead to a more elegant formulation of Maxwell&rsquo;s equations.
 Conversions between SI and CGS involving mechanical units are
 straightforward, involving powers of 10 (e.g., 1&nbsp;m&nbsp;=&nbsp;100&nbsp;cm<!-- /@w -->).
-Conversions involving electromagnetic units are more complicated, and there
-are several different systems of CGS units.
-The differences arise from different choices made for proportionality
-constants in Coulomb&rsquo;s law for the electrostatic force between two
-charges and Ampere&rsquo;s law for the electromagnetic force between two
-current-carrying conductors.  The two constants,
-<em>k<sub><span class="roman">C</span></sub></em> and <em>k<sub><span class="roman">A</span></sub></em>,
-are related by the square of the speed of light:
-<em>k<sub><span class="roman">A</span></sub> = k<sub><span class="roman">C</span></sub> / c<sup>2</sup></em>.
+Conversions involving electromagnetic units are more complicated, and
+<code>units</code> supports three different systems of CGS units: 
+electrostatic units (ESU), electromagnetic units (EMU), and the
+Gaussian system.  
+The differences between these systems
+arise from different choices made for proportionality
+constants in electromagnetic equations.
+Coulomb&rsquo;s law gives electrostatic force between two
+charges separated by a distance
+<em>r</em>:
+\[ F = k_{\text{C}} \frac{q_1q^2}{r^2} \]
 </p>
-<p>In the SI, the constants have dimensions,
-and an additional base unit, the ampere, is introduced as a measure of
-electric current.  The CGS systems do not define new base units, but
-simply express the derived units for charge and current in terms of
-mass, length, and time.
-In the ESU system, the constant for Coulomb&rsquo;s law is chosen to be unity
-and dimensionless.
-In the EMU system, the constant for Ampere&rsquo;s law is chosen to be unity and
-dimensionless.
-The Gaussian system usually uses the ESU
-units for charge and current; it chooses another constant so that the
-units for the electric and magnetic fields are the same.
+<p>Ampere&rsquo;s law gives the electromagnetic force per unit length
+between two current-carrying conductors separated by a distance
+<em>r</em>:
+\[ \frac{F}{l} = 2 k_{\text{A}} \frac{I_1I_2}{r}\]
+</p>
+<p>The two constants,
+\(k_{\text{C}}\) and \(k_{\text{A}}\),
+are related by the square of the speed of light:
+\(k_{\text{A}} = k_{\text{C}}/c^2\).
+</p>
+<p>In the SI, the constants have dimensions, and an additional base unit,
+the ampere, measures electric current.  The CGS systems do not define
+new base units, but express charge and current as derived units in
+terms of mass, length, and time.  In the ESU system, the constant for
+Coulomb&rsquo;s law is chosen to be unity and dimensionless, which defines
+the unit of charge.  In the EMU system, the constant for Ampere&rsquo;s law
+is chosen to be unity and dimensionless, which defines a unit of
+current.  The Gaussian system usually uses the ESU units for charge
+and current; it chooses another constant so that the units for the
+electric and magnetic fields are the same.
 </p>
 <p>The dimensions of electrical quantities in the various CGS systems are
 different from the SI dimensions for the same units;
 strictly, conversions between these systems and SI are not possible.
+But units in different systems relate to the same physical quantities,
+so there is a <em>correspondence</em> between these units.
 The <code>units</code> program defines the units so that you can convert
-between the various systems.  
+between corresponding units in the various systems.  
 </p>
 <hr>
 <a name="Specifying-CGS-Units"></a>
 <div class="header">
 <p>
-Next: <a href="#The-ESU-System" accesskey="n" rel="next">The ESU System</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#CGS-Units-Systems" accesskey="n" rel="next">CGS Units Systems</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Specifying-CGS-Units-1"></a>
 <h3 class="section">8.1 Specifying CGS Units</h3>
-<a name="index-units_002c-specifying"></a>
+<a name="index-CGS-units_002c-specifying"></a>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML' async></script>
 
 <p>The CGS definitions involve
-cm<sup>1/2</sup> and g<sup>1/2</sup>,
-which is problematic because
-<code>units</code> does not support fractional roots of base units.  The
-<samp>--units</samp>
-(<samp>-u</samp>) option allows selection of a CGS unit system and works
-around this restriction by redefining the base units
-for length and mass as their square roots:
-&lsquo;<samp>sqrt_cm</samp>&rsquo; and &lsquo;<samp>sqrt_g</samp>&rsquo;.  This allows
-working from equations using the units normally employed in the
-CGS system, and enforcing dimensional conformity within that
-system.  Recognized arguments to the <samp>--units</samp> option are
-&lsquo;<samp>gauss[ian]</samp>&rsquo;, &lsquo;<samp>esu</samp>&rsquo;, &lsquo;<samp>emu</samp>&rsquo;, and &lsquo;<samp>si</samp>&rsquo;; the argument
-is case insensitive.  The default mode for <code>units</code> is SI
-units; the only effect of giving &lsquo;<samp>si</samp>&rsquo; with the <samp>--units</samp>
-option is to prepend &lsquo;<samp>(SI) </samp>&rsquo; to the &lsquo;<samp>You&nbsp;have:</samp>&rsquo;<!-- /@w --> prompt.
-Giving an unrecognized system generates a warning, and <code>units</code>
-uses SI units.
+\(\text{cm}^{1/2}\) and \(\text{g}^{1/2}\)
+which is problematic because <code>units</code> does not normally support
+fractional roots of base units.  The <samp>--units</samp> (<samp>-u</samp>)
+option allows selection of a CGS unit system and works around this
+restriction by introducing base units for the square roots of
+length and mass: &lsquo;<samp>sqrt_cm</samp>&rsquo; and &lsquo;<samp>sqrt_g</samp>&rsquo;.  The centimeter
+then becomes &lsquo;<samp>sqrt_cm^2</samp>&rsquo; and the gram, &lsquo;<samp>sqrt_g^2</samp>&rsquo;.  
+This allows working from
+equations using the units in the CGS system, and
+enforcing dimensional conformity within that system.  Recognized
+arguments to the <samp>--units</samp> option are &lsquo;<samp>gauss[ian]</samp>&rsquo;,
+&lsquo;<samp>esu</samp>&rsquo;, &lsquo;<samp>emu</samp>&rsquo;, and &lsquo;<samp>si</samp>&rsquo;; the argument is case insensitive.
+The default mode for <code>units</code> is SI units; the only effect of
+giving &lsquo;<samp>si</samp>&rsquo; with the <samp>--units</samp> option is to prepend
+&lsquo;<samp>(SI) </samp>&rsquo; to the &lsquo;<samp>You&nbsp;have:</samp>&rsquo;<!-- /@w --> prompt.  Giving an unrecognized
+system generates a warning, and <code>units</code> uses SI units.
 </p>
-
-
+<p>The changes resulting from the <samp>--units</samp> option are actually
+controlled by the <code>UNITS_SYSTEM</code> environment variable.  If you
+frequently work with one of the supported CGS units systems, you may set
+this environment variable rather than giving the <samp>--units</samp> option
+at each invocation.  As usual, an option given on the command line
+overrides the setting of the environment variable. For example, if you would
+normally work with Gaussian units but might occasionally work with
+SI, you could set <code>UNITS_SYSTEM</code> to &lsquo;<samp>gaussian</samp>&rsquo; and specify
+SI with the <samp>--units</samp> option.
+Unlike the argument to the <samp>--units</samp> option, the value of
+<code>UNITS_SYSTEM</code> <em>is</em> case sensitive, so setting a value of
+&lsquo;<samp>EMU</samp>&rsquo; will have no effect other than to give an error message and
+set SI units.
+</p>
+<p>The CGS definitions appear as conditional settings in the standard
+units data file, which you can consult for more information on how
+these units are defined, or on how to define an alternate units system.
+</p>
 <hr>
-<a name="The-ESU-System"></a>
+<a name="CGS-Units-Systems"></a>
 <div class="header">
 <p>
-Next: <a href="#The-EMU-System" accesskey="n" rel="next">The EMU System</a>, Previous: <a href="#Specifying-CGS-Units" accesskey="p" rel="prev">Specifying CGS Units</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Conversions-Between-Systems" accesskey="n" rel="next">Conversions Between Systems</a>, Previous: <a href="#Specifying-CGS-Units" accesskey="p" rel="prev">Specifying CGS Units</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-<a name="The-ESU-System-1"></a>
-<h3 class="section">8.2 The ESU System</h3>
-<a name="index-ESU-units"></a>
+<a name="CGS-Units-Systems-1"></a>
+<h3 class="section">8.2 CGS Units Systems</h3>
+<a name="index-CGS-Units-Systems"></a>
+<a name="index-units-systems_002c-CGS"></a>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML' async></script>
 
-<p>The ESU system defines the unit of charge, the statcoulomb, in terms of
-Coulomb&rsquo;s law; it has dimensions of
-dyne<sup>1/2</sup>&nbsp;cm<!-- /@w -->, or cm<sup>3/2</sup>&nbsp;g<sup>1/2</sup>&nbsp;s<sup>-1</sup><!-- /@w -->.
+<p>The ESU system derives the electrogmagnetic units from its unit of
+charge, the statcoulomb,
+which is defined from 
+Coulomb&rsquo;s law.  The statcoulomb equals
+\(\text{dyne}^{1/2}\text{cm}\) or
+\(\text{cm}^{3/2}\text{g}^{1/2}\text{s}^{-1}\).
 The unit of current, the statampere, is statcoulomb&nbsp;sec<!-- /@w -->, analogous to
 the relationship in SI.  Other electrical units are then derived in a
 manner similar to that for SI units; the units use the SI names prefixed
 by &lsquo;<samp>stat-</samp>&rsquo;, e.g., &lsquo;<samp>statvolt</samp>&rsquo; or &lsquo;<samp>statV</samp>&rsquo;.  The prefix
 &lsquo;<samp>st-</samp>&rsquo; is also recognized (e.g., &lsquo;<samp>stV</samp>&rsquo;).
 </p>
-<hr>
-<a name="The-EMU-System"></a>
-<div class="header">
-<p>
-Next: <a href="#The-Gaussian-Units-System" accesskey="n" rel="next">The Gaussian Units System</a>, Previous: <a href="#The-ESU-System" accesskey="p" rel="prev">The ESU System</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
-</div>
-<a name="The-EMU-System-1"></a>
-<h3 class="section">8.3 The EMU System</h3>
-<a name="index-EMU-units"></a>
-
-<p>The EMU system defines the unit of current,
-the abampere, in terms of Ampere&rsquo;s law; it has dimensions of
-dyne<sup>1/2</sup>, or cm<sup>1/2</sup>&nbsp;g<sup>1/2</sup>&nbsp;s<sup>-1</sup><!-- /@w -->.
+<p>The EMU system derives the electrogmagnetic units from its unit of current,
+the abampere, which is defined in terms of Ampere&rsquo;s law.  The abampere
+is equal to 
+\(\text{dyne}^{1/2}\) or \(\text{cm}^{1/2}\text{g}^{1/2}\text{s}^{-1}\).
 The unit of charge, the abcoulomb, is
 abampere&nbsp;sec<!-- /@w -->, again analogous to the SI relationship.
 Other electrical units are then derived in a
 manner similar to that for SI units; the units use the SI names prefixed
 by &lsquo;<samp>ab-</samp>&rsquo;, e.g., &lsquo;<samp>abvolt</samp>&rsquo; or &lsquo;<samp>abV</samp>&rsquo;.  The magnetic field
-units include the gauss, oersted and maxwell. 
+units include the gauss, the oersted and the maxwell. 
 </p>
-<hr>
-<a name="The-Gaussian-Units-System"></a>
-<div class="header">
-<p>
-Next: <a href="#Conversions-Between-Systems" accesskey="n" rel="next">Conversions Between Systems</a>, Previous: <a href="#The-EMU-System" accesskey="p" rel="prev">The EMU System</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
-</div>
-<a name="The-Gaussian-Units-System-1"></a>
-<h3 class="section">8.4 The Gaussian Units System</h3>
-<a name="index-Gaussian-units"></a>
-
 <p>The Gaussian units system, which was also known as the Symmetric
 System,
 uses the same charge and current units as the ESU system (e.g.,
 &lsquo;<samp>statC</samp>&rsquo;, &lsquo;<samp>statA</samp>&rsquo;); it differs by defining the magnetic field
 so that it has the same units as the electric field.  The resulting
-magnetic field units are the
-same ones used in the EMU system: the gauss, oersted and maxwell. 
+magnetic field units are the same ones used in the EMU system: the
+gauss, the oersted and the maxwell.
 </p>
 <hr>
 <a name="Conversions-Between-Systems"></a>
 <div class="header">
 <p>
-Next: <a href="#Prompt-Prefix" accesskey="n" rel="next">Prompt Prefix</a>, Previous: <a href="#The-Gaussian-Units-System" accesskey="p" rel="prev">The Gaussian Units System</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Prompt-Prefix" accesskey="n" rel="next">Prompt Prefix</a>, Previous: <a href="#CGS-Units-Systems" accesskey="p" rel="prev">CGS Units Systems</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Conversions-Between-Different-Systems"></a>
-<h3 class="section">8.5 Conversions Between Different Systems</h3>
+<h3 class="section">8.3 Conversions Between Different Systems</h3>
 
 <p>The CGS systems define units that measure the same thing but may have
 conflicting dimensions.  Furthermore, the dimensions of the
-electromagnetic CGS units are never compatible with SI.  Some authors
-claim that this means the various units are fundamentally different
-and cannot be converted.  But if you measure charge in two different
-systems you have measured the same physical thing, so conversion
-<em>must</em> be possible.  When running with SI, <code>units</code>
+electromagnetic CGS units are never compatible with SI.
+But if you measure charge in two different systems you have measured the
+same physical thing, so there is a <em>correspondence</em> between the
+units in the different systems, and <code>units</code> supports conversions
+between corresponding units.  When running with SI, <code>units</code>
 defines all of the CGS units in terms of SI.  When you select a CGS
 system, <code>units</code> defines the SI units and the other CGS system
 units in terms of the system you have selected.
@@ -1977,7 +1984,7 @@ appropriate dimension in SI.  The
 electromagnetic dimensions such as B_FIELD or E_FIELD may be useful
 aids both for conversion and dimensional analysis in CGS.  You
 can convert them to or from CGS in order to perform SI conversions
-that in some cases will not work due to dimensional incompatibilities.
+that in some cases will not work directly due to dimensional incompatibilities.
 This example shows how the Gaussian system uses the same units for all
 of the fields, but they all have different conversion factors with
 SI. 
@@ -1987,15 +1994,15 @@ SI.
            You want: E_FIELD
         * 29979.246
         / 3.335641e-05
-(Gaussian) You have: statV/cm
+</pre><pre class="example">(Gaussian) You have: statV/cm
            You want: B_FIELD
         * 0.0001
         / 10000
-(Gaussian) You have: statV/cm
+</pre><pre class="example">(Gaussian) You have: statV/cm
            You want: H_FIELD
         * 79.577472
         / 0.012566371
-(Gaussian) You have: statV/cm
+</pre><pre class="example">(Gaussian) You have: statV/cm
            You want: D_FIELD
         * 2.6544187e-07
         / 3767303.1
@@ -2027,7 +2034,7 @@ conformability error
 Previous: <a href="#Conversions-Between-Systems" accesskey="p" rel="prev">Conversions Between Systems</a>, Up: <a href="#Using-CGS-Units" accesskey="u" rel="up">Using CGS Units</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Prompt-Prefix-1"></a>
-<h3 class="section">8.6 Prompt Prefix</h3>
+<h3 class="section">8.4 Prompt Prefix</h3>
 <a name="index-prompt-prefix-with-CGS-units"></a>
 <a name="index-CGS-units_002c-prompt-prefix"></a>
 
@@ -3653,6 +3660,14 @@ units data file using either the <samp>-f</samp> option or the
 contain the locale map file.
 </p>
 </dd>
+<dt><code>UNITS_SYSTEM</code></dt>
+<dd><a name="index-UNITS_005fSYSTEM-environment-variable"></a>
+<a name="index-environment-variable_002c-UNITS_005fSYSTEM"></a>
+<p>This environment variable is used in the standard data file to select
+CGS measurement systems.  Currently supported systems are &lsquo;<samp>esu</samp>&rsquo;,
+&lsquo;<samp>emu</samp>&rsquo;, &lsquo;<samp>gauss[ian]</samp>&rsquo;, and &lsquo;<samp>si</samp>&rsquo;.  The default is &lsquo;<samp>si</samp>&rsquo;.
+</p>
+</dd>
 </dl>
 
 <hr>
@@ -4564,8 +4579,6 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
  &nbsp; 
 <a class="summary-letter" href="#Index_cp_letter-F"><b>F</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Index_cp_letter-G"><b>G</b></a>
- &nbsp; 
 <a class="summary-letter" href="#Index_cp_letter-H"><b>H</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Index_cp_letter-I"><b>I</b></a>
@@ -4686,7 +4699,9 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-British-Imperial-measure">British Imperial measure</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Unit-Definitions">Unit Definitions</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-C">C</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-CGS-Units-Systems">CGS Units Systems</a>:</td><td>&nbsp;</td><td valign="top"><a href="#CGS-Units-Systems">CGS Units Systems</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-CGS-units_002c-prompt-prefix">CGS units, prompt prefix</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Prompt-Prefix">Prompt Prefix</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-CGS-units_002c-specifying">CGS units, specifying</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Specifying-CGS-Units">Specifying CGS Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-CGS-units_002c-using">CGS units, using</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Using-CGS-Units">Using CGS Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-circle_002c-area-of">circle, area of</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Other-Nonlinear-Units">Other Nonlinear Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-command_002c-_0021-to-indicate-primitive-units">command, &lsquo;<samp>!</samp>&rsquo; to indicate primitive units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-New-Units">Defining New Units</a></td></tr>
@@ -4729,7 +4744,6 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-domain_002c-nonlinear-unit-definitions">domain, nonlinear unit definitions</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-Nonlinear-Units">Defining Nonlinear Units</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-E">E</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-EMU-units">EMU units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-EMU-System">The EMU System</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-environment-dependent-definitions">environment dependent definitions</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Localization">Localization</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-environment-variable_002c-HOME">environment variable, HOME</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-environment-variable_002c-LANG">environment variable, LANG</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
@@ -4740,8 +4754,8 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-environment-variable_002c-UNITSFILE">environment variable, UNITSFILE</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-environment-variable_002c-UNITSLOCALEMAP">environment variable, UNITSLOCALEMAP</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-environment-variable_002c-UNITS_005fENGLISH">environment variable, UNITS_ENGLISH</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-environment-variable_002c-UNITS_005fSYSTEM">environment variable, UNITS_SYSTEM</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-environment-variables">environment variables</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-ESU-units">ESU units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-ESU-System">The ESU System</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-exchange-rates_002c-updating">exchange rates, updating</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Currency">Currency</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-exponent-operator">exponent operator</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Operators">Operators</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
@@ -4752,9 +4766,6 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-fractions_002c-numerical">fractions, numerical</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Operators">Operators</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-functions-of-units">functions of units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-Nonlinear-Units">Defining Nonlinear Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-functions_002c-built-in">functions, built in</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Built_002din-Functions">Built-in Functions</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th><a name="Index_cp_letter-G">G</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Gaussian-units">Gaussian units</a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Gaussian-Units-System">The Gaussian Units System</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-H">H</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-help">help</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Interactive-Use">Interactive Use</a></td></tr>
@@ -4895,16 +4906,17 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <tr><td></td><td valign="top"><a href="#index-units-definitions_002c-changing">units definitions, changing</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-New-Units">Defining New Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units-functions">units functions</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-Nonlinear-Units">Defining Nonlinear Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units-quotients">units quotients</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Operators">Operators</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-units-systems_002c-CGS">units systems, CGS</a>:</td><td>&nbsp;</td><td valign="top"><a href="#CGS-Units-Systems">CGS Units Systems</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units_002c-definition-of">units, definition of</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-New-Units">Defining New Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units_002c-lookup-method">units, lookup method</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Unit-Definitions">Unit Definitions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units_002c-piecewise-linear">units, piecewise linear</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Piecewise-Linear-Units">Piecewise Linear Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units_002c-primitive">units, primitive</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Defining-New-Units">Defining New Units</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-units_002c-specifying">units, specifying</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Specifying-CGS-Units">Specifying CGS Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units_002c-sums-and-differences">units, sums and differences</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Sums-and-Differences-of-Units">Sums and Differences of Units</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-units_002c-sums-of">units, sums of</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Unit-Lists">Unit Lists</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-UNITSFILE-environment-variable">UNITSFILE environment variable</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-UNITSLOCALEMAP-environment-variable">UNITSLOCALEMAP environment variable</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-UNITS_005fENGLISH-environment-variable">UNITS_ENGLISH environment variable</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-UNITS_005fSYSTEM-environment-variable">UNITS_SYSTEM environment variable</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Environment-Vars">Environment Vars</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-US-State-Plane-Coordinate-System">US State Plane Coordinate System</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Unit-Definitions">Unit Definitions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-US-survey-foot">US survey foot</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Unit-Definitions">Unit Definitions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-US-survey-measure">US survey measure</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Unit-Definitions">Unit Definitions</a></td></tr>
@@ -4952,8 +4964,6 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 <a class="summary-letter" href="#Index_cp_letter-E"><b>E</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Index_cp_letter-F"><b>F</b></a>
- &nbsp; 
-<a class="summary-letter" href="#Index_cp_letter-G"><b>G</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Index_cp_letter-H"><b>H</b></a>
  &nbsp; 

@@ -72,26 +72,21 @@ Next: <a href="Backwards-Compatibility.html#Backwards-Compatibility" accesskey="
 <h3 class="section">5.6 Complicated Unit Expressions</h3>
 <a name="index-unit-expressions_002c-complicated"></a>
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML' async></script>
+
 <p>The <code>units</code> program is especially helpful in ensuring accuracy
 and dimensional consistency when converting lengthy unit expressions.
 <a name="index-Darcy_002d_002dWeisbach-equation"></a>
 For example, one form of the Darcy&ndash;Weisbach fluid-flow equation is
-</p>
-<div class="example">
-<pre class="example"> Delta P = (8/pi^2) rho f L (Q^2 / d^5)
-</pre></div>
-
-<p>where <em>\Delta P</em> is the pressure drop, <em>\rho</em> is the mass density,
+\[ \Delta P = \frac{8}{\pi^2} \rho fL \frac{Q^2}{d^5}  \]
+where \(\Delta P\) is the
+pressure drop, \(\rho\) is the mass density,
 <em>f</em> is the (dimensionless) friction factor, <em>L</em> is the length
 of the pipe, <em>Q</em> is the volumetric flow rate, and <em>d</em>
 is the pipe diameter.
 It might be desired to have the equation in the form
-</p>
-<div class="example">
-<pre class="example">   Delta P = A1 rho f L (Q^2 / d^5)
-</pre></div>
-
-<p>that accepted the user&rsquo;s normal units; for typical units used in the US,
+\[  \Delta P = A_1 \rho fL \frac{Q^2}{d^5} \]
+that accepted the user&rsquo;s normal units; for typical units used in the US,
 the required conversion could be something like
 </p>
 <div class="example">
