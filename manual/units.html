@@ -52,10 +52,7 @@ span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
-body {margin-left: 2em; max-width: 40em}
-span.solidus {font-size:150%;vertical-align:-18%}
-.nowrap {white-space: nowrap}
-sub {font-size: 70%}
+body {max-width: 48em !important}
 
 -->
 </style>
@@ -208,6 +205,8 @@ Next: <a href="#Interactive-Use" accesskey="n" rel="next">Interactive Use</a>, P
 </div>
 <a name="Overview-of-units"></a>
 <h2 class="chapter">1 Overview of <code>units</code></h2>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML' async></script>
+
 
 <p>The <code>units</code> program converts quantities expressed in various
 systems of measurement to their equivalents in other systems of
@@ -1162,10 +1161,19 @@ and dimensional consistency when converting lengthy unit expressions.
 <a name="index-Darcy_002d_002dWeisbach-equation"></a>
 For example, one form of the Darcy&ndash;Weisbach fluid-flow equation is
 \[ \Delta P = \frac{8}{\pi^2} \rho fL \frac{Q^2}{d^5}  \]
-where \(\Delta P\) is the
-pressure drop, \(\rho\) is the mass density,
-<em>f</em> is the (dimensionless) friction factor, <em>L</em> is the length
-of the pipe, <em>Q</em> is the volumetric flow rate, and <em>d</em>
+where 
+\({ \Delta P}\)
+ is the pressure drop, 
+\({\rho}\)
+is the mass density,
+\({f}\)
+ is the (dimensionless) friction factor, 
+\({L}\)
+ is the length
+of the pipe, 
+\({Q}\)
+ is the volumetric flow rate, and 
+\({d}\)
 is the pipe diameter.
 It might be desired to have the equation in the form
 \[  \Delta P = A_1 \rho fL \frac{Q^2}{d^5} \]
@@ -1813,12 +1821,14 @@ arise from different choices made for proportionality
 constants in electromagnetic equations.
 Coulomb&rsquo;s law gives electrostatic force between two
 charges separated by a distance
-<em>r</em>:
+\({r}\)
+:
 \[ F = k_{\text{C}} \frac{q_1q^2}{r^2}. \]
 </p>
 <p>Ampere&rsquo;s law gives the electromagnetic force per unit length
 between two current-carrying conductors separated by a distance
-<em>r</em>:
+\({r}\)
+:
 \[ \frac{F}{l} = 2 k_{\text{A}} \frac{I_1I_2}{r}.\]
 </p>
 <p>The two constants,
@@ -1978,7 +1988,11 @@ definition.
 the CGS system has fewer base units, quantities that have different
 dimensions in SI may have the same dimension in a CGS system.  And
 yet, they may not have the same conversion factor.  For example, the
-unit for the <em>E</em> field and <em>B</em> fields are the same in the
+unit for the 
+\({E}\)
+ field and 
+\({B}\)
+ fields are the same in the
 Gaussian system, but the conversion factors to SI are quite
 different.  This means that correct conversion is only possible if you
 keep track of what quantity is being measured.  You cannot convert
@@ -5007,8 +5021,13 @@ Previous: <a href="#GNU-Free-Documentation-License" accesskey="p" rel="prev">GNU
 
 <h3><a name="FOOT1" href="#DOCF1">(1)</a></h3>
 <p>But Fahrenheit to
-Celsius is linear, you insist.  Not so.  A transformation <em>T</em> is linear if
-<em>T(x+y)=T(x)+T(y)</em> and this fails for <em>T(x)=ax+b</em>.  This transformation is
+Celsius is linear, you insist.  Not so.  A transformation 
+\({T}\)
+ is linear if
+\({T(x+y)=T(x)+T(y)}\)
+ and this fails for 
+\({T(x)=ax+b}\)
+.  This transformation is
 affine, but not linear. </p>
 <h3><a name="FOOT2" href="#DOCF2">(2)</a></h3>
 <p>This document refers to &ldquo;decimal point,&rdquo; but strictly,
